@@ -14,5 +14,6 @@ const storage = {
 	},
 };
 
+export { storage };
 // Call this inside index.js to see documents in projects collection
 // storage.getProjects();

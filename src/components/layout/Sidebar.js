@@ -7,7 +7,7 @@ import {
 
 export default function Sidebar() {
 	return (
-		<div className="sidebar" data-testid="sidebar">
+		<div className="sidebar">
 			<ul className="sidebar-main">
 				<li>
 					<span>

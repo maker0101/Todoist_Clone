@@ -3,7 +3,7 @@ import { FaMoon } from 'react-icons/fa';
 
 export default function Header() {
 	return (
-		<header className="header" data-testid="header">
+		<header className="header">
 			<nav>
 				<div className="logo">
 					<SiTodoist />
