@@ -1,29 +1,25 @@
-import {
-	FaChevronDown,
-	FaInbox,
-	FaRegCalendar,
-	FaRegCalendarAlt,
-} from 'react-icons/fa';
+import { VscInbox, VscCalendar, VscSymbolEvent } from 'react-icons/vsc'
+import { BsChevronDown } from 'react-icons/bs'
 
 export default function Sidebar() {
 	return (
 		<div className="sidebar">
 			<ul className="sidebar-main">
-				<li>
+				<li className="inbox">
 					<span>
-						<FaInbox />
+						<VscInbox />
 					</span>
 					<span>Inbox</span>
 				</li>
-				<li>
+				<li className="today">
 					<span>
-						<FaRegCalendar />
+						<VscSymbolEvent />
 					</span>
 					<span>Today</span>
 				</li>
-				<li>
+				<li className="upcoming">
 					<span>
-						<FaRegCalendarAlt />
+						<VscCalendar  />
 					</span>
 					<span>Upcoming</span>
 				</li>
@@ -31,11 +27,14 @@ export default function Sidebar() {
 
 			<div className="sidebar-projects">
 				<span>
-					<FaChevronDown />
+					<BsChevronDown />
 				</span>
 				<h2>Projects</h2>
-				<ul className="sidebar-projects-list">Projects will be here</ul>
-				Add Projects Component here
+				<ul className="sidebar-projects-list">
+					<li className='project'>Project 1</li>
+					<li className='project'>Project 2</li>
+				</ul>
+				tbd: Add Projects Component here
 			</div>
 		</div>
 	);

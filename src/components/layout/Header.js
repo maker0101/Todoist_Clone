@@ -1,5 +1,5 @@
 import { SiTodoist } from 'react-icons/si';
-import { FaMoon } from 'react-icons/fa';
+import { VscAdd, VscAccount, VscBell, VscQuestion } from 'react-icons/vsc';
 
 export default function Header() {
 	return (
@@ -10,9 +10,17 @@ export default function Header() {
 				</div>
 				<div className="settings">
 					<ul>
-						<li>+</li>
+						<li className="setting-add">
+							<VscAdd />
+						</li>
 						<li>
-							<FaMoon />
+							<VscQuestion />
+						</li>
+						<li>
+							<VscBell />
+						</li>
+						<li>
+							<VscAccount />
 						</li>
 					</ul>
 				</div>
