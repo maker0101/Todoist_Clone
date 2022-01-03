@@ -112,7 +112,7 @@ $generic-bg: #db4c3f;
 }
 
 // Header
-header {
+.header {
 	background-color: $generic-bg;
 	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
 	height: 44px;
@@ -122,25 +122,19 @@ header {
 	width: 100%;
 	padding: 0 50px;
 
-	nav {
+	.header__nav {
 		display: grid;
 		align-items: center;
 		grid-template-columns: 1fr 1fr;
 		grid-template-rows: 1fr;
 		grid-column-gap: 0px;
 		grid-row-gap: 0px;
-		max-width: 922px;
+		//max-width: 922px;
 		margin: auto;
 		height: 44px;
-	}
-
-	p,
-	li {
 		color: white;
-	}
 
-	div {
-		&.logo {
+		.header__logo {
 			grid-area: 1/1;
 			display: flex;
 			align-items: center;
@@ -149,14 +143,14 @@ header {
 			color: white;
 		}
 
-		&.settings {
+		.header__settings {
 			grid-area: 1/2;
 			text-align: right;
 
-			ul {
+			.header__settingsList {
 				float: right;
 
-				li {
+				.header__settingsItem {
 					@include va;
 
 					list-style-type: none;
@@ -195,16 +189,17 @@ header {
 		display: none;
 	}
 
-	li {
+	.sidebar__navItem {
 		padding-left: 10px;
 		padding-right: 15px;
 
 		&:hover {
 			display: block;
+			cursor: pointer;
 		}
 	}
 
-	.project {
+	.sidebar__project {
 		padding: 5px 0;
 		cursor: pointer;
 	}
