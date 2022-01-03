@@ -131,7 +131,7 @@ ul {
 	position: fixed;
 	top: 0;
 	width: 100%;
-	padding: 0 50px;
+	padding: 0 42px;
 
 	.header__nav {
 		display: grid;
@@ -144,39 +144,65 @@ ul {
 		height: 44px;
 		color: white;
 
-		.header__logo {
+		.header__navLeft {
 			grid-area: 1/1;
-			display: flex;
-			align-items: center;
-			font-size: 20px;
-			color: white;
+
+			.header__navLeftList {
+				@include va;
+				float: left;
+
+				.header__item {
+					margin-right: 8px;
+				}
+			}
 		}
 
-		.header__settings {
+		.header__navRight {
 			grid-area: 1/2;
-			text-align: right;
 
-			.header__settingsList {
+			.header__navRightList {
 				float: right;
 
-				.header__settingsItem {
-					@include va;
-
-					list-style-type: none;
-					cursor: pointer;
-					width: 30px;
-					height: 30px;
-					font-size: 20px;
-					text-align: center;
-					vertical-align: middle;
-					float: left;
+				.header__item {
 					margin-left: 8px;
-
-					&:hover {
-						border-radius: 3px;
-						background-color: rgba(255, 255, 255, 0.2);
-					}
 				}
+			}
+		}
+
+		.header__item {
+			@include va;
+
+			list-style-type: none;
+			cursor: pointer;
+			width: 30px;
+			height: 30px;
+			font-size: 20px;
+			text-align: center;
+			vertical-align: middle;
+			float: left;
+
+			&:hover {
+				border-radius: 3px;
+				background-color: rgba(255, 255, 255, 0.2);
+			}
+		}
+
+		.header__itemSearch {
+			@include va;
+			height: 28px;
+			width: 170px;
+			padding: 0 8px;
+			border-radius: 3px;
+			background-color: rgba(255, 255, 255, 0.2);
+			justify-content: left;
+
+			.header__searchIcon {
+				@include va;
+			}
+
+			.header__searchText {
+				margin-left: 8px;
+				font-size: 13px;
 			}
 		}
 	}
