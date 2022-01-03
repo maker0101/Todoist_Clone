@@ -1,40 +1,75 @@
-import { VscInbox, VscCalendar, VscSymbolEvent } from 'react-icons/vsc';
+import {
+	VscInbox,
+	VscCalendar,
+	VscSymbolEvent,
+	VscCircleFilled,
+} from 'react-icons/vsc';
 import { BsChevronDown } from 'react-icons/bs';
 
 export default function Sidebar() {
 	return (
 		<div className="sidebar">
-			<ul className="sidebar__nav">
-				<li className="sidebar__navItem sidebar__inbox">
-					<span>
-						<VscInbox />
-					</span>
-					<span>Inbox</span>
-				</li>
-				<li className="sidebar__navItem sidebar__today">
-					<span>
-						<VscSymbolEvent />
-					</span>
-					<span>Today</span>
-				</li>
-				<li className="sidebar__navItem sidebar__upcoming">
-					<span>
-						<VscCalendar />
-					</span>
-					<span>Upcoming</span>
-				</li>
-			</ul>
-
-			<div className="sidebar__projects">
-				<span>
-					<BsChevronDown />
-				</span>
-				<h2>Projects</h2>
-				<ul className="sidebar__projectsList">
-					<li className="sidebar__project">Project 1</li>
-					<li className="sidebar__project">Project 2</li>
+			<div className="sidebar__section sidebar__nav">
+				<ul>
+					<li className="sidebar__grid sidebar__item">
+						<span className="sidebar__icon sidebar__iconInbox">
+							<VscInbox />
+						</span>
+						<span className="sidebar__text">Inbox</span>
+						<span className="sidebar__info">5</span>
+					</li>
+					<li className="sidebar__grid sidebar__item">
+						<span className="sidebar__icon sidebar__iconToday">
+							<VscSymbolEvent />
+						</span>
+						<span className="sidebar__text">Today</span>
+						<span className="sidebar__info">3</span>
+					</li>
+					<li className="sidebar__grid sidebar__item">
+						<span className="sidebar__icon sidebar__iconUpcoming">
+							<VscCalendar />
+						</span>
+						<span className="sidebar__text">Upcoming</span>
+						<span className="sidebar__info"></span>
+					</li>
 				</ul>
-				tbd: Add Projects Component here
+			</div>
+
+			<div className="sidebar__section sidebar__projects">
+				<div className="sidebar__grid">
+					<span className="sidebar__icon sidebar__iconChevron">
+						<BsChevronDown />
+					</span>
+					<h2 className="sidebar__sectionTitle">Projects</h2>
+				</div>
+				<ul className="sidebar__projectsList">
+					<li className="sidebar__grid sidebar__item sidebar__project">
+						<span className="sidebar__icon sidebar__dot">
+							<VscCircleFilled />
+						</span>
+						<span className="sidebar_projectName">Project 1</span>
+						<span className="sidebar__info">23</span>
+					</li>
+					<li className="sidebar__grid sidebar__item sidebar__project">
+						<span className="sidebar__icon sidebar__dot">
+							<VscCircleFilled />
+						</span>
+						<span className="sidebar_projectName">Project 2</span>
+						<span className="sidebar__info">40</span>
+					</li>
+					<li className="sidebar__grid sidebar__item sidebar__project">
+						<span className="sidebar__icon sidebar__dot">
+							<VscCircleFilled />
+						</span>
+						<span className="sidebar_projectName">Project 3</span>
+						<span className="sidebar__info">2</span>
+					</li>
+				</ul>
+				<div className="sidebar__grid sidebar__item">
+					<span></span>
+					<span className="sidebar__text">+Add Project</span>
+					<span></span>
+				</div>
 			</div>
 		</div>
 	);

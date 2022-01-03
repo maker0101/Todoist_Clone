@@ -1,6 +1,14 @@
-// General
-@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,900;1,700&display=swap');
+// Imports
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;700;900&display=swap');
 
+// Variables
+$generic-box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 0px 1px,
+	rgba(0, 0, 0, 0.1) 0px 4px 11px;
+$generic-border: 1px solid #f1f1f1;
+$generic-bg: #db4c3f;
+$generic-font-size: 15px;
+
+//General
 html {
 	box-sizing: border-box;
 }
@@ -15,21 +23,24 @@ body {
 	margin: 0;
 	padding: 0;
 	line-height: 1;
-	font-family: 'Roboto', sans-serif;
+	font-size: $generic-font-size;
+	font-weight: 300;
+	font-family: 'Railway', sans-serif;
 	color: #202020;
-	background-color: #fafafa;
+}
+
+h2 {
+	margin: 0;
+	padding: 0;
+	line-height: 1;
+	font-size: $generic-font-size;
+	font-weight: 700;
 }
 
 ul {
 	margin: 0;
 	padding: 0;
 }
-
-// Variables
-$generic-box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 0px 1px,
-	rgba(0, 0, 0, 0.1) 0px 4px 11px;
-$generic-border: 1px solid #f1f1f1;
-$generic-bg: #db4c3f;
 
 //Mixins
 @mixin box-overlay() {
@@ -129,7 +140,6 @@ $generic-bg: #db4c3f;
 		grid-template-rows: 1fr;
 		grid-column-gap: 0px;
 		grid-row-gap: 0px;
-		//max-width: 922px;
 		margin: auto;
 		height: 44px;
 		color: white;
@@ -138,7 +148,6 @@ $generic-bg: #db4c3f;
 			grid-area: 1/1;
 			display: flex;
 			align-items: center;
-			padding-left: 8px;
 			font-size: 22px;
 			color: white;
 		}
@@ -176,31 +185,109 @@ $generic-bg: #db4c3f;
 // Sidebar
 .sidebar {
 	@include no-select();
-	width: 266px;
-	height: calc(100vh);
-	padding-top: 74px;
+	width: 285px;
+	height: 100vh;
+	padding-top: 60px;
+	padding-left: 35px;
+	padding-right: 5px;
 	position: fixed;
 	overflow-x: hidden;
 	overflow-y: hidden;
 	border-right: $generic-border;
 	background-color: #fafafa;
 
-	@include mq('750px') {
+	@include mq('450px') {
 		display: none;
 	}
 
-	.sidebar__navItem {
-		padding-left: 10px;
-		padding-right: 15px;
+	.sidebar__section {
+		margin-top: 15px;
+	}
 
+	//TODO: Grid area seems not to work properly
+	.sidebar__grid {
+		display: grid;
+		grid-template-rows: 1;
+		grid-template-columns: 1fr 6fr 1fr;
+		grid-column-gap: 10px;
+		grid-template-areas: 'icon text info';
+		height: 38px;
+		width: 100%;
+		padding: 10px 10px;
+		align-items: center;
+
+		.sidebar__icon {
+			grid-area: 'icon';
+			height: 100%;
+			display: flex;
+			align-items: center;
+
+			svg {
+				font-size: 19px;
+				width: 100%;
+			}
+		}
+
+		.sidebar__text {
+			grid-area: 'text';
+		}
+
+		.sidebar__info {
+			grid-area: 'info';
+			color: #b2b2b2;
+		}
+
+		.sidebar__iconInbox {
+			color: #246fe0;
+		}
+
+		.sidebar__iconToday {
+			color: #058527;
+		}
+
+		.sidebar__iconUpcoming {
+			color: #692fc2;
+		}
+	}
+
+	.sidebar__item {
+		&.active,
 		&:hover {
-			display: block;
 			cursor: pointer;
+			border-radius: 5px;
+			background-color: #ececec;
 		}
 	}
 
 	.sidebar__project {
-		padding: 5px 0;
-		cursor: pointer;
+		&:nth-child(1) {
+			.sidebar__dot {
+				color: #6accbc;
+			}
+		}
+
+		&:nth-child(2) {
+			.sidebar__dot {
+				color: #fad003;
+			}
+		}
+
+		&:nth-child(3) {
+			.sidebar__dot {
+				color: #ff8d85;
+			}
+		}
+
+		&:nth-child(4) {
+			.sidebar__dot {
+				color: #ff9932;
+			}
+		}
+
+		&:nth-child(5) {
+			.sidebar__dot {
+				color: #af38eb;
+			}
+		}
 	}
 }
