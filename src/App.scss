@@ -6,7 +6,7 @@ $generic-box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 0px 1px,
 	rgba(0, 0, 0, 0.1) 0px 4px 11px;
 $generic-border: 1px solid #f1f1f1;
 $generic-bg: #db4c3f;
-$generic-font-size: 15px;
+$generic-font-size: 14.5px;
 
 //General
 html {
@@ -190,7 +190,7 @@ ul {
 		.header__itemSearch {
 			@include va;
 			height: 28px;
-			width: 170px;
+			width: 183px;
 			padding: 0 8px;
 			border-radius: 3px;
 			background-color: rgba(255, 255, 255, 0.2);
@@ -208,17 +208,20 @@ ul {
 	}
 }
 
+// Main
+.main {
+	display: grid;
+	grid-template-columns: 300px auto;
+}
+
 // Sidebar
 .sidebar {
 	@include no-select();
-	width: 285px;
+	width: 100%;
 	height: 100vh;
 	padding-top: 60px;
 	padding-left: 35px;
 	padding-right: 5px;
-	position: fixed;
-	overflow-x: hidden;
-	overflow-y: hidden;
 	border-right: $generic-border;
 	background-color: #fafafa;
 
@@ -327,6 +330,15 @@ ul {
 	}
 }
 
+//TODO: helper ->remove later
 .tasks__list {
 	color: black;
+}
+
+// Content
+.content {
+	height: 100vh;
+	padding-top: 60px;
+	padding-left: 50px;
+	padding-right: 50px;
 }

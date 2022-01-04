@@ -3,11 +3,9 @@ import {
 	VscCalendar,
 	VscSymbolEvent,
 } from 'react-icons/vsc';
-import { BsChevronDown } from 'react-icons/bs';
 import SidebarNavItem from '../SidebarNavItem';
 import SidebarSectionTitle from '../SidebarSectionTitle';
 import SidebarProjects from '../SidebarProjects';
-import FirebaseTasks from '../FirebaseTasks';
 
 export default function Sidebar() {
 
@@ -42,21 +40,6 @@ export default function Sidebar() {
 				<div className="sidebar__grid sidebar__item">
 					<span></span>
 					<span className="sidebar__text">+Add Project</span>
-					<span></span>
-				</div>
-			</div>
-
-			<div className="sidebar__section sidebar__projects">
-				<div className="sidebar__grid">
-					<span className="sidebar__icon sidebar__iconChevron">
-						<BsChevronDown />
-					</span>
-					<h2 className="sidebar__sectionTitle">Tasks</h2>
-				</div>
-
-				<div className="sidebar__grid sidebar__item">
-					<span></span>
-					<FirebaseTasks />
 					<span></span>
 				</div>
 			</div>
