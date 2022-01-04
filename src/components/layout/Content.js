@@ -3,7 +3,7 @@ import Tasks from '../Tasks';
 
 export default function Content() {
 	return (
-		<section>
+		<section className='content'>
 			<Sidebar />
 			<Tasks />
 		</section>

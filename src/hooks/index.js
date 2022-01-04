@@ -4,7 +4,7 @@ import { collatedTasksExist } from '../helpers/index';
 
 export const useTasks = selectedProject => {
 	const [tasks, setTasks] = React.useState([]);
-	const [archivedTasks, setArchivedTasks] = React.useState([]);
+	//const [archivedTasks, setArchivedTasks] = React.useState([]);
 
 	React.useEffect(() => {
 		let unsubscribe = firebaseApp
@@ -12,6 +12,7 @@ export const useTasks = selectedProject => {
 			.collection('tasks')
 			.where('userId', '==', 'userid1');
 
+        
 		unsubscribe =
 			selectedProject && !collatedTasksExist(selectedProject)
 				? (unsubscribe = unsubscribe.where('projecId', '==', selectedProject))

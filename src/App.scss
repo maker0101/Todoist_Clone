@@ -254,12 +254,12 @@ ul {
 			}
 		}
 
-        .sidebar__iconChevron {
-            svg {
+		.sidebar__iconChevron {
+			svg {
 				font-size: 15px;
 				width: 100%;
 			}
-        }
+		}
 
 		.sidebar__text {
 			grid-area: 'text';
@@ -268,8 +268,8 @@ ul {
 		.sidebar__info {
 			grid-area: 'info';
 			color: #b2b2b2;
-            font-size: 13px;
-            text-align: right;
+			font-size: 13px;
+			text-align: right;
 		}
 
 		.sidebar__iconInbox {
@@ -325,4 +325,8 @@ ul {
 			}
 		}
 	}
+}
+
+.tasks__list {
+	color: black;
 }
