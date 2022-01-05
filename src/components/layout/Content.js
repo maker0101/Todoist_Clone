@@ -1,5 +1,7 @@
 import getTasks from '../../hooks/getTasks';
 import Checkbox from '../Checkbox';
+import AddTaskForm from '../AddTaskForm';
+import React from 'react';
 
 export default function Content() {
 	const tasks = getTasks();
@@ -20,6 +22,9 @@ export default function Content() {
 							</div>
 						);
 					})}
+					<div>
+						<AddTaskForm />
+					</div>
 				</ul>
 			</div>
 		</div>

@@ -1,3 +1,4 @@
+import React from 'react';
 import { VscCircleFilled } from 'react-icons/vsc';
 import getProjects from '../hooks/getProjects';
 
@@ -15,7 +16,7 @@ export default function SidebarProjects() {
 						<VscCircleFilled />
 					</span>
 					<span className="sidebar_projectName">{project.name}</span>
-					<span className="sidebar__info">23</span>
+					<span className="sidebar__info">{projects.length}</span>
 				</li>
 			))}
 		</ul>
