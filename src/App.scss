@@ -338,7 +338,71 @@ ul {
 // Content
 .content {
 	height: 100vh;
-	padding-top: 60px;
+	padding-top: 70px;
 	padding-left: 50px;
 	padding-right: 50px;
+
+	.content__container {
+		max-width: 800px;
+		margin: auto;
+
+		.content__containerTitle {
+			font-size: 20px;
+		}
+
+		.content__tasksList {
+			.content__taskContainer {
+				.content__task {
+					display: grid;
+					grid-template-columns: 30px auto;
+					list-style: none;
+					padding: 7px 0;
+
+					.content__checkboxContainer {
+						width: 18px;
+						height: 18px;
+						display: block;
+						position: relative;
+						cursor: pointer;
+						font-size: 22px;
+						-webkit-user-select: none;
+						-moz-user-select: none;
+						-ms-user-select: none;
+						user-select: none;
+
+						input {
+							position: absolute;
+							opacity: 0;
+							height: 0;
+							width: 0;
+						}
+
+						.checkmark {
+							position: absolute;
+							border: 1px solid grey;
+							border-radius: 50%;
+							top: 0;
+							left: 0;
+							height: 100%;
+							width: 100%;
+						}
+					}
+
+					.content__taskName {
+						display: flex;
+						align-items: center;
+						height: 100%;
+					}
+				}
+
+				hr {
+					border: none;
+					height: 1px;
+					color: #f1f1f1; /* old IE */
+					background-color: #f1f1f1; /* Modern Browsers */
+					margin-top: 5px;
+				}
+			}
+		}
+	}
 }
