@@ -330,11 +330,6 @@ ul {
 	}
 }
 
-//TODO: helper ->remove later
-.tasks__list {
-	color: black;
-}
-
 // Content
 .content {
 	height: 100vh;
@@ -408,7 +403,7 @@ ul {
 	}
 }
 
-/* On mouse-over, add a grey background color */
+/* On checkbox mouse-over, add a background color */
 .checkbox__container:hover input ~ .checkbox__checkmark {
 	background-color: #eee;
 }
