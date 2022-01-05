@@ -358,36 +358,6 @@ ul {
 					list-style: none;
 					padding: 7px 0;
 
-					.content__checkboxContainer {
-						width: 18px;
-						height: 18px;
-						display: block;
-						position: relative;
-						cursor: pointer;
-						font-size: 22px;
-						-webkit-user-select: none;
-						-moz-user-select: none;
-						-ms-user-select: none;
-						user-select: none;
-
-						input {
-							position: absolute;
-							opacity: 0;
-							height: 0;
-							width: 0;
-						}
-
-						.checkmark {
-							position: absolute;
-							border: 1px solid grey;
-							border-radius: 50%;
-							top: 0;
-							left: 0;
-							height: 100%;
-							width: 100%;
-						}
-					}
-
 					.content__taskName {
 						display: flex;
 						align-items: center;
@@ -405,4 +375,70 @@ ul {
 			}
 		}
 	}
+}
+
+// Checkbox
+.checkbox__container {
+	width: 18px;
+	height: 18px;
+	display: block;
+	position: relative;
+	cursor: pointer;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+
+	/* Hide the browser's default checkbox */
+	input {
+		position: absolute;
+		height: 0;
+		width: 0;
+	}
+
+	/* Create a custom checkbox */
+	.checkbox__checkmark {
+		position: absolute;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		border: 1px solid grey;
+		border-radius: 50%;
+	}
+}
+
+/* On mouse-over, add a grey background color */
+.checkbox__container:hover input ~ .checkbox__checkmark {
+	background-color: #eee;
+}
+
+/* When the checkbox is checked, change background*/
+.checkbox__container input:checked ~ .checkbox__checkmark {
+	background-color: #eee;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkbox__checkmark:after {
+	content: '';
+	position: absolute;
+	display: none;
+}
+
+/* Show the checkmark when checked */
+.checkbox__container input:checked ~ .checkbox__checkmark:after {
+	display: block;
+}
+
+/* Style the checkmark/indicator */
+.checkbox__container .checkbox__checkmark:after {
+	left: 6px;
+	top: 4px;
+	width: 5px;
+	height: 7px;
+	border: solid grey;
+	border-width: 0 1px 1px 0;
+	-webkit-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	transform: rotate(45deg);
 }

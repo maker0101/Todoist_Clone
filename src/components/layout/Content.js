@@ -1,4 +1,5 @@
 import getTasks from '../../hooks/getTasks';
+import Checkbox from '../Checkbox';
 
 export default function Content() {
 	const tasks = getTasks();
@@ -10,12 +11,9 @@ export default function Content() {
 				<ul className="content__tasksList">
 					{tasks.map((task) => {
 						return (
-							<div className="content__taskContainer">
-								<li className="content__task" key={`${task.id}`}>
-									<div className="content__checkboxContainer">
-										<input type="checkbox" />
-										<span className="checkmark"></span>
-									</div>
+							<div className="content__taskContainer" key={`${task.id}`}>
+								<li className="content__task">
+									<Checkbox />
 									<span className="content__taskName">{task.name}</span>
 								</li>
 								<hr />
