@@ -15,7 +15,7 @@ It's under heavy development at the moment and much is missing still.
 
 ## Open Todos
 
-- Sidebar: Add real task counts to projects
+- [ ] Sidebar: Add real task counts to projects
 - [ ] Add new Tasks
 - [ ] Delete Tasks
 - [ ] Edit Tasks
@@ -31,6 +31,5 @@ It's under heavy development at the moment and much is missing still.
 ## Maybe
 
 - [ ] Search, sort, filter, ... https://listjs.com/?ref=vanillalist
-
 - [ ] Drag and drop projects and tasks: https://shopify.github.io/draggable/
 - [ ] Keyboard shortcuts: https://github.com/madrobby/keymaster?ref=vanillalist
