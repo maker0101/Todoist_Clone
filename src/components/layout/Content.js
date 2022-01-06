@@ -1,7 +1,8 @@
-import getTasks from '../../hooks/getTasks';
+import React from 'react';
 import Checkbox from '../Checkbox';
 import AddTaskForm from '../AddTaskForm';
-import React from 'react';
+import getTasks from '../../hooks/getTasks';
+import { VscTrash, VscEdit } from 'react-icons/vsc';
 
 export default function Content() {
 	const tasks = getTasks();
@@ -17,6 +18,10 @@ export default function Content() {
 								<li className="content__task">
 									<Checkbox />
 									<span className="content__taskName">{task.name}</span>
+									<span className="content__taskIcons">
+										<VscTrash />
+										<VscEdit />
+									</span>
 								</li>
 								<hr />
 							</div>

@@ -349,7 +349,7 @@ ul {
 			.content__taskContainer {
 				.content__task {
 					display: grid;
-					grid-template-columns: 30px auto;
+					grid-template-columns: 30px auto 50px;
 					list-style: none;
 					padding: 7px 0;
 
@@ -357,6 +357,14 @@ ul {
 						display: flex;
 						align-items: center;
 						height: 100%;
+					}
+
+					.content__taskIcons {
+						display: grid;
+						grid-template-columns: 1fr 1fr;
+						color: grey;
+						font-size: 16px;
+						cursor: pointer;
 					}
 				}
 
