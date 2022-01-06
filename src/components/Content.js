@@ -8,8 +8,8 @@ import {
 	addDoc,
 	deleteDoc,
 } from 'firebase/firestore';
-import { db } from '../../firebase';
-import Checkbox from '../Checkbox';
+import { db } from '../firebase';
+import Checkbox from './Checkbox';
 import { VscTrash, VscEdit } from 'react-icons/vsc';
 
 export default function Content() {
@@ -52,7 +52,6 @@ export default function Content() {
 
 	const deleteTask = async (id) => {
 		const taskDoc = doc(db, 'tasks', id);
-		console.log(taskDoc);
 		await deleteDoc(taskDoc);
 	};
 

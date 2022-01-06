@@ -1,8 +1,7 @@
 import { VscInbox, VscCalendar, VscSymbolEvent } from 'react-icons/vsc';
-import SidebarNavItem from '../SidebarNavItem';
-import SidebarSectionTitle from '../SidebarSectionTitle';
-import SidebarProjects from '../SidebarProjects';
-import AddProjectForm from '../AddProjectForm';
+import SidebarNavItem from './SidebarNavItem';
+import SidebarSectionTitle from './SidebarSectionTitle';
+import SidebarProjects from './SidebarProjects';
 
 export default function Sidebar() {
 	return (
@@ -33,7 +32,6 @@ export default function Sidebar() {
 			<div className="sidebar__section sidebar__projects">
 				<SidebarSectionTitle title="Projects" />
 				<SidebarProjects />
-				<AddProjectForm />
 			</div>
 		</div>
 	);
