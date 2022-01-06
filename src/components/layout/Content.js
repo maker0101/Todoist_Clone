@@ -1,45 +1,60 @@
 import React from 'react';
-import AddTaskForm from '../AddTaskForm';
 import {
-	onSnapshot,
 	collection,
 	query,
+	doc,
 	where,
-	getDocs,
+	onSnapshot,
+	addDoc,
+	deleteDoc,
 } from 'firebase/firestore';
 import { db } from '../../firebase';
-import TaskListItem from '../TaskListItem';
+import Checkbox from '../Checkbox';
+import { VscTrash, VscEdit } from 'react-icons/vsc';
 
 export default function Content() {
 	const [tasks, setTasks] = React.useState([]);
-	const [todos, setTodos] = React.useState([]);
-	console.log(tasks);
-	console.log(todos);
+	const [addTaskInput, setAddTaskInput] = React.useState('');
+
+	// Questions and TODO:
+	// 1.) How to extract these CRUD functions and store and (re-)use them all over the application?
+	// Why difficult: There are references to the state inside the function, but also extracting the state
+	// away into seperate files would break the references to the state inside the returned JSX.
+	const createTask = async (e) => {
+		e.preventDefault();
+
+		await addDoc(collection(db, 'tasks'), {
+			name: addTaskInput,
+			projectId: '1',
+			userId: 'userid1',
+		});
+
+		setAddTaskInput('');
+	};
 
 	React.useEffect(() => {
+		const getTasks = async () => {
+			const tasksQuery = query(
+				collection(db, 'tasks'),
+				where('userId', '==', 'userid1')
+			);
+
+			const unsubscribe = onSnapshot(tasksQuery, (querySnapshot) => {
+				setTasks(
+					querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+				);
+			});
+			return unsubscribe;
+		};
+
 		getTasks();
 	}, []);
 
-	function getTasks() {
-		const tasksQuery = query(
-			collection(db, 'tasks'),
-			where('userId', '==', 'userid1')
-		);
-		const unsubscribe = onSnapshot(tasksQuery, (querySnapshot) => {
-			const tasksSnapshot = querySnapshot.docs.map((doc) => doc.data());
-			setTasks(tasksSnapshot);
-		});
-		return unsubscribe;
-	}
-
-	React.useEffect(() => {
-		const getTodos = async () => {
-			const data = await getDocs(collection(db, 'tasks'));
-			setTodos(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-		};
-
-		getTodos();
-	}, []);
+	const deleteTask = async (id) => {
+		const taskDoc = doc(db, 'tasks', id);
+		console.log(taskDoc);
+		await deleteDoc(taskDoc);
+	};
 
 	return (
 		<div className="content">
@@ -47,11 +62,28 @@ export default function Content() {
 				<h1 className="content__containerTitle">Task List</h1>
 				<ul className="content__tasksList">
 					{tasks.map((task) => (
-						<TaskListItem name={task.name} id={task.id} key={task.id} />
+						<div className="content__taskContainer" key={task.id}>
+							<li className="content__task">
+								<Checkbox />
+								<span className="content__taskName">{task.name}</span>
+								<span className="content__taskIcons">
+									<VscTrash onClick={() => deleteTask(task.id)} />
+									<VscEdit />
+								</span>
+							</li>
+							<hr />
+						</div>
 					))}
-					<div>
-						<AddTaskForm />
-					</div>
+					<form>
+						<input
+							type="text"
+							id="taskName"
+							name="name"
+							value={addTaskInput}
+							onChange={(e) => setAddTaskInput(e.target.value)}
+						/>
+						<input type="submit" onClick={createTask} />
+					</form>
 				</ul>
 			</div>
 		</div>

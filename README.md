@@ -12,21 +12,22 @@ It's under heavy development at the moment and much is missing still.
 - [x] Firebase/Firestore setup
 - [x] get Tasks dynamically from Firestore
 - [x] get Projects dynamically from Firestore
+- [x] Add new Tasks
+- [x] Delete Tasks
 
 ## Open Todos
 
+- [ ] Check Tasks
 - [ ] Sidebar: Add real task counts to projects
-- [ ] Add new Tasks
-- [ ] Delete Tasks
 - [ ] Edit Tasks
 - [ ] Filter tasks based on Sidebar Selection
-- [ ] Check Tasks
 - [ ] Add new Projects
 - [ ] Delete Projects
 - [ ] Edit Projects
 - [ ] Add due dates to tasks
 - [ ] Sidebar: Turn Projects section into working accordeon
 - [ ] Sidebar: Toggle show/hide
+- [ ] Sort tasks & projects to preserve order created in
 
 ## Maybe
 
