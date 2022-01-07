@@ -11,7 +11,10 @@ export default function getProjects() {
 			where('userId', '==', 'userid1')
 		);
 		const unsubscribe = onSnapshot(projectsQuery, (querySnapshot) => {
-			const projectsSnapshot = querySnapshot.docs.map((doc) => doc.data());
+			const projectsSnapshot = querySnapshot.docs.map((doc) => ({
+				...doc.data(),
+				id: doc.id,
+			}));
 			setProjects(projectsSnapshot);
 		});
 		return unsubscribe;
