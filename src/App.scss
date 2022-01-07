@@ -483,8 +483,8 @@ ul {
 	display: none;
 }
 
-/* Show the checkmark when checked */
-.checkbox__container input:checked ~ .checkbox__checkmark:after {
+/* Show the checkmark on hover */
+.checkbox__container input:hover ~ .checkbox__checkmark:after {
 	display: block;
 }
 

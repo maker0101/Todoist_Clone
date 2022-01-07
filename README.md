@@ -42,6 +42,7 @@ I haven't been able to learn about all React hooks...so maybe I'm missing someth
 
 ## Maybe
 
+- [ ] User authentification
 - [ ] Search, dynamic sorting and filtering, ... https://listjs.com/?ref=vanillalist
 - [ ] Drag and drop projects and tasks: https://shopify.github.io/draggable/
 - [ ] Keyboard shortcuts: https://github.com/madrobby/keymaster?ref=vanillalist
