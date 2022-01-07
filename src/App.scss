@@ -377,6 +377,16 @@ ul {
 						font-size: 16px;
 						cursor: pointer;
 					}
+
+					.content__taskDescription {
+						display: flex;
+						align-items: center;
+						height: 100%;
+						color: #b2b2b2;
+						font-size: 13px;
+						font-weight: 300;
+						margin-top: 3px;
+					}
 				}
 
 				hr {
@@ -405,7 +415,7 @@ ul {
 				}
 
 				.input::placeholder {
-					color: rgb(124, 124, 124);
+					color: #b2b2b2;
 				}
 
 				.input__name {
@@ -416,6 +426,10 @@ ul {
 					font-size: 13px;
 					font-weight: 300;
 				}
+			}
+
+			.addTaskForm__inputContainer:focus-within {
+				border: 1px solid #b2b2b2;
 			}
 		}
 	}

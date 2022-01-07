@@ -4,29 +4,36 @@ import {
 	query,
 	doc,
 	where,
+	orderBy,
 	onSnapshot,
 	addDoc,
 	deleteDoc,
 	updateDoc,
+	serverTimestamp,
 } from 'firebase/firestore';
+//import firebase from 'firebase';
 import { db } from '../firebase';
 import { VscTrash, VscEdit } from 'react-icons/vsc';
 
 export default function Content() {
 	const [tasks, setTasks] = React.useState([]);
-	const [addTaskInput, setAddTaskInput] = React.useState('');
+	const [taskNameInput, setTaskNameInput] = React.useState('');
+	const [taskDescriptionInput, setTaskDescriptionInput] = React.useState('');
 
 	const createTask = async (e) => {
 		e.preventDefault();
 
 		await addDoc(collection(db, 'tasks'), {
-			name: addTaskInput,
+			name: taskNameInput,
+			description: taskDescriptionInput,
 			isChecked: false,
 			projectId: '1',
 			userId: 'userid1',
+			createdAt: serverTimestamp(),
 		});
 
-		setAddTaskInput('');
+		setTaskNameInput('');
+		setTaskDescriptionInput('');
 	};
 
 	React.useEffect(() => {
@@ -35,6 +42,7 @@ export default function Content() {
 				collection(db, 'tasks'),
 				where('userId', '==', 'userid1'),
 				where('isChecked', '==', false)
+				//orderBy('createdAt')
 			);
 
 			const unsubscribe = onSnapshot(tasksQuery, (querySnapshot) => {
@@ -61,7 +69,7 @@ export default function Content() {
 	return (
 		<div className="content">
 			<div className="content__container">
-				<h1 className="content__containerTitle">Task List</h1>
+				<h1 className="content__containerTitle">Tasks List</h1>
 				<ul className="content__tasksList">
 					{tasks.map((task) => (
 						<div className="content__taskContainer" key={task.id}>
@@ -79,6 +87,13 @@ export default function Content() {
 									<VscTrash onClick={() => deleteTask(task.id)} />
 									<VscEdit />
 								</span>
+								<span></span>
+								<span
+									className="content__taskDescription"
+									style={{ display: task.description ? 'flex' : 'none' }}
+								>
+									{task.description}
+								</span>
 							</li>
 							<hr />
 						</div>
@@ -90,18 +105,18 @@ export default function Content() {
 								type="text"
 								id="taskName"
 								name="name"
-								value={addTaskInput}
+								value={taskNameInput}
 								placeholder="Task name"
-								onChange={(e) => setAddTaskInput(e.target.value)}
+								onChange={(e) => setTaskNameInput(e.target.value)}
 							/>
 							<textarea
 								className="input input__description"
 								type="text"
 								id="taskDescription"
 								name="description"
-								value={addTaskInput}
+								value={taskDescriptionInput}
 								placeholder="Description"
-								onChange={(e) => setAddTaskInput(e.target.value)}
+								onChange={(e) => setTaskDescriptionInput(e.target.value)}
 							/>
 						</div>
 						<input
