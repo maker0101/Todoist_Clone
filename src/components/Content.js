@@ -7,24 +7,21 @@ import {
 	onSnapshot,
 	addDoc,
 	deleteDoc,
+	updateDoc,
 } from 'firebase/firestore';
 import { db } from '../firebase';
-import Checkbox from './Checkbox';
 import { VscTrash, VscEdit } from 'react-icons/vsc';
 
 export default function Content() {
 	const [tasks, setTasks] = React.useState([]);
 	const [addTaskInput, setAddTaskInput] = React.useState('');
 
-	// Questions and TODO:
-	// 1.) How to extract these CRUD functions and store and (re-)use them all over the application?
-	// Why difficult: There are references to the state inside the function, but also extracting the state
-	// away into seperate files would break the references to the state inside the returned JSX.
 	const createTask = async (e) => {
 		e.preventDefault();
 
 		await addDoc(collection(db, 'tasks'), {
 			name: addTaskInput,
+			isChecked: false,
 			projectId: '1',
 			userId: 'userid1',
 		});
@@ -36,7 +33,8 @@ export default function Content() {
 		const getTasks = async () => {
 			const tasksQuery = query(
 				collection(db, 'tasks'),
-				where('userId', '==', 'userid1')
+				where('userId', '==', 'userid1'),
+				where('isChecked', '==', false)
 			);
 
 			const unsubscribe = onSnapshot(tasksQuery, (querySnapshot) => {
@@ -55,6 +53,11 @@ export default function Content() {
 		await deleteDoc(taskDoc);
 	};
 
+	const toggleIsChecked = async (id, checked) => {
+		const taskDoc = doc(db, 'tasks', id);
+		await updateDoc(taskDoc, { isChecked: !checked });
+	};
+
 	return (
 		<div className="content">
 			<div className="content__container">
@@ -63,7 +66,14 @@ export default function Content() {
 					{tasks.map((task) => (
 						<div className="content__taskContainer" key={task.id}>
 							<li className="content__task">
-								<Checkbox />
+								<label className="checkbox__container">
+									<input
+										type="checkbox"
+										checked={task.isChecked}
+										onChange={() => toggleIsChecked(task.id, task.isChecked)}
+									></input>
+									<span className="checkbox__checkmark"></span>
+								</label>
 								<span className="content__taskName">{task.name}</span>
 								<span className="content__taskIcons">
 									<VscTrash onClick={() => deleteTask(task.id)} />
@@ -73,15 +83,33 @@ export default function Content() {
 							<hr />
 						</div>
 					))}
-					<form>
+					<form className="addTaskForm">
+						<div className="addTaskForm__inputContainer">
+							<input
+								className="input input__name"
+								type="text"
+								id="taskName"
+								name="name"
+								value={addTaskInput}
+								placeholder="Task name"
+								onChange={(e) => setAddTaskInput(e.target.value)}
+							/>
+							<textarea
+								className="input input__description"
+								type="text"
+								id="taskDescription"
+								name="description"
+								value={addTaskInput}
+								placeholder="Description"
+								onChange={(e) => setAddTaskInput(e.target.value)}
+							/>
+						</div>
 						<input
-							type="text"
-							id="taskName"
-							name="name"
-							value={addTaskInput}
-							onChange={(e) => setAddTaskInput(e.target.value)}
+							className="button__primary"
+							type="submit"
+							value="Add Task"
+							onClick={createTask}
 						/>
-						<input type="submit" onClick={createTask} />
 					</form>
 				</ul>
 			</div>

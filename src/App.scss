@@ -122,6 +122,17 @@ ul {
 	}
 }
 
+// Reusable Components
+.button__primary {
+	display: inline-block;
+	background-color: $generic-bg;
+	border: none;
+	color: white;
+	border-radius: 5px;
+	padding: 8px 10px;
+	width: fit-content;
+}
+
 // Header
 .header {
 	background-color: $generic-bg;
@@ -374,6 +385,36 @@ ul {
 					color: #f1f1f1; /* old IE */
 					background-color: #f1f1f1; /* Modern Browsers */
 					margin-top: 5px;
+				}
+			}
+
+			.addTaskForm__inputContainer {
+				display: flex;
+				flex-direction: column;
+				border: 1px solid #ddd;
+				border-radius: 5px;
+				padding: 10px;
+				margin-bottom: 10px;
+
+				.input {
+					border: none;
+				}
+
+				.input:focus {
+					outline: none;
+				}
+
+				.input::placeholder {
+					color: rgb(124, 124, 124);
+				}
+
+				.input__name {
+					margin-bottom: 10px;
+				}
+
+				.input__description {
+					font-size: 13px;
+					font-weight: 300;
 				}
 			}
 		}

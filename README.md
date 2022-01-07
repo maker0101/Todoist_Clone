@@ -14,10 +14,18 @@ It's under heavy development at the moment and much is missing still.
 - [x] get Projects dynamically from Firestore
 - [x] Add new Tasks
 - [x] Delete Tasks
+- [x] Check Tasks
+
+## Questions
+
+#### 1.) How to modularize Content.js into seperate JSX Components & How to extract CRUD functions into seperate hook files?
+
+To keep code maintainable and reuse components and functions elsewhere, I need to modularize my code.
+
+However, due to the variable and function references between JSX components, state, hooks etc. I find it really hard to achieve without breaking the code.
 
 ## Open Todos
 
-- [ ] Check Tasks
 - [ ] Sidebar: Add real task counts to projects
 - [ ] Edit Tasks
 - [ ] Filter tasks based on Sidebar Selection
