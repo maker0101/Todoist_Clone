@@ -11,7 +11,6 @@ import {
 	updateDoc,
 	serverTimestamp,
 } from 'firebase/firestore';
-//import firebase from 'firebase';
 import { db } from '../firebase';
 import { VscTrash, VscEdit } from 'react-icons/vsc';
 
@@ -41,8 +40,8 @@ export default function Content() {
 			const tasksQuery = query(
 				collection(db, 'tasks'),
 				where('userId', '==', 'userid1'),
-				where('isChecked', '==', false)
-				//orderBy('createdAt')
+				where('isChecked', '==', false),
+				orderBy('createdAt')
 			);
 
 			const unsubscribe = onSnapshot(tasksQuery, (querySnapshot) => {
