@@ -20,49 +20,58 @@ export default function Content() {
 	const [taskDescriptionInput, setTaskDescriptionInput] = React.useState('');
 
 	const createTask = async (e) => {
-		e.preventDefault();
+		try {
+			e.preventDefault();
 
-		await addDoc(collection(db, 'tasks'), {
-			name: taskNameInput,
-			description: taskDescriptionInput,
-			isChecked: false,
-			projectId: '1',
-			userId: 'userid1',
-			createdAt: serverTimestamp(),
-		});
+			await addDoc(collection(db, 'tasks'), {
+				name: taskNameInput,
+				description: taskDescriptionInput,
+				isChecked: false,
+				projectId: '1',
+				userId: 'userid1',
+				createdAt: serverTimestamp(),
+			});
 
-		setTaskNameInput('');
-		setTaskDescriptionInput('');
+			setTaskNameInput('');
+			setTaskDescriptionInput('');
+		} catch (e) {
+			console.log(e);
+		}
 	};
 
-	React.useEffect(() => {
-		const getTasks = async () => {
-			const tasksQuery = query(
-				collection(db, 'tasks'),
-				where('userId', '==', 'userid1'),
-				where('isChecked', '==', false),
-				orderBy('createdAt')
+	const getTasks = () => {
+		const tasksQuery = query(
+			collection(db, 'tasks'),
+			where('userId', '==', 'userid1'),
+			where('isChecked', '==', false),
+			orderBy('createdAt')
+		);
+
+		onSnapshot(tasksQuery, (querySnapshot) => {
+			setTasks(
+				querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
 			);
+		});
+	};
 
-			const unsubscribe = onSnapshot(tasksQuery, (querySnapshot) => {
-				setTasks(
-					querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
-				);
-			});
-			return unsubscribe;
-		};
-
-		getTasks();
-	}, []);
+	React.useEffect(() => getTasks(), []);
 
 	const deleteTask = async (id) => {
-		const taskDoc = doc(db, 'tasks', id);
-		await deleteDoc(taskDoc);
+		try {
+			const taskDoc = doc(db, 'tasks', id);
+			await deleteDoc(taskDoc);
+		} catch (e) {
+			console.log(e);
+		}
 	};
 
 	const toggleIsChecked = async (id, checked) => {
-		const taskDoc = doc(db, 'tasks', id);
-		await updateDoc(taskDoc, { isChecked: !checked });
+		try {
+			const taskDoc = doc(db, 'tasks', id);
+			await updateDoc(taskDoc, { isChecked: !checked });
+		} catch (e) {
+			console.log(e);
+		}
 	};
 
 	return (
@@ -97,7 +106,7 @@ export default function Content() {
 							<hr />
 						</div>
 					))}
-					<form className="addTaskForm">
+					<form className="addTaskForm" onSubmit={createTask}>
 						<div className="addTaskForm__inputContainer">
 							<input
 								className="input input__name"
@@ -118,12 +127,7 @@ export default function Content() {
 								onChange={(e) => setTaskDescriptionInput(e.target.value)}
 							/>
 						</div>
-						<input
-							className="button__primary"
-							type="submit"
-							value="Add Task"
-							onClick={createTask}
-						/>
+						<input className="button__primary" type="submit" value="Add Task" />
 					</form>
 				</ul>
 			</div>

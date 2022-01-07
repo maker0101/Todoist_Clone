@@ -1,9 +1,9 @@
 import React from 'react';
 import { VscCircleFilled } from 'react-icons/vsc';
-import getProjects from '../hooks/getProjects';
+import useGetProjects from '../hooks/useGetProjects';
 
 export default function SidebarProjects() {
-	const projects = getProjects();
+	const projects = useGetProjects();
 
 	return (
 		<ul className="sidebar__projectsList">
