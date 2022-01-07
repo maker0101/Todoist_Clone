@@ -26,9 +26,14 @@ Do you have any recommendations or could point me to a simple project where I ca
 
 #### 2) Filter Tasks List based on selected project in Sidebar
 
-I've started thinking now about how to filter the Tasks List based on the selected Project in the Sidebar. However, I'm struggling coming up with a good idea for an approach...maybe routing or creating a selected project state? What would be your recommended approach?
+I've started thinking now about how to filter the Tasks List based on the selected Project in the Sidebar. Ideally the implemented approach can be reused for the selected Sidebar Nav items above the Projects as well.
 
-I haven't been able to learn about all React hooks...so maybe I'm missing something obvious here.
+I've come up with 2 potential approaches so far, but would really like your opnion on which way to go:
+
+1. Routing: add project id to url -> then grap url parameter and use it in Firestore query
+2. Selected Project State: Saving the selected project in a state -> then pass state from Sidebar.js to Content.js and use in Firebase query
+
+Or something completely different...maybe using another kind of hook? I haven't been able to learn about all React hooks yet...so maybe I'm missing something obvious here.
 
 ## Open Todos
 
