@@ -47,6 +47,7 @@ Or something completely different...maybe using another kind of hook? I haven't 
 
 ## Maybe
 
+- [ ] Remember user settings (e.g Sidebar hidden, last navitem/project selected, ...)
 - [ ] User authentification
 - [ ] Search, dynamic sorting and filtering, ... https://listjs.com/?ref=vanillalist
 - [ ] Drag and drop projects and tasks: https://shopify.github.io/draggable/

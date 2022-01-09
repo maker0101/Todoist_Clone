@@ -1,11 +1,12 @@
+import React from 'react';
 import { VscInbox, VscCalendar, VscSymbolEvent } from 'react-icons/vsc';
 import SidebarNavItem from './SidebarNavItem';
 import SidebarSectionTitle from './SidebarSectionTitle';
 import SidebarProjects from './SidebarProjects';
 
-export default function Sidebar() {
+export default function Sidebar(props) {
 	return (
-		<div className="sidebar">
+		<div className={`sidebar ${props.sidebarIsHidden && 'sidebar__hidden'}`}>
 			<div className="sidebar__section sidebar__nav">
 				<ul>
 					<SidebarNavItem
