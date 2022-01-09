@@ -228,12 +228,11 @@ ul {
 // Sidebar
 .sidebar {
 	@include no-select();
-	width: 300px;
+	width: 375px;
 	height: 100vh;
 	padding-top: 60px;
 	padding-left: 35px;
 	padding-right: 5px;
-	border-right: $generic-border;
 	background-color: #fafafa;
 
 	@include mq('450px') {
