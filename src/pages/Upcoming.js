@@ -3,7 +3,9 @@ import React from 'react';
 function Upcoming() {
 	return (
 		<div className="content">
-			<h1>Upcoming</h1>
+			<div className="content__container">
+				<h1 className="content__containerTitle">Upcoming</h1>
+			</div>
 		</div>
 	);
 }

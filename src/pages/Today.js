@@ -3,7 +3,9 @@ import React from 'react';
 function Today() {
 	return (
 		<div className="content">
-			<h1>Today</h1>
+			<div className="content__container">
+				<h1 className="content__containerTitle">Today</h1>
+			</div>
 		</div>
 	);
 }
