@@ -1,5 +1,6 @@
 import React from 'react';
 import { VscInbox, VscCalendar, VscSymbolEvent } from 'react-icons/vsc';
+import { IoTodayOutline } from 'react-icons/io5';
 import SidebarNavItem from './SidebarNavItem';
 import SidebarSectionTitle from './SidebarSectionTitle';
 import SidebarProjects from './SidebarProjects';
@@ -14,21 +15,21 @@ export default function Sidebar(props) {
 						iconClassName="sidebar__iconInbox"
 						text="Inbox"
 						count="5"
-						to={"/inbox"}
+						to={'/inbox'}
 					/>
 					<SidebarNavItem
-						icon={<VscSymbolEvent />}
+						icon={<IoTodayOutline />}
 						iconClassName="sidebar__iconToday"
 						text="Today"
 						count="3"
-						to={"/today"}
+						to={'/today'}
 					/>
 					<SidebarNavItem
 						icon={<VscCalendar />}
 						iconClassName="sidebar__iconUpcoming"
 						text="Upcoming"
 						count=""
-						to={"/upcoming"}
+						to={'/upcoming'}
 					/>
 				</ul>
 			</div>
