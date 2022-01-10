@@ -1,70 +1,53 @@
-# Getting Started with Create React App
+# General
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project is a clone attempt of Todoist: https://todoist.com
 
-## Available Scripts
+It is inspired by a YouTube tutorial of Karl Hadwen - though significant changes have been made: https://youtu.be/HgfA4W_VjmI
 
-In the project directory, you can run:
+It's under heavy development at the moment and much is missing still.
 
-### `npm start`
+## Features implemented
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- [x] Todoist styling
+- [x] Firebase/Firestore setup & get tasks and projects dynamically from Firestore
+- [x] Add new Tasks
+- [x] Delete Tasks
+- [x] Check Tasks
+- [x] Preserve Tasks in order of time created
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Questions
 
-### `npm test`
+#### 1.) How to modularize code in Content.js
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+To keep my code DRY, simple and reusable I would like to seperate the returned JSX code into seperate Components as well as create seperate files for each CRUD function (createTask, getTasks, ...) into seperate (custom hook) files?
 
-### `npm run build`
+However, due to the variable, state and function references all over the place I find it hard to come up with ways to do that.
+Do you have any recommendations or could point me to a simple project where I can see how it's done or something else?
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+#### 2) Filter Tasks List based on selected project in Sidebar
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+I've started thinking now about how to filter the Tasks List based on the selected Project in the Sidebar. Ideally the implemented approach can be reused for the selected Sidebar Nav items above the Projects as well.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+I've come up with 2 potential approaches so far, but would really like your opnion on which way to go:
 
-### `npm run eject`
+1. Routing: add project id to url -> then grap url parameter and use it in Firestore query
+2. Selected Project State: Saving the selected project in a state -> then pass state from Sidebar.js to Content.js and use in Firebase query
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+Or something completely different...maybe using another kind of hook? I haven't been able to learn about all React hooks yet...so maybe I'm missing something obvious here.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Open Todos
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- [ ] Add due dates to tasks
+- [ ] Edit existing Tasks
+- [ ] Sidebar: Add real task counts to projects
+- [ ] Filter Tasks List based on Sidebar Selection (Nav items or projects)
+- [ ] CRUD for projects
+- [ ] Sidebar: Turn Projects section into working accordeon
+- [ ] Sidebar: Toggle show/hide
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Maybe
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- [ ] User authentification
+- [ ] Search, dynamic sorting and filtering, ... https://listjs.com/?ref=vanillalist
+- [ ] Drag and drop projects and tasks: https://shopify.github.io/draggable/
+- [ ] Keyboard shortcuts: https://github.com/madrobby/keymaster?ref=vanillalist

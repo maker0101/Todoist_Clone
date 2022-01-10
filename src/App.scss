@@ -1,0 +1,502 @@
+// Imports
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;700;900&display=swap');
+
+// Variables
+$generic-box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 0px 1px,
+	rgba(0, 0, 0, 0.1) 0px 4px 11px;
+$generic-border: 1px solid #f1f1f1;
+$generic-bg: #db4c3f;
+$generic-font-size: 14.5px;
+
+//General
+html {
+	box-sizing: border-box;
+}
+
+*,
+*:before,
+*::after {
+	box-sizing: inherit;
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	line-height: 1;
+	font-size: $generic-font-size;
+	font-weight: 300;
+	font-family: 'Railway', sans-serif;
+	color: #202020;
+}
+
+h2 {
+	margin: 0;
+	padding: 0;
+	line-height: 1;
+	font-size: $generic-font-size;
+	font-weight: 700;
+}
+
+ul {
+	margin: 0;
+	padding: 0;
+}
+
+//Mixins
+@mixin box-overlay() {
+	box-shadow: $generic-box-shadow;
+	position: absolute;
+	width: 100%;
+	z-index: 1;
+	top: 85px;
+	border-radius: 3px;
+}
+
+@mixin va($va-align: center) {
+	display: flex;
+	align-items: center;
+
+	@if $va-align != center {
+		justify-content: left;
+	} @else {
+		justify-content: center;
+	}
+}
+
+@mixin no-select {
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
+@mixin btn($width) {
+	width: $width;
+	background-color: $generic-bg;
+	color: #fff !important;
+	border: 1px solid transparent;
+	margin-right: 5px;
+	margin-top: 10px;
+	font-weight: bold;
+	font-size: 13px !important;
+	line-height: 17px;
+	padding: 6px 12px 7px 12px;
+	position: relative;
+	display: inline-block;
+	white-space: nowrap;
+	border-radius: 3px !important;
+	text-decoration: none !important;
+	text-align: center;
+	cursor: pointer;
+}
+
+@mixin cancel() {
+	color: #555;
+	cursor: pointer;
+	font-size: 14px;
+	margin: 2px 5px;
+}
+
+@mixin task-item() {
+	list-style-type: none;
+	display: flex;
+	line-height: 18px;
+	color: #333;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	font-size: 14px;
+	border-bottom: 1px solid #f0f0f0;
+	padding-left: 10px;
+	cursor: pointer;
+
+	&:hover {
+		background-color: #f9f9f9;
+	}
+}
+
+@mixin mq($from) {
+	@media (max-width: $from) {
+		@content;
+	}
+}
+
+// Reusable Components
+.button__primary {
+	display: inline-block;
+	background-color: $generic-bg;
+	border: none;
+	color: white;
+	border-radius: 5px;
+	padding: 8px 10px;
+	width: fit-content;
+}
+
+// Header
+.header {
+	background-color: $generic-bg;
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+	height: 44px;
+	z-index: 400;
+	position: fixed;
+	top: 0;
+	width: 100%;
+	padding: 0 42px;
+
+	.header__nav {
+		display: grid;
+		align-items: center;
+		grid-template-columns: 1fr 1fr;
+		grid-template-rows: 1fr;
+		grid-column-gap: 0px;
+		grid-row-gap: 0px;
+		margin: auto;
+		height: 44px;
+		color: white;
+
+		.header__navLeft {
+			grid-area: 1/1;
+
+			.header__navLeftList {
+				@include va;
+				float: left;
+
+				.header__item {
+					margin-right: 8px;
+				}
+			}
+		}
+
+		.header__navRight {
+			grid-area: 1/2;
+
+			.header__navRightList {
+				float: right;
+
+				.header__item {
+					margin-left: 8px;
+				}
+			}
+		}
+
+		.header__item {
+			@include va;
+
+			list-style-type: none;
+			cursor: pointer;
+			width: 30px;
+			height: 30px;
+			font-size: 20px;
+			text-align: center;
+			vertical-align: middle;
+			float: left;
+
+			&:hover {
+				border-radius: 3px;
+				background-color: rgba(255, 255, 255, 0.2);
+			}
+		}
+
+		.header__itemSearch {
+			@include va;
+			height: 28px;
+			width: 183px;
+			padding: 0 8px;
+			border-radius: 3px;
+			background-color: rgba(255, 255, 255, 0.2);
+			justify-content: left;
+
+			.header__searchIcon {
+				@include va;
+			}
+
+			.header__searchText {
+				margin-left: 8px;
+				font-size: 13px;
+			}
+		}
+	}
+}
+
+// Main
+.main {
+	display: grid;
+	grid-template-columns: 300px auto;
+}
+
+// Sidebar
+.sidebar {
+	@include no-select();
+	width: 100%;
+	height: 100vh;
+	padding-top: 60px;
+	padding-left: 35px;
+	padding-right: 5px;
+	border-right: $generic-border;
+	background-color: #fafafa;
+
+	@include mq('450px') {
+		display: none;
+	}
+
+	.sidebar__section {
+		margin-top: 15px;
+	}
+
+	//TODO: Grid area seems not to work properly
+	.sidebar__grid {
+		display: grid;
+		grid-template-rows: 1;
+		grid-template-columns: 1fr 6fr 1fr;
+		grid-column-gap: 10px;
+		grid-template-areas: 'icon text info';
+		height: 38px;
+		width: 100%;
+		padding: 10px 10px;
+		align-items: center;
+
+		.sidebar__icon {
+			grid-area: 'icon';
+			height: 100%;
+			display: flex;
+			align-items: center;
+
+			svg {
+				font-size: 19px;
+				width: 100%;
+			}
+		}
+
+		.sidebar__iconChevron {
+			svg {
+				font-size: 15px;
+				width: 100%;
+			}
+		}
+
+		.sidebar__text {
+			grid-area: 'text';
+		}
+
+		.sidebar__info {
+			grid-area: 'info';
+			color: #b2b2b2;
+			font-size: 13px;
+			text-align: right;
+		}
+
+		.sidebar__iconInbox {
+			color: #246fe0;
+		}
+
+		.sidebar__iconToday {
+			color: #058527;
+		}
+
+		.sidebar__iconUpcoming {
+			color: #692fc2;
+		}
+	}
+
+	.sidebar__item {
+		&.active,
+		&:hover {
+			cursor: pointer;
+			border-radius: 5px;
+			background-color: #ececec;
+		}
+	}
+
+	.sidebar__project {
+		&:nth-child(1) {
+			.sidebar__dot {
+				color: #6accbc;
+			}
+		}
+
+		&:nth-child(2) {
+			.sidebar__dot {
+				color: #fad003;
+			}
+		}
+
+		&:nth-child(3) {
+			.sidebar__dot {
+				color: #ff8d85;
+			}
+		}
+
+		&:nth-child(4) {
+			.sidebar__dot {
+				color: #ff9932;
+			}
+		}
+
+		&:nth-child(5) {
+			.sidebar__dot {
+				color: #af38eb;
+			}
+		}
+	}
+}
+
+// Content
+.content {
+	height: 100vh;
+	padding-top: 70px;
+	padding-left: 50px;
+	padding-right: 50px;
+
+	.content__container {
+		max-width: 800px;
+		margin: auto;
+
+		.content__containerTitle {
+			font-size: 20px;
+		}
+
+		.content__tasksList {
+			.content__taskContainer {
+				.content__task {
+					display: grid;
+					grid-template-columns: 30px auto 50px;
+					list-style: none;
+					padding: 7px 0;
+
+					.content__taskName {
+						display: flex;
+						align-items: center;
+						height: 100%;
+					}
+
+					.content__taskIcons {
+						display: grid;
+						grid-template-columns: 1fr 1fr;
+						color: grey;
+						font-size: 16px;
+						cursor: pointer;
+					}
+
+					.content__taskDescription {
+						display: flex;
+						align-items: center;
+						height: 100%;
+						color: #b2b2b2;
+						font-size: 13px;
+						font-weight: 300;
+						margin-top: 3px;
+					}
+				}
+
+				hr {
+					border: none;
+					height: 1px;
+					color: #f1f1f1; /* old IE */
+					background-color: #f1f1f1; /* Modern Browsers */
+					margin-top: 5px;
+				}
+			}
+
+			.addTaskForm__inputContainer {
+				display: flex;
+				flex-direction: column;
+				border: 1px solid #ddd;
+				border-radius: 5px;
+				padding: 10px;
+				margin-bottom: 10px;
+
+				.input {
+					border: none;
+				}
+
+				.input:focus {
+					outline: none;
+				}
+
+				.input::placeholder {
+					color: #b2b2b2;
+				}
+
+				.input__name {
+					margin-bottom: 10px;
+				}
+
+				.input__description {
+					font-size: 13px;
+					font-weight: 300;
+				}
+			}
+
+			.addTaskForm__inputContainer:focus-within {
+				border: 1px solid #b2b2b2;
+			}
+		}
+	}
+}
+
+// Checkbox
+.checkbox__container {
+	width: 18px;
+	height: 18px;
+	display: block;
+	position: relative;
+	cursor: pointer;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+
+	/* Hide the browser's default checkbox */
+	input {
+		position: absolute;
+		height: 0;
+		width: 0;
+	}
+
+	/* Create a custom checkbox */
+	.checkbox__checkmark {
+		position: absolute;
+		top: 0;
+		left: 0;
+		height: 100%;
+		width: 100%;
+		border: 1px solid grey;
+		border-radius: 50%;
+	}
+}
+
+/* On checkbox mouse-over, add a background color */
+.checkbox__container:hover input ~ .checkbox__checkmark {
+	background-color: #eee;
+}
+
+/* When the checkbox is checked, change background*/
+.checkbox__container input:checked ~ .checkbox__checkmark {
+	background-color: #eee;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkbox__checkmark:after {
+	content: '';
+	position: absolute;
+	display: none;
+}
+
+/* Show the checkmark on hover */
+.checkbox__container input:hover ~ .checkbox__checkmark:after {
+	display: block;
+}
+
+/* Style the checkmark/indicator */
+.checkbox__container .checkbox__checkmark:after {
+	left: 6px;
+	top: 4px;
+	width: 5px;
+	height: 7px;
+	border: solid grey;
+	border-width: 0 1px 1px 0;
+	-webkit-transform: rotate(45deg);
+	-ms-transform: rotate(45deg);
+	transform: rotate(45deg);
+}
