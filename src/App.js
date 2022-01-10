@@ -4,6 +4,8 @@ import Header from './components/Header';
 import Main from './components/Main';
 
 function App() {
+	const [tasks, setTasks] = React.useState([]);
+	const [projects, setProjects] = React.useState([]);
 	const [sidebarIsHidden, setSidebarIsHidden] = React.useState(false);
 
 	return (
