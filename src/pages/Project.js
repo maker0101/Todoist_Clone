@@ -1,92 +1,26 @@
 import React from 'react';
 import { useParams } from 'react-router-dom';
-import {
-	collection,
-	query,
-	doc,
-	where,
-	orderBy,
-	onSnapshot,
-	addDoc,
-	deleteDoc,
-	updateDoc,
-	serverTimestamp,
-} from 'firebase/firestore';
 import { db } from '../firebase';
 import { VscTrash, VscEdit } from 'react-icons/vsc';
+import useTasks from '../hooks/useTasks';
+import TaskForm from '../components/TaskForm';
 
 export default function Project(props) {
-	const projects = props.projects;
 	const [tasks, setTasks] = React.useState([]);
-	const [taskNameInput, setTaskNameInput] = React.useState('');
-	const [taskDescriptionInput, setTaskDescriptionInput] = React.useState('');
 	const [selectedProject, setSelectedProject] = React.useState({
 		name: '',
 	});
 	const { projectId } = useParams();
+	const { getTasks, deleteTask, toggleIsChecked } = useTasks();
 
-	React.useEffect(() => getTasks(), [projectId]);
+	React.useEffect(() => getTasks(db, setTasks, projectId), [projectId]);
 	React.useEffect(() => getSelectedProject(), [projectId]);
 
 	const getSelectedProject = async () => {
-		const thisProject = await projects.find(
+		const thisProject = await props.projects.find(
 			(project) => project.id === projectId
 		);
 		setSelectedProject(thisProject);
-	};
-
-	const createTask = async (e) => {
-		try {
-			e.preventDefault();
-
-			await addDoc(collection(db, 'tasks'), {
-				name: taskNameInput,
-				description: taskDescriptionInput,
-				isChecked: false,
-				projectId: 'Kl3wXRZLUlto7XcA7mWd',
-				userId: 'userid1',
-				createdAt: serverTimestamp(),
-			});
-
-			setTaskNameInput('');
-			setTaskDescriptionInput('');
-		} catch (e) {
-			console.log(e);
-		}
-	};
-
-	const getTasks = () => {
-		const tasksQuery = query(
-			collection(db, 'tasks'),
-			where('userId', '==', 'userid1'),
-			where('projectId', '==', projectId),
-			where('isChecked', '==', false),
-			orderBy('createdAt')
-		);
-
-		onSnapshot(tasksQuery, (querySnapshot) => {
-			setTasks(
-				querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
-			);
-		});
-	};
-
-	const deleteTask = async (id) => {
-		try {
-			const taskDoc = doc(db, 'tasks', id);
-			await deleteDoc(taskDoc);
-		} catch (e) {
-			console.log(e);
-		}
-	};
-
-	const toggleIsChecked = async (id, checked) => {
-		try {
-			const taskDoc = doc(db, 'tasks', id);
-			await updateDoc(taskDoc, { isChecked: !checked });
-		} catch (e) {
-			console.log(e);
-		}
 	};
 
 	return (
@@ -109,13 +43,15 @@ export default function Project(props) {
 									<input
 										type="checkbox"
 										checked={task.isChecked}
-										onChange={() => toggleIsChecked(task.id, task.isChecked)}
+										onChange={() =>
+											toggleIsChecked(db, task.id, task.isChecked)
+										}
 									></input>
 									<span className="checkbox__checkmark"></span>
 								</label>
 								<span className="content__taskName">{task.name}</span>
 								<span className="content__taskIcons">
-									<VscTrash onClick={() => deleteTask(task.id)} />
+									<VscTrash onClick={() => deleteTask(db, task.id)} />
 									<VscEdit />
 								</span>
 								<span></span>
@@ -129,29 +65,7 @@ export default function Project(props) {
 							<hr />
 						</div>
 					))}
-					<form className="addTaskForm" onSubmit={createTask}>
-						<div className="addTaskForm__inputContainer">
-							<input
-								className="input input__name"
-								type="text"
-								id="taskName"
-								name="name"
-								value={taskNameInput}
-								placeholder="Task name"
-								onChange={(e) => setTaskNameInput(e.target.value)}
-							/>
-							<textarea
-								className="input input__description"
-								type="text"
-								id="taskDescription"
-								name="description"
-								value={taskDescriptionInput}
-								placeholder="Description"
-								onChange={(e) => setTaskDescriptionInput(e.target.value)}
-							/>
-						</div>
-						<input className="button__primary" type="submit" value="Add Task" />
-					</form>
+					<TaskForm />
 				</ul>
 			</div>
 		</div>
