@@ -14,18 +14,21 @@ export default function Sidebar(props) {
 						iconClassName="sidebar__iconInbox"
 						text="Inbox"
 						count="5"
+						to={"/inbox"}
 					/>
 					<SidebarNavItem
 						icon={<VscSymbolEvent />}
 						iconClassName="sidebar__iconToday"
 						text="Today"
 						count="3"
+						to={"/today"}
 					/>
 					<SidebarNavItem
 						icon={<VscCalendar />}
 						iconClassName="sidebar__iconUpcoming"
 						text="Upcoming"
 						count=""
+						to={"/upcoming"}
 					/>
 				</ul>
 			</div>

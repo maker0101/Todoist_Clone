@@ -131,6 +131,7 @@ ul {
 	border-radius: 5px;
 	padding: 8px 10px;
 	width: fit-content;
+	cursor: pointer;
 }
 
 // Header
@@ -239,11 +240,15 @@ ul {
 		display: none;
 	}
 
+	a {
+		text-decoration: none;
+		color: #202020;
+	}
+
 	.sidebar__section {
 		margin-top: 15px;
 	}
 
-	//TODO: Grid area seems not to work properly
 	.sidebar__grid {
 		display: grid;
 		grid-template-rows: 1;
@@ -307,34 +312,44 @@ ul {
 		}
 	}
 
-	.sidebar__project {
+	.sidebar__projectsList {
 		&:nth-child(1) {
-			.sidebar__dot {
-				color: #6accbc;
+			.sidebar__project {
+				.sidebar__dot {
+					color: #6accbc;
+				}
 			}
 		}
 
 		&:nth-child(2) {
-			.sidebar__dot {
-				color: #fad003;
+			.sidebar__project {
+				.sidebar__dot {
+					color: #fad003;
+				}
 			}
 		}
 
 		&:nth-child(3) {
-			.sidebar__dot {
-				color: #ff8d85;
+			.sidebar__project {
+				.sidebar__dot {
+					color: #ff8d85;
+				}
 			}
 		}
 
 		&:nth-child(4) {
-			.sidebar__dot {
-				color: #ff9932;
+			.sidebar__project {
+				.sidebar__dot {
+					color: #ff9932;
+				}
 			}
 		}
 
 		&:nth-child(5) {
-			.sidebar__dot {
-				color: #af38eb;
+			.sidebar__project {
+				.sidebar__dot {
+					color: #af38eb;
+				}
 			}
 		}
 	}

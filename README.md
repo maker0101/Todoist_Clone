@@ -14,6 +14,7 @@ It's under heavy development at the moment and much is missing still.
 - [x] Delete Tasks
 - [x] Check Tasks
 - [x] Preserve Tasks in order of time created
+- [x] Filter Tasks by project
 
 ## Questions
 
@@ -35,12 +36,16 @@ I've come up with 2 potential approaches so far, but would really like your opni
 
 Or something completely different...maybe using another kind of hook? I haven't been able to learn about all React hooks yet...so maybe I'm missing something obvious here.
 
-## Open Todos
+## Open Todos/Fixes
+
+- [ ] Sidebar: Project dots colors not working anymore -> always yellow
+- [ ] Sidebar: CSS grid area seems not to work properly (grid-template-areas: 'icon text info';)
+
+## Planned Features
 
 - [ ] Add due dates to tasks
 - [ ] Edit existing Tasks
 - [ ] Sidebar: Add real task counts to projects
-- [ ] Filter Tasks List based on Sidebar Selection (Nav items or projects)
 - [ ] CRUD for projects
 - [ ] Sidebar: Turn Projects section into working accordeon
 - [ ] Sidebar: Toggle show/hide
