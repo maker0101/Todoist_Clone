@@ -36,7 +36,10 @@ export default function Sidebar(props) {
 
 			<div className="sidebar__section sidebar__projects">
 				<SidebarSectionTitle title="Projects" />
-				<SidebarProjects />
+				<SidebarProjects
+					projects={props.projects}
+					setProjects={props.setProjects}
+				/>
 			</div>
 		</div>
 	);
