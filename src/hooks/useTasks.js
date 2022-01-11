@@ -76,18 +76,18 @@ export default function useTasks() {
 		}
 	};
 
-	const filterTasks = (tasks, projectId) =>
+	const filterTasksByProjectId = (tasks, projectId) =>
 		tasks.filter((task) => task.projectId === projectId);
 
 	const countTasksOfProject = (tasks, projectId) =>
-		filterTasks(tasks, projectId).length;
+		filterTasksByProjectId(tasks, projectId).length;
 
 	return {
 		getTasks,
 		createTask,
 		deleteTask,
 		toggleIsChecked,
-		filterTasks,
+		filterTasksByProjectId,
 		countTasksOfProject,
 	};
 }

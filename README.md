@@ -56,6 +56,7 @@ I've raised the state of tasks and projects to App.js, because I noticed I'll ne
 - [ ] Edit existing Tasks
 - [ ] CRUD for projects
 - [ ] Sidebar: Turn Projects section into working accordeon
+- [ ] Adding Tests
 
 ## Maybe
 

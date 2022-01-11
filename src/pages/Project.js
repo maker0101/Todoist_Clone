@@ -9,7 +9,7 @@ export default function Project(props) {
 	const [selectedProject, setSelectedProject] = React.useState({ name: '' });
 	const [projectTasks, setProjectTasks] = React.useState(props.tasks);
 	const { projectId } = useParams();
-	const { filterTasks } = useTasks();
+	const { filterTasksByProjectId } = useTasks();
 	const { getSelectedProject } = useProjects();
 
 	React.useEffect(
@@ -17,7 +17,7 @@ export default function Project(props) {
 		[projectId, props.projects]
 	);
 	React.useEffect(() => {
-		setProjectTasks(filterTasks(props.tasks, projectId));
+		setProjectTasks(filterTasksByProjectId(props.tasks, projectId));
 	}, [projectId, props.tasks]);
 
 	return (
