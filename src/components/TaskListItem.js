@@ -2,16 +2,13 @@ import { db } from '../firebase';
 import { VscTrash, VscEdit } from 'react-icons/vsc';
 import { BsCalendar4Event } from 'react-icons/bs';
 import useTasks from '../hooks/useTasks';
+import useDate from '../hooks/useDate';
 
 export default function TaskListItem(props) {
 	const { deleteTask, toggleIsChecked } = useTasks();
+	const { transformDueDate } = useDate();
 
-	const transformDueDate = (date) => {
-		const options = { month: 'long', day: 'numeric' };
-
-		return date.toLocaleDateString('de-DE', options);
-	};
-
+	//TODO: Refactor, simplify component JSX structure
 	return (
 		<div className="content__taskContainer">
 			<li className="content__task">
