@@ -380,6 +380,7 @@ ul {
 			font-size: 20px;
 		}
 
+		//TODO: Styling a bit off - needs restructuring, simplification and fine-tuning
 		.content__tasksList {
 			.content__taskContainer {
 				.content__task {
@@ -409,7 +410,18 @@ ul {
 						color: #b2b2b2;
 						font-size: 13px;
 						font-weight: 300;
-						margin-top: 3px;
+						margin: 3px 0;
+					}
+
+					.content__dueDate {
+						@include va;
+						height: 100%;
+
+						.content__dueDateIcon {
+							font-size: 11px;
+							margin-top: 2px;
+							margin-right: 5px;
+						}
 					}
 				}
 

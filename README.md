@@ -17,6 +17,7 @@ It's under heavy development at the moment and much is missing still.
 - [x] Preserve tasks in order of time created
 - [x] Filter tasks by project
 - [x] Sidebar: Toggle show/hide
+- [x] Due dates for tasks
 
 ## Questions
 
@@ -45,14 +46,15 @@ This does not seem to go well with the DRY principle. Is this still acceptable a
 
 I've raised the state of tasks and projects to App.js, because I noticed I'll need it's information in multiple parts of my application. Is this common practice to have states in App.js or should it be lower and passed differently from component to component instead of passing it down from the top?
 
-## Open Todos/Fixes
+## Known issues/bugs
 
 - [ ] Sidebar: Project dots colors not working anymore -> always yellow
 - [ ] Sidebar: CSS grid area seems not to work properly (grid-template-areas: 'icon text info';)
+- [ ] Overflow for long task lists -> Add scrollbar
+- [ ] New task validation missing -> Require task name
 
 ## Planned Features
 
-- [ ] Add due dates to tasks
 - [ ] Edit existing Tasks
 - [ ] CRUD for projects
 - [ ] Sidebar: Turn Projects section into working accordeon

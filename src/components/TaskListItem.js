@@ -1,9 +1,16 @@
 import { db } from '../firebase';
 import { VscTrash, VscEdit } from 'react-icons/vsc';
+import { BsCalendar4Event } from 'react-icons/bs';
 import useTasks from '../hooks/useTasks';
 
 export default function TaskListItem(props) {
 	const { deleteTask, toggleIsChecked } = useTasks();
+
+	const transformDueDate = (date) => {
+		const options = { month: 'long', day: 'numeric' };
+
+		return date.toLocaleDateString('de-DE', options);
+	};
 
 	return (
 		<div className="content__taskContainer">
@@ -29,6 +36,21 @@ export default function TaskListItem(props) {
 					style={{ display: props.task.description ? 'flex' : 'none' }}
 				>
 					{props.task.description}
+				</span>
+				<span></span>
+				<span></span>
+				<span
+					className="content__taskDescription"
+					style={{ display: props.task.description ? 'flex' : 'none' }}
+				>
+					{props.task.dueDate && (
+						<div className="content__dueDate">
+							<span className="content__dueDateIcon">
+								<BsCalendar4Event />
+							</span>
+							<span>{transformDueDate(props.task.dueDate.toDate())}</span>
+						</div>
+					)}
 				</span>
 			</li>
 			<hr />

@@ -17,6 +17,7 @@ export default function useTasks() {
 		database,
 		taskName,
 		taskDescription,
+		dueDate,
 		userId,
 		projectId,
 		setTaskFormFn
@@ -27,13 +28,14 @@ export default function useTasks() {
 			await addDoc(collection(database, 'tasks'), {
 				name: taskName,
 				description: taskDescription,
+				dueDate: dueDate,
 				userId: userId,
 				projectId: projectId,
 				createdAt: serverTimestamp(),
 				isChecked: false,
 			});
 
-			setTaskFormFn({ name: '', description: '' });
+			setTaskFormFn({ name: '', description: '', dueDate: '' });
 		} catch (event) {
 			console.log(event);
 		}
