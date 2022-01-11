@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { VscMenu, VscHome, VscAdd, VscAccount, VscBell } from 'react-icons/vsc';
 import { IoSearchOutline } from 'react-icons/io5';
 
@@ -16,9 +17,11 @@ export default function Header(props) {
 						>
 							<VscMenu />
 						</li>
-						<li className="header__item header__itemHome">
-							<VscHome />
-						</li>
+						<Link to="/today">
+							<li className="header__item header__itemHome">
+								<VscHome />
+							</li>
+						</Link>
 						<li className="header__item header__itemSearch">
 							<span className="header__searchIcon">
 								<IoSearchOutline />

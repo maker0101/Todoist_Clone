@@ -59,6 +59,7 @@ I've raised the state of tasks and projects to App.js, because I noticed I'll ne
 
 ## Maybe
 
+- [ ] Make app responsive
 - [ ] Remember user settings (e.g Sidebar hidden, last navitem/project selected, ...)
 - [ ] User authentification
 - [ ] Search, dynamic sorting and filtering, ... https://listjs.com/?ref=vanillalist

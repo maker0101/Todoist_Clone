@@ -156,6 +156,11 @@ ul {
 		height: 44px;
 		color: white;
 
+		a {
+			text-decoration: none;
+			color: white;
+		}
+
 		.header__navLeft {
 			grid-area: 1/1;
 
