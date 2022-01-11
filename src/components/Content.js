@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import Inbox from '../pages/Inbox';
 import Today from '../pages/Today';
 import Upcoming from '../pages/Upcoming';
@@ -8,6 +8,7 @@ import Project from '../pages/Project';
 export default function Content(props) {
 	return (
 		<Routes>
+			<Route path="/" element={<Navigate to="/today" />} />
 			<Route
 				path="/inbox"
 				element={
@@ -52,6 +53,7 @@ export default function Content(props) {
 					/>
 				}
 			></Route>
+			<Route path="*" element={<Navigate to="/" />} />
 		</Routes>
 	);
 }
