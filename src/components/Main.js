@@ -1,23 +1,22 @@
 import React from 'react';
-import { db } from '../firebase';
 import Sidebar from './Sidebar';
 import Content from './Content';
-import useProjects from '../hooks/useProjects';
 
 export default function Main(props) {
-	const [projects, setProjects] = React.useState([]);
-	const { getProjects } = useProjects();
-
-	React.useEffect(() => getProjects(db, setProjects), []);
-
 	return (
 		<section className="main">
 			<Sidebar
 				sidebarIsHidden={props.sidebarIsHidden}
-				projects={projects}
-				setProjects={setProjects}
+				tasks={props.tasks}
+				projects={props.projects}
+				setProjects={props.setProjects}
 			/>
-			<Content projects={projects} setProjects={setProjects} />
+			<Content
+				tasks={props.tasks}
+				setTasks={props.setTasks}
+				projects={props.projects}
+				setProjects={props.setProjects}
+			/>
 		</section>
 	);
 }

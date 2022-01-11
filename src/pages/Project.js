@@ -3,40 +3,32 @@ import { useParams } from 'react-router-dom';
 import { db } from '../firebase';
 import { VscTrash, VscEdit } from 'react-icons/vsc';
 import useTasks from '../hooks/useTasks';
+import useProjects from '../hooks/useProjects';
 import TaskForm from '../components/TaskForm';
 
 export default function Project(props) {
-	const [tasks, setTasks] = React.useState([]);
-	const [selectedProject, setSelectedProject] = React.useState({
-		name: '',
-	});
+	const [selectedProject, setSelectedProject] = React.useState({ name: '' });
+	const [projectTasks, setProjectTasks] = React.useState(props.tasks);
 	const { projectId } = useParams();
-	const { getTasks, deleteTask, toggleIsChecked } = useTasks();
+	const { deleteTask, toggleIsChecked, filterTasks } = useTasks();
+	const { getSelectedProject } = useProjects();
 
-	React.useEffect(() => getTasks(db, setTasks, projectId), [projectId]);
-	React.useEffect(() => getSelectedProject(), [projectId]);
-
-	const getSelectedProject = async () => {
-		const thisProject = await props.projects.find(
-			(project) => project.id === projectId
-		);
-		setSelectedProject(thisProject);
-	};
+	React.useEffect(
+		() => getSelectedProject(props.projects, projectId, setSelectedProject),
+		[projectId, props.projects]
+	);
+	React.useEffect(() => {
+		setProjectTasks(filterTasks(props.tasks, projectId));
+	}, [projectId, props.tasks]);
 
 	return (
 		<div className="content">
 			<div className="content__container">
 				<h1 className="content__containerTitle">
-					{/* QUESTION: When I remove 'selectedProject &&' from below the program crashes on initial loading. 
-          But I don't get why? Shouldn't the initial 'selectedProject' state of name='' lead to an 
-          always valid object of 'selectedProject'? 
-          
-          In addition: even when leaving 'selectedProject &&' on first load of a project url, the h1 is missing
-          and only appears when you select another project in the navbar.*/}
 					{selectedProject && selectedProject.name}
 				</h1>
 				<ul className="content__tasksList">
-					{tasks.map((task) => (
+					{projectTasks.map((task) => (
 						<div className="content__taskContainer" key={task.id}>
 							<li className="content__task">
 								<label className="checkbox__container">

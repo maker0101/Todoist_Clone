@@ -8,33 +8,42 @@ It's under heavy development at the moment and much is missing still.
 
 ## Features implemented
 
-- [x] Todoist styling
+- [x] Clone Todoist styling
 - [x] Firebase/Firestore setup & get tasks and projects dynamically from Firestore
-- [x] Add new Tasks
-- [x] Delete Tasks
-- [x] Check Tasks
-- [x] Preserve Tasks in order of time created
-- [x] Filter Tasks by project
+- [x] Add new tasks
+- [x] Delete tasks
+- [x] Check tasks
+- [x] Counts tasks per project
+- [x] Preserve tasks in order of time created
+- [x] Filter tasks by project
+- [x] Sidebar: Toggle show/hide
 
 ## Questions
 
-#### 1.) How to modularize code in Content.js
+#### 1. Error on initial load because `selectedProject.name` not defined
 
-To keep my code DRY, simple and reusable I would like to seperate the returned JSX code into seperate Components as well as create seperate files for each CRUD function (createTask, getTasks, ...) into seperate (custom hook) files?
+In `Project.js` (ca. line 28) I have to include `{selectedProject && selectedProject.name}`, otherwise I get an error.
 
-However, due to the variable, state and function references all over the place I find it hard to come up with ways to do that.
-Do you have any recommendations or could point me to a simple project where I can see how it's done or something else?
+I think the reason is the follwoing: When I `console.log(selectedProject)` I see that the state is correctly initialized at first as empty string, but then becomes `undefined` for a moment and only then gets updated with the selected project. But why is there a phase of undefined? How to avoid it, so I can just write `{selectedProject.name}`?
 
-#### 2) Filter Tasks List based on selected project in Sidebar
+Or is it ok and done in real life to write `{selectedProject && selectedProject.name}` because its unavoidable?
 
-I've started thinking now about how to filter the Tasks List based on the selected Project in the Sidebar. Ideally the implemented approach can be reused for the selected Sidebar Nav items above the Projects as well.
+#### 2. Passing the same props over and over
 
-I've come up with 2 potential approaches so far, but would really like your opnion on which way to go:
+In `Content.js`(and in many other places) I'm passing the same props over and over to it's child components, e.g.:
 
-1. Routing: add project id to url -> then grap url parameter and use it in Firestore query
-2. Selected Project State: Saving the selected project in a state -> then pass state from Sidebar.js to Content.js and use in Firebase query
+```javascript
+tasks={props.tasks}
+setTasks={props.setTasks}
+projects={props.projects}
+setProjects={props.setProjects}
+```
 
-Or something completely different...maybe using another kind of hook? I haven't been able to learn about all React hooks yet...so maybe I'm missing something obvious here.
+This does not seem to go well with the DRY principle. Is this still acceptable and common in the real world? Or do techniques exist to deal with it? I could only think of passing the props as a single object to child components as a potential workaround.
+
+#### 3. Defining state on highest App.js level (for tasks, projects)
+
+I've raised the state of tasks and projects to App.js, because I noticed I'll need it's information in multiple parts of my application. Is this common practice to have states in App.js or should it be lower and passed differently from component to component instead of passing it down from the top?
 
 ## Open Todos/Fixes
 
@@ -45,10 +54,8 @@ Or something completely different...maybe using another kind of hook? I haven't 
 
 - [ ] Add due dates to tasks
 - [ ] Edit existing Tasks
-- [ ] Sidebar: Add real task counts to projects
 - [ ] CRUD for projects
 - [ ] Sidebar: Turn Projects section into working accordeon
-- [ ] Sidebar: Toggle show/hide
 
 ## Maybe
 

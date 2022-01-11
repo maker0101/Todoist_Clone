@@ -3,9 +3,10 @@ import { Link } from 'react-router-dom';
 import { BsChevronDown } from 'react-icons/bs';
 import { VscCircleFilled } from 'react-icons/vsc';
 import { sidebarNavData } from './sidebarNavData';
+import useTasks from '../hooks/useTasks';
 
 export default function Sidebar(props) {
-	const projects = props.projects;
+	const { countTasksOfProject } = useTasks();
 
 	return (
 		<div className={`sidebar ${props.sidebarIsHidden && 'sidebar__hidden'}`}>
@@ -33,14 +34,16 @@ export default function Sidebar(props) {
 					<h2 className="sidebar__sectionTitle">Projects</h2>
 				</div>
 				<ul className="sidebar__projectsList">
-					{projects.map((project) => (
+					{props.projects.map((project) => (
 						<Link to={`/project/${project.id}`} key={project.id}>
 							<li className="sidebar__grid sidebar__item sidebar__project">
 								<span className="sidebar__icon sidebar__dot">
 									<VscCircleFilled />
 								</span>
 								<span className="sidebar_projectName">{project.name}</span>
-								<span className="sidebar__info">{projects.length}</span>
+								<span className="sidebar__info">
+									{countTasksOfProject(props.tasks, project.id)}
+								</span>
 							</li>
 						</Link>
 					))}

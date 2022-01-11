@@ -8,12 +8,49 @@ import Project from '../pages/Project';
 export default function Content(props) {
 	return (
 		<Routes>
-			<Route path="/inbox" element={<Inbox />}></Route>
-			<Route path="/today" element={<Today />}></Route>
-			<Route path="/upcoming" element={<Upcoming />}></Route>
+			<Route
+				path="/inbox"
+				element={
+					<Inbox
+						tasks={props.tasks}
+						setTasks={props.setTasks}
+						projects={props.projects}
+						setProjects={props.setProjects}
+					/>
+				}
+			></Route>
+			<Route
+				path="/today"
+				element={
+					<Today
+						tasks={props.tasks}
+						setTasks={props.setTasks}
+						projects={props.projects}
+						setProjects={props.setProjects}
+					/>
+				}
+			></Route>
+			<Route
+				path="/upcoming"
+				element={
+					<Upcoming
+						tasks={props.tasks}
+						setTasks={props.setTasks}
+						projects={props.projects}
+						setProjects={props.setProjects}
+					/>
+				}
+			></Route>
 			<Route
 				path="/project/:projectId"
-				element={<Project projects={props.projects} />}
+				element={
+					<Project
+						tasks={props.tasks}
+						setTasks={props.setTasks}
+						projects={props.projects}
+						setProjects={props.setProjects}
+					/>
+				}
 			></Route>
 		</Routes>
 	);

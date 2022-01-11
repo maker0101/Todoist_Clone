@@ -15,5 +15,12 @@ export default function useProjects() {
 		});
 	};
 
-	return { getProjects };
+	const getSelectedProject = async (projects, projectId, setSelectedProjectStateFn) => {
+		const thisProject = await projects.find(
+			(project) => project.id === projectId
+		);
+		setSelectedProjectStateFn(thisProject);
+	};
+
+	return { getProjects, getSelectedProject };
 }

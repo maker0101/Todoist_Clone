@@ -76,5 +76,18 @@ export default function useTasks() {
 		}
 	};
 
-	return { getTasks, createTask, deleteTask, toggleIsChecked };
+	const filterTasks = (tasks, projectId) =>
+		tasks.filter((task) => task.projectId === projectId);
+
+	const countTasksOfProject = (tasks, projectId) =>
+		filterTasks(tasks, projectId).length;
+
+	return {
+		getTasks,
+		createTask,
+		deleteTask,
+		toggleIsChecked,
+		filterTasks,
+		countTasksOfProject,
+	};
 }
