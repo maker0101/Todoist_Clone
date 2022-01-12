@@ -8,7 +8,7 @@ export default function TaskListItem(props) {
 	const { deleteTask, toggleIsChecked } = useTasks();
 	const { transformDueDate } = useDate();
 
-	//TODO: Refactor, simplify component JSX structure
+	//TODO: Refactor and simplify component JSX structure
 	return (
 		<div className="content__taskContainer">
 			<li className="content__task">

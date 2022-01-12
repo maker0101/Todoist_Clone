@@ -11,7 +11,7 @@ function Today(props) {
 					{props.tasks.map((task) => (
 						<TaskListItem key={task.id} task={task} />
 					))}
-					<TaskForm />
+					<TaskForm projects={props.projects}/>
 				</ul>
 			</div>
 		</div>

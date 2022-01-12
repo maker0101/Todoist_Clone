@@ -18,8 +18,8 @@ export default function useTasks() {
 		taskName,
 		taskDescription,
 		dueDate,
-		userId,
 		projectId,
+		userId,
 		setTaskFormFn
 	) => {
 		try {
@@ -29,19 +29,17 @@ export default function useTasks() {
 				name: taskName,
 				description: taskDescription,
 				dueDate: dueDate,
-				userId: userId,
 				projectId: projectId,
+				userId: userId,
 				createdAt: serverTimestamp(),
 				isChecked: false,
 			});
-
-			setTaskFormFn({ name: '', description: '', dueDate: '' });
 		} catch (event) {
 			console.log(event);
 		}
 	};
 
-	//TODO: Find more elegant solution in tertary where condition of firestore query to make projectId optional
+	//TODO: Find more elegant solution in tertiary where condition of firestore query to make projectId optional
 	const getTasks = (database, setTasksStateFn, projectId = false) => {
 		const tasksQuery = query(
 			collection(database, 'tasks'),

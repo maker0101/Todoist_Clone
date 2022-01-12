@@ -1,6 +1,7 @@
 import React from 'react';
 import { db } from '../firebase';
 import useTasks from '../hooks/useTasks';
+import useTaskForm from '../hooks/useTaskForm';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import 'react-day-picker/lib/style.css';
 
@@ -9,27 +10,37 @@ export default function TaskForm(props) {
 		name: '',
 		description: '',
 		dueDate: '',
+		projectId: '',
 	});
 	const { createTask } = useTasks();
+	const { clearTaskForm } = useTaskForm();
+	const selectedProject = props.selectedProject ? props.selectedProject.id : '';
+
+	// Initialize taskform projectId when new project is selected
+	React.useEffect(() => {
+		selectedProject && setTaskForm({ ...taskForm, projectId: selectedProject });
+	}, [selectedProject]);
 
 	return (
 		<form
 			className="addTaskForm"
-			onSubmit={(e) =>
+			onSubmit={(e) => {
 				createTask(
 					e,
 					db,
 					taskForm.name,
 					taskForm.description,
 					taskForm.dueDate,
+					taskForm.projectId,
 					'userid1',
-					'Kl3wXRZLUlto7XcA7mWd',
 					setTaskForm
-				)
-			}
+				);
+				clearTaskForm(setTaskForm, selectedProject);
+			}}
 		>
 			<div className="addTaskForm__inputContainer">
 				<input
+					required
 					className="input input__name"
 					type="text"
 					id="taskName"
@@ -49,11 +60,25 @@ export default function TaskForm(props) {
 						setTaskForm({ ...taskForm, description: e.target.value })
 					}
 				/>
-				<DayPickerInput
-					placeholder="Schedule"
-					value={taskForm.dueDate}
-					onDayChange={(day) => setTaskForm({ ...taskForm, dueDate: day })}
-				/>
+				<div>
+					<DayPickerInput
+						placeholder="Schedule"
+						value={taskForm.dueDate}
+						onDayChange={(day) => setTaskForm({ ...taskForm, dueDate: day })}
+					/>
+					<select
+						value={taskForm.projectId}
+						onChange={(e) =>
+							setTaskForm({ ...taskForm, projectId: e.target.value })
+						}
+					>
+						{props.projects.map((project) => (
+							<option key={project.id} value={project.id}>
+								{project.name}
+							</option>
+						))}
+					</select>
+				</div>
 			</div>
 			<input className="button__primary" type="submit" value="Add Task" />
 		</form>

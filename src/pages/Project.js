@@ -30,7 +30,10 @@ export default function Project(props) {
 					{projectTasks.map((task) => (
 						<TaskListItem key={task.id} task={task} />
 					))}
-					<TaskForm />
+					<TaskForm
+						projects={props.projects}
+						selectedProject={selectedProject}
+					/>
 				</ul>
 			</div>
 		</div>
