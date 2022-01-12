@@ -4,13 +4,10 @@ import { BsCalendar4Event } from 'react-icons/bs';
 import useTasks from '../hooks/useTasks';
 import useDate from '../hooks/useDate';
 
-export default function TaskListItem(props) {
+export default function Task(props) {
 	const { deleteTask, toggleIsChecked } = useTasks();
 	const { transformDueDate } = useDate();
 
-	//console.log(transformDueDate(props.task.dueDate.toDate()));
-
-	//TODO: Refactor and simplify component JSX structure
 	return (
 		<>
 			<li className="task">
@@ -47,7 +44,7 @@ export default function TaskListItem(props) {
 						<span className="task__dueDateIcon">
 							<BsCalendar4Event />
 						</span>
-						<span className='task__dueDate'>17 Jan</span>
+						<span className="task__dueDate">17 Jan</span>
 					</div>
 				</div>
 			</li>

@@ -1,5 +1,5 @@
 import React from 'react';
-import TaskListItem from '../components/TaskListItem';
+import Task from '../components/Task';
 import TaskForm from '../components/TaskForm';
 
 function Inbox(props) {
@@ -11,7 +11,7 @@ function Inbox(props) {
 					{props.tasks
 						.filter((task) => task.projectId === 'GtbY3fGVBVrTJmJH4IGd')
 						.map((task) => (
-							<TaskListItem key={task.id} task={task} />
+							<Task key={task.id} task={task} />
 						))}
 					<TaskForm projects={props.projects} />
 				</ul>

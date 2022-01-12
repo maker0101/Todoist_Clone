@@ -2,7 +2,7 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import useTasks from '../hooks/useTasks';
 import useProjects from '../hooks/useProjects';
-import TaskListItem from '../components/TaskListItem';
+import Task from '../components/Task';
 import TaskForm from '../components/TaskForm';
 
 export default function Project(props) {
@@ -30,7 +30,7 @@ export default function Project(props) {
 				</h1>
 				<ul className="tasksList">
 					{projectTasks.map((task) => (
-						<TaskListItem key={task.id} task={task} />
+						<Task key={task.id} task={task} />
 					))}
 					<TaskForm
 						projects={props.projects}

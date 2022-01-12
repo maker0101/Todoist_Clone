@@ -1,5 +1,5 @@
 import React from 'react';
-import TaskListItem from '../components/TaskListItem';
+import TaskListItem from '../components/Task';
 import TaskForm from '../components/TaskForm';
 
 function Upcoming(props) {
