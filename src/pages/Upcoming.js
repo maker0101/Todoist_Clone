@@ -7,7 +7,7 @@ function Upcoming(props) {
 		<div className="content">
 			<div className="content__container">
 				<h1 className="content__containerTitle">Upcoming</h1>
-				<ul className="content__tasksList">
+				<ul className="tasksList">
 					{props.tasks.map((task) => (
 						<TaskListItem key={task.id} task={task} />
 					))}

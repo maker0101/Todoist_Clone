@@ -6,6 +6,7 @@ $generic-box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 0px 1px,
 	rgba(0, 0, 0, 0.1) 0px 4px 11px;
 $generic-border: 1px solid #f1f1f1;
 $generic-bg: #db4c3f;
+$generic-lightGrey: #b2b2b2;
 $generic-font-size: 14.5px;
 
 //General
@@ -43,24 +44,15 @@ ul {
 }
 
 //Mixins
-@mixin box-overlay() {
-	box-shadow: $generic-box-shadow;
-	position: absolute;
-	width: 100%;
-	z-index: 1;
-	top: 85px;
-	border-radius: 3px;
-}
-
-@mixin va($va-align: center) {
+@mixin va() {
 	display: flex;
 	align-items: center;
+}
 
-	@if $va-align != center {
-		justify-content: left;
-	} @else {
-		justify-content: center;
-	}
+@mixin text-small() {
+	color: $generic-lightGrey;
+	font-size: 13px;
+	font-weight: 300;
 }
 
 @mixin no-select {
@@ -70,50 +62,6 @@ ul {
 	-moz-user-select: none;
 	-ms-user-select: none;
 	user-select: none;
-}
-
-@mixin btn($width) {
-	width: $width;
-	background-color: $generic-bg;
-	color: #fff !important;
-	border: 1px solid transparent;
-	margin-right: 5px;
-	margin-top: 10px;
-	font-weight: bold;
-	font-size: 13px !important;
-	line-height: 17px;
-	padding: 6px 12px 7px 12px;
-	position: relative;
-	display: inline-block;
-	white-space: nowrap;
-	border-radius: 3px !important;
-	text-decoration: none !important;
-	text-align: center;
-	cursor: pointer;
-}
-
-@mixin cancel() {
-	color: #555;
-	cursor: pointer;
-	font-size: 14px;
-	margin: 2px 5px;
-}
-
-@mixin task-item() {
-	list-style-type: none;
-	display: flex;
-	line-height: 18px;
-	color: #333;
-	padding-top: 10px;
-	padding-bottom: 10px;
-	font-size: 14px;
-	border-bottom: 1px solid #f0f0f0;
-	padding-left: 10px;
-	cursor: pointer;
-
-	&:hover {
-		background-color: #f9f9f9;
-	}
 }
 
 @mixin mq($from) {
@@ -289,9 +237,8 @@ ul {
 		}
 
 		.sidebar__info {
+			@include text-small();
 			grid-area: 'info';
-			color: #b2b2b2;
-			font-size: 13px;
 			text-align: right;
 		}
 
@@ -379,100 +326,108 @@ ul {
 		.content__containerTitle {
 			font-size: 20px;
 		}
+	}
+}
 
-		//TODO: Styling a bit off - needs restructuring, simplification and fine-tuning
-		.content__tasksList {
-			.content__taskContainer {
-				.content__task {
-					display: grid;
-					grid-template-columns: 30px auto 50px;
-					list-style: none;
-					padding: 7px 0;
+hr {
+	border: none;
+	height: 1px;
+	color: #f1f1f1; /* old IE */
+	background-color: #f1f1f1; /* Modern Browsers */
+	margin-top: 5px;
+}
 
-					.content__taskName {
-						display: flex;
-						align-items: center;
-						height: 100%;
-					}
+//Task Item
+.tasksList {
+	.task {
+		@include no-select();
+		list-style: none;
+		padding: 4px 0;
+		cursor: pointer;
 
-					.content__taskIcons {
-						display: grid;
-						grid-template-columns: 1fr 1fr;
-						color: grey;
-						font-size: 16px;
-						cursor: pointer;
-					}
+		.task__line {
+			@include va;
+			display: grid;
+			grid-template-columns: 30px auto 50px;
+			grid-template-areas: 'start center end';
+		}
 
-					.content__taskDescription {
-						display: flex;
-						align-items: center;
-						height: 100%;
-						color: #b2b2b2;
-						font-size: 13px;
-						font-weight: 300;
-						margin: 3px 0;
-					}
-
-					.content__dueDate {
-						@include va;
-						height: 100%;
-
-						.content__dueDateIcon {
-							font-size: 11px;
-							margin-top: 2px;
-							margin-right: 5px;
-						}
-					}
-				}
-
-				hr {
-					border: none;
-					height: 1px;
-					color: #f1f1f1; /* old IE */
-					background-color: #f1f1f1; /* Modern Browsers */
-					margin-top: 5px;
-				}
+		.task__line1 {
+			.task__name {
+				grid-area: center;
 			}
 
-			.addTaskForm__inputContainer {
-				display: flex;
-				flex-direction: column;
-				border: 1px solid #ddd;
-				border-radius: 5px;
-				padding: 10px;
-				margin-bottom: 10px;
-
-				.input {
-					border: none;
-				}
-
-				.input:focus {
-					outline: none;
-				}
-
-				.input::placeholder {
-					color: #b2b2b2;
-				}
-
-				.input__name {
-					margin-bottom: 10px;
-				}
-
-				.input__description {
-					font-size: 13px;
-					font-weight: 300;
-				}
+			.task__icons {
+				grid-area: end;
+				display: grid;
+				grid-template-columns: 1fr 1fr;
+				color: $generic-lightGrey;
+				font-size: 16px;
 			}
+		}
 
-			.addTaskForm__inputContainer:focus-within {
-				border: 1px solid #b2b2b2;
+		.task__line2 {
+			.task__description {
+				@include va;
+				@include text-small();
+				grid-area: center;
+				margin: 3px 0;
+			}
+		}
+
+		.task__line3 {
+			.task__dueDateContainer {
+				@include va;
+				@include text-small();
+				grid-area: center;
+
+				.task__dueDateIcon {
+					@include va;
+					font-size: 11px;
+					margin: 3px 5px 3px 0px;
+				}
 			}
 		}
 	}
 }
 
+// Task Form
+.addTaskForm__inputContainer {
+	display: flex;
+	flex-direction: column;
+	border: 1px solid #ddd;
+	border-radius: 5px;
+	padding: 10px;
+	margin-bottom: 10px;
+
+	.input {
+		border: none;
+	}
+
+	.input:focus {
+		outline: none;
+	}
+
+	.input::placeholder {
+		color: #b2b2b2;
+	}
+
+	.input__name {
+		margin-bottom: 10px;
+	}
+
+	.input__description {
+		font-size: 13px;
+		font-weight: 300;
+	}
+}
+
+.addTaskForm__inputContainer:focus-within {
+	border: 1px solid #b2b2b2;
+}
+
 // Checkbox
-.checkbox__container {
+.checkbox {
 	width: 18px;
 	height: 18px;
 	display: block;
@@ -503,12 +458,12 @@ ul {
 }
 
 /* On checkbox mouse-over, add a background color */
-.checkbox__container:hover input ~ .checkbox__checkmark {
+.checkbox:hover input ~ .checkbox__checkmark {
 	background-color: #eee;
 }
 
 /* When the checkbox is checked, change background*/
-.checkbox__container input:checked ~ .checkbox__checkmark {
+.checkbox input:checked ~ .checkbox__checkmark {
 	background-color: #eee;
 }
 
@@ -520,12 +475,12 @@ ul {
 }
 
 /* Show the checkmark on hover */
-.checkbox__container input:hover ~ .checkbox__checkmark:after {
+.checkbox input:hover ~ .checkbox__checkmark:after {
 	display: block;
 }
 
 /* Style the checkmark/indicator */
-.checkbox__container .checkbox__checkmark:after {
+.checkbox .checkbox__checkmark:after {
 	left: 6px;
 	top: 4px;
 	width: 5px;

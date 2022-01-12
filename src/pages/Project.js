@@ -12,6 +12,8 @@ export default function Project(props) {
 	const { filterTasksByProjectId } = useTasks();
 	const { getSelectedProject } = useProjects();
 
+	console.log(projectTasks);
+
 	React.useEffect(
 		() => getSelectedProject(props.projects, projectId, setSelectedProject),
 		[projectId, props.projects]
@@ -26,7 +28,7 @@ export default function Project(props) {
 				<h1 className="content__containerTitle">
 					{selectedProject && selectedProject.name}
 				</h1>
-				<ul className="content__tasksList">
+				<ul className="tasksList">
 					{projectTasks.map((task) => (
 						<TaskListItem key={task.id} task={task} />
 					))}

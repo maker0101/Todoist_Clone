@@ -48,10 +48,10 @@ I've raised the state of tasks and projects to App.js, because I noticed I'll ne
 
 ## Known issues/bugs
 
+- [ ] Displaying actual dueDates not working
+- [ ] Adding multiple tasks in Inpox view not working
 - [ ] Sidebar: Project dots colors not working anymore -> always yellow
-- [ ] Sidebar: CSS grid area seems not to work properly (grid-template-areas: 'icon text info';)
 - [ ] Overflow for long task lists -> Add scrollbar
-- [ ] New task validation missing -> Require task name
 
 ## Planned Features
 

@@ -3,7 +3,7 @@ import { IoTodayOutline } from 'react-icons/io5';
 
 const sidebarNavData = [
 	{
-		id: 1,
+		id: 'GtbY3fGVBVrTJmJH4IGd',
 		name: 'Inbox',
 		to: '/inbox',
 		icon: <VscInbox />,

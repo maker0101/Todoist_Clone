@@ -8,49 +8,50 @@ export default function TaskListItem(props) {
 	const { deleteTask, toggleIsChecked } = useTasks();
 	const { transformDueDate } = useDate();
 
+	//console.log(transformDueDate(props.task.dueDate.toDate()));
+
 	//TODO: Refactor and simplify component JSX structure
 	return (
-		<div className="content__taskContainer">
-			<li className="content__task">
-				<label className="checkbox__container">
-					<input
-						type="checkbox"
-						checked={props.task.isChecked}
-						onChange={() =>
-							toggleIsChecked(db, props.task.id, props.task.isChecked)
-						}
-					></input>
-					<span className="checkbox__checkmark"></span>
-				</label>
-				<span className="content__taskName">{props.task.name}</span>
-				<span className="content__taskIcons">
-					<VscTrash onClick={() => deleteTask(db, props.task.id)} />
-					<VscEdit />
-				</span>
-				<span></span>
-				<span
-					className="content__taskDescription"
-					style={{ display: props.task.description ? 'flex' : 'none' }}
+		<>
+			<li className="task">
+				<div className="task__line task__line1">
+					<label className="checkbox">
+						<input
+							type="checkbox"
+							checked={props.task.isChecked}
+							onChange={() =>
+								toggleIsChecked(db, props.task.id, props.task.isChecked)
+							}
+						></input>
+						<span className="checkbox__checkmark"></span>
+					</label>
+					<div className="task__name">{props.task.name}</div>
+					<div className="task__icons">
+						<VscTrash onClick={() => deleteTask(db, props.task.id)} />
+						<VscEdit />
+					</div>
+				</div>
+
+				<div
+					className="task__line task__line2"
+					style={{ display: props.task.description ? 'grid' : 'none' }}
 				>
-					{props.task.description}
-				</span>
-				<span></span>
-				<span></span>
-				<span
-					className="content__taskDescription"
-					style={{ display: props.task.description ? 'flex' : 'none' }}
+					<div className="task__description">{props.task.description}</div>
+				</div>
+
+				<div
+					className="task__line task__line3"
+					style={{ display: props.task.dueDate ? 'grid' : 'none' }}
 				>
-					{props.task.dueDate && (
-						<div className="content__dueDate">
-							<span className="content__dueDateIcon">
-								<BsCalendar4Event />
-							</span>
-							<span>{transformDueDate(props.task.dueDate.toDate())}</span>
-						</div>
-					)}
-				</span>
+					<div className="task__dueDateContainer">
+						<span className="task__dueDateIcon">
+							<BsCalendar4Event />
+						</span>
+						<span className='task__dueDate'>17 Jan</span>
+					</div>
+				</div>
 			</li>
 			<hr />
-		</div>
+		</>
 	);
 }

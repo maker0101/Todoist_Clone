@@ -20,7 +20,6 @@ export default function useTasks() {
 		dueDate,
 		projectId,
 		userId,
-		setTaskFormFn
 	) => {
 		try {
 			event.preventDefault();

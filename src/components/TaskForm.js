@@ -10,7 +10,7 @@ export default function TaskForm(props) {
 		name: '',
 		description: '',
 		dueDate: '',
-		projectId: '',
+		projectId: 'GtbY3fGVBVrTJmJH4IGd',
 	});
 	const { createTask } = useTasks();
 	const { clearTaskForm } = useTaskForm();

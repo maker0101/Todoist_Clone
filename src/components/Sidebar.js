@@ -8,6 +8,19 @@ import useTasks from '../hooks/useTasks';
 export default function Sidebar(props) {
 	const { countTasksOfProject } = useTasks();
 
+	const countTasksOfNavItem = (tasks, item) => {
+		switch (item.name) {
+			case 'Inbox':
+				return countTasksOfProject(tasks, item.id);
+			case 'Today':
+				return 99;
+			case 'Upcoming':
+				return 99;
+			default:
+				break;
+		}
+	};
+
 	return (
 		<div className={`sidebar ${props.sidebarIsHidden && 'sidebar__hidden'}`}>
 			<div className="sidebar__section sidebar__nav">
@@ -19,7 +32,9 @@ export default function Sidebar(props) {
 									{item.icon}
 								</span>
 								<span className="sidebar__text">{item.name}</span>
-								<span className="sidebar__info">5</span>
+								<span className="sidebar__info">
+									{countTasksOfNavItem(props.tasks, item)}
+								</span>
 							</li>
 						</Link>
 					))}
@@ -34,19 +49,21 @@ export default function Sidebar(props) {
 					<h2 className="sidebar__sectionTitle">Projects</h2>
 				</div>
 				<ul className="sidebar__projectsList">
-					{props.projects.map((project) => (
-						<Link to={`/project/${project.id}`} key={project.id}>
-							<li className="sidebar__grid sidebar__item sidebar__project">
-								<span className="sidebar__icon sidebar__dot">
-									<VscCircleFilled />
-								</span>
-								<span className="sidebar_projectName">{project.name}</span>
-								<span className="sidebar__info">
-									{countTasksOfProject(props.tasks, project.id)}
-								</span>
-							</li>
-						</Link>
-					))}
+					{props.projects
+						.filter((project) => project.isInbox === false)
+						.map((project) => (
+							<Link to={`/project/${project.id}`} key={project.id}>
+								<li className="sidebar__grid sidebar__item sidebar__project">
+									<span className="sidebar__icon sidebar__dot">
+										<VscCircleFilled />
+									</span>
+									<span className="sidebar_projectName">{project.name}</span>
+									<span className="sidebar__info">
+										{countTasksOfProject(props.tasks, project.id)}
+									</span>
+								</li>
+							</Link>
+						))}
 				</ul>
 			</div>
 		</div>

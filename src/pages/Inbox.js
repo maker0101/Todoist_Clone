@@ -7,11 +7,13 @@ function Inbox(props) {
 		<div className="content">
 			<div className="content__container">
 				<h1 className="content__containerTitle">Inbox</h1>
-				<ul className="content__tasksList">
-					{props.tasks.map((task) => (
-						<TaskListItem key={task.id} task={task} />
-					))}
-					<TaskForm projects={props.projects}/>
+				<ul className="tasksList">
+					{props.tasks
+						.filter((task) => task.projectId === 'GtbY3fGVBVrTJmJH4IGd')
+						.map((task) => (
+							<TaskListItem key={task.id} task={task} />
+						))}
+					<TaskForm projects={props.projects} />
 				</ul>
 			</div>
 		</div>
