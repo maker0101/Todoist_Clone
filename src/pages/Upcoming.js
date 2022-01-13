@@ -5,9 +5,12 @@ import useTasks from '../hooks/useTasks';
 import useDate from '../hooks/useDate';
 
 function Upcoming(props) {
+	const [upcomingDays, setUpcomingDays] = React.useState([]);
 	const { isTaskOverdue, isTaskDueToday } = useTasks();
-	const { transformDueDate } = useDate();
+	const { transformDueDate, calcUpcomingDays } = useDate();
 	const today = new Date();
+
+	React.useEffect(() => setUpcomingDays(calcUpcomingDays(7)), []);
 
 	return (
 		<div className="content">
@@ -27,22 +30,22 @@ function Upcoming(props) {
 						)}
 					</ul>
 				</div>
-				
-				<div className="content__section">
-					<h2 className="content__sectionTitle">{`${transformDueDate(
-						today
-					)} · Today`}</h2>
-					<hr />
-					<ul className="tasksList">
-						{props.tasks.map(
-							(task) =>
-								isTaskDueToday(task) && <Task key={task.id} task={task} />
-						)}
-						<TaskForm projects={props.projects} />
-					</ul>
-				</div>
 
-
+				{upcomingDays.map((day) => (
+					<div key={day.id} className="content__section">
+						<h2 className="content__sectionTitle">{`${transformDueDate(
+							new Date(day.date)
+						)} · ${day.special ? day.special : day.weekday}`}</h2>
+						<hr />
+						<ul className="tasksList">
+							{props.tasks.map(
+								(task) =>
+									isTaskDueToday(task) && <Task key={task.id} task={task} />
+							)}
+							<TaskForm projects={props.projects} />
+						</ul>
+					</div>
+				))}
 			</div>
 		</div>
 	);

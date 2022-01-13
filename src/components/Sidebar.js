@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { BsChevronDown } from 'react-icons/bs';
 import { VscCircleFilled } from 'react-icons/vsc';
-import { sidebarNavData } from './sidebarNavData';
+import { sidebarNavData } from '../helper/sidebarNavData';
 import useTasks from '../hooks/useTasks';
 
 export default function Sidebar(props) {
