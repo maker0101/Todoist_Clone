@@ -1,8 +1,8 @@
 import React from 'react';
+import DayPickerInput from 'react-day-picker/DayPickerInput';
 import { db } from '../firebase';
 import useTasks from '../hooks/useTasks';
 import useTaskForm from '../hooks/useTaskForm';
-import DayPickerInput from 'react-day-picker/DayPickerInput';
 import 'react-day-picker/lib/style.css';
 
 export default function TaskForm(props) {
