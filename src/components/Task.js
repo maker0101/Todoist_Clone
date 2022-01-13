@@ -44,7 +44,9 @@ export default function Task(props) {
 						<span className="task__dueDateIcon">
 							<BsCalendar4Event />
 						</span>
-						<span className="task__dueDate">17 Jan</span>
+						<span className="task__dueDate">
+							{transformDueDate(new Date(props.task.dueDate.seconds))}
+						</span>
 					</div>
 				</div>
 			</li>

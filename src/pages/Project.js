@@ -12,8 +12,6 @@ export default function Project(props) {
 	const { filterTasksByProjectId } = useTasks();
 	const { getSelectedProject } = useProjects();
 
-	console.log(projectTasks);
-
 	React.useEffect(
 		() => getSelectedProject(props.projects, projectId, setSelectedProject),
 		[projectId, props.projects]

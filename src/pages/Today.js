@@ -3,6 +3,9 @@ import Task from '../components/Task';
 import TaskForm from '../components/TaskForm';
 
 function Today(props) {
+	const today = new Date().toDateString()
+	console.log(today)
+
 	return (
 		<div className="content">
 			<div className="content__container">
