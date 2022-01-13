@@ -8,6 +8,7 @@ import useTasks from '../hooks/useTasks';
 export default function Sidebar(props) {
 	const { countTasksOfProject } = useTasks();
 
+	//TODO: replace 99 with actual calculations once base work is done
 	const countTasksOfNavItem = (tasks, item) => {
 		switch (item.name) {
 			case 'Inbox':

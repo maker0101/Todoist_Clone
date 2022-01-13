@@ -7,6 +7,8 @@ import useDate from '../hooks/useDate';
 export default function Task(props) {
 	const { deleteTask, toggleIsChecked } = useTasks();
 	const { transformDueDate } = useDate();
+	const isDueDateDefined = Boolean(props.task.dueDate);
+	const dueDateTimestampInMs = new Date(props.task.dueDate.seconds * 1000);
 
 	return (
 		<>
@@ -45,7 +47,7 @@ export default function Task(props) {
 							<BsCalendar4Event />
 						</span>
 						<span className="task__dueDate">
-							{transformDueDate(new Date(props.task.dueDate.seconds))}
+							{isDueDateDefined && transformDueDate(dueDateTimestampInMs)}
 						</span>
 					</div>
 				</div>

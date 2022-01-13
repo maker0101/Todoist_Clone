@@ -23,7 +23,7 @@ function App() {
 					sidebarIsHidden={sidebarIsHidden}
 					setSidebarIsHidden={setSidebarIsHidden}
 				/>
-				<Main 
+				<Main
 					sidebarIsHidden={sidebarIsHidden}
 					tasks={tasks}
 					setTasks={setTasks}

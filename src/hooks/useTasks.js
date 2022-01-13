@@ -19,7 +19,7 @@ export default function useTasks() {
 		taskDescription,
 		dueDate,
 		projectId,
-		userId,
+		userId
 	) => {
 		try {
 			event.preventDefault();
@@ -81,6 +81,23 @@ export default function useTasks() {
 	const countTasksOfProject = (tasks, projectId) =>
 		filterTasksByProjectId(tasks, projectId).length;
 
+	const isTaskDueToday = (task) => {
+		const today = new Date().toDateString();
+		const taskDueDate = task.dueDate
+			? new Date(task.dueDate.seconds * 1000).toDateString()
+			: '';
+		return taskDueDate === today;
+	};
+
+	const isTaskOverdue = (task) => {
+		const today = new Date(new Date().toDateString());
+		const taskDueDate = new Date(
+			new Date(task.dueDate.seconds * 1000).toDateString()
+		);
+
+		return taskDueDate < today && Boolean(taskDueDate);
+	};
+
 	return {
 		getTasks,
 		createTask,
@@ -88,5 +105,7 @@ export default function useTasks() {
 		toggleIsChecked,
 		filterTasksByProjectId,
 		countTasksOfProject,
+		isTaskDueToday,
+		isTaskOverdue,
 	};
 }

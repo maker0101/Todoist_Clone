@@ -16,7 +16,7 @@ export default function TaskForm(props) {
 	const { clearTaskForm } = useTaskForm();
 	const selectedProject = props.selectedProject ? props.selectedProject.id : '';
 
-	// Initialize taskform projectId when new project is selected
+	// Initializes taskform projectId when new project is selected
 	React.useEffect(() => {
 		selectedProject && setTaskForm({ ...taskForm, projectId: selectedProject });
 	}, [selectedProject]);
