@@ -58,6 +58,11 @@ hr {
 	margin-top: 5px;
 }
 
+a {
+	text-decoration: none;
+	color: $color-black-1;
+}
+
 //Mixins
 @mixin va() {
 	display: flex;
@@ -103,7 +108,7 @@ hr {
 	height: 44px;
 	position: fixed;
 	width: 100%;
-	padding: 0 42px;
+	padding: 0 40px;
 
 	.header__nav {
 		display: grid;
@@ -113,7 +118,6 @@ hr {
 		color: $color-white;
 
 		a {
-			text-decoration: none;
 			color: $color-white;
 		}
 
@@ -187,115 +191,47 @@ hr {
 	max-width: 300px;
 	height: 100vh;
 	padding-top: 60px;
-	padding-left: 37px;
+	padding-left: 35px;
 	padding-right: 5px;
 	background-color: $color-grey-2;
 
-	@include mq('450px') {
-		display: none;
-	}
-
-	a {
-		text-decoration: none;
-		color: $color-black-1;
-	}
-
 	.sidebar__section {
 		margin-top: 15px;
-	}
 
-	.sidebar__sectionGrid {
-		display: grid;
-		grid-template-columns: 1fr 6fr 1fr;
-		grid-column-gap: 10px;
-		height: 38px;
-		padding: 10px 5px;
-		align-items: center;
-
-		.sidebar__icon {
-			display: flex;
+		.sidebar__item {
+			display: grid;
+			grid-template-columns: 1fr 6fr 1fr;
+			grid-column-gap: 10px;
+			padding: 8px 5px;
 			align-items: center;
 
-			svg {
+			.sidebar__icon {
+				@include va;
+				justify-content: center;
+				width: 100%;
 				font-size: 19px;
-				width: 100%;
+			}
+
+			.sidebar__iconChevron {
+				font-size: 12px;
+			}
+
+			.sidebar__info {
+				@include text-small();
+				text-align: center;
 			}
 		}
 
-		.sidebar__iconChevron {
-			svg {
-				font-size: 15px;
-				width: 100%;
-			}
-		}
-
-		.sidebar__info {
-			@include text-small();
-			text-align: center;
-		}
-	}
-
-	.active {
 		.sidebar__item {
-			border-radius: $border-radius-medium;
-			background-color: $color-grey-4;
-		}
-	}
-
-	.sidebar__item {
-		&.active,
-		&:hover {
-			cursor: pointer;
-			border-radius: $border-radius-medium;
-			background-color: $color-grey-4;
-		}
-	}
-
-	.sidebar__projectsList {
-		&:nth-child(1) {
-			.sidebar__project {
-				.sidebar__dot {
-					color: #6accbc;
-				}
-			}
-		}
-
-		&:nth-child(2) {
-			.sidebar__project {
-				.sidebar__dot {
-					color: #fad003;
-				}
-			}
-		}
-
-		&:nth-child(3) {
-			.sidebar__project {
-				.sidebar__dot {
-					color: #ff8d85;
-				}
-			}
-		}
-
-		&:nth-child(4) {
-			.sidebar__project {
-				.sidebar__dot {
-					color: #ff9932;
-				}
-			}
-		}
-
-		&:nth-child(5) {
-			.sidebar__project {
-				.sidebar__dot {
-					color: #af38eb;
+			&:not(.sidebar__sectionTitle) {
+				&.active,
+				&:hover {
+					border-radius: $border-radius-medium;
+					background-color: $color-grey-4;
 				}
 			}
 		}
 	}
-}
-
-.sidebar__hidden {
-	display: none;
 }
 
 // Content
