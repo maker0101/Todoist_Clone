@@ -82,7 +82,7 @@ export default function useTasks() {
 		filterTasksByProjectId(tasks, projectId).length;
 
 	const countTasksOnDate = (tasks, dateObject) =>
-		tasks.filter((task) => isTaskDueOnDate(task, dateObject)).length;
+		tasks.filter((task) => isTaskDue(task, dateObject)).length;
 
 	const countOverdueTasks = (tasks) =>
 		tasks.filter((task) => isTaskOverdue(task)).length;
@@ -100,7 +100,7 @@ export default function useTasks() {
 		}
 	};
 
-	const isTaskDueOnDate = (task, dateObject) => {
+	const isTaskDue = (task, dateObject) => {
 		const thisDay = dateObject.toDateString();
 		const taskDueDate = task.dueDate
 			? new Date(task.dueDate.seconds * 1000).toDateString()
@@ -126,7 +126,7 @@ export default function useTasks() {
 		countTasksOfProject,
 		countTasksOnDate,
 		countTasksOfNavItems,
-		isTaskDueOnDate,
+		isTaskDue,
 		isTaskOverdue,
 	};
 }

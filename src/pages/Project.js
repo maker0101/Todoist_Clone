@@ -22,20 +22,13 @@ export default function Project(props) {
 
 	return (
 		<div className="content">
-			<div className="content__container">
-				<h1 className="content__containerTitle">
-					{selectedProject && selectedProject.name}
-				</h1>
-				<ul className="tasksList">
-					{projectTasks.map((task) => (
-						<Task key={task.id} task={task} />
-					))}
-					<TaskForm
-						projects={props.projects}
-						selectedProject={selectedProject}
-					/>
-				</ul>
-			</div>
+			<h1 className="content__title">
+				{selectedProject && selectedProject.name}
+			</h1>
+			{projectTasks.map((task) => (
+				<Task key={task.id} task={task} />
+			))}
+			<TaskForm projects={props.projects} selectedProject={selectedProject} />
 		</div>
 	);
 }

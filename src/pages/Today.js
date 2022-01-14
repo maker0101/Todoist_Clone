@@ -4,47 +4,31 @@ import TaskForm from '../components/TaskForm';
 import useTasks from '../hooks/useTasks';
 import useDate from '../hooks/useDate';
 
-function Today(props) {
-	const { isTaskOverdue, isTaskDueOnDate } = useTasks();
-	const { transformDueDate } = useDate();
+export default function Today(props) {
+	const { isTaskOverdue, isTaskDue } = useTasks();
+	const { shortenDate } = useDate();
 	const today = new Date();
 
 	return (
 		<div className="content">
-			<div className="content__container">
-				<h1 className="content__containerTitle">Today</h1>
+			<h1 className="content__title">Today</h1>
 
-				<div
-					className="content__section"
-					style={{ display: true ? 'grid' : 'none' }}
-				>
-					<h2 className="content__sectionTitle">Overdue</h2>
-					<hr />
+			<div className="content__section">
+				<h2 className="content__subTitle">Overdue</h2>
+				<hr />
+				{props.tasks.map(
+					(task) => isTaskOverdue(task) && <Task key={task.id} task={task} />
+				)}
+			</div>
 
-					<ul className="tasksList">
-						{props.tasks.map(
-							(task) =>
-								isTaskOverdue(task) && <Task key={task.id} task={task} />
-						)}
-					</ul>
-				</div>
-
-				<div className="content__section">
-					<h2 className="content__sectionTitle">{`${transformDueDate(
-						today
-					)} · Today`}</h2>
-					<hr />
-					<ul className="tasksList">
-						{props.tasks.map(
-							(task) =>
-							isTaskDueOnDate(task, today) && <Task key={task.id} task={task} />
-						)}
-						<TaskForm projects={props.projects} />
-					</ul>
-				</div>
+			<div className="content__section">
+				<h2 className="content__subTitle">{`${shortenDate(today)} · Today`}</h2>
+				<hr />
+				{props.tasks.map(
+					(task) => isTaskDue(task, today) && <Task key={task.id} task={task} />
+				)}
+				<TaskForm projects={props.projects} />
 			</div>
 		</div>
 	);
 }
-
-export default Today;

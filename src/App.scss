@@ -104,82 +104,72 @@ a {
 
 // Header
 .header {
-	background-color: $color-red-1;
-	height: 44px;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
 	position: fixed;
+	align-items: center;
+	height: 44px;
 	width: 100%;
+	background-color: $color-red-1;
 	padding: 0 40px;
+	color: $color-white;
 
-	.header__nav {
-		display: grid;
-		align-items: center;
-		grid-template-columns: 1fr 1fr;
-		height: 100%;
-		color: $color-white;
-
-		a {
-			color: $color-white;
-		}
-
-		.header__navLeft {
-			.header__navLeftList {
-				@include va;
-
-				.header__item {
-					margin-right: 8px;
-				}
-			}
-		}
-
-		.header__navRight {
-			.header__navRightList {
-				float: right;
-
-				.header__item {
-					margin-left: 8px;
-				}
-			}
-		}
+	.header__left {
+		@include va;
 
 		.header__item {
-			@include va;
-			justify-content: center;
-			list-style-type: none;
-			cursor: pointer;
-			width: 30px;
-			height: 30px;
-			font-size: 20px;
-			float: left;
-
-			&:hover {
-				border-radius: $border-radius-small;
-				background-color: $color-grey-7;
-			}
+			margin-right: 8px;
 		}
+	}
 
-		.header__itemSearch {
-			@include va;
-			height: 28px;
-			width: 183px;
-			padding: 0 8px;
+	.header__right {
+		.header__item {
+			float: right;
+			margin-left: 8px;
+		}
+	}
+
+	.header__item {
+		@include va;
+		justify-content: center;
+		list-style-type: none;
+		cursor: pointer;
+		width: 30px;
+		height: 30px;
+		padding: 5px;
+
+		&:hover {
 			border-radius: $border-radius-small;
 			background-color: $color-grey-7;
-			justify-content: left;
-
-			.header__searchIcon {
-				@include va;
-			}
-
-			.header__searchText {
-				margin-left: 8px;
-				font-size: $font-size-primary;
-			}
 		}
+	}
+
+	.header__itemSearch {
+		@include va;
+		font-size: 20px;
+		height: 28px;
+		width: 183px;
+		padding: 0 8px;
+		border-radius: $border-radius-small;
+		background-color: $color-grey-7;
+		justify-content: left;
+
+		.header__searchIcon {
+			@include va;
+		}
+
+		.header__searchText {
+			margin-left: 8px;
+			font-size: $font-size-primary;
+		}
+	}
+
+	a {
+		color: $color-white;
 	}
 }
 
 // Main
-
 .main {
 	display: flex;
 }
@@ -234,82 +224,81 @@ a {
 	}
 }
 
+.sidebar__hidden {
+	display: none;
+}
+
 // Content
 .content {
 	width: 100%;
+	max-width: 800px;
+	margin: auto;
 	height: 100vh;
 	padding-top: 70px;
 	padding-left: 50px;
 	padding-right: 50px;
 	overflow: scroll;
 
-	.content__container {
-		max-width: 800px;
-		margin: auto;
+	.content__title {
+		font-size: $font-size-large;
+	}
 
-		.content__containerTitle {
-			font-size: $font-size-large;
-		}
+	.content__section {
+		margin-top: 45px;
 
-		.content__section {
-			margin-top: 45px;
-
-			.content__sectionTitle {
-				margin-bottom: 8px;
-			}
+		.content__subTitle {
+			margin-bottom: 8px;
 		}
 	}
 }
 
-//Task Item
-.tasksList {
-	.task {
-		@include no-select();
-		list-style: none;
-		padding: 4px 0;
-		cursor: pointer;
+//Task
+.task {
+	@include no-select();
+	list-style: none;
+	padding: 4px 0;
+	cursor: pointer;
 
-		.task__line {
-			@include va;
+	.task__line {
+		@include va;
+		display: grid;
+		grid-template-columns: 30px auto 50px;
+		grid-template-areas: 'start center end';
+	}
+
+	.task__line1 {
+		.task__name {
+			grid-area: center;
+		}
+
+		.task__icons {
+			grid-area: end;
 			display: grid;
-			grid-template-columns: 30px auto 50px;
-			grid-template-areas: 'start center end';
+			grid-template-columns: 1fr 1fr;
+			color: $color-grey-5;
+			font-size: 16px;
 		}
+	}
 
-		.task__line1 {
-			.task__name {
-				grid-area: center;
-			}
-
-			.task__icons {
-				grid-area: end;
-				display: grid;
-				grid-template-columns: 1fr 1fr;
-				color: $color-grey-5;
-				font-size: 16px;
-			}
+	.task__line2 {
+		.task__description {
+			@include va;
+			@include text-small();
+			grid-area: center;
+			margin: 3px 0;
 		}
+	}
 
-		.task__line2 {
-			.task__description {
+	.task__line3 {
+		.task__dueDateContainer {
+			@include va;
+			@include text-small();
+			grid-area: center;
+
+			.task__dueDateIcon {
 				@include va;
-				@include text-small();
-				grid-area: center;
-				margin: 3px 0;
-			}
-		}
-
-		.task__line3 {
-			.task__dueDateContainer {
-				@include va;
-				@include text-small();
-				grid-area: center;
-
-				.task__dueDateIcon {
-					@include va;
-					font-size: 11px;
-					margin: 3px 5px 3px 0px;
-				}
+				font-size: 11px;
+				margin: 3px 5px 3px 0px;
 			}
 		}
 	}

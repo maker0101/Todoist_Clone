@@ -71,7 +71,6 @@ What am I missing?
 ## Known issues/bugs
 
 - [ ] Adding multiple tasks in Inpox view not working
-- [ ] Sidebar: Project dots colors not working anymore -> always yellow
 
 ## Planned Features
 

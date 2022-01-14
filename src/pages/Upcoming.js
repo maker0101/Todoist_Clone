@@ -4,52 +4,37 @@ import TaskForm from '../components/TaskForm';
 import useTasks from '../hooks/useTasks';
 import useDate from '../hooks/useDate';
 
-function Upcoming(props) {
+export default function Upcoming(props) {
 	const [upcomingDays, setUpcomingDays] = React.useState([]);
-	const { isTaskOverdue, isTaskDueOnDate } = useTasks();
-	const { transformDueDate, calcUpcomingDays } = useDate();
+	const { isTaskOverdue, isTaskDue } = useTasks();
+	const { shortenDate, calcUpcomingDays } = useDate();
 
 	React.useEffect(() => setUpcomingDays(calcUpcomingDays(7)), []);
 
 	return (
 		<div className="content">
-			<div className="content__container">
-				<h1 className="content__containerTitle">Upcoming</h1>
-				<div
-					className="content__section"
-					style={{ display: true ? 'grid' : 'none' }}
-				>
-					<h2 className="content__sectionTitle">Overdue</h2>
-					<hr />
-
-					<ul className="tasksList">
-						{props.tasks.map(
-							(task) =>
-								isTaskOverdue(task) && <Task key={task.id} task={task} />
-						)}
-					</ul>
-				</div>
-
-				{upcomingDays.map((day) => (
-					<div key={day.id} className="content__section">
-						<h2 className="content__sectionTitle">{`${transformDueDate(
-							new Date(day.date)
-						)} · ${day.todayTomorrow ? day.todayTomorrow : day.weekday}`}</h2>
-						<hr />
-						<ul className="tasksList">
-							{props.tasks.map(
-								(task) =>
-									isTaskDueOnDate(task, day.date) && (
-										<Task key={task.id} task={task} />
-									)
-							)}
-							<TaskForm projects={props.projects} />
-						</ul>
-					</div>
-				))}
+			<h1 className="content__title">Upcoming</h1>
+			<div className="content__section">
+				<h2 className="content__subTitle">Overdue</h2>
+				<hr />
+				{props.tasks.map(
+					(task) => isTaskOverdue(task) && <Task key={task.id} task={task} />
+				)}
 			</div>
+
+			{upcomingDays.map((day) => (
+				<div key={day.id} className="content__section">
+					<h2 className="content__subTitle">{`${shortenDate(
+						new Date(day.date)
+					)} · ${day.todayTomorrow ? day.todayTomorrow : day.weekday}`}</h2>
+					<hr />
+					{props.tasks.map(
+						(task) =>
+							isTaskDue(task, day.date) && <Task key={task.id} task={task} />
+					)}
+					<TaskForm projects={props.projects} />
+				</div>
+			))}
 		</div>
 	);
 }
-
-export default Upcoming;

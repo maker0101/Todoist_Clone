@@ -2,7 +2,7 @@ import { monthsOfYear } from '../helper/monthsOfYear';
 import { daysOfWeek } from '../helper/daysOfWeek';
 
 export default function useDate() {
-	const transformDueDate = (date) => {
+	const shortenDate = (date) => {
 		const day = date.getDate();
 		const month = date.getMonth();
 		return day.toString() + ' ' + monthsOfYear[month];
@@ -15,7 +15,7 @@ export default function useDate() {
 			daysArray.push({
 				id: i,
 				date: new Date(thisDay),
-				dateShort: transformDueDate(thisDay),
+				dateShort: shortenDate(thisDay),
 				weekday: daysOfWeek[thisDay.getDay()],
 				todayTomorrow: i === 0 ? 'Today' : i === 1 ? 'Tomorrow' : '',
 			});
@@ -25,5 +25,5 @@ export default function useDate() {
 		return daysArray;
 	};
 
-	return { transformDueDate, calcUpcomingDays };
+	return { shortenDate, calcUpcomingDays };
 }

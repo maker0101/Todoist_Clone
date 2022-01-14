@@ -48,7 +48,10 @@ export default function Sidebar(props) {
 							className="sidebar__item"
 							activeclassname="selected"
 						>
-							<VscCircleFilled className="sidebar__icon" style={{ color: project.iconColor }}/>
+							<VscCircleFilled
+								className="sidebar__icon"
+								style={{ color: project.iconColor }}
+							/>
 							<div>{project.name}</div>
 							<div className="sidebar__info">
 								{countTasksOfProject(props.tasks, project.id)}
