@@ -70,7 +70,6 @@ What am I missing?
 
 ## Known issues/bugs
 
-- [ ] Some tasks are falsely filtered out/not showing -> Investigating currently...
 - [ ] Adding multiple tasks in Inpox view not working
 - [ ] Sidebar: Project dots colors not working anymore -> always yellow
 

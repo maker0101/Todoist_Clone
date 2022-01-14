@@ -264,6 +264,13 @@ hr {
 		}
 	}
 
+	.active {
+		.sidebar__item {
+			border-radius: 5px;
+			background-color: #ececec;
+		}
+	}
+
 	.sidebar__item {
 		&.active,
 		&:hover {

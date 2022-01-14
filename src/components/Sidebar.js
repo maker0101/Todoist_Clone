@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { BsChevronDown } from 'react-icons/bs';
 import { VscCircleFilled } from 'react-icons/vsc';
 import { sidebarNavData } from '../helper/sidebarNavData';
@@ -13,7 +13,7 @@ export default function Sidebar(props) {
 			<div className="sidebar__section sidebar__nav">
 				<ul>
 					{sidebarNavData.map((item) => (
-						<Link to={item.to} key={item.id}>
+						<NavLink to={item.to} key={item.id} activeclasscame="selected">
 							<li className="sidebar__grid sidebar__item">
 								<span className={`sidebar__icon ${item.iconClassName}`}>
 									{item.icon}
@@ -23,7 +23,7 @@ export default function Sidebar(props) {
 									{countTasksOfNavItems(props.tasks, item)}
 								</span>
 							</li>
-						</Link>
+						</NavLink>
 					))}
 				</ul>
 			</div>
@@ -39,7 +39,11 @@ export default function Sidebar(props) {
 					{props.projects
 						.filter((project) => project.isInbox === false)
 						.map((project) => (
-							<Link to={`/project/${project.id}`} key={project.id}>
+							<NavLink
+								to={`/project/${project.id}`}
+								key={project.id}
+								activeclassname="selected"
+							>
 								<li className="sidebar__grid sidebar__item sidebar__project">
 									<span className="sidebar__icon sidebar__dot">
 										<VscCircleFilled />
@@ -49,7 +53,7 @@ export default function Sidebar(props) {
 										{countTasksOfProject(props.tasks, project.id)}
 									</span>
 								</li>
-							</Link>
+							</NavLink>
 						))}
 				</ul>
 			</div>
