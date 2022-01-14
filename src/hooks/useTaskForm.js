@@ -8,5 +8,10 @@ export default function () {
 		});
 	};
 
-	return { clearTaskForm };
+	const autoSelectProjectId = (taskForm, setTaskFormFn, selectedProject) => setTaskFormFn({
+		...taskForm,
+		projectId: selectedProject ? selectedProject : 'GtbY3fGVBVrTJmJH4IGd',
+	});
+
+	return { clearTaskForm, autoSelectProjectId };
 }

@@ -27,7 +27,7 @@ export default function Today(props) {
 				{props.tasks.map(
 					(task) => isTaskDue(task, today) && <Task key={task.id} task={task} />
 				)}
-				<TaskForm projects={props.projects} />
+				<TaskForm projects={props.projects} tasks={props.tasks}/>
 			</div>
 		</div>
 	);

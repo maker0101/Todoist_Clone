@@ -11,7 +11,7 @@ export default function Inbox(props) {
 				.map((task) => (
 					<Task key={task.id} task={task} />
 				))}
-			<TaskForm projects={props.projects} />
+			<TaskForm projects={props.projects} tasks={props.tasks}/>
 		</div>
 	);
 }

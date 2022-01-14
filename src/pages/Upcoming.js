@@ -32,7 +32,7 @@ export default function Upcoming(props) {
 						(task) =>
 							isTaskDue(task, day.date) && <Task key={task.id} task={task} />
 					)}
-					<TaskForm projects={props.projects} />
+					<TaskForm projects={props.projects} tasks={props.tasks} />
 				</div>
 			))}
 		</div>

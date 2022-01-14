@@ -1,4 +1,5 @@
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import { db } from '../firebase';
 import useTasks from '../hooks/useTasks';
@@ -13,12 +14,16 @@ export default function TaskForm(props) {
 		projectId: 'GtbY3fGVBVrTJmJH4IGd',
 	});
 	const { createTask } = useTasks();
-	const { clearTaskForm } = useTaskForm();
+	const { clearTaskForm, autoSelectProjectId } = useTaskForm();
 	const selectedProject = props.selectedProject ? props.selectedProject.id : '';
+	const location = useLocation();
 
-	React.useEffect(() => {
-		selectedProject && setTaskForm({ ...taskForm, projectId: selectedProject });
-	}, [selectedProject]);
+	console.log(taskForm);
+
+	React.useEffect(
+		() => autoSelectProjectId(taskForm, setTaskForm, selectedProject),
+		[selectedProject, location, props.tasks]
+	);
 
 	return (
 		<form

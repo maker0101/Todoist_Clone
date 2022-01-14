@@ -70,7 +70,7 @@ What am I missing?
 
 ## Known issues/bugs
 
-- [ ] Adding multiple tasks in Inpox view not working
+none
 
 ## Planned Features
 

@@ -28,7 +28,7 @@ export default function Project(props) {
 			{projectTasks.map((task) => (
 				<Task key={task.id} task={task} />
 			))}
-			<TaskForm projects={props.projects} selectedProject={selectedProject} />
+			<TaskForm projects={props.projects} selectedProject={selectedProject} tasks={props.tasks} />
 		</div>
 	);
 }
