@@ -81,12 +81,31 @@ export default function useTasks() {
 	const countTasksOfProject = (tasks, projectId) =>
 		filterTasksByProjectId(tasks, projectId).length;
 
-	const isTaskDueToday = (task) => {
-		const today = new Date().toDateString();
+	const countTasksOnDate = (tasks, dateObject) =>
+		tasks.filter((task) => isTaskDueOnDate(task, dateObject)).length;
+
+	const countOverdueTasks = (tasks) =>
+		tasks.filter((task) => isTaskOverdue(task)).length;
+
+	const countTasksOfNavItems = (tasks, item) => {
+		switch (item.name) {
+			case 'Inbox':
+				return countTasksOfProject(tasks, item.id);
+			case 'Today':
+				return countTasksOnDate(tasks, new Date()) + countOverdueTasks(tasks);
+			case 'Upcoming':
+				return '';
+			default:
+				break;
+		}
+	};
+
+	const isTaskDueOnDate = (task, dateObject) => {
+		const thisDay = dateObject.toDateString();
 		const taskDueDate = task.dueDate
 			? new Date(task.dueDate.seconds * 1000).toDateString()
 			: '';
-		return taskDueDate === today;
+		return taskDueDate === thisDay;
 	};
 
 	const isTaskOverdue = (task) => {
@@ -105,7 +124,9 @@ export default function useTasks() {
 		toggleIsChecked,
 		filterTasksByProjectId,
 		countTasksOfProject,
-		isTaskDueToday,
+		countTasksOnDate,
+		countTasksOfNavItems,
+		isTaskDueOnDate,
 		isTaskOverdue,
 	};
 }

@@ -8,20 +8,20 @@ export default function useDate() {
 		return day.toString() + ' ' + monthsOfYear[month];
 	};
 
-	const calcUpcomingDays = (numOfDays) => {
+	const calcUpcomingDays = (numDays) => {
 		const daysArray = [];
-		for (let i = 0; i < numOfDays; i++) {
-			const startDay = new Date();
-			let dayAfter = new Date();
-			dayAfter.setDate(startDay.getDate() + i);
+		const thisDay = new Date();
+		for (let i = 0; i < numDays; i++) {
 			daysArray.push({
 				id: i,
-				date: dayAfter,
-				dateShort: transformDueDate(dayAfter),
-				weekday: daysOfWeek[dayAfter.getDay() - 1],
-				special: i === 0 ? 'Today' : i === 1 ? 'Tomorrow' : '',
+				date: new Date(thisDay),
+				dateShort: transformDueDate(thisDay),
+				weekday: daysOfWeek[thisDay.getDay()],
+				todayTomorrow: i === 0 ? 'Today' : i === 1 ? 'Tomorrow' : '',
 			});
+			thisDay.setDate(thisDay.getDate() + 1);
 		}
+		console.log(daysArray);
 		return daysArray;
 	};
 

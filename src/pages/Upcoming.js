@@ -6,9 +6,8 @@ import useDate from '../hooks/useDate';
 
 function Upcoming(props) {
 	const [upcomingDays, setUpcomingDays] = React.useState([]);
-	const { isTaskOverdue, isTaskDueToday } = useTasks();
+	const { isTaskOverdue, isTaskDueOnDate } = useTasks();
 	const { transformDueDate, calcUpcomingDays } = useDate();
-	const today = new Date();
 
 	React.useEffect(() => setUpcomingDays(calcUpcomingDays(7)), []);
 
@@ -35,12 +34,14 @@ function Upcoming(props) {
 					<div key={day.id} className="content__section">
 						<h2 className="content__sectionTitle">{`${transformDueDate(
 							new Date(day.date)
-						)} · ${day.special ? day.special : day.weekday}`}</h2>
+						)} · ${day.todayTomorrow ? day.todayTomorrow : day.weekday}`}</h2>
 						<hr />
 						<ul className="tasksList">
 							{props.tasks.map(
 								(task) =>
-									isTaskDueToday(task) && <Task key={task.id} task={task} />
+									isTaskDueOnDate(task, day.date) && (
+										<Task key={task.id} task={task} />
+									)
 							)}
 							<TaskForm projects={props.projects} />
 						</ul>

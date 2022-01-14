@@ -6,21 +6,7 @@ import { sidebarNavData } from '../helper/sidebarNavData';
 import useTasks from '../hooks/useTasks';
 
 export default function Sidebar(props) {
-	const { countTasksOfProject } = useTasks();
-
-	//TODO: replace 99 with actual calculations once base work is done
-	const countTasksOfNavItem = (tasks, item) => {
-		switch (item.name) {
-			case 'Inbox':
-				return countTasksOfProject(tasks, item.id);
-			case 'Today':
-				return 99;
-			case 'Upcoming':
-				return 99;
-			default:
-				break;
-		}
-	};
+	const { countTasksOfProject, countTasksOfNavItems } = useTasks();
 
 	return (
 		<div className={`sidebar ${props.sidebarIsHidden && 'sidebar__hidden'}`}>
@@ -34,7 +20,7 @@ export default function Sidebar(props) {
 								</span>
 								<span className="sidebar__text">{item.name}</span>
 								<span className="sidebar__info">
-									{countTasksOfNavItem(props.tasks, item)}
+									{countTasksOfNavItems(props.tasks, item)}
 								</span>
 							</li>
 						</Link>

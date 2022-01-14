@@ -5,7 +5,7 @@ import useTasks from '../hooks/useTasks';
 import useDate from '../hooks/useDate';
 
 function Today(props) {
-	const { isTaskOverdue, isTaskDueToday } = useTasks();
+	const { isTaskOverdue, isTaskDueOnDate } = useTasks();
 	const { transformDueDate } = useDate();
 	const today = new Date();
 
@@ -37,7 +37,7 @@ function Today(props) {
 					<ul className="tasksList">
 						{props.tasks.map(
 							(task) =>
-								isTaskDueToday(task) && <Task key={task.id} task={task} />
+							isTaskDueOnDate(task, today) && <Task key={task.id} task={task} />
 						)}
 						<TaskForm projects={props.projects} />
 					</ul>
