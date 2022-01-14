@@ -10,11 +10,11 @@ export default function Header(props) {
 		<header className="header">
 			<div className="header__left">
 				<VscMenu
-					className="header__item header__itemMenu"
+					className="header__item"
 					onClick={() => toggleSidebarIsHidden()}
 				/>
 				<Link to="/today">
-					<VscHome className="header__item header__itemHome" />
+					<VscHome className="header__item" />
 				</Link>
 				<div className="header__item header__itemSearch">
 					<IoSearchOutline className="header__searchIcon" />
@@ -22,9 +22,9 @@ export default function Header(props) {
 				</div>
 			</div>
 			<div className="header__right">
-				<VscAdd className="header__item header__itemAdd" />
-				<VscBell className="header__item header__itemNotifications" />
-				<VscAccount className="header__item header__itemProfile" />
+				<VscAdd className="header__item" />
+				<VscBell className="header__item" />
+				<VscAccount className="header__item" />
 			</div>
 		</header>
 	);

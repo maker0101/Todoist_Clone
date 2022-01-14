@@ -18,8 +18,6 @@ export default function TaskForm(props) {
 	const selectedProject = props.selectedProject ? props.selectedProject.id : '';
 	const location = useLocation();
 
-	console.log(taskForm);
-
 	React.useEffect(
 		() => autoSelectProjectId(taskForm, setTaskForm, selectedProject),
 		[selectedProject, location, props.tasks]
