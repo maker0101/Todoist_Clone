@@ -2,12 +2,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;700;900&display=swap');
 
 // Variables
-$generic-box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 0px 1px,
-	rgba(0, 0, 0, 0.1) 0px 4px 11px;
-$generic-border: 1px solid #f1f1f1;
-$generic-bg: #db4c3f;
-$generic-lightGrey: #b2b2b2;
-$generic-font-size: 14.5px;
+$color-red-1: #db4c3f;
+$color-white: white;
+$color-grey-1: #f1f1f1;
+$color-grey-2: #fafafa;
+$color-grey-3: #ececec;
+$color-grey-4: #b2b2b2;
+$color-grey-5: #ffffff33;
+$color-black-1: #202020;
+
+$font-size-primary: 14px;
+$font-size-small: 13px;
+
+$border-radius-small: 3px;
+$border-radius-medium: 5px;
 
 //General
 html {
@@ -21,20 +29,16 @@ html {
 }
 
 body {
-	margin: 0;
-	padding: 0;
 	line-height: 1;
-	font-size: $generic-font-size;
-	font-weight: 300;
 	font-family: 'Railway', sans-serif;
-	color: #202020;
+	font-size: $font-size-primary;
+	font-weight: 300;
+	color: $color-black-1;
 }
 
 h2 {
 	margin: 0;
-	padding: 0;
-	line-height: 1;
-	font-size: $generic-font-size;
+	font-size: $font-size-primary;
 	font-weight: 700;
 }
 
@@ -47,8 +51,7 @@ hr {
 	border: none;
 	height: 1px;
 	width: 100%;
-	color: #f1f1f1; /* old IE */
-	background-color: #f1f1f1; /* Modern Browsers */
+	background-color: $color-grey-1;
 	margin-top: 5px;
 }
 
@@ -59,8 +62,8 @@ hr {
 }
 
 @mixin text-small() {
-	color: $generic-lightGrey;
-	font-size: 13px;
+	color: $color-grey-4;
+	font-size: $font-size-primary;
 	font-weight: 300;
 }
 
@@ -82,10 +85,10 @@ hr {
 // Reusable Components
 .button__primary {
 	display: inline-block;
-	background-color: $generic-bg;
+	background-color: $color-red-1;
 	border: none;
-	color: white;
-	border-radius: 5px;
+	color: $color-white;
+	border-radius: $border-radius-medium;
 	padding: 8px 10px;
 	width: fit-content;
 	cursor: pointer;
@@ -93,12 +96,9 @@ hr {
 
 // Header
 .header {
-	background-color: $generic-bg;
-	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
+	background-color: $color-red-1;
 	height: 44px;
-	z-index: 400;
 	position: fixed;
-	top: 0;
 	width: 100%;
 	padding: 0 42px;
 
@@ -106,24 +106,17 @@ hr {
 		display: grid;
 		align-items: center;
 		grid-template-columns: 1fr 1fr;
-		grid-template-rows: 1fr;
-		grid-column-gap: 0px;
-		grid-row-gap: 0px;
-		margin: auto;
-		height: 44px;
-		color: white;
+		height: 100%;
+		color: $color-white;
 
 		a {
 			text-decoration: none;
-			color: white;
+			color: $color-white;
 		}
 
 		.header__navLeft {
-			grid-area: 1/1;
-
 			.header__navLeftList {
 				@include va;
-				float: left;
 
 				.header__item {
 					margin-right: 8px;
@@ -132,8 +125,6 @@ hr {
 		}
 
 		.header__navRight {
-			grid-area: 1/2;
-
 			.header__navRightList {
 				float: right;
 
@@ -146,18 +137,16 @@ hr {
 		.header__item {
 			@include va;
 			justify-content: center;
-
 			list-style-type: none;
 			cursor: pointer;
 			width: 30px;
 			height: 30px;
 			font-size: 20px;
-			text-align: center;
 			float: left;
 
 			&:hover {
-				border-radius: 3px;
-				background-color: rgba(255, 255, 255, 0.2);
+				border-radius: $border-radius-small;
+				background-color: $color-grey-5;
 			}
 		}
 
@@ -166,8 +155,8 @@ hr {
 			height: 28px;
 			width: 183px;
 			padding: 0 8px;
-			border-radius: 3px;
-			background-color: rgba(255, 255, 255, 0.2);
+			border-radius: $border-radius-small;
+			background-color: $color-grey-5;
 			justify-content: left;
 
 			.header__searchIcon {
@@ -176,7 +165,7 @@ hr {
 
 			.header__searchText {
 				margin-left: 8px;
-				font-size: 13px;
+				font-size: $font-size-primary;
 			}
 		}
 	}
@@ -191,12 +180,13 @@ hr {
 // Sidebar
 .sidebar {
 	@include no-select();
-	width: 375px;
+	min-width: 300px;
+	max-width: 300px;
 	height: 100vh;
 	padding-top: 60px;
-	padding-left: 35px;
+	padding-left: 37px;
 	padding-right: 5px;
-	background-color: #fafafa;
+	background-color: $color-grey-2;
 
 	@include mq('450px') {
 		display: none;
@@ -204,27 +194,22 @@ hr {
 
 	a {
 		text-decoration: none;
-		color: #202020;
+		color: $color-black-1;
 	}
 
 	.sidebar__section {
 		margin-top: 15px;
 	}
 
-	.sidebar__grid {
+	.sidebar__sectionGrid {
 		display: grid;
-		grid-template-rows: 1;
 		grid-template-columns: 1fr 6fr 1fr;
 		grid-column-gap: 10px;
-		grid-template-areas: 'icon text info';
 		height: 38px;
-		width: 100%;
-		padding: 10px 10px;
+		padding: 10px 5px;
 		align-items: center;
 
 		.sidebar__icon {
-			grid-area: 'icon';
-			height: 100%;
 			display: flex;
 			align-items: center;
 
@@ -241,33 +226,16 @@ hr {
 			}
 		}
 
-		.sidebar__text {
-			grid-area: 'text';
-		}
-
 		.sidebar__info {
 			@include text-small();
-			grid-area: 'info';
-			text-align: right;
-		}
-
-		.sidebar__iconInbox {
-			color: #246fe0;
-		}
-
-		.sidebar__iconToday {
-			color: #058527;
-		}
-
-		.sidebar__iconUpcoming {
-			color: #692fc2;
+			text-align: center;
 		}
 	}
 
 	.active {
 		.sidebar__item {
-			border-radius: 5px;
-			background-color: #ececec;
+			border-radius: $border-radius-medium;
+			background-color: $color-grey-3;
 		}
 	}
 
@@ -275,8 +243,8 @@ hr {
 		&.active,
 		&:hover {
 			cursor: pointer;
-			border-radius: 5px;
-			background-color: #ececec;
+			border-radius: $border-radius-medium;
+			background-color: $color-grey-3;
 		}
 	}
 
@@ -378,7 +346,7 @@ hr {
 				grid-area: end;
 				display: grid;
 				grid-template-columns: 1fr 1fr;
-				color: $generic-lightGrey;
+				color: $color-grey-4;
 				font-size: 16px;
 			}
 		}
@@ -413,7 +381,7 @@ hr {
 	display: flex;
 	flex-direction: column;
 	border: 1px solid #ddd;
-	border-radius: 5px;
+	border-radius: $border-radius-medium;
 	padding: 10px;
 	margin-bottom: 10px;
 
@@ -434,7 +402,7 @@ hr {
 	}
 
 	.input__description {
-		font-size: 13px;
+		font-size: $font-size-primary;
 		font-weight: 300;
 	}
 }

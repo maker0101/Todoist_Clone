@@ -8,6 +8,7 @@ const sidebarNavData = [
 		to: '/inbox',
 		icon: <VscInbox />,
 		iconClassName: 'sidebar__iconInbox',
+		iconColor: '#246fe0',
 	},
 	{
 		id: 2,
@@ -15,6 +16,7 @@ const sidebarNavData = [
 		to: '/today',
 		icon: <IoTodayOutline />,
 		iconClassName: 'sidebar__iconToday',
+		iconColor: '#058527',
 	},
 	{
 		id: 3,
@@ -22,6 +24,7 @@ const sidebarNavData = [
 		to: '/upcoming',
 		icon: <VscCalendar />,
 		iconClassName: 'sidebar__iconUpcoming',
+		iconColor: '#692fc2',
 	},
 ];
 
