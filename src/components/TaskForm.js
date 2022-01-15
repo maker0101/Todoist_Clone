@@ -1,6 +1,5 @@
 import React from 'react';
 import { useLocation } from 'react-router-dom';
-import DayPickerInput from 'react-day-picker/DayPickerInput';
 import { db } from '../firebase';
 import useTasks from '../hooks/useTasks';
 import useTaskForm from '../hooks/useTaskForm';
@@ -22,6 +21,8 @@ export default function TaskForm(props) {
 		() => autoSelectProjectId(taskForm, setTaskForm, selectedProject),
 		[selectedProject, location, props.tasks]
 	);
+
+	console.log(taskForm);
 
 	return (
 		<form
@@ -63,10 +64,11 @@ export default function TaskForm(props) {
 					}
 				/>
 				<div>
-					<DayPickerInput
+					<input
+						type="date"
 						placeholder="Schedule"
-						value={taskForm.dueDate}
-						onDayChange={(day) => setTaskForm({ ...taskForm, dueDate: day })}
+						value={taskForm.dueDate ? taskForm.dueDate.toISOString().split('T')[0] : ''}
+						onChange={(e) => setTaskForm({ ...taskForm, dueDate: new Date(e.target.value) })}
 					/>
 					<select
 						value={taskForm.projectId}
