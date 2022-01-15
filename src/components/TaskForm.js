@@ -3,7 +3,6 @@ import { useLocation } from 'react-router-dom';
 import { db } from '../firebase';
 import useTasks from '../hooks/useTasks';
 import useTaskForm from '../hooks/useTaskForm';
-import 'react-day-picker/lib/style.css';
 
 export default function TaskForm(props) {
 	const [taskForm, setTaskForm] = React.useState({
