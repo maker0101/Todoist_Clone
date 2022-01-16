@@ -37,6 +37,7 @@ body {
 	font-size: $font-size-primary;
 	font-weight: 300;
 	color: $color-black-1;
+	overscroll-behavior: none;
 }
 
 h2 {
@@ -233,11 +234,9 @@ a {
 .content {
 	width: 100%;
 	max-width: 900px;
-	margin: auto;
 	height: 100vh;
-	padding-top: 70px;
-	padding-left: 50px;
-	padding-right: 50px;
+	margin: auto;
+	padding: 70px 50px;
 	overflow: scroll;
 
 	.content__title {
@@ -306,7 +305,7 @@ a {
 }
 
 // Task Form
-.addTaskForm__inputContainer {
+.taskForm__inputs {
 	display: flex;
 	flex-direction: column;
 	border: 1px solid $color-grey-3;
@@ -314,29 +313,46 @@ a {
 	padding: 10px;
 	margin-bottom: 10px;
 
-	.input {
+	.taskform__input {
 		border: none;
 	}
 
-	.input:focus {
+	.taskform__input:focus {
 		outline: none;
 	}
 
-	.input::placeholder {
+	.taskform__input::placeholder {
 		color: $color-grey-5;
 	}
 
-	.input__name {
+	.taskForm__name {
 		margin-bottom: 10px;
 	}
 
-	.input__description {
+	.taskForm__description {
 		font-size: $font-size-primary;
 		font-weight: 300;
 	}
+
+	.task__selects {
+		@include va;
+
+		.taskForm__select {
+			display: inline-block;
+			width: 110px;
+			height: 28px;
+			margin-right: 8px;
+			padding: 5px;
+			cursor: pointer;
+			border: 1px solid $color-grey-3;
+			border-radius: $border-radius-small;
+			font-size: $font-size-small;
+			color: $color-grey-6;
+		}
+	}
 }
 
-.addTaskForm__inputContainer:focus-within {
+.taskForm__inputs:focus-within {
 	border: 1px solid $color-grey-5;
 }
 

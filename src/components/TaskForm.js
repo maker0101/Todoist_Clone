@@ -21,11 +21,9 @@ export default function TaskForm(props) {
 		[selectedProject, location, props.tasks]
 	);
 
-	console.log(taskForm);
-
 	return (
 		<form
-			className="addTaskForm"
+			className="taskForm"
 			onSubmit={(e) => {
 				createTask(
 					e,
@@ -40,10 +38,10 @@ export default function TaskForm(props) {
 				clearTaskForm(setTaskForm, selectedProject);
 			}}
 		>
-			<div className="addTaskForm__inputContainer">
+			<div className="taskForm__inputs">
 				<input
 					required
-					className="input input__name"
+					className="taskform__input taskForm__name"
 					type="text"
 					id="taskName"
 					name="name"
@@ -52,7 +50,7 @@ export default function TaskForm(props) {
 					onChange={(e) => setTaskForm({ ...taskForm, name: e.target.value })}
 				/>
 				<textarea
-					className="input input__description"
+					className="taskform__input taskForm__description"
 					type="text"
 					id="taskDescription"
 					name="description"
@@ -62,14 +60,22 @@ export default function TaskForm(props) {
 						setTaskForm({ ...taskForm, description: e.target.value })
 					}
 				/>
-				<div>
+				<div className="task__selects">
 					<input
+						className="taskForm__select"
 						type="date"
 						placeholder="Schedule"
-						value={taskForm.dueDate ? taskForm.dueDate.toISOString().split('T')[0] : ''}
-						onChange={(e) => setTaskForm({ ...taskForm, dueDate: new Date(e.target.value) })}
+						value={
+							taskForm.dueDate
+								? taskForm.dueDate.toISOString().split('T')[0]
+								: ''
+						}
+						onChange={(e) =>
+							setTaskForm({ ...taskForm, dueDate: new Date(e.target.value) })
+						}
 					/>
 					<select
+						className="taskForm__select"
 						value={taskForm.projectId}
 						onChange={(e) =>
 							setTaskForm({ ...taskForm, projectId: e.target.value })

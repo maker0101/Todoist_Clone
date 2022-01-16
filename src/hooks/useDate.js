@@ -21,7 +21,6 @@ export default function useDate() {
 			});
 			thisDay.setDate(thisDay.getDate() + 1);
 		}
-		console.log(daysArray);
 		return daysArray;
 	};
 
