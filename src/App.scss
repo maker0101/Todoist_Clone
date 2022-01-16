@@ -190,6 +190,10 @@ a {
 	.sidebar__section {
 		margin-top: 15px;
 
+		.sidebar__sectionTitle {
+			cursor: pointer;
+		}
+
 		.sidebar__item {
 			display: grid;
 			grid-template-columns: 1fr 6fr 1fr;
@@ -206,6 +210,13 @@ a {
 
 			.sidebar__iconChevron {
 				font-size: 12px;
+				-webkit-transition: -webkit-transform 0.1s ease-in-out;
+				-ms-transition: -ms-transform 0.1s ease-in-out;
+				transition: transform 0.1s ease-in-out;
+			}
+
+			.sidebar__iconChevronNotShowing {
+				transform: rotate(-90deg);
 			}
 
 			.sidebar__info {

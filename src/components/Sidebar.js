@@ -6,8 +6,10 @@ import { sidebarNavData } from '../helper/sidebarNavData';
 import useTasks from '../hooks/useTasks';
 
 export default function Sidebar(props) {
+	const [showProjects, setShowProject] = React.useState(true);
 	const { countTasksOfProject, countTasksOfNavItems } = useTasks();
 
+	const toggleShowProjects = () => setShowProject(!showProjects);
 	return (
 		<nav
 			className={`sidebar ${props.sidebarIsHidden ? 'sidebar__hidden' : ''}`}
@@ -35,29 +37,37 @@ export default function Sidebar(props) {
 			</div>
 
 			<div className="sidebar__section">
-				<div className="sidebar__item sidebar__sectionTitle">
-					<BsChevronDown className="sidebar__icon sidebar__iconChevron" />
+				<div
+					className="sidebar__item sidebar__sectionTitle"
+					onClick={() => toggleShowProjects()}
+				>
+					<BsChevronDown
+						className={`sidebar__icon sidebar__iconChevron ${
+							!showProjects && 'sidebar__iconChevronNotShowing'
+						}`}
+					/>
 					<h2>Projects</h2>
 				</div>
-				{props.projects
-					.filter((project) => project.isInbox === false)
-					.map((project) => (
-						<NavLink
-							to={`/project/${project.id}`}
-							key={project.id}
-							className="sidebar__item"
-							activeclassname="selected"
-						>
-							<VscCircleFilled
-								className="sidebar__icon"
-								style={{ color: project.iconColor }}
-							/>
-							<div>{project.name}</div>
-							<div className="sidebar__info">
-								{countTasksOfProject(props.tasks, project.id)}
-							</div>
-						</NavLink>
-					))}
+				{showProjects &&
+					props.projects
+						.filter((project) => project.isInbox === false)
+						.map((project) => (
+							<NavLink
+								to={`/project/${project.id}`}
+								key={project.id}
+								className="sidebar__item"
+								activeclassname="selected"
+							>
+								<VscCircleFilled
+									className="sidebar__icon"
+									style={{ color: project.iconColor }}
+								/>
+								<div>{project.name}</div>
+								<div className="sidebar__info">
+									{countTasksOfProject(props.tasks, project.id)}
+								</div>
+							</NavLink>
+						))}
 			</div>
 		</nav>
 	);

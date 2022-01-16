@@ -76,7 +76,6 @@ none
 
 - [ ] Edit existing Tasks
 - [ ] CRUD for projects
-- [ ] Sidebar: Turn Projects section into working accordeon
 - [ ] Adding Tests
 
 ## Maybe
