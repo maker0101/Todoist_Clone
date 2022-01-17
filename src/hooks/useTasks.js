@@ -33,8 +33,8 @@ export default function useTasks() {
 				createdAt: serverTimestamp(),
 				isChecked: false,
 			});
-		} catch (event) {
-			console.log(event);
+		} catch (err) {
+			console.error(err);
 		}
 	};
 
@@ -61,8 +61,8 @@ export default function useTasks() {
 		try {
 			const taskDoc = doc(database, 'tasks', taskId);
 			await deleteDoc(taskDoc);
-		} catch (e) {
-			console.log(e);
+		} catch (err) {
+			console.error(err);
 		}
 	};
 
@@ -70,13 +70,13 @@ export default function useTasks() {
 		try {
 			const taskDoc = doc(database, 'tasks', taskId);
 			await updateDoc(taskDoc, { isChecked: !checked });
-		} catch (e) {
-			console.log(e);
+		} catch (err) {
+			console.error(err);
 		}
 	};
 
 	const countTasksOfProject = (tasks, projectId) =>
-	tasks.filter((task) => task.projectId === projectId).length;
+		tasks.filter((task) => task.projectId === projectId).length;
 
 	const countTasksOnDate = (tasks, dateObject) =>
 		tasks.filter((task) => isTaskDue(task, dateObject)).length;
