@@ -1,11 +1,11 @@
-import { monthsOfYear } from '../helper/monthsOfYear';
-import { daysOfWeek } from '../helper/daysOfWeek';
+import { MONTHS_OF_YEAR } from '../helper/MONTHS_OF_YEAR';
+import { DAYS_OF_WEEK } from '../helper/DAYS_OF_WEEK';
 
 export default function useDate() {
 	const shortenDate = (date) => {
 		const day = date.getDate();
 		const month = date.getMonth();
-		return day.toString() + ' ' + monthsOfYear[month];
+		return day.toString() + ' ' + MONTHS_OF_YEAR[month];
 	};
 
 	const calcUpcomingDays = (numDays) => {
@@ -16,7 +16,7 @@ export default function useDate() {
 				id: i,
 				date: new Date(thisDay),
 				dateShort: shortenDate(thisDay),
-				weekday: daysOfWeek[thisDay.getDay()],
+				weekday: DAYS_OF_WEEK[thisDay.getDay()],
 				todayTomorrow: i === 0 ? 'Today' : i === 1 ? 'Tomorrow' : '',
 			});
 			thisDay.setDate(thisDay.getDate() + 1);

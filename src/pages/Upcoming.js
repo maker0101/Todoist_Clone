@@ -17,9 +17,11 @@ export default function Upcoming(props) {
 			<div className="content__section">
 				<h2 className="content__subTitle">Overdue</h2>
 				<hr />
-				{props.tasks.map(
-					(task) => isTaskOverdue(task) && <Task key={task.id} task={task} />
-				)}
+				{props.tasks
+					.filter((task) => isTaskOverdue(task))
+					.map((task) => (
+						<Task key={task.id} task={task} />
+					))}
 			</div>
 
 			{upcomingDays.map((day) => (
@@ -28,10 +30,11 @@ export default function Upcoming(props) {
 						new Date(day.date)
 					)} · ${day.todayTomorrow ? day.todayTomorrow : day.weekday}`}</h2>
 					<hr />
-					{props.tasks.map(
-						(task) =>
-							isTaskDue(task, day.date) && <Task key={task.id} task={task} />
-					)}
+					{props.tasks
+						.filter((task) => isTaskDue(task, day.date))
+						.map((task) => (
+							<Task key={task.id} task={task} />
+						))}
 					<AddTask projects={props.projects} tasks={props.tasks} />
 				</div>
 			))}

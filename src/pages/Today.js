@@ -15,17 +15,21 @@ export default function Today(props) {
 			<div className="content__section">
 				<h2 className="content__subTitle">Overdue</h2>
 				<hr />
-				{props.tasks.map(
-					(task) => isTaskOverdue(task) && <Task key={task.id} task={task} />
-				)}
+				{props.tasks
+					.filter((task) => isTaskOverdue(task))
+					.map((task) => (
+						<Task key={task.id} task={task} />
+					))}
 			</div>
 
 			<div className="content__section">
 				<h2 className="content__subTitle">{`${shortenDate(today)} · Today`}</h2>
 				<hr />
-				{props.tasks.map(
-					(task) => isTaskDue(task, today) && <Task key={task.id} task={task} />
-				)}
+				{props.tasks
+					.filter((task) => isTaskOverdue(task))
+					.map((task) => (
+						<Task key={task.id} task={task} />
+					))}
 				<AddTask projects={props.projects} tasks={props.tasks} />
 			</div>
 		</div>

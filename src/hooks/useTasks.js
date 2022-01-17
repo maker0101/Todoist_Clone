@@ -75,11 +75,8 @@ export default function useTasks() {
 		}
 	};
 
-	const filterTasksByProjectId = (tasks, projectId) =>
-		tasks.filter((task) => task.projectId === projectId);
-
 	const countTasksOfProject = (tasks, projectId) =>
-		filterTasksByProjectId(tasks, projectId).length;
+	tasks.filter((task) => task.projectId === projectId).length;
 
 	const countTasksOnDate = (tasks, dateObject) =>
 		tasks.filter((task) => isTaskDue(task, dateObject)).length;
@@ -122,7 +119,6 @@ export default function useTasks() {
 		createTask,
 		deleteTask,
 		toggleIsChecked,
-		filterTasksByProjectId,
 		countTasksOfProject,
 		countTasksOnDate,
 		countTasksOfNavItems,

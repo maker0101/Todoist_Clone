@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { BsChevronDown } from 'react-icons/bs';
 import { VscCircleFilled } from 'react-icons/vsc';
-import { sidebarNavData } from '../helper/sidebarNavData';
+import { SIDEBAR_NAV_DATA } from '../helper/SIDEBAR_NAV_DATA';
 import useTasks from '../hooks/useTasks';
 
 export default function Sidebar(props) {
@@ -15,7 +15,7 @@ export default function Sidebar(props) {
 			className={`sidebar ${props.sidebarIsHidden ? 'sidebar__hidden' : ''}`}
 		>
 			<div className="sidebar__section">
-				{sidebarNavData.map((item) => (
+				{SIDEBAR_NAV_DATA.map((item) => (
 					<NavLink
 						key={item.id}
 						to={item.to}

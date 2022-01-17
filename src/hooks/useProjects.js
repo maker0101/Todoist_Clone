@@ -15,11 +15,12 @@ export default function useProjects() {
 		});
 	};
 
-	const getSelectedProject = async (projects, projectId, setSelectedProjectStateFn) => {
-		const thisProject = await projects.find(
-			(project) => project.id === projectId
-		);
-		setSelectedProjectStateFn(thisProject);
+	const getSelectedProject = async (projects, projectId) => {
+		try {
+			return await projects.find((project) => project.id === projectId);
+		} catch (error) {
+			console.log(error);
+		}
 	};
 
 	return { getProjects, getSelectedProject };

@@ -13,6 +13,7 @@ function App() {
 	const { getTasks } = useTasks();
 	const { getProjects } = useProjects();
 
+	//TODO: Probably need to remove the setState part from the getTasks/getProjects as well
 	useEffect(() => getTasks(db, setTasks), []);
 	useEffect(() => getProjects(db, setProjects), []);
 

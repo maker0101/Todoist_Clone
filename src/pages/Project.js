@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import useTasks from '../hooks/useTasks';
 import useProjects from '../hooks/useProjects';
@@ -7,27 +7,28 @@ import AddTask from '../components/AddTask';
 
 export default function Project(props) {
 	const [selectedProject, setSelectedProject] = useState({ name: '' });
-	const [projectTasks, setProjectTasks] = useState(props.tasks);
 	const { projectId } = useParams();
-	const { filterTasksByProjectId } = useTasks();
 	const { getSelectedProject } = useProjects();
 
-	useEffect(
-		() => getSelectedProject(props.projects, projectId, setSelectedProject),
-		[projectId, props.projects]
-	);
 	useEffect(() => {
-		setProjectTasks(filterTasksByProjectId(props.tasks, projectId));
-	}, [projectId, props.tasks]);
+		const project = getSelectedProject(
+			props.projects,
+			projectId,
+			setSelectedProject
+		);
+		project.then((proj) => setSelectedProject(proj));
+	}, [projectId, props.projects]);
 
 	return (
 		<div className="content">
 			<h1 className="content__title">
 				{selectedProject && selectedProject.name}
 			</h1>
-			{projectTasks.map((task) => (
-				<Task key={task.id} task={task} />
-			))}
+			{props.tasks
+				.filter((task) => task.projectId === projectId)
+				.map((task) => (
+					<Task key={task.id} task={task} />
+				))}
 			<AddTask
 				projects={props.projects}
 				selectedProject={selectedProject}

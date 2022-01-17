@@ -21,52 +21,9 @@ It's under heavy development at the moment and much is missing still.
 
 ## Questions
 
-#### 1. Error on initial load because `selectedProject.name` not defined
+### 1. Additional setter inside of getter functions
 
-In `Project.js` (ca. line 27) I have to include `{selectedProject && selectedProject.name}`, otherwise I get an error.
-
-I think the reason is the follwoing: When I `console.log(selectedProject)` I see that the state is correctly initialized at first as empty string, but then becomes `undefined` for a moment and only then gets updated with the selected project. But why is there a phase of undefined? How to avoid it, so I can just write `{selectedProject.name}`?
-
-Or is it ok and done in real life to write `{selectedProject && selectedProject.name}` because its unavoidable?
-
-#### 2. Passing the same props over and over
-
-In `Content.js`(and in many other places) I'm passing the same props over and over to it's child components, e.g.:
-
-```javascript
-tasks={props.tasks}
-setTasks={props.setTasks}
-projects={props.projects}
-setProjects={props.setProjects}
-```
-
-This does not seem to go well with the DRY principle, isn't it? Is this still acceptable and common in the real world? Or do techniques exist to deal with it? I could only think of passing the props as a single object to child components as a potential workaround.
-
-#### 3. Defining state on highest App.js level (for tasks, projects)
-
-I've raised the state of tasks and projects to App.js, because I noticed I'll need it's information in multiple parts of my application. Is this common practice to have states in App.js or should it be lower and passed differently from component to component instead of passing it down from the top?
-
-#### 4. useEffect without extra callback function
-
-I've carefully read your comments from the last PR about React.useEffect() not needing an extra callback function wrapper around getTasks().
-
-However, when I tried to remove the extra callbacks, I'm receiving errors.
-
-Here with callbacks as is (App.js -> line 16):
-
-```javascript
-React.useEffect(() => getTasks(db, setTasks), []);
-React.useEffect(() => getProjects(db, setProjects), []);
-```
-
-Here is what I tried but received errors:
-
-```javascript
-React.useEffect(getTasks(db, setTasks), []);
-React.useEffect(getProjects(db, setProjects), []);
-```
-
-What am I missing?
+I have problems removing them in App.js (line 17 & 18)
 
 ## Known issues/bugs
 
