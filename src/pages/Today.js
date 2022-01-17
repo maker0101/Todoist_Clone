@@ -1,11 +1,10 @@
 import Task from '../components/Task';
 import AddTask from '../components/AddTask';
 import useTasks from '../hooks/useTasks';
-import useDate from '../hooks/useDate';
+import { shortenDate } from '../utilities/shortenDate';
 
 export default function Today(props) {
 	const { isTaskOverdue, isTaskDue } = useTasks();
-	const { shortenDate } = useDate();
 	const today = new Date();
 
 	return (

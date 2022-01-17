@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { BsChevronDown } from 'react-icons/bs';
 import { VscCircleFilled } from 'react-icons/vsc';
-import { SIDEBAR_NAV_DATA } from '../helper/SIDEBAR_NAV_DATA';
+import { SIDEBAR_NAV_DATA } from '../constants/SIDEBAR_NAV_DATA';
 import useTasks from '../hooks/useTasks';
 
 export default function Sidebar(props) {

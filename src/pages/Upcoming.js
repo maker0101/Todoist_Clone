@@ -2,12 +2,12 @@ import { useState, useEffect } from 'react';
 import Task from '../components/Task';
 import AddTask from '../components/AddTask';
 import useTasks from '../hooks/useTasks';
-import useDate from '../hooks/useDate';
+import { shortenDate } from '../utilities/shortenDate';
+import { calcUpcomingDays } from '../utilities/calcUpcomingDays';
 
 export default function Upcoming(props) {
 	const [upcomingDays, setUpcomingDays] = useState([]);
 	const { isTaskOverdue, isTaskDue } = useTasks();
-	const { shortenDate, calcUpcomingDays } = useDate();
 
 	useEffect(() => setUpcomingDays(calcUpcomingDays(7)), []);
 

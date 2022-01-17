@@ -2,11 +2,10 @@ import { db } from '../firebase';
 import { VscTrash, VscEdit } from 'react-icons/vsc';
 import { BsCalendar4Event } from 'react-icons/bs';
 import useTasks from '../hooks/useTasks';
-import useDate from '../hooks/useDate';
+import { shortenDate } from '../utilities/shortenDate';
 
 export default function Task(props) {
 	const { deleteTask, toggleIsChecked } = useTasks();
-	const { shortenDate } = useDate();
 	const isDueDateDefined = Boolean(props.task.dueDate);
 	const dueDateTimestampInMs = new Date(props.task.dueDate.seconds * 1000);
 
