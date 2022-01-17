@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { BsChevronDown } from 'react-icons/bs';
 import { VscCircleFilled } from 'react-icons/vsc';
@@ -6,7 +6,7 @@ import { sidebarNavData } from '../helper/sidebarNavData';
 import useTasks from '../hooks/useTasks';
 
 export default function Sidebar(props) {
-	const [showProjects, setShowProject] = React.useState(true);
+	const [showProjects, setShowProject] = useState(true);
 	const { countTasksOfProject, countTasksOfNavItems } = useTasks();
 
 	const toggleShowProjects = () => setShowProject(!showProjects);

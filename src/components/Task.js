@@ -12,8 +12,8 @@ export default function Task(props) {
 
 	return (
 		<>
-			<li className="task">
-				<div className="task__line task__line1">
+			<div className="task">
+				<div className="task__line">
 					<label className="checkbox">
 						<input
 							type="checkbox"
@@ -32,14 +32,14 @@ export default function Task(props) {
 				</div>
 
 				<div
-					className="task__line task__line2"
+					className="task__line"
 					style={{ display: props.task.description ? 'grid' : 'none' }}
 				>
 					<div className="task__description">{props.task.description}</div>
 				</div>
 
 				<div
-					className="task__line task__line3"
+					className="task__line"
 					style={{ display: props.task.dueDate ? 'grid' : 'none' }}
 				>
 					<div className="task__dueDateContainer">
@@ -51,7 +51,7 @@ export default function Task(props) {
 						</span>
 					</div>
 				</div>
-			</li>
+			</div>
 			<hr />
 		</>
 	);

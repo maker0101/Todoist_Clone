@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState, useEffect } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 import Header from './components/Header';
 import Main from './components/Main';
@@ -7,14 +7,14 @@ import useProjects from './hooks/useProjects';
 import { db } from './firebase';
 
 function App() {
-	const [tasks, setTasks] = React.useState([]);
-	const [projects, setProjects] = React.useState([]);
-	const [sidebarIsHidden, setSidebarIsHidden] = React.useState(false);
+	const [tasks, setTasks] = useState([]);
+	const [projects, setProjects] = useState([]);
+	const [sidebarIsHidden, setSidebarIsHidden] = useState(false);
 	const { getTasks } = useTasks();
 	const { getProjects } = useProjects();
 
-	React.useEffect(() => getTasks(db, setTasks), []);
-	React.useEffect(() => getProjects(db, setProjects), []);
+	useEffect(() => getTasks(db, setTasks), []);
+	useEffect(() => getProjects(db, setProjects), []);
 
 	return (
 		<div className="App">

@@ -65,14 +65,14 @@ a {
 }
 
 //Mixins
-@mixin va() {
+@mixin va {
 	display: flex;
 	align-items: center;
 }
 
-@mixin text-small() {
+@mixin text-small {
 	color: $color-grey-5;
-	font-size: $font-size-primary;
+	font-size: $font-size-small;
 	font-weight: 300;
 }
 
@@ -92,15 +92,33 @@ a {
 }
 
 // Reusable Components
-.button__primary {
+.button {
 	display: inline-block;
-	background-color: $color-red-1;
-	border: none;
-	color: $color-white;
 	border-radius: $border-radius-medium;
-	padding: 8px 10px;
+	padding: 7px 10px;
 	width: fit-content;
 	cursor: pointer;
+}
+
+.button:disabled {
+	opacity: 0.4;
+	cursor: not-allowed;
+}
+
+.button__primary {
+	margin-right: 12px;
+	background-color: $color-red-1;
+	border: 1px solid $color-red-1;
+	color: $color-white;
+}
+
+.button__secondary {
+	background-color: $color-white;
+	border: 1px solid $color-grey-3;
+}
+
+.button__secondary:hover {
+	background-color: $color-grey-1;
 }
 
 // Header
@@ -134,7 +152,6 @@ a {
 	.header__item {
 		@include va;
 		justify-content: center;
-		list-style-type: none;
 		cursor: pointer;
 		width: 30px;
 		height: 30px;
@@ -266,7 +283,6 @@ a {
 //Task
 .task {
 	@include no-select();
-	list-style: none;
 	padding: 4px 0;
 	cursor: pointer;
 
@@ -277,42 +293,69 @@ a {
 		grid-template-areas: 'start center end';
 	}
 
-	.task__line1 {
-		.task__name {
-			grid-area: center;
-		}
-
-		.task__icons {
-			grid-area: end;
-			display: grid;
-			grid-template-columns: 1fr 1fr;
-			color: $color-grey-5;
-			font-size: 16px;
-		}
+	.task__name {
+		grid-area: center;
 	}
 
-	.task__line2 {
-		.task__description {
+	.task__icons {
+		grid-area: end;
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+		color: $color-grey-5;
+		font-size: 16px;
+	}
+
+	.task__description {
+		@include va;
+		@include text-small;
+		grid-area: center;
+		margin: 3px 0;
+	}
+
+	.task__dueDateContainer {
+		@include va;
+		@include text-small();
+		grid-area: center;
+
+		.task__dueDateIcon {
 			@include va;
-			@include text-small();
-			grid-area: center;
-			margin: 3px 0;
+			font-size: 11px;
+			margin: 3px 5px 3px 0px;
 		}
 	}
+}
 
-	.task__line3 {
-		.task__dueDateContainer {
-			@include va;
-			@include text-small();
-			grid-area: center;
+// AddTask
+.addTask__line {
+	@include va;
+	display: grid;
+	grid-template-columns: 30px auto;
+	grid-template-areas: 'start center';
 
-			.task__dueDateIcon {
-				@include va;
-				font-size: 11px;
-				margin: 3px 5px 3px 0px;
-			}
-		}
+	.addTask__icon {
+		grid-area: 'start';
+		height: 18px;
+		width: 18px;
+		padding: 1px;
+		padding-left: 2px;
+		padding-top: 2px;
+		border-radius: 50%;
+		color: $color-red-1;
 	}
+
+	.addTask__text {
+		grid-area: 'center';
+		color: $color-grey-6;
+	}
+}
+
+.addTask__line:hover .addTask__icon {
+	background-color: $color-red-1;
+	color: $color-white;
+}
+
+.addTask__line:hover .addTask__text {
+	color: $color-red-1;
 }
 
 // Task Form
@@ -350,7 +393,7 @@ a {
 
 		.taskForm__select {
 			display: inline-block;
-			width: 110px;
+			width: 130px;
 			height: 28px;
 			margin-right: 8px;
 			padding: 5px;
@@ -359,6 +402,10 @@ a {
 			border-radius: $border-radius-small;
 			font-size: $font-size-small;
 			color: $color-grey-6;
+		}
+
+		.taskForm__select:hover {
+			background-color: $color-grey-1;
 		}
 	}
 }

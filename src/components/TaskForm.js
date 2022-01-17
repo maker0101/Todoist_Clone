@@ -1,22 +1,23 @@
-import React from 'react';
+import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { db } from '../firebase';
 import useTasks from '../hooks/useTasks';
 import useTaskForm from '../hooks/useTaskForm';
 
 export default function TaskForm(props) {
-	const [taskForm, setTaskForm] = React.useState({
+	const [taskForm, setTaskForm] = useState({
 		name: '',
 		description: '',
 		dueDate: '',
 		projectId: 'GtbY3fGVBVrTJmJH4IGd',
 	});
 	const { createTask } = useTasks();
-	const { clearTaskForm, autoSelectProjectId } = useTaskForm();
+	const { clearTaskForm, autoSelectProjectId, toggleIsTaskFormHidden } =
+		useTaskForm();
 	const selectedProject = props.selectedProject ? props.selectedProject.id : '';
 	const location = useLocation();
 
-	React.useEffect(
+	useEffect(
 		() => autoSelectProjectId(taskForm, setTaskForm, selectedProject),
 		[selectedProject, location, props.tasks]
 	);
@@ -41,6 +42,7 @@ export default function TaskForm(props) {
 			<div className="taskForm__inputs">
 				<input
 					required
+					autoFocus
 					className="taskform__input taskForm__name"
 					type="text"
 					id="taskName"
@@ -89,7 +91,26 @@ export default function TaskForm(props) {
 					</select>
 				</div>
 			</div>
-			<input className="button__primary" type="submit" value="Add Task" />
+			<button
+				className="button button__primary"
+				type="submit"
+				value=""
+				disabled={taskForm.name ? false : true}
+			>
+				Add Task
+			</button>
+			<button
+				className="button button__secondary"
+				type="button"
+				onClick={() =>
+					toggleIsTaskFormHidden(
+						props.isTaskFormHidden,
+						props.setIsTaskFormHidden
+					)
+				}
+			>
+				Cancel
+			</button>
 		</form>
 	);
 }

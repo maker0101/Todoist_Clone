@@ -1,6 +1,5 @@
-import React from 'react';
 import Task from '../components/Task';
-import TaskForm from '../components/TaskForm';
+import AddTask from '../components/AddTask';
 
 export default function Inbox(props) {
 	return (
@@ -11,7 +10,7 @@ export default function Inbox(props) {
 				.map((task) => (
 					<Task key={task.id} task={task} />
 				))}
-			<TaskForm projects={props.projects} tasks={props.tasks}/>
+			<AddTask projects={props.projects} tasks={props.tasks} />
 		</div>
 	);
 }

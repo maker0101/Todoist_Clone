@@ -1,4 +1,3 @@
-import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import Inbox from '../pages/Inbox';
 import Today from '../pages/Today';

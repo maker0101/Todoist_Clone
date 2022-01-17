@@ -1,6 +1,5 @@
-import React from 'react';
 import Task from '../components/Task';
-import TaskForm from '../components/TaskForm';
+import AddTask from '../components/AddTask';
 import useTasks from '../hooks/useTasks';
 import useDate from '../hooks/useDate';
 
@@ -27,7 +26,7 @@ export default function Today(props) {
 				{props.tasks.map(
 					(task) => isTaskDue(task, today) && <Task key={task.id} task={task} />
 				)}
-				<TaskForm projects={props.projects} tasks={props.tasks}/>
+				<AddTask projects={props.projects} tasks={props.tasks} />
 			</div>
 		</div>
 	);

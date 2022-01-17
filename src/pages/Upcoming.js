@@ -1,15 +1,15 @@
-import React from 'react';
+import { useState, useEffect } from 'react';
 import Task from '../components/Task';
-import TaskForm from '../components/TaskForm';
+import AddTask from '../components/AddTask';
 import useTasks from '../hooks/useTasks';
 import useDate from '../hooks/useDate';
 
 export default function Upcoming(props) {
-	const [upcomingDays, setUpcomingDays] = React.useState([]);
+	const [upcomingDays, setUpcomingDays] = useState([]);
 	const { isTaskOverdue, isTaskDue } = useTasks();
 	const { shortenDate, calcUpcomingDays } = useDate();
 
-	React.useEffect(() => setUpcomingDays(calcUpcomingDays(7)), []);
+	useEffect(() => setUpcomingDays(calcUpcomingDays(7)), []);
 
 	return (
 		<div className="content">
@@ -32,7 +32,7 @@ export default function Upcoming(props) {
 						(task) =>
 							isTaskDue(task, day.date) && <Task key={task.id} task={task} />
 					)}
-					<TaskForm projects={props.projects} tasks={props.tasks} />
+					<AddTask projects={props.projects} tasks={props.tasks} />
 				</div>
 			))}
 		</div>

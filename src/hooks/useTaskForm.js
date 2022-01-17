@@ -13,5 +13,9 @@ export default function () {
 		projectId: selectedProject ? selectedProject : 'GtbY3fGVBVrTJmJH4IGd',
 	});
 
-	return { clearTaskForm, autoSelectProjectId };
+	const toggleIsTaskFormHidden = (isTaskFormHidden, setIsTaskFormHiddenFn) => {
+		setIsTaskFormHiddenFn(() => !isTaskFormHidden);
+	};
+
+	return { clearTaskForm, autoSelectProjectId, toggleIsTaskFormHidden };
 }
