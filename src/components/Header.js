@@ -2,9 +2,8 @@ import { Link } from 'react-router-dom';
 import { VscMenu, VscHome, VscAdd, VscAccount, VscBell } from 'react-icons/vsc';
 import { IoSearchOutline } from 'react-icons/io5';
 
-export default function Header(props) {
-	const toggleSidebarIsHidden = () =>
-		props.setSidebarIsHidden(!props.sidebarIsHidden);
+export default function Header({ sidebarIsHidden, setSidebarIsHidden }) {
+	const toggleSidebarIsHidden = () => setSidebarIsHidden(!sidebarIsHidden);
 
 	return (
 		<header className="header">

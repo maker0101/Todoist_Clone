@@ -7,7 +7,7 @@ import useTasks from '../hooks/useTasks';
 import { TasksContext } from '../contexts/TasksContext';
 import { ProjectsContext } from '../contexts/ProjectsContext';
 
-export default function Sidebar(props) {
+export default function Sidebar({sidebarIsHidden}) {
 	const { tasks } = useContext(TasksContext);
 	const { projects } = useContext(ProjectsContext);
 	const [showProjects, setShowProject] = useState(true);
@@ -16,7 +16,7 @@ export default function Sidebar(props) {
 	const toggleShowProjects = () => setShowProject(!showProjects);
 	return (
 		<nav
-			className={`sidebar ${props.sidebarIsHidden ? 'sidebar__hidden' : ''}`}
+			className={`sidebar ${sidebarIsHidden ? 'sidebar__hidden' : ''}`}
 		>
 			<div className="sidebar__section">
 				{SIDEBAR_NAV_DATA.map((item) => (

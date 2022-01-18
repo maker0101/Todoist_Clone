@@ -3,7 +3,7 @@ import { VscAdd } from 'react-icons/vsc';
 import TaskForm from './TaskForm';
 import useTaskForm from '../hooks/useTaskForm';
 
-export default function AddTask(props) {
+export default function AddTask({ selectedProjectId }) {
 	const [isTaskFormHidden, setIsTaskFormHidden] = useState(true);
 	const { toggleIsTaskFormHidden } = useTaskForm();
 
@@ -22,7 +22,7 @@ export default function AddTask(props) {
 					</div>
 				) : (
 					<TaskForm
-						selectedProject={props.selectedProject ? props.selectedProject : ''}
+						selectedProjectId={selectedProjectId}
 						isTaskFormHidden={isTaskFormHidden}
 						setIsTaskFormHidden={setIsTaskFormHidden}
 					/>

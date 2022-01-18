@@ -4,10 +4,10 @@ import { BsCalendar4Event } from 'react-icons/bs';
 import useTasks from '../hooks/useTasks';
 import { shortenDate } from '../utilities/shortenDate';
 
-export default function Task(props) {
+export default function Task({ task }) {
 	const { deleteTask, toggleIsChecked } = useTasks();
-	const isDueDateDefined = Boolean(props.task.dueDate);
-	const dueDateTimestampInMs = new Date(props.task.dueDate.seconds * 1000);
+	const isDueDateDefined = Boolean(task.dueDate);
+	const dueDateTimestampInMs = new Date(task.dueDate.seconds * 1000);
 
 	return (
 		<>
@@ -16,30 +16,28 @@ export default function Task(props) {
 					<label className="checkbox">
 						<input
 							type="checkbox"
-							checked={props.task.isChecked}
-							onChange={() =>
-								toggleIsChecked(db, props.task.id, props.task.isChecked)
-							}
+							checked={task.isChecked}
+							onChange={() => toggleIsChecked(db, task.id, task.isChecked)}
 						></input>
 						<span className="checkbox__checkmark"></span>
 					</label>
-					<div className="task__name">{props.task.name}</div>
+					<div className="task__name">{task.name}</div>
 					<div className="task__icons">
-						<VscTrash onClick={() => deleteTask(db, props.task.id)} />
+						<VscTrash onClick={() => deleteTask(db, task.id)} />
 						<VscEdit />
 					</div>
 				</div>
 
 				<div
 					className="task__line"
-					style={{ display: props.task.description ? 'grid' : 'none' }}
+					style={{ display: task.description ? 'grid' : 'none' }}
 				>
-					<div className="task__description">{props.task.description}</div>
+					<div className="task__description">{task.description}</div>
 				</div>
 
 				<div
 					className="task__line"
-					style={{ display: props.task.dueDate ? 'grid' : 'none' }}
+					style={{ display: task.dueDate ? 'grid' : 'none' }}
 				>
 					<div className="task__dueDateContainer">
 						<span className="task__dueDateIcon">

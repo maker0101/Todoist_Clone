@@ -1,10 +1,10 @@
 import Sidebar from './Sidebar';
 import Content from './Content';
 
-export default function Main(props) {
+export default function Main({sidebarIsHidden}) {
 	return (
 		<section className="main">
-			<Sidebar sidebarIsHidden={props.sidebarIsHidden} />
+			<Sidebar sidebarIsHidden={sidebarIsHidden} />
 			<Content />
 		</section>
 	);

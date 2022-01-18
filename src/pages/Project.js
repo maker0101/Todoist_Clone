@@ -28,7 +28,7 @@ export default function Project() {
 				.map((task) => (
 					<Task key={task.id} task={task} />
 				))}
-			<AddTask selectedProject={selectedProject} />
+			<AddTask selectedProjectId={selectedProject ? selectedProject.id : ''} />
 		</div>
 	);
 }

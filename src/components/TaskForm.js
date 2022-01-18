@@ -6,7 +6,11 @@ import useTaskForm from '../hooks/useTaskForm';
 import { TasksContext } from '../contexts/TasksContext';
 import { ProjectsContext } from '../contexts/ProjectsContext';
 
-export default function TaskForm(props) {
+export default function TaskForm({
+	selectedProjectId,
+	isTaskFormHidden,
+	setIsTaskFormHidden,
+}) {
 	const [taskForm, setTaskForm] = useState({
 		name: '',
 		description: '',
@@ -18,12 +22,11 @@ export default function TaskForm(props) {
 	const { createTask } = useTasks();
 	const { clearTaskForm, autoSelectProjectId, toggleIsTaskFormHidden } =
 		useTaskForm();
-	const selectedProject = props.selectedProject ? props.selectedProject.id : '';
 	const location = useLocation();
 
 	useEffect(
-		() => autoSelectProjectId(taskForm, setTaskForm, selectedProject),
-		[selectedProject, location, tasks]
+		() => autoSelectProjectId(taskForm, setTaskForm, selectedProjectId),
+		[selectedProjectId, location, tasks]
 	);
 
 	return (
@@ -40,7 +43,7 @@ export default function TaskForm(props) {
 					'userid1',
 					setTaskForm
 				);
-				clearTaskForm(setTaskForm, selectedProject);
+				clearTaskForm(setTaskForm, selectedProjectId);
 			}}
 		>
 			<div className="taskForm__inputs">
@@ -107,10 +110,7 @@ export default function TaskForm(props) {
 				className="button button__secondary"
 				type="button"
 				onClick={() =>
-					toggleIsTaskFormHidden(
-						props.isTaskFormHidden,
-						props.setIsTaskFormHidden
-					)
+					toggleIsTaskFormHidden(isTaskFormHidden, setIsTaskFormHidden)
 				}
 			>
 				Cancel
