@@ -1,11 +1,15 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import { BsChevronDown } from 'react-icons/bs';
 import { VscCircleFilled } from 'react-icons/vsc';
 import { SIDEBAR_NAV_DATA } from '../constants/SIDEBAR_NAV_DATA';
 import useTasks from '../hooks/useTasks';
+import { TasksContext } from '../contexts/TasksContext';
+import { ProjectsContext } from '../contexts/ProjectsContext';
 
 export default function Sidebar(props) {
+	const { tasks } = useContext(TasksContext);
+	const { projects } = useContext(ProjectsContext);
 	const [showProjects, setShowProject] = useState(true);
 	const { countTasksOfProject, countTasksOfNavItems } = useTasks();
 
@@ -20,7 +24,7 @@ export default function Sidebar(props) {
 						key={item.id}
 						to={item.to}
 						className="sidebar__item"
-						activeclasscame="selected"
+						activeclassname="selected"
 					>
 						<div
 							className={`sidebar__icon ${item.iconClassName}`}
@@ -30,7 +34,7 @@ export default function Sidebar(props) {
 						</div>
 						<div>{item.name}</div>
 						<div className="sidebar__info">
-							{countTasksOfNavItems(props.tasks, item)}
+							{countTasksOfNavItems(tasks, item)}
 						</div>
 					</NavLink>
 				))}
@@ -49,7 +53,7 @@ export default function Sidebar(props) {
 					<h2>Projects</h2>
 				</div>
 				{showProjects &&
-					props.projects
+					projects
 						.filter((project) => project.isInbox === false)
 						.map((project) => (
 							<NavLink
@@ -64,7 +68,7 @@ export default function Sidebar(props) {
 								/>
 								<div>{project.name}</div>
 								<div className="sidebar__info">
-									{countTasksOfProject(props.tasks, project.id)}
+									{countTasksOfProject(tasks, project.id)}
 								</div>
 							</NavLink>
 						))}

@@ -22,9 +22,7 @@ export default function AddTask(props) {
 					</div>
 				) : (
 					<TaskForm
-						projects={props.projects}
-						selectedProject={props.selectedProject}
-						tasks={props.tasks}
+						selectedProject={props.selectedProject ? props.selectedProject : ''}
 						isTaskFormHidden={isTaskFormHidden}
 						setIsTaskFormHidden={setIsTaskFormHidden}
 					/>

@@ -1,8 +1,10 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { useLocation } from 'react-router-dom';
 import { db } from '../firebase';
 import useTasks from '../hooks/useTasks';
 import useTaskForm from '../hooks/useTaskForm';
+import { TasksContext } from '../contexts/TasksContext';
+import { ProjectsContext } from '../contexts/ProjectsContext';
 
 export default function TaskForm(props) {
 	const [taskForm, setTaskForm] = useState({
@@ -11,6 +13,8 @@ export default function TaskForm(props) {
 		dueDate: '',
 		projectId: 'GtbY3fGVBVrTJmJH4IGd',
 	});
+	const { tasks } = useContext(TasksContext);
+	const { projects } = useContext(ProjectsContext);
 	const { createTask } = useTasks();
 	const { clearTaskForm, autoSelectProjectId, toggleIsTaskFormHidden } =
 		useTaskForm();
@@ -19,7 +23,7 @@ export default function TaskForm(props) {
 
 	useEffect(
 		() => autoSelectProjectId(taskForm, setTaskForm, selectedProject),
-		[selectedProject, location, props.tasks]
+		[selectedProject, location, tasks]
 	);
 
 	return (
@@ -83,7 +87,7 @@ export default function TaskForm(props) {
 							setTaskForm({ ...taskForm, projectId: e.target.value })
 						}
 					>
-						{props.projects.map((project) => (
+						{projects.map((project) => (
 							<option key={project.id} value={project.id}>
 								{project.name}
 							</option>

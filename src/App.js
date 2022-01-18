@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
+import { db } from './firebase';
 import Header from './components/Header';
 import Main from './components/Main';
 import useTasks from './hooks/useTasks';
 import useProjects from './hooks/useProjects';
-import { db } from './firebase';
+import { TasksContext } from './contexts/TasksContext';
+import { ProjectsContext } from './contexts/ProjectsContext';
 
 function App() {
 	const [tasks, setTasks] = useState([]);
@@ -19,19 +21,17 @@ function App() {
 
 	return (
 		<div className="App">
-			<Router>
-				<Header
-					sidebarIsHidden={sidebarIsHidden}
-					setSidebarIsHidden={setSidebarIsHidden}
-				/>
-				<Main
-					sidebarIsHidden={sidebarIsHidden}
-					tasks={tasks}
-					setTasks={setTasks}
-					projects={projects}
-					setProjects={setProjects}
-				/>
-			</Router>
+			<ProjectsContext.Provider value={{ projects }}>
+				<TasksContext.Provider value={{ tasks }}>
+					<Router>
+						<Header
+							sidebarIsHidden={sidebarIsHidden}
+							setSidebarIsHidden={setSidebarIsHidden}
+						/>
+						<Main sidebarIsHidden={sidebarIsHidden}/>
+					</Router>
+				</TasksContext.Provider>
+			</ProjectsContext.Provider>
 		</div>
 	);
 }

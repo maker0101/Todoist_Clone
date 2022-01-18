@@ -1,11 +1,13 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import Task from '../components/Task';
 import AddTask from '../components/AddTask';
 import useTasks from '../hooks/useTasks';
 import { shortenDate } from '../utilities/shortenDate';
 import { calcUpcomingDays } from '../utilities/calcUpcomingDays';
+import { TasksContext } from '../contexts/TasksContext';
 
-export default function Upcoming(props) {
+export default function Upcoming() {
+	const { tasks } = useContext(TasksContext);
 	const [upcomingDays, setUpcomingDays] = useState([]);
 	const { isTaskOverdue, isTaskDue } = useTasks();
 
@@ -17,7 +19,7 @@ export default function Upcoming(props) {
 			<div className="content__section">
 				<h2 className="content__subTitle">Overdue</h2>
 				<hr />
-				{props.tasks
+				{tasks
 					.filter((task) => isTaskOverdue(task))
 					.map((task) => (
 						<Task key={task.id} task={task} />
@@ -30,12 +32,12 @@ export default function Upcoming(props) {
 						new Date(day.date)
 					)} · ${day.todayTomorrow ? day.todayTomorrow : day.weekday}`}</h2>
 					<hr />
-					{props.tasks
+					{tasks
 						.filter((task) => isTaskDue(task, day.date))
 						.map((task) => (
 							<Task key={task.id} task={task} />
 						))}
-					<AddTask projects={props.projects} tasks={props.tasks} />
+					<AddTask />
 				</div>
 			))}
 		</div>

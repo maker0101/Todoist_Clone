@@ -1,9 +1,12 @@
+import { useContext } from 'react';
 import Task from '../components/Task';
 import AddTask from '../components/AddTask';
 import useTasks from '../hooks/useTasks';
 import { shortenDate } from '../utilities/shortenDate';
+import { TasksContext } from '../contexts/TasksContext';
 
-export default function Today(props) {
+export default function Today() {
+	const { tasks } = useContext(TasksContext);
 	const { isTaskOverdue, isTaskDue } = useTasks();
 	const today = new Date();
 
@@ -14,7 +17,7 @@ export default function Today(props) {
 			<div className="content__section">
 				<h2 className="content__subTitle">Overdue</h2>
 				<hr />
-				{props.tasks
+				{tasks
 					.filter((task) => isTaskOverdue(task))
 					.map((task) => (
 						<Task key={task.id} task={task} />
@@ -24,12 +27,12 @@ export default function Today(props) {
 			<div className="content__section">
 				<h2 className="content__subTitle">{`${shortenDate(today)} · Today`}</h2>
 				<hr />
-				{props.tasks
+				{tasks
 					.filter((task) => isTaskDue(task, today))
 					.map((task) => (
 						<Task key={task.id} task={task} />
 					))}
-				<AddTask projects={props.projects} tasks={props.tasks} />
+				<AddTask />
 			</div>
 		</div>
 	);
