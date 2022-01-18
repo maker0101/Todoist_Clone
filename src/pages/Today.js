@@ -25,7 +25,7 @@ export default function Today(props) {
 				<h2 className="content__subTitle">{`${shortenDate(today)} · Today`}</h2>
 				<hr />
 				{props.tasks
-					.filter((task) => isTaskOverdue(task))
+					.filter((task) => isTaskDue(task, today))
 					.map((task) => (
 						<Task key={task.id} task={task} />
 					))}

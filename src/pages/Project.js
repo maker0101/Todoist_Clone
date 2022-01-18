@@ -11,12 +11,8 @@ export default function Project(props) {
 	const { getSelectedProject } = useProjects();
 
 	useEffect(() => {
-		const project = getSelectedProject(
-			props.projects,
-			projectId,
-			setSelectedProject
-		);
-		project.then((proj) => setSelectedProject(proj));
+		const project = getSelectedProject(props.projects, projectId);
+		project.then((project) => setSelectedProject(project));
 	}, [projectId, props.projects]);
 
 	return (
