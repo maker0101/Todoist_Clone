@@ -1,11 +1,22 @@
 import Sidebar from './Sidebar';
-import Content from './Content';
+import { Routes, Route, Navigate } from 'react-router-dom';
+import Inbox from '../pages/Inbox';
+import Today from '../pages/Today';
+import Upcoming from '../pages/Upcoming';
+import Project from '../pages/Project';
 
-export default function Main({sidebarIsHidden}) {
+export default function Main({ isSidebarHidden }) {
 	return (
-		<section className="main">
-			<Sidebar sidebarIsHidden={sidebarIsHidden} />
-			<Content />
-		</section>
+		<div className="main">
+			<Sidebar isSidebarHidden={isSidebarHidden} />
+			<Routes>
+				<Route path="/" element={<Navigate to="/today" />} />
+				<Route path="/inbox" element={<Inbox />}></Route>
+				<Route path="/today" element={<Today />}></Route>
+				<Route path="/upcoming" element={<Upcoming />}></Route>
+				<Route path="/project/:projectId" element={<Project />}></Route>
+				<Route path="*" element={<Navigate to="/" />} />
+			</Routes>
+		</div>
 	);
 }

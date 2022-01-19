@@ -7,7 +7,7 @@ import useTasks from '../hooks/useTasks';
 import useProjects from '../hooks/useProjects';
 import countTasks from '../utilities/countTasks';
 
-export default function Sidebar({ sidebarIsHidden }) {
+export default function Sidebar({ isSidebarHidden }) {
 	const [showProjects, setShowProject] = useState(true);
 	const { tasks } = useTasks();
 	const { countTasksOfProject, countTasksOfNavItems } = countTasks();
@@ -15,7 +15,7 @@ export default function Sidebar({ sidebarIsHidden }) {
 
 	const toggleShowProjects = () => setShowProject(!showProjects);
 	return (
-		<nav className={`sidebar ${sidebarIsHidden ? 'sidebar__hidden' : ''}`}>
+		<nav className={`sidebar ${isSidebarHidden ? 'sidebar__hidden' : ''}`}>
 			<div className="sidebar__section">
 				{SIDEBAR_NAV_DATA.map((item) => (
 					<NavLink

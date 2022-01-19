@@ -4,16 +4,16 @@ import Header from './components/Header';
 import Main from './components/Main';
 
 function App() {
-	const [sidebarIsHidden, setSidebarIsHidden] = useState(false);
+	const [isSidebarHidden, setIsSidebarHidden] = useState(false);
 
 	return (
 		<div className="App">
 			<Router>
 				<Header
-					sidebarIsHidden={sidebarIsHidden}
-					setSidebarIsHidden={setSidebarIsHidden}
+					isSidebarHidden={isSidebarHidden}
+					setIsSidebarHidden={setIsSidebarHidden}
 				/>
-				<Main sidebarIsHidden={sidebarIsHidden} />
+				<Main isSidebarHidden={isSidebarHidden} />
 			</Router>
 		</div>
 	);
