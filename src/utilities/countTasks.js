@@ -1,6 +1,6 @@
-import useTasks from './useTasks';
+import useTasks from '../hooks/useTasks';
 
-export default function useCountTasks() {
+export default function countTasks() {
 	const { isTaskDue, isTaskOverdue } = useTasks();
 
 	const countTasksOfProject = (tasks, projectId) =>
@@ -27,6 +27,6 @@ export default function useCountTasks() {
 
 	return {
 		countTasksOfProject,
-		countTasksOfNavItems
+		countTasksOfNavItems,
 	};
 }

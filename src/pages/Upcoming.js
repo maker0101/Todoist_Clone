@@ -1,13 +1,13 @@
 import { useState, useEffect } from 'react';
 import Task from '../components/Task';
 import AddTask from '../components/AddTask';
-import useFilterTasks from '../hooks/useFilterTasks';
+import filterTasks from '../utilities/filterTasks';
 import { shortenDate } from '../utilities/shortenDate';
 import { calcUpcomingDays } from '../utilities/calcUpcomingDays';
 
 export default function Upcoming() {
 	const [upcomingDays, setUpcomingDays] = useState([]);
-	const { filterTasksOverdue, filterTasksByDueDate } = useFilterTasks();
+	const { filterTasksOverdue, filterTasksByDueDate } = filterTasks();
 
 	useEffect(() => setUpcomingDays(calcUpcomingDays(7)), []);
 

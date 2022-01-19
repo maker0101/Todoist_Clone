@@ -1,10 +1,10 @@
 import Task from '../components/Task';
 import AddTask from '../components/AddTask';
-import useFilterTasks from '../hooks/useFilterTasks';
+import filterTasks from '../utilities/filterTasks';
 import { shortenDate } from '../utilities/shortenDate';
 
 export default function Today() {
-	const { filterTasksOverdue, filterTasksByDueDate } = useFilterTasks();
+	const { filterTasksOverdue, filterTasksByDueDate } = filterTasks();
 	const today = new Date();
 
 	return (

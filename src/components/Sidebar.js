@@ -5,12 +5,12 @@ import { VscCircleFilled } from 'react-icons/vsc';
 import { SIDEBAR_NAV_DATA } from '../constants/SIDEBAR_NAV_DATA';
 import useTasks from '../hooks/useTasks';
 import useProjects from '../hooks/useProjects';
-import useCountTasks from '../hooks/useCountTasks';
+import countTasks from '../utilities/countTasks';
 
 export default function Sidebar({ sidebarIsHidden }) {
 	const [showProjects, setShowProject] = useState(true);
-	const { tasks, } = useTasks();
-	const { countTasksOfProject, countTasksOfNavItems } = useCountTasks();
+	const { tasks } = useTasks();
+	const { countTasksOfProject, countTasksOfNavItems } = countTasks();
 	const { projects } = useProjects();
 
 	const toggleShowProjects = () => setShowProject(!showProjects);

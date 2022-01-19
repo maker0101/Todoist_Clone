@@ -1,6 +1,6 @@
-import useTasks from './useTasks';
+import useTasks from '../hooks/useTasks';
 
-export default function useFilterTasks() {
+export default function filterTasks() {
 	const { tasks, isTaskDue, isTaskOverdue } = useTasks();
 
 	const filterTasksByProjectId = (projectId) =>
