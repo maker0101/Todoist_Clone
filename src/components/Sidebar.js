@@ -13,7 +13,7 @@ export default function Sidebar({ isSidebarHidden }) {
 	const { countTasksOfProject, countTasksOfNavItems } = countTasks();
 	const { projects } = useProjects();
 
-	const toggleShowProjects = () => setShowProject(!showProjects);
+	const toggleShowProjects = () => setShowProject(() => !showProjects);
 	return (
 		<nav className={`sidebar ${isSidebarHidden ? 'sidebar__hidden' : ''}`}>
 			<div className="sidebar__section">
