@@ -3,14 +3,15 @@ import { VscMenu, VscHome, VscAdd, VscAccount, VscBell } from 'react-icons/vsc';
 import { IoSearchOutline } from 'react-icons/io5';
 
 export default function Header({ isSidebarHidden, setIsSidebarHidden }) {
-	const toggleSidebarIsHidden = () => setIsSidebarHidden(!isSidebarHidden);
+	const toggleIsSidebarHidden = () =>
+		setIsSidebarHidden(() => !isSidebarHidden);
 
 	return (
 		<header className="header">
 			<div className="header__left">
 				<VscMenu
 					className="header__item"
-					onClick={() => toggleSidebarIsHidden()}
+					onClick={() => toggleIsSidebarHidden()}
 				/>
 				<Link to="/today">
 					<VscHome className="header__item" />

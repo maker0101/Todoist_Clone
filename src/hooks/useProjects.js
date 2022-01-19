@@ -5,9 +5,9 @@ import { db } from '../firebase';
 export default function useProjects() {
 	const [projects, setProjects] = useState([]);
 
-	const getProjects = (database, setProjects) => {
+	const getProjects = (db) => {
 		const projectsQuery = query(
-			collection(database, 'projects'),
+			collection(db, 'projects'),
 			where('userId', '==', 'userid1')
 		);
 		onSnapshot(projectsQuery, (querySnapshot) => {
@@ -27,7 +27,7 @@ export default function useProjects() {
 		}
 	};
 
-	useEffect(() => getProjects(db, setProjects), []);
+	useEffect(() => getProjects(db), []);
 
 	return { projects, getSelectedProject };
 }

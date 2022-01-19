@@ -43,7 +43,7 @@ export default function useTasks() {
 	};
 
 	//TODO: Make projectId optional without relying on ternary operator and 'where('isChecked', '==', false),'
-	const getTasks = (database, setTasksStateFn, projectId = false) => {
+	const getTasks = (database, projectId = false) => {
 		const tasksQuery = query(
 			collection(database, 'tasks'),
 			where('userId', '==', 'userid1'),
@@ -55,7 +55,7 @@ export default function useTasks() {
 		);
 
 		onSnapshot(tasksQuery, (querySnapshot) => {
-			setTasksStateFn(
+			setTasks(
 				querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
 			);
 		});
@@ -96,7 +96,7 @@ export default function useTasks() {
 		return taskDueDate < today && Boolean(taskDueDate);
 	};
 
-	useEffect(() => getTasks(db, setTasks), []);
+	useEffect(() => getTasks(db), []);
 
 	return {
 		tasks,
