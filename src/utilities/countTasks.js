@@ -9,7 +9,7 @@ export default function countTasks() {
 	const countTasksOnDate = (tasks, dateObject) =>
 		tasks.filter((task) => isTaskDue(task, dateObject)).length;
 
-	const countOverdueTasks = (tasks) =>
+	const countTasksOverdue = (tasks) =>
 		tasks.filter((task) => isTaskOverdue(task)).length;
 
 	const countTasksOfNavItems = (tasks, item) => {
@@ -17,7 +17,7 @@ export default function countTasks() {
 			case 'Inbox':
 				return countTasksOfProject(tasks, item.id);
 			case 'Today':
-				return countTasksOnDate(tasks, new Date()) + countOverdueTasks(tasks);
+				return countTasksOnDate(tasks, new Date()) + countTasksOverdue(tasks);
 			case 'Upcoming':
 				return '';
 			default:
