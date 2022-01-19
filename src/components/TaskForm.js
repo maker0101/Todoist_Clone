@@ -10,20 +10,19 @@ export default function TaskForm({
 	isTaskFormHidden,
 	setIsTaskFormHidden,
 }) {
-	const [taskForm, setTaskForm] = useState({
-		name: '',
-		description: '',
-		dueDate: '',
-		projectId: 'GtbY3fGVBVrTJmJH4IGd',
-	});
 	const { tasks, createTask } = useTasks();
 	const { projects } = useProjects();
-	const { clearTaskForm, autoSelectProjectId, toggleIsTaskFormHidden } =
-		useTaskForm();
+	const {
+		taskForm,
+		setTaskForm,
+		clearTaskForm,
+		autoSelectProjectId,
+		toggleIsTaskFormHidden,
+	} = useTaskForm();
 	const location = useLocation();
 
 	useEffect(
-		() => autoSelectProjectId(taskForm, setTaskForm, selectedProjectId),
+		() => autoSelectProjectId(selectedProjectId),
 		[selectedProjectId, location, tasks]
 	);
 
@@ -41,7 +40,7 @@ export default function TaskForm({
 					'userid1',
 					setTaskForm
 				);
-				clearTaskForm(setTaskForm, selectedProjectId);
+				clearTaskForm(selectedProjectId);
 			}}
 		>
 			<div className="taskForm__inputs">

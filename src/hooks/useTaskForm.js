@@ -1,6 +1,15 @@
+import { useState } from 'react';
+
 export default function () {
-	const clearTaskForm = (setTaskFormFn, projectId) => {
-		setTaskFormFn({
+	const [taskForm, setTaskForm] = useState({
+		name: '',
+		description: '',
+		dueDate: '',
+		projectId: 'GtbY3fGVBVrTJmJH4IGd',
+	});
+
+	const clearTaskForm = (projectId) => {
+		setTaskForm({
 			name: '',
 			description: '',
 			dueDate: '',
@@ -8,14 +17,21 @@ export default function () {
 		});
 	};
 
-	const autoSelectProjectId = (taskForm, setTaskFormFn, selectedProject) => setTaskFormFn({
-		...taskForm,
-		projectId: selectedProject ? selectedProject : 'GtbY3fGVBVrTJmJH4IGd',
-	});
+	const autoSelectProjectId = (selectedProject) =>
+		setTaskForm({
+			...taskForm,
+			projectId: selectedProject ? selectedProject : 'GtbY3fGVBVrTJmJH4IGd',
+		});
 
 	const toggleIsTaskFormHidden = (isTaskFormHidden, setIsTaskFormHiddenFn) => {
 		setIsTaskFormHiddenFn(() => !isTaskFormHidden);
 	};
 
-	return { clearTaskForm, autoSelectProjectId, toggleIsTaskFormHidden };
+	return {
+		taskForm,
+		setTaskForm,
+		clearTaskForm,
+		autoSelectProjectId,
+		toggleIsTaskFormHidden,
+	};
 }
