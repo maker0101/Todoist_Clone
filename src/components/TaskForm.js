@@ -1,10 +1,9 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { db } from '../firebase';
 import useTasks from '../hooks/useTasks';
+import useProjects from '../hooks/useProjects';
 import useTaskForm from '../hooks/useTaskForm';
-import { TasksContext } from '../contexts/TasksContext';
-import { ProjectsContext } from '../contexts/ProjectsContext';
 
 export default function TaskForm({
 	selectedProjectId,
@@ -17,9 +16,8 @@ export default function TaskForm({
 		dueDate: '',
 		projectId: 'GtbY3fGVBVrTJmJH4IGd',
 	});
-	const { tasks } = useContext(TasksContext);
-	const { projects } = useContext(ProjectsContext);
-	const { createTask } = useTasks();
+	const { tasks, createTask } = useTasks();
+	const { projects } = useProjects();
 	const { clearTaskForm, autoSelectProjectId, toggleIsTaskFormHidden } =
 		useTaskForm();
 	const location = useLocation();

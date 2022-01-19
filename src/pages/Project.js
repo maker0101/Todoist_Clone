@@ -1,17 +1,15 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
+import useFilterTasks from '../hooks/useFilterTasks';
 import useProjects from '../hooks/useProjects';
 import Task from '../components/Task';
 import AddTask from '../components/AddTask';
-import { TasksContext } from '../contexts/TasksContext';
-import { ProjectsContext } from '../contexts/ProjectsContext';
 
 export default function Project() {
-	const { tasks } = useContext(TasksContext);
-	const { projects } = useContext(ProjectsContext);
 	const [selectedProject, setSelectedProject] = useState({ name: '' });
 	const { projectId } = useParams();
-	const { getSelectedProject } = useProjects();
+	const { filterTasksByProjectId } = useFilterTasks();
+	const { projects, getSelectedProject } = useProjects();
 
 	useEffect(() => {
 		const project = getSelectedProject(projects, projectId);
@@ -23,11 +21,9 @@ export default function Project() {
 			<h1 className="content__title">
 				{selectedProject && selectedProject.name}
 			</h1>
-			{tasks
-				.filter((task) => task.projectId === projectId)
-				.map((task) => (
-					<Task key={task.id} task={task} />
-				))}
+			{filterTasksByProjectId(projectId).map((task) => (
+				<Task key={task.id} task={task} />
+			))}
 			<AddTask selectedProjectId={selectedProject ? selectedProject.id : ''} />
 		</div>
 	);

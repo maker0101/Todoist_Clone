@@ -23,11 +23,20 @@ It's under heavy development at the moment and much is missing still.
 
 ### 1. Additional setter inside of getter functions
 
-I have problems removing them in App.js (line 17 & 18)
+I have problems removing them getTasks and getProjects (line 17 & 18)
+
+### 2. Error after moving tasks and projects state inside custom hooks
+
+`Warning: Can't perform a React state update on an unmounted component. This is a no-op, but it indicates a memory leak in your application. To fix, cancel all subscriptions and asynchronous tasks in a useEffect cleanup function.`
+
+### 3. Moving state inside custom hooks and export/import state from there -> Why is this pattern not more often recommended
+
+Seems elegant and avoids problems of "Props drilling" and negative effects of useContext.
+Why is it not described and recommended all over the internet?
 
 ## Known issues/bugs
 
-none
+Overdue tasks need to be sorted by due date and years need to be considered
 
 ## Planned Features
 

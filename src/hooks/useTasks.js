@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import {
 	collection,
 	doc,
@@ -10,8 +11,11 @@ import {
 	deleteDoc,
 	serverTimestamp,
 } from 'firebase/firestore';
+import { db } from '../firebase';
 
 export default function useTasks() {
+	const [tasks, setTasks] = useState([]);
+
 	const createTask = async (
 		event,
 		database,
@@ -38,7 +42,7 @@ export default function useTasks() {
 		}
 	};
 
-	//TODO: Find more elegant solution in tertiary where condition of firestore query to make projectId optional
+	//TODO: Make projectId optional without relying on ternary operator and 'where('isChecked', '==', false),'
 	const getTasks = (database, setTasksStateFn, projectId = false) => {
 		const tasksQuery = query(
 			collection(database, 'tasks'),
@@ -75,28 +79,6 @@ export default function useTasks() {
 		}
 	};
 
-	const countTasksOfProject = (tasks, projectId) =>
-		tasks.filter((task) => task.projectId === projectId).length;
-
-	const countTasksOnDate = (tasks, dateObject) =>
-		tasks.filter((task) => isTaskDue(task, dateObject)).length;
-
-	const countOverdueTasks = (tasks) =>
-		tasks.filter((task) => isTaskOverdue(task)).length;
-
-	const countTasksOfNavItems = (tasks, item) => {
-		switch (item.name) {
-			case 'Inbox':
-				return countTasksOfProject(tasks, item.id);
-			case 'Today':
-				return countTasksOnDate(tasks, new Date()) + countOverdueTasks(tasks);
-			case 'Upcoming':
-				return '';
-			default:
-				break;
-		}
-	};
-
 	const isTaskDue = (task, dateObject) => {
 		const thisDay = dateObject.toDateString();
 		const taskDueDate = task.dueDate
@@ -114,14 +96,13 @@ export default function useTasks() {
 		return taskDueDate < today && Boolean(taskDueDate);
 	};
 
+	useEffect(() => getTasks(db, setTasks), []);
+
 	return {
-		getTasks,
+		tasks,
 		createTask,
 		deleteTask,
 		toggleIsChecked,
-		countTasksOfProject,
-		countTasksOnDate,
-		countTasksOfNavItems,
 		isTaskDue,
 		isTaskOverdue,
 	};

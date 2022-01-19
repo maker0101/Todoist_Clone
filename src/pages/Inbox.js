@@ -1,10 +1,9 @@
-import { useContext } from 'react';
 import Task from '../components/Task';
 import AddTask from '../components/AddTask';
-import { TasksContext } from '../contexts/TasksContext';
+import useTasks from '../hooks/useTasks';
 
 export default function Inbox() {
-	const { tasks } = useContext(TasksContext);
+	const { tasks } = useTasks();
 
 	return (
 		<div className="content">

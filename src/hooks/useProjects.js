@@ -1,7 +1,11 @@
+import { useState, useEffect } from 'react';
 import { onSnapshot, collection, query, where } from 'firebase/firestore';
+import { db } from '../firebase';
 
 export default function useProjects() {
-	const getProjects = (database, setProjectsStateFn) => {
+	const [projects, setProjects] = useState([]);
+
+	const getProjects = (database, setProjects) => {
 		const projectsQuery = query(
 			collection(database, 'projects'),
 			where('userId', '==', 'userid1')
@@ -11,7 +15,7 @@ export default function useProjects() {
 				...doc.data(),
 				id: doc.id,
 			}));
-			setProjectsStateFn(projectsSnapshot);
+			setProjects(projectsSnapshot);
 		});
 	};
 
@@ -23,5 +27,7 @@ export default function useProjects() {
 		}
 	};
 
-	return { getProjects, getSelectedProject };
+	useEffect(() => getProjects(db, setProjects), []);
+
+	return { projects, getSelectedProject };
 }

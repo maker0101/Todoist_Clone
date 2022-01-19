@@ -1,23 +1,21 @@
-import { useState, useContext } from 'react';
+import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { BsChevronDown } from 'react-icons/bs';
 import { VscCircleFilled } from 'react-icons/vsc';
 import { SIDEBAR_NAV_DATA } from '../constants/SIDEBAR_NAV_DATA';
 import useTasks from '../hooks/useTasks';
-import { TasksContext } from '../contexts/TasksContext';
-import { ProjectsContext } from '../contexts/ProjectsContext';
+import useProjects from '../hooks/useProjects';
+import useCountTasks from '../hooks/useCountTasks';
 
-export default function Sidebar({sidebarIsHidden}) {
-	const { tasks } = useContext(TasksContext);
-	const { projects } = useContext(ProjectsContext);
+export default function Sidebar({ sidebarIsHidden }) {
 	const [showProjects, setShowProject] = useState(true);
-	const { countTasksOfProject, countTasksOfNavItems } = useTasks();
+	const { tasks, } = useTasks();
+	const { countTasksOfProject, countTasksOfNavItems } = useCountTasks();
+	const { projects } = useProjects();
 
 	const toggleShowProjects = () => setShowProject(!showProjects);
 	return (
-		<nav
-			className={`sidebar ${sidebarIsHidden ? 'sidebar__hidden' : ''}`}
-		>
+		<nav className={`sidebar ${sidebarIsHidden ? 'sidebar__hidden' : ''}`}>
 			<div className="sidebar__section">
 				{SIDEBAR_NAV_DATA.map((item) => (
 					<NavLink
