@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import useCrudTasks from './useCrudTasks';
 
 export default function useTaskForm() {
 	const [taskForm, setTaskForm] = useState({
@@ -7,6 +8,7 @@ export default function useTaskForm() {
 		dueDate: '',
 		projectId: 'GtbY3fGVBVrTJmJH4IGd',
 	});
+	const { createTask } = useCrudTasks();
 
 	const clearTaskForm = (projectId) => {
 		setTaskForm({
@@ -27,9 +29,15 @@ export default function useTaskForm() {
 		setIsTaskFormHiddenFn(() => !isTaskFormHidden);
 	};
 
+	const handleTaskFormSubmit = (e, db, taskForm, userId, selectedProjectId) => {
+		createTask(e, db, taskForm, userId);
+		clearTaskForm(selectedProjectId);
+	};
+
 	return {
 		taskForm,
 		setTaskForm,
+		handleTaskFormSubmit,
 		clearTaskForm,
 		autoSelectProjectId,
 		toggleIsTaskFormHidden,

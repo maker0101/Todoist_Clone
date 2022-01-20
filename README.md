@@ -32,16 +32,9 @@ However, I'm unable to locate the specific piece of code that's causing the erro
 Seems elegant, avoids problems of "Props drilling", avoids negative effects of useContext and lessens need for additional tools like Redux.
 Why is this pattern not recommended all over the internet? I couldn't find it in any of the materials I studied so far.
 
-### 3. Exporting utilities functions
+### 3. Exporting via wrapper function
 
-In utilitties -> countTasks.js or filterTasks.js, I've wrapped the utility functions I need elsewhere, e.g. `countTasksOfProject` and `countTasksOfNavItems` with an outer function `countTasks` that I'm actually exporting.
-
-I copied this approach from custom hooks and it's working and I somehow find this approach elegant, but I'm wondering if it's considered good practice or maybe has negative implications? Would you do the same or export the needed functions directly, e.g. as:
-
-```javascript
-export const countTasksOfProject = (tasks, projectId) =>
-	tasks.filter((task) => task.projectId === projectId).length;
-```
+I saw the pattern of exporting values and functions from inside a wrapper function first time when using custom hooks. I somehow find this approach elegant and are wondering if it's considered good practice to import anything like this, e.g. utility functions, constants etc. Or should it be restricted to custom hooks and maybe has negative side effects I'm unaware of?
 
 ## Known issues/bugs
 

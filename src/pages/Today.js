@@ -1,10 +1,10 @@
 import Task from '../components/Task';
 import AddTask from '../components/AddTask';
-import filterTasks from '../utilities/filterTasks';
-import { shortenDate } from '../utilities/shortenDate';
+import useFilterTasks from '../hooks/useFilterTasks';
+import { dateToDayMonth } from '../utilities/transform-dates';
 
 export default function Today() {
-	const { filterTasksOverdue, filterTasksByDueDate } = filterTasks();
+	const { filterTasksOverdue, filterTasksByDueDate } = useFilterTasks();
 	const today = new Date();
 
 	return (
@@ -20,7 +20,9 @@ export default function Today() {
 			</div>
 
 			<div className="content__section">
-				<h2 className="content__subTitle">{`${shortenDate(today)} · Today`}</h2>
+				<h2 className="content__subTitle">{`${dateToDayMonth(
+					today
+				)} · Today`}</h2>
 				<hr />
 				{filterTasksByDueDate(today).map((task) => (
 					<Task key={task.id} task={task} />

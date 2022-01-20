@@ -5,6 +5,12 @@ import { db } from '../firebase';
 export default function useProjects() {
 	const [projects, setProjects] = useState([]);
 
+	const findSelectedProject = (projects, projectId) =>
+		projects.find((project) => project.id === projectId);
+
+	const filterProjectsNoInbox = () =>
+		projects.filter((project) => project.isInbox === false);
+
 	const getProjects = (db) => {
 		const projectsQuery = query(
 			collection(db, 'projects'),
@@ -19,15 +25,7 @@ export default function useProjects() {
 		});
 	};
 
-	const getSelectedProject = async (projects, projectId) => {
-		try {
-			return await projects.find((project) => project.id === projectId);
-		} catch (err) {
-			console.error(err);
-		}
-	};
-
 	useEffect(() => getProjects(db), []);
 
-	return { projects, getSelectedProject };
+	return { projects, findSelectedProject, filterProjectsNoInbox };
 }

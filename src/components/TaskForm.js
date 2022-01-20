@@ -1,21 +1,22 @@
 import { useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { db } from '../firebase';
-import useTasks from '../hooks/useTasks';
+import useCrudTasks from '../hooks/useCrudTasks';
 import useProjects from '../hooks/useProjects';
 import useTaskForm from '../hooks/useTaskForm';
+import { dateToFormInput } from '../utilities/transform-dates';
 
 export default function TaskForm({
 	selectedProjectId,
 	isTaskFormHidden,
 	setIsTaskFormHidden,
 }) {
-	const { tasks, createTask } = useTasks();
+	const { tasks } = useCrudTasks();
 	const { projects } = useProjects();
 	const {
 		taskForm,
 		setTaskForm,
-		clearTaskForm,
+		handleTaskFormSubmit,
 		autoSelectProjectId,
 		toggleIsTaskFormHidden,
 	} = useTaskForm();
@@ -30,17 +31,7 @@ export default function TaskForm({
 		<form
 			className="taskForm"
 			onSubmit={(e) => {
-				createTask(
-					e,
-					db,
-					taskForm.name,
-					taskForm.description,
-					taskForm.dueDate,
-					taskForm.projectId,
-					'userid1',
-					setTaskForm
-				);
-				clearTaskForm(selectedProjectId);
+				handleTaskFormSubmit(e, db, taskForm, 'userid1', selectedProjectId);
 			}}
 		>
 			<div className="taskForm__inputs">
@@ -71,11 +62,7 @@ export default function TaskForm({
 						className="taskForm__select"
 						type="date"
 						placeholder="Schedule"
-						value={
-							taskForm.dueDate
-								? taskForm.dueDate.toISOString().split('T')[0]
-								: ''
-						}
+						value={dateToFormInput(taskForm.dueDate)}
 						onChange={(e) =>
 							setTaskForm({ ...taskForm, dueDate: new Date(e.target.value) })
 						}

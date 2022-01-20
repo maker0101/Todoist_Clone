@@ -1,8 +1,6 @@
-import useTasks from '../hooks/useTasks';
+import { isTaskDue, isTaskOverdue } from '../utilities/query-task';
 
-export default function countTasks() {
-	const { isTaskDue, isTaskOverdue } = useTasks();
-
+export default function useCountTasks() {
 	const countTasksOfProject = (tasks, projectId) =>
 		tasks.filter((task) => task.projectId === projectId).length;
 

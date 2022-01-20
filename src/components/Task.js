@@ -1,11 +1,11 @@
 import { db } from '../firebase';
 import { VscTrash, VscEdit } from 'react-icons/vsc';
 import { BsCalendar4Event } from 'react-icons/bs';
-import useTasks from '../hooks/useTasks';
-import { shortenDate } from '../utilities/shortenDate';
+import useCrudTasks from '../hooks/useCrudTasks';
+import { dateToDayMonth } from '../utilities/transform-dates';
 
 export default function Task({ task }) {
-	const { deleteTask, toggleIsChecked } = useTasks();
+	const { deleteTask, toggleIsChecked } = useCrudTasks();
 	const isDueDateDefined = Boolean(task.dueDate);
 	const dueDateTimestampInMs = new Date(task.dueDate.seconds * 1000);
 
@@ -44,7 +44,7 @@ export default function Task({ task }) {
 							<BsCalendar4Event />
 						</span>
 						<span className="task__dueDate">
-							{isDueDateDefined && shortenDate(dueDateTimestampInMs)}
+							{isDueDateDefined && dateToDayMonth(dueDateTimestampInMs)}
 						</span>
 					</div>
 				</div>

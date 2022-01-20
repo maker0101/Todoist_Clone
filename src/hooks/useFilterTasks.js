@@ -1,7 +1,8 @@
-import useTasks from '../hooks/useTasks';
+import useCrudTasks from './useCrudTasks';
+import { isTaskDue, isTaskOverdue } from '../utilities/query-task';
 
-export default function filterTasks() {
-	const { tasks, isTaskDue, isTaskOverdue } = useTasks();
+export default function useFilterTasks() {
+	const { tasks } = useCrudTasks();
 
 	const filterTasksByProjectId = (projectId) =>
 		tasks.filter((task) => task.projectId === projectId);

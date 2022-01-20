@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import filterTasks from '../utilities/filterTasks';
+import useFilterTasks from '../hooks/useFilterTasks';
 import useProjects from '../hooks/useProjects';
 import Task from '../components/Task';
 import AddTask from '../components/AddTask';
@@ -8,12 +8,11 @@ import AddTask from '../components/AddTask';
 export default function Project() {
 	const [selectedProject, setSelectedProject] = useState({ name: '' });
 	const { projectId } = useParams();
-	const { filterTasksByProjectId } = filterTasks();
-	const { projects, getSelectedProject } = useProjects();
+	const { filterTasksByProjectId } = useFilterTasks();
+	const { projects, findSelectedProject } = useProjects();
 
 	useEffect(() => {
-		const project = getSelectedProject(projects, projectId);
-		project.then((project) => setSelectedProject(project));
+		setSelectedProject(findSelectedProject(projects, projectId));
 	}, [projectId, projects]);
 
 	return (

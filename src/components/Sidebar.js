@@ -2,18 +2,19 @@ import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { BsChevronDown } from 'react-icons/bs';
 import { VscCircleFilled } from 'react-icons/vsc';
-import { SIDEBAR_NAV_DATA } from '../constants/SIDEBAR_NAV_DATA';
-import useTasks from '../hooks/useTasks';
+import { SIDEBAR_NAV_DATA } from '../constants/sidebar-nav-data';
+import useCrudTasks from '../hooks/useCrudTasks';
 import useProjects from '../hooks/useProjects';
-import countTasks from '../utilities/countTasks';
+import useCountTasks from '../hooks/useCountTasks';
 
 export default function Sidebar({ isSidebarHidden }) {
-	const [showProjects, setShowProject] = useState(true);
-	const { tasks } = useTasks();
-	const { countTasksOfProject, countTasksOfNavItems } = countTasks();
-	const { projects } = useProjects();
+	const [isAccordionOpen, setIsProjectsAccordionOpen] = useState(true);
+	const { tasks } = useCrudTasks();
+	const { countTasksOfProject, countTasksOfNavItems } = useCountTasks();
+	const { filterProjectsNoInbox } = useProjects();
 
-	const toggleShowProjects = () => setShowProject(() => !showProjects);
+	const toggleShowProjects = () =>
+		setIsProjectsAccordionOpen(() => !isAccordionOpen);
 	return (
 		<nav className={`sidebar ${isSidebarHidden ? 'sidebar__hidden' : ''}`}>
 			<div className="sidebar__section">
@@ -45,31 +46,29 @@ export default function Sidebar({ isSidebarHidden }) {
 				>
 					<BsChevronDown
 						className={`sidebar__icon sidebar__iconChevron ${
-							!showProjects && 'sidebar__iconChevronNotShowing'
+							!isAccordionOpen && 'sidebar__iconChevronNotShowing'
 						}`}
 					/>
 					<h2>Projects</h2>
 				</div>
-				{showProjects &&
-					projects
-						.filter((project) => project.isInbox === false)
-						.map((project) => (
-							<NavLink
-								to={`/project/${project.id}`}
-								key={project.id}
-								className="sidebar__item"
-								activeclassname="selected"
-							>
-								<VscCircleFilled
-									className="sidebar__icon"
-									style={{ color: project.iconColor }}
-								/>
-								<div>{project.name}</div>
-								<div className="sidebar__info">
-									{countTasksOfProject(tasks, project.id)}
-								</div>
-							</NavLink>
-						))}
+				{isAccordionOpen &&
+					filterProjectsNoInbox().map((project) => (
+						<NavLink
+							to={`/project/${project.id}`}
+							key={project.id}
+							className="sidebar__item"
+							activeclassname="selected"
+						>
+							<VscCircleFilled
+								className="sidebar__icon"
+								style={{ color: project.iconColor }}
+							/>
+							<div>{project.name}</div>
+							<div className="sidebar__info">
+								{countTasksOfProject(tasks, project.id)}
+							</div>
+						</NavLink>
+					))}
 			</div>
 		</nav>
 	);
