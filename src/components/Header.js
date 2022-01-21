@@ -1,8 +1,11 @@
 import { Link } from 'react-router-dom';
 import { VscMenu, VscHome, VscAdd, VscAccount, VscBell } from 'react-icons/vsc';
 import { IoSearchOutline } from 'react-icons/io5';
+import useTaskModal from '../hooks/useTaskModal';
 
 export default function Header({ isSidebarHidden, setIsSidebarHidden }) {
+	const { setIsTaskModalOpen } = useTaskModal();
+
 	const toggleIsSidebarHidden = () =>
 		setIsSidebarHidden(() => !isSidebarHidden);
 
@@ -22,7 +25,10 @@ export default function Header({ isSidebarHidden, setIsSidebarHidden }) {
 				</div>
 			</div>
 			<div className="header__right">
-				<VscAdd className="header__item" />
+				<VscAdd
+					className="header__item"
+					onClick={() => setIsTaskModalOpen(true)}
+				/>
 				<VscBell className="header__item" />
 				<VscAccount className="header__item" />
 			</div>

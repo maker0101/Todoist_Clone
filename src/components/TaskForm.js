@@ -4,12 +4,14 @@ import { db } from '../firebase';
 import useCrudTasks from '../hooks/useCrudTasks';
 import useProjects from '../hooks/useProjects';
 import useTaskForm from '../hooks/useTaskForm';
+import useTaskModal from '../hooks/useTaskModal';
 import { dateToFormInput } from '../utilities/transform-dates';
 
 export default function TaskForm({
 	selectedProjectId,
 	isTaskFormHidden,
 	setIsTaskFormHidden,
+	addedClassName,
 }) {
 	const { tasks } = useCrudTasks();
 	const { projects } = useProjects();
@@ -20,6 +22,7 @@ export default function TaskForm({
 		autoSelectProjectId,
 		toggleIsTaskFormHidden,
 	} = useTaskForm();
+	const { isTaskModalOpen, setIsTaskModalOpen } = useTaskModal();
 	const location = useLocation();
 
 	useEffect(
@@ -29,7 +32,7 @@ export default function TaskForm({
 
 	return (
 		<form
-			className="taskForm"
+			className={`taskForm ${addedClassName}`}
 			onSubmit={(e) => {
 				handleTaskFormSubmit(e, db, taskForm, 'userid1', selectedProjectId);
 			}}
@@ -82,23 +85,27 @@ export default function TaskForm({
 					</select>
 				</div>
 			</div>
-			<button
-				className="button button__primary"
-				type="submit"
-				value=""
-				disabled={taskForm.name ? false : true}
-			>
-				Add Task
-			</button>
-			<button
-				className="button button__secondary"
-				type="button"
-				onClick={() =>
-					toggleIsTaskFormHidden(isTaskFormHidden, setIsTaskFormHidden)
-				}
-			>
-				Cancel
-			</button>
+			<div className="taskForm__buttons">
+				<button
+					className="button button__primary"
+					type="submit"
+					value=""
+					disabled={taskForm.name ? false : true}
+				>
+					{isTaskModalOpen ? 'Save' : 'Add Task'}
+				</button>
+				<button
+					className="button button__secondary"
+					type="button"
+					onClick={() =>
+						isTaskModalOpen
+							? setIsTaskModalOpen(false)
+							: toggleIsTaskFormHidden(isTaskFormHidden, setIsTaskFormHidden)
+					}
+				>
+					Cancel
+				</button>
+			</div>
 		</form>
 	);
 }
