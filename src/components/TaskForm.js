@@ -18,9 +18,9 @@ export default function TaskForm({
 	const {
 		taskForm,
 		setTaskForm,
+		clearTaskForm,
 		handleTaskFormSubmit,
 		autoSelectProjectId,
-		toggleIsTaskFormHidden,
 	} = useTaskForm();
 	const { isTaskModalOpen, setIsTaskModalOpen } = useTaskModal();
 	const location = useLocation();
@@ -29,6 +29,13 @@ export default function TaskForm({
 		() => autoSelectProjectId(selectedProjectId),
 		[selectedProjectId, location, tasks]
 	);
+
+	const handleTaskFormCancel = (selectedProjectId) => {
+		isTaskModalOpen
+			? setIsTaskModalOpen(false)
+			: setIsTaskFormHidden(() => !isTaskFormHidden);
+		clearTaskForm(selectedProjectId);
+	};
 
 	return (
 		<form
@@ -97,11 +104,7 @@ export default function TaskForm({
 				<button
 					className="button button__secondary"
 					type="button"
-					onClick={() =>
-						isTaskModalOpen
-							? setIsTaskModalOpen(false)
-							: toggleIsTaskFormHidden(isTaskFormHidden, setIsTaskFormHidden)
-					}
+					onClick={() => handleTaskFormCancel(selectedProjectId)}
 				>
 					Cancel
 				</button>

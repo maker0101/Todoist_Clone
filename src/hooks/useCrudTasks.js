@@ -16,10 +16,8 @@ import { db } from '../firebase';
 export default function useCrudTasks() {
 	const [tasks, setTasks] = useState([]);
 
-	const createTask = async (e, db, taskForm, userId) => {
+	const createTask = async (db, taskForm, userId) => {
 		try {
-			e.preventDefault();
-
 			await addDoc(collection(db, 'tasks'), {
 				name: taskForm.name,
 				description: taskForm.description,
@@ -27,6 +25,21 @@ export default function useCrudTasks() {
 				projectId: taskForm.projectId,
 				userId: userId,
 				createdAt: serverTimestamp(),
+				isChecked: false,
+			});
+		} catch (err) {
+			console.error(err);
+		}
+	};
+
+	const updateTask = async (db, taskForm, userId) => {
+		try {
+			await updateDoc(doc(db, 'tasks', taskForm.id), {
+				name: taskForm.name,
+				description: taskForm.description,
+				dueDate: taskForm.dueDate,
+				projectId: taskForm.projectId,
+				userId: userId,
 				isChecked: false,
 			});
 		} catch (err) {
@@ -76,6 +89,7 @@ export default function useCrudTasks() {
 	return {
 		tasks,
 		createTask,
+		updateTask,
 		toggleIsChecked,
 		deleteTask,
 	};

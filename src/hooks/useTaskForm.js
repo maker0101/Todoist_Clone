@@ -1,17 +1,14 @@
-import { useState } from 'react';
+import { useContext } from 'react';
 import useCrudTasks from './useCrudTasks';
+import { TaskFormContext } from '../contexts/TaskFormContext';
 
 export default function useTaskForm() {
-	const [taskForm, setTaskForm] = useState({
-		name: '',
-		description: '',
-		dueDate: '',
-		projectId: 'GtbY3fGVBVrTJmJH4IGd',
-	});
-	const { createTask } = useCrudTasks();
+	const { taskForm, setTaskForm } = useContext(TaskFormContext);
+	const { tasks, createTask, updateTask } = useCrudTasks();
 
 	const clearTaskForm = (projectId) => {
 		setTaskForm({
+			id: '',
 			name: '',
 			description: '',
 			dueDate: '',
@@ -25,21 +22,36 @@ export default function useTaskForm() {
 			projectId: selectedProject ? selectedProject : 'GtbY3fGVBVrTJmJH4IGd',
 		});
 
-	const toggleIsTaskFormHidden = (isTaskFormHidden, setIsTaskFormHiddenFn) => {
-		setIsTaskFormHiddenFn(() => !isTaskFormHidden);
+	const populateTaskForm = (task) => {
+		console.log(task);
+		setTaskForm({
+			id: task.id ? task.id : '',
+			name: task.name ? task.name : '',
+			description: task.description ? task.description : '',
+			dueDate: task.dueDate ? new Date(task.dueDate) : '',
+			projectId: task.projectId ? task.projectId : '',
+		});
+		console.log(taskForm); // Why is always the t-1 selected task logged???
 	};
 
 	const handleTaskFormSubmit = (e, db, taskForm, userId, selectedProjectId) => {
-		createTask(e, db, taskForm, userId);
+		e.preventDefault();
+		const taskExists =
+			tasks.filter((task) => task.id === taskForm.id).length > 0;
+
+		taskExists
+			? updateTask(db, taskForm, userId)
+			: createTask(db, taskForm, userId);
+
 		clearTaskForm(selectedProjectId);
 	};
 
 	return {
 		taskForm,
 		setTaskForm,
-		handleTaskFormSubmit,
 		clearTaskForm,
+		handleTaskFormSubmit,
 		autoSelectProjectId,
-		toggleIsTaskFormHidden,
+		populateTaskForm,
 	};
 }

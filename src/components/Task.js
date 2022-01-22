@@ -7,7 +7,7 @@ import useTaskModal from '../hooks/useTaskModal';
 
 export default function Task({ task }) {
 	const { deleteTask, toggleIsChecked } = useCrudTasks();
-	const { setIsTaskModalOpen } = useTaskModal();
+	const { openTaskModal, setIsTaskModalOpen } = useTaskModal();
 	const isDueDateDefined = Boolean(task.dueDate);
 	const dueDateTimestampInMs = new Date(task.dueDate.seconds * 1000);
 
@@ -23,12 +23,12 @@ export default function Task({ task }) {
 						></input>
 						<span className="checkbox__checkmark"></span>
 					</label>
-					<div className="task__name" onClick={() => setIsTaskModalOpen(true)}>
+					<div className="task__name" onClick={() => openTaskModal(task)}>
 						{task.name}
 					</div>
 					<div className="task__icons">
 						<VscTrash onClick={() => deleteTask(db, task.id)} />
-						<VscEdit onClick={() => setIsTaskModalOpen(true)} />
+						<VscEdit onClick={() => openTaskModal(task)} />
 					</div>
 				</div>
 
@@ -38,7 +38,7 @@ export default function Task({ task }) {
 				>
 					<div
 						className="task__description"
-						onClick={() => setIsTaskModalOpen(true)}
+						onClick={() => openTaskModal(task)}
 					>
 						{task.description}
 					</div>
@@ -50,7 +50,7 @@ export default function Task({ task }) {
 				>
 					<div
 						className="task__dueDateContainer"
-						onClick={() => setIsTaskModalOpen(true)}
+						onClick={() => openTaskModal(task)}
 					>
 						<span className="task__dueDateIcon">
 							<BsCalendar4Event />

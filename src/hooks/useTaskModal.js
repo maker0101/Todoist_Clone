@@ -1,8 +1,15 @@
 import { useContext, useEffect } from 'react';
 import { TaskModalContext } from '../contexts/TaskModalContext';
+import useTaskForm from './useTaskForm';
 
 export default function useTaskModal() {
 	const { isTaskModalOpen, setIsTaskModalOpen } = useContext(TaskModalContext);
+	const { populateTaskForm } = useTaskForm();
+
+	const openTaskModal = (task) => {
+		setIsTaskModalOpen(true);
+		populateTaskForm(task);
+	};
 
 	const closeModalOnOverlayClick = (ref, handler) => {
 		useEffect(() => {
@@ -27,5 +34,10 @@ export default function useTaskModal() {
 		}, [ref, handler]);
 	};
 
-	return { isTaskModalOpen, setIsTaskModalOpen, closeModalOnOverlayClick };
+	return {
+		isTaskModalOpen,
+		setIsTaskModalOpen,
+		openTaskModal,
+		closeModalOnOverlayClick,
+	};
 }

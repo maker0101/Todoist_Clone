@@ -1,11 +1,9 @@
 import { useState } from 'react';
 import { VscAdd } from 'react-icons/vsc';
 import TaskForm from './TaskForm';
-import useTaskForm from '../hooks/useTaskForm';
 
 export default function AddTask({ selectedProjectId }) {
 	const [isTaskFormHidden, setIsTaskFormHidden] = useState(true);
-	const { toggleIsTaskFormHidden } = useTaskForm();
 
 	return (
 		<>
@@ -14,7 +12,7 @@ export default function AddTask({ selectedProjectId }) {
 					<div
 						className="addTask__line"
 						onClick={() =>
-							toggleIsTaskFormHidden(isTaskFormHidden, setIsTaskFormHidden)
+							setIsTaskFormHidden(() => !isTaskFormHidden)
 						}
 					>
 						<VscAdd className="addTask__icon" />

@@ -5,8 +5,8 @@ import useProjects from '../hooks/useProjects';
 import Task from '../components/Task';
 import AddTask from '../components/AddTask';
 
-export default function Project() {
-	const [selectedProject, setSelectedProject] = useState({ name: '' });
+export default function Project(props) {
+	const [selectedProject, setSelectedProject] = useState({ name: '', id: '' });
 	const { projectId } = useParams();
 	const { filterTasksByProjectId } = useFilterTasks();
 	const { projects, findSelectedProject } = useProjects();
@@ -21,7 +21,7 @@ export default function Project() {
 				{selectedProject && selectedProject.name}
 			</h1>
 			{filterTasksByProjectId(projectId).map((task) => (
-				<Task key={task.id} task={task} />
+				<Task key={task.id} task={task} openTaskModal={props.openTaskModal}/>
 			))}
 			<AddTask selectedProjectId={selectedProject ? selectedProject.id : ''} />
 		</div>
