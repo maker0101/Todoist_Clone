@@ -2,11 +2,23 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;700;900&display=swap');
 
 // Variables
-$generic-box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 0px 1px,
-	rgba(0, 0, 0, 0.1) 0px 4px 11px;
-$generic-border: 1px solid #f1f1f1;
-$generic-bg: #db4c3f;
-$generic-font-size: 14.5px;
+$color-red-1: #db4c3f;
+$color-white: white;
+$color-grey-1: #f1f1f1;
+$color-grey-2: #fafafa;
+$color-grey-3: #ddd;
+$color-grey-4: #ececec;
+$color-grey-5: #b2b2b2;
+$color-grey-6: grey;
+$color-grey-7: #ffffff33;
+$color-black-1: #202020;
+
+$font-size-small: 13px;
+$font-size-primary: 14px;
+$font-size-large: 20px;
+
+$border-radius-small: 3px;
+$border-radius-medium: 5px;
 
 //General
 html {
@@ -20,20 +32,17 @@ html {
 }
 
 body {
-	margin: 0;
-	padding: 0;
 	line-height: 1;
-	font-size: $generic-font-size;
-	font-weight: 300;
 	font-family: 'Railway', sans-serif;
-	color: #202020;
+	font-size: $font-size-primary;
+	font-weight: 300;
+	color: $color-black-1;
+	overscroll-behavior: none;
 }
 
 h2 {
 	margin: 0;
-	padding: 0;
-	line-height: 1;
-	font-size: $generic-font-size;
+	font-size: $font-size-primary;
 	font-weight: 700;
 }
 
@@ -42,25 +51,29 @@ ul {
 	padding: 0;
 }
 
-//Mixins
-@mixin box-overlay() {
-	box-shadow: $generic-box-shadow;
-	position: absolute;
+hr {
+	border: none;
+	height: 1px;
 	width: 100%;
-	z-index: 1;
-	top: 85px;
-	border-radius: 3px;
+	background-color: $color-grey-1;
+	margin-top: 5px;
 }
 
-@mixin va($va-align: center) {
+a {
+	text-decoration: none;
+	color: $color-black-1;
+}
+
+//Mixins
+@mixin va {
 	display: flex;
 	align-items: center;
+}
 
-	@if $va-align != center {
-		justify-content: left;
-	} @else {
-		justify-content: center;
-	}
+@mixin text-small {
+	color: $color-grey-5;
+	font-size: $font-size-small;
+	font-weight: 300;
 }
 
 @mixin no-select {
@@ -72,50 +85,6 @@ ul {
 	user-select: none;
 }
 
-@mixin btn($width) {
-	width: $width;
-	background-color: $generic-bg;
-	color: #fff !important;
-	border: 1px solid transparent;
-	margin-right: 5px;
-	margin-top: 10px;
-	font-weight: bold;
-	font-size: 13px !important;
-	line-height: 17px;
-	padding: 6px 12px 7px 12px;
-	position: relative;
-	display: inline-block;
-	white-space: nowrap;
-	border-radius: 3px !important;
-	text-decoration: none !important;
-	text-align: center;
-	cursor: pointer;
-}
-
-@mixin cancel() {
-	color: #555;
-	cursor: pointer;
-	font-size: 14px;
-	margin: 2px 5px;
-}
-
-@mixin task-item() {
-	list-style-type: none;
-	display: flex;
-	line-height: 18px;
-	color: #333;
-	padding-top: 10px;
-	padding-bottom: 10px;
-	font-size: 14px;
-	border-bottom: 1px solid #f0f0f0;
-	padding-left: 10px;
-	cursor: pointer;
-
-	&:hover {
-		background-color: #f9f9f9;
-	}
-}
-
 @mixin mq($from) {
 	@media (max-width: $from) {
 		@content;
@@ -123,320 +92,334 @@ ul {
 }
 
 // Reusable Components
-.button__primary {
+.button {
 	display: inline-block;
-	background-color: $generic-bg;
-	border: none;
-	color: white;
-	border-radius: 5px;
-	padding: 8px 10px;
+	border-radius: $border-radius-medium;
+	padding: 7px 10px;
 	width: fit-content;
+	cursor: pointer;
+}
+
+.button:disabled {
+	opacity: 0.4;
+	cursor: not-allowed;
+}
+
+.button__primary {
+	margin-right: 12px;
+	background-color: $color-red-1;
+	border: 1px solid $color-red-1;
+	color: $color-white;
+}
+
+.button__secondary {
+	background-color: $color-white;
+	border: 1px solid $color-grey-3;
+}
+
+.button__secondary:hover {
+	background-color: $color-grey-1;
 }
 
 // Header
 .header {
-	background-color: $generic-bg;
-	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
-	height: 44px;
-	z-index: 400;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
 	position: fixed;
-	top: 0;
+	align-items: center;
+	height: 44px;
 	width: 100%;
-	padding: 0 42px;
+	background-color: $color-red-1;
+	padding: 0 40px;
+	color: $color-white;
+	z-index: 99;
 
-	.header__nav {
-		display: grid;
-		align-items: center;
-		grid-template-columns: 1fr 1fr;
-		grid-template-rows: 1fr;
-		grid-column-gap: 0px;
-		grid-row-gap: 0px;
-		margin: auto;
-		height: 44px;
-		color: white;
-
-		.header__navLeft {
-			grid-area: 1/1;
-
-			.header__navLeftList {
-				@include va;
-				float: left;
-
-				.header__item {
-					margin-right: 8px;
-				}
-			}
-		}
-
-		.header__navRight {
-			grid-area: 1/2;
-
-			.header__navRightList {
-				float: right;
-
-				.header__item {
-					margin-left: 8px;
-				}
-			}
-		}
+	.header__left {
+		@include va;
 
 		.header__item {
+			margin-right: 8px;
+		}
+	}
+
+	.header__right {
+		.header__item {
+			float: right;
+			margin-left: 8px;
+		}
+	}
+
+	.header__item {
+		@include va;
+		justify-content: center;
+		cursor: pointer;
+		width: 30px;
+		height: 30px;
+		padding: 5px;
+
+		&:hover {
+			border-radius: $border-radius-small;
+			background-color: $color-grey-7;
+		}
+	}
+
+	.header__itemSearch {
+		@include va;
+		justify-content: left;
+		height: 28px;
+		width: 183px;
+		padding: 0 8px;
+		font-size: 20px;
+		border-radius: $border-radius-small;
+		background-color: $color-grey-7;
+
+		.header__searchIcon {
 			@include va;
-
-			list-style-type: none;
-			cursor: pointer;
-			width: 30px;
-			height: 30px;
-			font-size: 20px;
-			text-align: center;
-			vertical-align: middle;
-			float: left;
-
-			&:hover {
-				border-radius: 3px;
-				background-color: rgba(255, 255, 255, 0.2);
-			}
 		}
 
-		.header__itemSearch {
-			@include va;
-			height: 28px;
-			width: 183px;
-			padding: 0 8px;
-			border-radius: 3px;
-			background-color: rgba(255, 255, 255, 0.2);
-			justify-content: left;
-
-			.header__searchIcon {
-				@include va;
-			}
-
-			.header__searchText {
-				margin-left: 8px;
-				font-size: 13px;
-			}
+		.header__searchText {
+			margin-left: 8px;
+			font-size: $font-size-primary;
 		}
+	}
+
+	a {
+		color: $color-white;
 	}
 }
 
 // Main
 .main {
-	display: grid;
-	grid-template-columns: 300px auto;
+	display: flex;
 }
 
 // Sidebar
 .sidebar {
 	@include no-select();
-	width: 100%;
+	min-width: 300px;
+	max-width: 300px;
 	height: 100vh;
 	padding-top: 60px;
 	padding-left: 35px;
 	padding-right: 5px;
-	border-right: $generic-border;
-	background-color: #fafafa;
-
-	@include mq('450px') {
-		display: none;
-	}
+	background-color: $color-grey-2;
 
 	.sidebar__section {
 		margin-top: 15px;
-	}
 
-	//TODO: Grid area seems not to work properly
-	.sidebar__grid {
-		display: grid;
-		grid-template-rows: 1;
-		grid-template-columns: 1fr 6fr 1fr;
-		grid-column-gap: 10px;
-		grid-template-areas: 'icon text info';
-		height: 38px;
-		width: 100%;
-		padding: 10px 10px;
-		align-items: center;
+		.sidebar__sectionTitle {
+			cursor: pointer;
+		}
 
-		.sidebar__icon {
-			grid-area: 'icon';
-			height: 100%;
-			display: flex;
+		.sidebar__item {
+			display: grid;
+			grid-template-columns: 1fr 6fr 1fr;
+			grid-column-gap: 10px;
+			padding: 8px 5px;
 			align-items: center;
 
-			svg {
+			.sidebar__icon {
+				@include va;
+				justify-content: center;
+				width: 100%;
 				font-size: 19px;
-				width: 100%;
+			}
+
+			.sidebar__iconChevron {
+				font-size: 12px;
+				-webkit-transition: -webkit-transform 0.1s ease-in-out;
+				-ms-transition: -ms-transform 0.1s ease-in-out;
+				transition: transform 0.1s ease-in-out;
+			}
+
+			.sidebar__iconChevronNotShowing {
+				transform: rotate(-90deg);
+			}
+
+			.sidebar__info {
+				@include text-small();
+				text-align: center;
 			}
 		}
 
-		.sidebar__iconChevron {
-			svg {
-				font-size: 15px;
-				width: 100%;
-			}
-		}
-
-		.sidebar__text {
-			grid-area: 'text';
-		}
-
-		.sidebar__info {
-			grid-area: 'info';
-			color: #b2b2b2;
-			font-size: 13px;
-			text-align: right;
-		}
-
-		.sidebar__iconInbox {
-			color: #246fe0;
-		}
-
-		.sidebar__iconToday {
-			color: #058527;
-		}
-
-		.sidebar__iconUpcoming {
-			color: #692fc2;
-		}
-	}
-
-	.sidebar__item {
-		&.active,
-		&:hover {
-			cursor: pointer;
-			border-radius: 5px;
-			background-color: #ececec;
-		}
-	}
-
-	.sidebar__project {
-		&:nth-child(1) {
-			.sidebar__dot {
-				color: #6accbc;
-			}
-		}
-
-		&:nth-child(2) {
-			.sidebar__dot {
-				color: #fad003;
-			}
-		}
-
-		&:nth-child(3) {
-			.sidebar__dot {
-				color: #ff8d85;
-			}
-		}
-
-		&:nth-child(4) {
-			.sidebar__dot {
-				color: #ff9932;
-			}
-		}
-
-		&:nth-child(5) {
-			.sidebar__dot {
-				color: #af38eb;
+		.sidebar__item {
+			&:not(.sidebar__sectionTitle) {
+				&.active,
+				&:hover {
+					border-radius: $border-radius-medium;
+					background-color: $color-grey-4;
+				}
 			}
 		}
 	}
+}
+
+.sidebar__hidden {
+	display: none;
 }
 
 // Content
 .content {
+	width: 100%;
+	max-width: 900px;
 	height: 100vh;
-	padding-top: 70px;
-	padding-left: 50px;
-	padding-right: 50px;
+	margin: auto;
+	padding: 70px 50px;
+	overflow: scroll;
 
-	.content__container {
-		max-width: 800px;
-		margin: auto;
+	.content__title {
+		font-size: $font-size-large;
+	}
 
-		.content__containerTitle {
-			font-size: 20px;
-		}
+	.content__section {
+		margin-top: 45px;
 
-		.content__tasksList {
-			.content__taskContainer {
-				.content__task {
-					display: grid;
-					grid-template-columns: 30px auto 50px;
-					list-style: none;
-					padding: 7px 0;
-
-					.content__taskName {
-						display: flex;
-						align-items: center;
-						height: 100%;
-					}
-
-					.content__taskIcons {
-						display: grid;
-						grid-template-columns: 1fr 1fr;
-						color: grey;
-						font-size: 16px;
-						cursor: pointer;
-					}
-
-					.content__taskDescription {
-						display: flex;
-						align-items: center;
-						height: 100%;
-						color: #b2b2b2;
-						font-size: 13px;
-						font-weight: 300;
-						margin-top: 3px;
-					}
-				}
-
-				hr {
-					border: none;
-					height: 1px;
-					color: #f1f1f1; /* old IE */
-					background-color: #f1f1f1; /* Modern Browsers */
-					margin-top: 5px;
-				}
-			}
-
-			.addTaskForm__inputContainer {
-				display: flex;
-				flex-direction: column;
-				border: 1px solid #ddd;
-				border-radius: 5px;
-				padding: 10px;
-				margin-bottom: 10px;
-
-				.input {
-					border: none;
-				}
-
-				.input:focus {
-					outline: none;
-				}
-
-				.input::placeholder {
-					color: #b2b2b2;
-				}
-
-				.input__name {
-					margin-bottom: 10px;
-				}
-
-				.input__description {
-					font-size: 13px;
-					font-weight: 300;
-				}
-			}
-
-			.addTaskForm__inputContainer:focus-within {
-				border: 1px solid #b2b2b2;
-			}
+		.content__subTitle {
+			margin-bottom: 8px;
 		}
 	}
 }
 
+//Task
+.task {
+	@include no-select();
+	padding: 4px 0;
+	cursor: pointer;
+
+	.task__line {
+		@include va;
+		display: grid;
+		grid-template-columns: 30px auto 50px;
+		grid-template-areas: 'start center end';
+	}
+
+	.task__name {
+		grid-area: center;
+	}
+
+	.task__icons {
+		grid-area: end;
+		display: none;
+		grid-template-columns: 1fr 1fr;
+		color: $color-grey-5;
+		font-size: 16px;
+	}
+
+	.task__description {
+		@include va;
+		@include text-small;
+		grid-area: center;
+		margin: 3px 0;
+	}
+
+	.task__dueDateContainer {
+		@include va;
+		@include text-small();
+		grid-area: center;
+
+		.task__dueDateIcon {
+			@include va;
+			font-size: 11px;
+			margin: 3px 5px 3px 0px;
+		}
+	}
+}
+
+.task:hover .task__icons {
+	display: grid;
+}
+
+// AddTask
+.addTask__line {
+	@include va;
+	display: grid;
+	grid-template-columns: 30px auto;
+	grid-template-areas: 'start center';
+
+	.addTask__icon {
+		grid-area: 'start';
+		height: 18px;
+		width: 18px;
+		padding: 1px;
+		padding-left: 2px;
+		padding-top: 2px;
+		border-radius: 50%;
+		color: $color-red-1;
+	}
+
+	.addTask__text {
+		grid-area: 'center';
+		color: $color-grey-6;
+	}
+}
+
+.addTask__line:hover .addTask__icon {
+	background-color: $color-red-1;
+	color: $color-white;
+}
+
+.addTask__line:hover .addTask__text {
+	color: $color-red-1;
+}
+
+// Task Form
+.taskForm__inputs {
+	display: flex;
+	flex-direction: column;
+	border: 1px solid $color-grey-3;
+	border-radius: $border-radius-medium;
+	padding: 10px;
+	margin-bottom: 10px;
+
+	.taskform__input {
+		border: none;
+	}
+
+	.taskform__input:focus {
+		outline: none;
+	}
+
+	.taskform__input::placeholder {
+		color: $color-grey-5;
+	}
+
+	.taskForm__name {
+		margin-bottom: 10px;
+	}
+
+	.taskForm__description {
+		font-size: $font-size-primary;
+		font-weight: 300;
+	}
+
+	.task__selects {
+		@include va;
+
+		.taskForm__select {
+			display: inline-block;
+			width: 130px;
+			height: 28px;
+			margin-right: 8px;
+			padding: 5px;
+			cursor: pointer;
+			border: 1px solid $color-grey-3;
+			border-radius: $border-radius-small;
+			font-size: $font-size-small;
+			color: $color-grey-6;
+		}
+
+		.taskForm__select:hover {
+			background-color: $color-grey-1;
+		}
+	}
+}
+
+.taskForm__inputs:focus-within {
+	border: 1px solid $color-grey-5;
+}
+
 // Checkbox
-.checkbox__container {
+.checkbox {
 	width: 18px;
 	height: 18px;
 	display: block;
@@ -461,19 +444,14 @@ ul {
 		left: 0;
 		height: 100%;
 		width: 100%;
-		border: 1px solid grey;
+		border: 1px solid $color-grey-6;
 		border-radius: 50%;
 	}
 }
 
 /* On checkbox mouse-over, add a background color */
-.checkbox__container:hover input ~ .checkbox__checkmark {
-	background-color: #eee;
-}
-
-/* When the checkbox is checked, change background*/
-.checkbox__container input:checked ~ .checkbox__checkmark {
-	background-color: #eee;
+.checkbox:hover input ~ .checkbox__checkmark {
+	background-color: $color-grey-4;
 }
 
 /* Create the checkmark/indicator (hidden when not checked) */
@@ -484,17 +462,17 @@ ul {
 }
 
 /* Show the checkmark on hover */
-.checkbox__container input:hover ~ .checkbox__checkmark:after {
+.checkbox input:hover ~ .checkbox__checkmark:after {
 	display: block;
 }
 
 /* Style the checkmark/indicator */
-.checkbox__container .checkbox__checkmark:after {
+.checkbox .checkbox__checkmark:after {
 	left: 6px;
 	top: 4px;
 	width: 5px;
 	height: 7px;
-	border: solid grey;
+	border: solid $color-grey-6;
 	border-width: 0 1px 1px 0;
 	-webkit-transform: rotate(45deg);
 	-ms-transform: rotate(45deg);
