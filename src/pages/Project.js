@@ -21,7 +21,7 @@ export default function Project(props) {
 				{selectedProject && selectedProject.name}
 			</h1>
 			{filterTasksByProjectId(projectId).map((task) => (
-				<Task key={task.id} task={task} openTaskModal={props.openTaskModal}/>
+				<Task key={task.id} task={task} openTaskModal={props.openTaskModal} />
 			))}
 			<AddTask selectedProjectId={selectedProject ? selectedProject.id : ''} />
 		</div>

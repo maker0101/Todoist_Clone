@@ -34,7 +34,8 @@ export default function useCrudTasks() {
 
 	const updateTask = async (db, taskForm, userId) => {
 		try {
-			await updateDoc(doc(db, 'tasks', taskForm.id), {
+			const taskDoc = doc(db, 'tasks', taskForm.id);
+			await updateDoc(taskDoc, {
 				name: taskForm.name,
 				description: taskForm.description,
 				dueDate: taskForm.dueDate,
