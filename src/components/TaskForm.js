@@ -5,7 +5,6 @@ import useCrudTasks from '../hooks/useCrudTasks';
 import useProjects from '../hooks/useProjects';
 import useTaskForm from '../hooks/useTaskForm';
 import useTaskModal from '../hooks/useTaskModal';
-import { dateToFormInput } from '../utilities/transform-dates';
 
 export default function TaskForm({
 	selectedProjectId,
@@ -72,10 +71,11 @@ export default function TaskForm({
 						className="taskForm__select"
 						type="date"
 						placeholder="Schedule"
-						value={dateToFormInput(taskForm.dueDate)}
-						onChange={(e) =>
-							setTaskForm({ ...taskForm, dueDate: new Date(e.target.value) })
-						}
+						value={taskForm.dueDate}
+						onChange={(e) => {
+							console.log(e.target.value);
+							setTaskForm({ ...taskForm, dueDate: e.target.value });
+						}}
 					/>
 					<select
 						className="taskForm__select"

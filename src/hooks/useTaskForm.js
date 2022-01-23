@@ -28,7 +28,7 @@ export default function useTaskForm() {
 			id: task.id ? task.id : '',
 			name: task.name ? task.name : '',
 			description: task.description ? task.description : '',
-			dueDate: task.dueDate ? new Date(task.dueDate) : '',
+			dueDate: task.dueDate ? task.dueDate : '',
 			projectId: task.projectId ? task.projectId : '',
 		});
 		console.log(taskForm); // Why is always the t-1 selected task logged???

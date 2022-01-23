@@ -7,9 +7,7 @@ import useTaskModal from '../hooks/useTaskModal';
 
 export default function Task({ task }) {
 	const { deleteTask, toggleIsChecked } = useCrudTasks();
-	const { openTaskModal, setIsTaskModalOpen } = useTaskModal();
-	const isDueDateDefined = Boolean(task.dueDate);
-	const dueDateTimestampInMs = new Date(task.dueDate.seconds * 1000);
+	const { openTaskModal } = useTaskModal();
 
 	return (
 		<>
@@ -56,7 +54,7 @@ export default function Task({ task }) {
 							<BsCalendar4Event />
 						</span>
 						<span className="task__dueDate">
-							{isDueDateDefined && dateToDayMonth(dueDateTimestampInMs)}
+							{task.dueDate && dateToDayMonth(task.dueDate)}
 						</span>
 					</div>
 				</div>
