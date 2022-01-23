@@ -1,7 +1,4 @@
-import { useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
 import { db } from '../firebase';
-import useCrudTasks from '../hooks/useCrudTasks';
 import useProjects from '../hooks/useProjects';
 import useTaskForm from '../hooks/useTaskForm';
 import useTaskModal from '../hooks/useTaskModal';
@@ -12,22 +9,10 @@ export default function TaskForm({
 	setIsTaskFormHidden,
 	addedClassName,
 }) {
-	const { tasks } = useCrudTasks();
 	const { projects } = useProjects();
-	const {
-		taskForm,
-		setTaskForm,
-		clearTaskForm,
-		handleTaskFormSubmit,
-		autoSelectProjectId,
-	} = useTaskForm();
+	const { taskForm, setTaskForm, clearTaskForm, handleTaskFormSubmit } =
+		useTaskForm();
 	const { isTaskModalOpen, setIsTaskModalOpen } = useTaskModal();
-	const location = useLocation();
-
-	useEffect(
-		() => autoSelectProjectId(selectedProjectId),
-		[selectedProjectId, location, tasks]
-	);
 
 	const handleTaskFormCancel = (selectedProjectId) => {
 		isTaskModalOpen
@@ -41,8 +26,7 @@ export default function TaskForm({
 			className={`taskForm ${addedClassName}`}
 			onSubmit={(e) => {
 				handleTaskFormSubmit(e, db, taskForm, 'userid1', selectedProjectId);
-			}}
-		>
+			}}>
 			<div className="taskForm__inputs">
 				<input
 					required
@@ -73,7 +57,6 @@ export default function TaskForm({
 						placeholder="Schedule"
 						value={taskForm.dueDate}
 						onChange={(e) => {
-							console.log(e.target.value);
 							setTaskForm({ ...taskForm, dueDate: e.target.value });
 						}}
 					/>
@@ -82,8 +65,7 @@ export default function TaskForm({
 						value={taskForm.projectId}
 						onChange={(e) =>
 							setTaskForm({ ...taskForm, projectId: e.target.value })
-						}
-					>
+						}>
 						{projects.map((project) => (
 							<option key={project.id} value={project.id}>
 								{project.name}
@@ -97,15 +79,13 @@ export default function TaskForm({
 					className="button button__primary"
 					type="submit"
 					value=""
-					disabled={taskForm.name ? false : true}
-				>
+					disabled={taskForm.name ? false : true}>
 					{isTaskModalOpen ? 'Save' : 'Add Task'}
 				</button>
 				<button
 					className="button button__secondary"
 					type="button"
-					onClick={() => handleTaskFormCancel(selectedProjectId)}
-				>
+					onClick={() => handleTaskFormCancel(selectedProjectId)}>
 					Cancel
 				</button>
 			</div>

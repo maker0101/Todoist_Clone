@@ -7,8 +7,8 @@ export default function useTaskModal() {
 	const { populateTaskForm } = useTaskForm();
 
 	const openTaskModal = (task) => {
-		setIsTaskModalOpen(true);
 		populateTaskForm(task);
+		setIsTaskModalOpen(true);
 	};
 
 	const closeModalOnOverlayClick = (ref, handler) => {

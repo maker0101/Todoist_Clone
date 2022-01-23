@@ -6,6 +6,7 @@ import { SelectedProjectContext } from '../contexts/SelectedProjectContext';
 
 export default function useProjects() {
 	const [projects, setProjects] = useState([]);
+
 	const { setSelectedProject } = useContext(SelectedProjectContext);
 	const location = useLocation();
 	const match = matchPath(

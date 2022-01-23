@@ -4,10 +4,7 @@ import { IoSearchOutline } from 'react-icons/io5';
 import useTaskModal from '../hooks/useTaskModal';
 
 export default function Header({ isSidebarHidden, setIsSidebarHidden }) {
-	const { setIsTaskModalOpen } = useTaskModal();
-
-	const toggleIsSidebarHidden = () =>
-		setIsSidebarHidden(() => !isSidebarHidden);
+	const { openTaskModal } = useTaskModal();
 
 	return (
 		<header className="header">
@@ -25,10 +22,7 @@ export default function Header({ isSidebarHidden, setIsSidebarHidden }) {
 				</div>
 			</div>
 			<div className="header__right">
-				<VscAdd
-					className="header__item"
-					onClick={() => setIsTaskModalOpen(true)}
-				/>
+				<VscAdd className="header__item" onClick={() => openTaskModal()} />
 				<VscBell className="header__item" />
 				<VscAccount className="header__item" />
 			</div>
