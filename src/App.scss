@@ -462,10 +462,11 @@ a {
 
 // Checkbox
 .checkbox {
-	width: 18px;
-	height: 18px;
 	display: block;
 	position: relative;
+	width: 18px;
+	height: 18px;
+	margin-top: 2px;
 	cursor: pointer;
 	-webkit-user-select: none;
 	-moz-user-select: none;
