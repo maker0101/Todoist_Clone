@@ -1,12 +1,13 @@
 import { useState } from 'react';
-import { BrowserRouter as Router } from 'react-router-dom';
 import Header from './components/Header';
 import Main from './components/Main';
 import { TaskModalContext } from './contexts/TaskModalContext';
 import { TaskFormContext } from './contexts/TaskFormContext';
+import { SelectedProjectContext } from './contexts/SelectedProjectContext';
 
 function App() {
 	const [isSidebarHidden, setIsSidebarHidden] = useState(false);
+	const [selectedProject, setSelectedProject] = useState('');
 	const [isTaskModalOpen, setIsTaskModalOpen] = useState(false);
 	const [taskForm, setTaskForm] = useState({
 		id: '',
@@ -18,19 +19,19 @@ function App() {
 
 	return (
 		<div className="App">
-			<TaskModalContext.Provider
-				value={{ isTaskModalOpen, setIsTaskModalOpen }}
-			>
-				<TaskFormContext.Provider value={{ taskForm, setTaskForm }}>
-					<Router>
+			<SelectedProjectContext.Provider
+				value={{ selectedProject, setSelectedProject }}>
+				<TaskModalContext.Provider
+					value={{ isTaskModalOpen, setIsTaskModalOpen }}>
+					<TaskFormContext.Provider value={{ taskForm, setTaskForm }}>
 						<Header
 							isSidebarHidden={isSidebarHidden}
 							setIsSidebarHidden={setIsSidebarHidden}
 						/>
 						<Main isSidebarHidden={isSidebarHidden} />
-					</Router>
-				</TaskFormContext.Provider>
-			</TaskModalContext.Provider>
+					</TaskFormContext.Provider>
+				</TaskModalContext.Provider>
+			</SelectedProjectContext.Provider>
 		</div>
 	);
 }

@@ -1,15 +1,33 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
+import { useLocation, matchPath } from 'react-router-dom';
 import { onSnapshot, collection, query, where } from 'firebase/firestore';
 import { db } from '../firebase';
+import { SelectedProjectContext } from '../contexts/SelectedProjectContext';
 
 export default function useProjects() {
 	const [projects, setProjects] = useState([]);
-
-	const findSelectedProject = (projects, projectId) =>
-		projects.find((project) => project.id === projectId);
+	const { setSelectedProject } = useContext(SelectedProjectContext);
+	const location = useLocation();
+	const match = matchPath(
+		{
+			path: '/project/:id',
+			exact: true,
+			strict: true,
+		},
+		location.pathname
+	);
 
 	const filterProjectsNoInbox = () =>
 		projects.filter((project) => project.isInbox === false);
+
+	const getSelectedProject = () => {
+		const findProjectById = (projects, projectId) =>
+			projects.find((project) => project.id === projectId);
+
+		const selectProjectId = match ? match.params.id : 'GtbY3fGVBVrTJmJH4IGd';
+		const selectProject = findProjectById(projects, selectProjectId);
+		setSelectedProject(selectProject ? selectProject : '');
+	};
 
 	const getProjects = (db) => {
 		const projectsQuery = query(
@@ -26,6 +44,7 @@ export default function useProjects() {
 	};
 
 	useEffect(() => getProjects(db), []);
+	useEffect(() => getSelectedProject(), [location, projects]);
 
-	return { projects, findSelectedProject, filterProjectsNoInbox };
+	return { projects, filterProjectsNoInbox };
 }
