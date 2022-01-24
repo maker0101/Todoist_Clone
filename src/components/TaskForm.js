@@ -5,8 +5,7 @@ import useTaskModal from '../hooks/useTaskModal';
 
 export default function TaskForm({
 	selectedProjectId,
-	isTaskFormHidden,
-	setIsTaskFormHidden,
+	setIsTaskFormOpen,
 	addedClassName,
 }) {
 	const { projects } = useProjects();
@@ -17,7 +16,7 @@ export default function TaskForm({
 	const handleTaskFormCancel = (selectedProjectId) => {
 		isTaskModalOpen
 			? setIsTaskModalOpen(false)
-			: setIsTaskFormHidden(() => !isTaskFormHidden);
+			: setIsTaskFormOpen(false);
 		clearTaskForm(selectedProjectId);
 	};
 

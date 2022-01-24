@@ -19,9 +19,9 @@ export default function useTaskForm() {
 	};
 
 	const populateTaskForm = (task) => {
-		let taskFormData;
+		let initialTaskForm;
 		if (task) {
-			taskFormData = {
+			initialTaskForm = {
 				id: task.id ? task.id : '',
 				name: task.name ? task.name : '',
 				description: task.description ? task.description : '',
@@ -33,7 +33,7 @@ export default function useTaskForm() {
 					: 'GtbY3fGVBVrTJmJH4IGd',
 			};
 		} else {
-			taskFormData = {
+			initialTaskForm = {
 				id: '',
 				name: '',
 				description: '',
@@ -44,7 +44,12 @@ export default function useTaskForm() {
 			};
 		}
 
-		setTaskForm(taskFormData);
+		setTaskForm(initialTaskForm);
+	};
+
+	const handleTaskFormOpen = (setIsTaskFormOpen) => {
+		populateTaskForm();
+		setIsTaskFormOpen(true);
 	};
 
 	const handleTaskFormSubmit = (e, db, taskForm, userId, selectedProjectId) => {
@@ -63,7 +68,8 @@ export default function useTaskForm() {
 		taskForm,
 		setTaskForm,
 		clearTaskForm,
-		handleTaskFormSubmit,
 		populateTaskForm,
+		handleTaskFormOpen,
+		handleTaskFormSubmit,
 	};
 }

@@ -8,13 +8,13 @@ import useProjects from '../hooks/useProjects';
 import useCountTasks from '../hooks/useCountTasks';
 
 export default function Sidebar({ isSidebarHidden }) {
-	const [isAccordionOpen, setIsProjectsAccordionOpen] = useState(true);
+	const [isAccordionOpen, setIsAccordionOpen] = useState(true);
 	const { tasks } = useCrudTasks();
 	const { countTasksOfProject, countTasksOfNavItems } = useCountTasks();
 	const { filterProjectsNoInbox } = useProjects();
 
-	const toggleShowProjects = () =>
-		setIsProjectsAccordionOpen(() => !isAccordionOpen);
+	const toggleShowProjects = () => setIsAccordionOpen(() => !isAccordionOpen);
+
 	return (
 		<nav className={`sidebar ${isSidebarHidden ? 'sidebar__hidden' : ''}`}>
 			<div className="sidebar__section">
@@ -23,12 +23,10 @@ export default function Sidebar({ isSidebarHidden }) {
 						key={item.id}
 						to={item.to}
 						className="sidebar__item"
-						activeclassname="selected"
-					>
+						activeclassname="selected">
 						<div
 							className={`sidebar__icon ${item.iconClassName}`}
-							style={{ color: item.iconColor }}
-						>
+							style={{ color: item.iconColor }}>
 							{item.icon}
 						</div>
 						<div>{item.name}</div>
@@ -42,8 +40,7 @@ export default function Sidebar({ isSidebarHidden }) {
 			<div className="sidebar__section">
 				<div
 					className="sidebar__item sidebar__sectionTitle"
-					onClick={() => toggleShowProjects()}
-				>
+					onClick={() => toggleShowProjects()}>
 					<BsChevronDown
 						className={`sidebar__icon sidebar__iconChevron ${
 							!isAccordionOpen && 'sidebar__iconChevronNotShowing'
@@ -57,8 +54,7 @@ export default function Sidebar({ isSidebarHidden }) {
 							to={`/project/${project.id}`}
 							key={project.id}
 							className="sidebar__item"
-							activeclassname="selected"
-						>
+							activeclassname="selected">
 							<VscCircleFilled
 								className="sidebar__icon"
 								style={{ color: project.iconColor }}

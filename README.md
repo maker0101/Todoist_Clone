@@ -27,14 +27,29 @@ Of course I tried to google it and read some interesting material about it, like
 
 However, I'm unable to locate the specific piece of code that's causing the error and thus I'm unable to start thinking about solving it. Could you please help me out with this one? And teach me how I can find and fix it next time by myself?
 
-### 2. Moving state inside custom hooks and export/import state freely from there -> Why is this pattern not more often recommended?
+### 2. state/setState as function arguments
 
-Seems elegant, avoids problems of "Props drilling", avoids negative effects of useContext and lessens need for additional tools like Redux.
-Why is this pattern not recommended all over the internet? I couldn't find it in any of the materials I studied so far.
+If I understood your past comments correctly, you advice against passing state and setState as arguments to another function. I agree that it doesn't look elegant. But what to do in a situation like in "AddTask.js":
 
-### 3. Exporting via wrapper function
+`handleTaskFormOpen(isTaskFormOpen, setIsTaskFormOpen)`
 
-I saw the pattern of exporting values and functions from inside a wrapper function first time when using custom hooks. I somehow find this approach elegant and are wondering if it's considered good practice to import anything like this, e.g. utility functions, constants etc. Or should it be restricted to custom hooks and maybe has negative side effects I'm unaware of?
+Here I have the folliwing situation:
+
+- the state `isTaskFormOpen`is defined in `AddTask.js` (it's not in a context, thus hard to access from `useTaskForm.js`)
+- `handleTaskFormOpen` is defined in `useTaskForm.js` (and thus can not directly access `isTaskFormOpen` and `setIsTaskFormOpen`)
+- `handleTaskFormOpen` is doing more than just open the taskForm. Thus toggling the taskform directly in `AddTask.js` is not an option
+
+I know I could put `isTaskFormOpen` and `setIsTaskFormOpen` in a React context or use another state management library, but this has it's downsides as well.
+
+**How can I avoid passing the state/setState in a situation like this?**
+
+### 3. Pure functions or less code?
+
+In `useCrudTasks.js` I noticed that all my functions (e.g. createTasks, deleteTasks, ...) have `db`as argument. I am importing `db`in the file as well.
+
+From the perspective of pure functions it seems right to leave `db` in as function argument. But it's unnecessary code I could remove.
+
+What would you recommend in situations like these. Leave argument in and have pure functions, or remove argument and have less code?
 
 ## Known issues/bugs
 
