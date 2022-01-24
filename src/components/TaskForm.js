@@ -9,16 +9,9 @@ export default function TaskForm({
 	addedClassName,
 }) {
 	const { projects } = useProjects();
-	const { taskForm, setTaskForm, clearTaskForm, handleTaskFormSubmit } =
+	const { taskForm, setTaskForm, handleTaskFormSubmit, handleTaskFormCancel } =
 		useTaskForm();
 	const { isTaskModalOpen, setIsTaskModalOpen } = useTaskModal();
-
-	const handleTaskFormCancel = (selectedProjectId) => {
-		isTaskModalOpen
-			? setIsTaskModalOpen(false)
-			: setIsTaskFormOpen(false);
-		clearTaskForm(selectedProjectId);
-	};
 
 	return (
 		<form
@@ -84,7 +77,14 @@ export default function TaskForm({
 				<button
 					className="button button__secondary"
 					type="button"
-					onClick={() => handleTaskFormCancel(selectedProjectId)}>
+					onClick={() =>
+						handleTaskFormCancel(
+							isTaskModalOpen,
+							setIsTaskModalOpen,
+							setIsTaskFormOpen,
+							selectedProjectId
+						)
+					}>
 					Cancel
 				</button>
 			</div>

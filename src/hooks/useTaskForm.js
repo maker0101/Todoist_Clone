@@ -64,6 +64,16 @@ export default function useTaskForm() {
 		clearTaskForm(selectedProjectId);
 	};
 
+	const handleTaskFormCancel = (
+		isTaskModalOpen,
+		setIsTaskModalOpen,
+		setIsTaskFormOpen,
+		selectedProjectId
+	) => {
+		isTaskModalOpen ? setIsTaskModalOpen(false) : setIsTaskFormOpen(false);
+		clearTaskForm(selectedProjectId);
+	};
+
 	return {
 		taskForm,
 		setTaskForm,
@@ -71,5 +81,6 @@ export default function useTaskForm() {
 		populateTaskForm,
 		handleTaskFormOpen,
 		handleTaskFormSubmit,
+		handleTaskFormCancel,
 	};
 }
