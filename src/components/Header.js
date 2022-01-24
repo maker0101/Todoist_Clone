@@ -11,7 +11,7 @@ export default function Header({ isSidebarHidden, setIsSidebarHidden }) {
 			<div className="header__left">
 				<VscMenu
 					className="header__item"
-					onClick={() => toggleIsSidebarHidden()}
+					onClick={() => setIsSidebarHidden(() => !isSidebarHidden)}
 				/>
 				<Link to="/today">
 					<VscHome className="header__item" />
