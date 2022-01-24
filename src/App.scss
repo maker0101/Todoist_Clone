@@ -212,10 +212,6 @@ a {
 	.sidebar__section {
 		margin-top: 15px;
 
-		.sidebar__sectionTitle {
-			cursor: pointer;
-		}
-
 		.sidebar__item {
 			display: grid;
 			grid-template-columns: 1fr 6fr 1fr;
@@ -247,6 +243,12 @@ a {
 			}
 		}
 
+		.sidebar__sectionTitle {
+			height: 42px;
+			padding-bottom: 0;
+			cursor: pointer;
+		}
+
 		.sidebar__item {
 			&:not(.sidebar__sectionTitle) {
 				&.active,
@@ -256,6 +258,23 @@ a {
 				}
 			}
 		}
+
+		.sidebar__addProject {
+			display: none;
+			width: 25px;
+			height: 25px;
+			margin: auto;
+			padding: 0 5px;
+		}
+
+		.sidebar__addProject:hover {
+			border-radius: $border-radius-medium;
+			background-color: $color-grey-4;
+		}
+	}
+
+	.sidebar__section:hover .sidebar__addProject {
+		display: flex;
 	}
 }
 
@@ -376,15 +395,15 @@ a {
 	padding: 10px;
 	margin-bottom: 10px;
 
-	.taskform__input {
+	.taskForm__input {
 		border: none;
 	}
 
-	.taskform__input:focus {
+	.taskForm__input:focus {
 		outline: none;
 	}
 
-	.taskform__input::placeholder {
+	.taskForm__input::placeholder {
 		color: $color-grey-5;
 	}
 

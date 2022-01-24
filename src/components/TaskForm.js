@@ -23,7 +23,7 @@ export default function TaskForm({
 				<input
 					required
 					autoFocus
-					className="taskform__input taskForm__name"
+					className="taskForm__input taskForm__name"
 					type="text"
 					id="taskName"
 					name="name"
@@ -32,7 +32,7 @@ export default function TaskForm({
 					onChange={(e) => setTaskForm({ ...taskForm, name: e.target.value })}
 				/>
 				<textarea
-					className="taskform__input taskForm__description"
+					className="taskForm__input taskForm__description"
 					type="text"
 					id="taskDescription"
 					name="description"

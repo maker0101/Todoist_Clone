@@ -1,19 +1,20 @@
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { BsChevronDown } from 'react-icons/bs';
-import { VscCircleFilled } from 'react-icons/vsc';
+import { VscCircleFilled, VscAdd } from 'react-icons/vsc';
 import { SIDEBAR_NAV_DATA } from '../constants/sidebar-nav-data';
 import useCrudTasks from '../hooks/useCrudTasks';
 import useProjects from '../hooks/useProjects';
 import useCountTasks from '../hooks/useCountTasks';
 
-export default function Sidebar({ isSidebarHidden }) {
+export default function Sidebar({ isSidebarHidden, setIsProjectModalOpen }) {
 	const [isAccordionOpen, setIsAccordionOpen] = useState(true);
 	const { tasks } = useCrudTasks();
 	const { countTasksOfProject, countTasksOfNavItems } = useCountTasks();
 	const { filterProjectsNoInbox } = useProjects();
 
-	const toggleShowProjects = () => setIsAccordionOpen(() => !isAccordionOpen);
+	const toggleAccordion = () => setIsAccordionOpen(() => !isAccordionOpen);
+	const openProjectModal = () => setIsProjectModalOpen(true);
 
 	return (
 		<nav className={`sidebar ${isSidebarHidden ? 'sidebar__hidden' : ''}`}>
@@ -38,15 +39,18 @@ export default function Sidebar({ isSidebarHidden }) {
 			</div>
 
 			<div className="sidebar__section">
-				<div
-					className="sidebar__item sidebar__sectionTitle"
-					onClick={() => toggleShowProjects()}>
+				<div className="sidebar__item sidebar__sectionTitle">
 					<BsChevronDown
 						className={`sidebar__icon sidebar__iconChevron ${
 							!isAccordionOpen && 'sidebar__iconChevronNotShowing'
 						}`}
+						onClick={() => toggleAccordion()}
 					/>
-					<h2>Projects</h2>
+					<h2 onClick={() => toggleAccordion()}>Projects</h2>
+					<VscAdd
+						className="sidebar__addProject"
+						onClick={() => openProjectModal()}
+					/>
 				</div>
 				{isAccordionOpen &&
 					filterProjectsNoInbox().map((project) => (

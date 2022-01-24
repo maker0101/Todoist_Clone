@@ -1,15 +1,19 @@
 import { useRef } from 'react';
 import TaskForm from './TaskForm';
+import useModal from '../hooks/useModal';
 import useTaskModal from '../hooks/useTaskModal';
 
 export default function TaskModal() {
-	const { closeModalOnOverlayClick, setIsTaskModalOpen } = useTaskModal();
+	const { setIsTaskModalOpen } = useTaskModal();
+	const { closeModalOnOverlayClick } = useModal();
+	const taskModalOverlayRef = useRef(null);
 
-	const overlayReference = useRef(null);
-	closeModalOnOverlayClick(overlayReference, () => setIsTaskModalOpen(false));
+	closeModalOnOverlayClick(taskModalOverlayRef, () =>
+		setIsTaskModalOpen(false)
+	);
 
 	return (
-		<div ref={overlayReference} className="modal__bgOverlay">
+		<div ref={taskModalOverlayRef} className="modal__bgOverlay">
 			<div className="modal__formContainer">
 				<TaskForm addedClassName="taskForm--inModal" />
 			</div>

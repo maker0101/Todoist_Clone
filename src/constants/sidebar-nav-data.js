@@ -1,7 +1,7 @@
 import { VscInbox, VscCalendar } from 'react-icons/vsc';
 import { IoTodayOutline } from 'react-icons/io5';
 
-const SIDEBAR_NAV_DATA = [
+export const SIDEBAR_NAV_DATA = [
 	{
 		id: 'GtbY3fGVBVrTJmJH4IGd',
 		name: 'Inbox',
@@ -27,5 +27,3 @@ const SIDEBAR_NAV_DATA = [
 		iconColor: '#692fc2',
 	},
 ];
-
-export { SIDEBAR_NAV_DATA };

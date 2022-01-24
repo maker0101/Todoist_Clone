@@ -51,6 +51,21 @@ From the perspective of pure functions it seems right to leave `db` in as functi
 
 What would you recommend in situations like these. Leave argument in and have pure functions, or remove argument and have less code?
 
+### 4. Which State Management Library should I learn
+
+I'm slowly feeling the pain and limitations of React regarding state management.
+
+Which state management library should I learn (first)? There seems to be a huge variety.
+
+From what I've read so far:
+
+- Redux: most popular, but a bit dated and clunky
+- Zustand: supposed to be great
+- Jotai: seems great too
+- Immer.js: Don't really know if it fits
+
+What I'm looking for at the moment is a way to define my most important states in a central space somewhere and then being able to get and set these states from anywhere in my application easily.
+
 ## Known issues/bugs
 
 - Remove setters from inside getTasks and getProjects and move into useEffect hooks
