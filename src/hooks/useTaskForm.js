@@ -2,6 +2,7 @@ import { useContext } from 'react';
 import useCrudTasks from './useCrudTasks';
 import { TaskFormContext } from '../contexts/TaskFormContext';
 import { SelectedProjectContext } from '../contexts/SelectedProjectContext';
+import { dateToYearMonthDay } from '../utilities/transform-dates';
 
 export default function useTaskForm() {
 	const { taskForm, setTaskForm } = useContext(TaskFormContext);
@@ -18,14 +19,16 @@ export default function useTaskForm() {
 		});
 	};
 
-	const populateTaskForm = (task) => {
+	const populateTaskForm = (task = '', dueDate) => {
+		dueDate = dueDate ? dateToYearMonthDay(dueDate) : '';
+
 		let initialTaskForm;
 		if (task) {
 			initialTaskForm = {
 				id: task.id ? task.id : '',
 				name: task.name ? task.name : '',
 				description: task.description ? task.description : '',
-				dueDate: task.dueDate ? task.dueDate : '',
+				dueDate: task.dueDate ? task.dueDate : dueDate,
 				projectId: task.projectId
 					? task.projectId
 					: selectedProject
@@ -47,8 +50,9 @@ export default function useTaskForm() {
 		setTaskForm(initialTaskForm);
 	};
 
-	const handleTaskFormOpen = (setIsTaskFormOpen) => {
-		populateTaskForm();
+	const handleTaskFormOpen = (setIsTaskFormOpen, dueDate = '') => {
+		const task = {};
+		populateTaskForm(task, dueDate);
 		setIsTaskFormOpen(true);
 	};
 

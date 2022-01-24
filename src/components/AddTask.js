@@ -3,7 +3,7 @@ import { VscAdd } from 'react-icons/vsc';
 import TaskForm from './TaskForm';
 import useTaskForm from '../hooks/useTaskForm';
 
-export default function AddTask({ selectedProjectId }) {
+export default function AddTask({ selectedProjectId, dueDate }) {
 	const [isTaskFormOpen, setIsTaskFormOpen] = useState(false);
 	const { handleTaskFormOpen } = useTaskForm();
 
@@ -19,7 +19,7 @@ export default function AddTask({ selectedProjectId }) {
 				) : (
 					<div
 						className="addTask__line"
-						onClick={() => handleTaskFormOpen(setIsTaskFormOpen)}>
+						onClick={() => handleTaskFormOpen(setIsTaskFormOpen, dueDate)}>
 						<VscAdd className="addTask__icon" />
 						<div className="addTask__text">Add Task</div>
 					</div>

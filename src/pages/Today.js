@@ -27,7 +27,7 @@ export default function Today() {
 				{filterTasksByDueDate(today).map((task) => (
 					<Task key={task.id} task={task} />
 				))}
-				<AddTask />
+				<AddTask dueDate={today} />
 			</div>
 		</div>
 	);

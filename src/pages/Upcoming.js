@@ -34,7 +34,7 @@ export default function Upcoming() {
 					{filterTasksByDueDate(new Date(day.date)).map((task) => (
 						<Task key={task.id} task={task} />
 					))}
-					<AddTask />
+					<AddTask dueDate={day.date} />
 				</div>
 			))}
 		</div>
