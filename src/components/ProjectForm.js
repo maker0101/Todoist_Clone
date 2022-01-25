@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { db } from '../firebase';
 import useProjects from '../hooks/useProjects';
 import useProjectForm from '../hooks/useProjectForm';
 import useProjectModal from '../hooks/useProjectModal';
@@ -9,14 +10,25 @@ export default function ProjectForm({ closeProjectModal }) {
 	const [projectForm, setProjectForm] = useState({
 		name: '',
 		colorId: 7,
-		inInbox: false,
+		isInbox: false,
 		userId: 'userid1',
 	});
+
+	const { handleProjectFormSubmit } = useProjectForm();
 
 	return (
 		<form
 			className="projectForm"
-			onSubmit={() => console.log('Form submitted')}>
+			onSubmit={(e) =>
+				handleProjectFormSubmit(
+					e,
+					db,
+					projectForm,
+					setProjectForm,
+					'userid1',
+					closeProjectModal
+				)
+			}>
 			<div className="projectForm__heading">
 				<h1 className="projectForm__title">Add Project</h1>
 			</div>
@@ -64,8 +76,7 @@ export default function ProjectForm({ closeProjectModal }) {
 					className="button button__primary"
 					type="submit"
 					value=""
-					disabled={projectForm.name ? false : true}
-					onClick={() => console.log('Add')}>
+					disabled={projectForm.name ? false : true}>
 					Add
 				</button>
 				<button

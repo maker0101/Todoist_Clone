@@ -1,6 +1,13 @@
 import { useState, useEffect, useContext } from 'react';
 import { useLocation, matchPath } from 'react-router-dom';
-import { onSnapshot, collection, query, where } from 'firebase/firestore';
+import {
+	onSnapshot,
+	collection,
+	query,
+	where,
+	addDoc,
+	serverTimestamp,
+} from 'firebase/firestore';
 import { db } from '../firebase';
 import { SelectedProjectContext } from '../contexts/SelectedProjectContext';
 
@@ -17,6 +24,26 @@ export default function useProjects() {
 		},
 		location.pathname
 	);
+
+	const updateProject = (db, projectForm, userId) => {
+		console.log('Udate project');
+		console.log(projectForm);
+	};
+
+	const createProject = async (db, projectForm, userId) => {
+		console.log(projectForm);
+		try {
+			await addDoc(collection(db, 'projects'), {
+				name: projectForm.name,
+				colorId: projectForm.colorId,
+				isInbox: projectForm.isInbox,
+				userId: userId,
+				createdAt: serverTimestamp(),
+			});
+		} catch (err) {
+			console.error(err);
+		}
+	};
 
 	const filterProjectsNoInbox = () =>
 		projects.filter((project) => project.isInbox === false);
@@ -47,5 +74,5 @@ export default function useProjects() {
 	useEffect(() => getProjects(db), []);
 	useEffect(() => getSelectedProject(), [location, projects]);
 
-	return { projects, filterProjectsNoInbox };
+	return { projects, updateProject, createProject, filterProjectsNoInbox };
 }
