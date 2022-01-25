@@ -68,7 +68,6 @@ What I'm looking for at the moment is a way to define my most important states i
 
 ## Known issues/bugs
 
-- Today: Today tasks are showing in Overdue
 - Overdue tasks need to be sorted by due date and years need to be considered
 
 ## Planned Features

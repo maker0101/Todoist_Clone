@@ -1,6 +1,7 @@
 import { useEffect } from 'react';
 
 export default function useModal() {
+	// QUESTION: Is it ok to have useEffect inside a function here?
 	const closeModalOnOverlayClick = (ref, handler) => {
 		useEffect(() => {
 			const listener = (event) => {

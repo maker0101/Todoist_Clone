@@ -1,19 +1,20 @@
 import { useContext } from 'react';
-import useFilterTasks from '../hooks/useFilterTasks';
+import useCrudTasks from '../hooks/useCrudTasks';
 import Task from '../components/Task';
 import AddTask from '../components/AddTask';
 import { SelectedProjectContext } from '../contexts/SelectedProjectContext';
+import { filterTasksByProjectId } from '../utilities/filter-tasks';
 
 export default function Project(props) {
 	const { selectedProject } = useContext(SelectedProjectContext);
-	const { filterTasksByProjectId } = useFilterTasks();
+	const { tasks } = useCrudTasks();
 
 	return (
 		<div className="content">
 			<h1 className="content__title">
 				{selectedProject && selectedProject.name}
 			</h1>
-			{filterTasksByProjectId(selectedProject.id).map((task) => (
+			{filterTasksByProjectId(tasks, selectedProject.id).map((task) => (
 				<Task
 					key={task.id}
 					task={task}

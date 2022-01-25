@@ -1,10 +1,14 @@
 import Task from '../components/Task';
 import AddTask from '../components/AddTask';
-import useFilterTasks from '../hooks/useFilterTasks';
+import useCrudTasks from '../hooks/useCrudTasks';
 import { dateToDayMonth } from '../utilities/transform-dates';
+import {
+	filterTasksByDueDate,
+	filterTasksOverdue,
+} from '../utilities/filter-tasks';
 
 export default function Today() {
-	const { filterTasksOverdue, filterTasksByDueDate } = useFilterTasks();
+	const { tasks } = useCrudTasks();
 	const today = new Date();
 
 	return (
@@ -14,7 +18,7 @@ export default function Today() {
 			<div className="content__section">
 				<h2 className="content__subTitle">Overdue</h2>
 				<hr />
-				{filterTasksOverdue().map((task) => (
+				{filterTasksOverdue(tasks).map((task) => (
 					<Task key={task.id} task={task} />
 				))}
 			</div>
@@ -24,7 +28,7 @@ export default function Today() {
 					today
 				)} · Today`}</h2>
 				<hr />
-				{filterTasksByDueDate(today).map((task) => (
+				{filterTasksByDueDate(tasks, today).map((task) => (
 					<Task key={task.id} task={task} />
 				))}
 				<AddTask dueDate={today} />

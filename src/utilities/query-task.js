@@ -1,4 +1,8 @@
-import { dateToDayMonth } from './transform-dates';
+import { dateToDayMonth, harmonizeDateTime } from './transform-dates';
+
+export const isTaskDueDateDefined = (task) => {
+	return Boolean(task.dueDate);
+};
 
 export const isTaskDue = (task, dateObject) => {
 	const thisDay = dateToDayMonth(dateObject.toDateString());
@@ -7,7 +11,7 @@ export const isTaskDue = (task, dateObject) => {
 };
 
 export const isTaskOverdue = (task) => {
-	const today = new Date();
-	const taskDueDate = new Date(task.dueDate);
+	const today = harmonizeDateTime(new Date());
+	const taskDueDate = harmonizeDateTime(new Date(task.dueDate));
 	return taskDueDate && taskDueDate < today;
 };
