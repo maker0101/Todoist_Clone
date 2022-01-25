@@ -4,7 +4,6 @@ import useProjectModal from '../hooks/useProjectModal';
 import { PROJECT_COLORS } from '../constants/project-colors';
 
 export default function ProjectForm({ closeProjectModal }) {
-	console.log(PROJECT_COLORS);
 	return (
 		<form
 			className="projectForm"

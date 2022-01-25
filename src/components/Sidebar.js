@@ -6,7 +6,7 @@ import { SIDEBAR_NAV_DATA } from '../constants/sidebar-nav-data';
 import useCrudTasks from '../hooks/useCrudTasks';
 import useProjects from '../hooks/useProjects';
 import useCountTasks from '../hooks/useCountTasks';
-import { PROJECT_COLORS } from '../constants/project-colors';
+import { getColorHEX } from '../utilities/get-color';
 
 export default function Sidebar({ isSidebarHidden, setIsProjectModalOpen }) {
 	const [isAccordionOpen, setIsAccordionOpen] = useState(true);
@@ -16,11 +16,6 @@ export default function Sidebar({ isSidebarHidden, setIsProjectModalOpen }) {
 
 	const toggleAccordion = () => setIsAccordionOpen(() => !isAccordionOpen);
 	const openProjectModal = () => setIsProjectModalOpen(true);
-
-	const getColorHEX = (colorId) => {
-		const colorObj = PROJECT_COLORS.filter((color) => color.id === colorId);
-		return colorObj[0].colorHEX;
-	};
 
 	return (
 		<nav className={`sidebar ${isSidebarHidden ? 'sidebar__hidden' : ''}`}>
