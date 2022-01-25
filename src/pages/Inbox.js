@@ -5,11 +5,12 @@ import { filterTasksByProjectId } from '../utilities/filter-tasks';
 
 export default function Inbox() {
 	const { tasks } = useCrudTasks();
+	const inboxTasks = filterTasksByProjectId(tasks, 'GtbY3fGVBVrTJmJH4IGd');
 
 	return (
 		<div className="content">
 			<h1 className="content__title">Inbox</h1>
-			{filterTasksByProjectId(tasks, 'GtbY3fGVBVrTJmJH4IGd').map((task) => (
+			{inboxTasks.map((task) => (
 				<Task key={task.id} task={task} />
 			))}
 			<AddTask />

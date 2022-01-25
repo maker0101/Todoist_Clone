@@ -6,10 +6,13 @@ import {
 	filterTasksByDueDate,
 	filterTasksOverdue,
 } from '../utilities/filter-tasks';
+import { sortTasksByDueDateAsc } from '../utilities/sort-tasks';
 
 export default function Today() {
 	const { tasks } = useCrudTasks();
 	const today = new Date();
+	const overdueTasks = sortTasksByDueDateAsc(filterTasksOverdue(tasks));
+	const todayTasks = filterTasksByDueDate(tasks, today);
 
 	return (
 		<div className="content">
@@ -18,7 +21,7 @@ export default function Today() {
 			<div className="content__section">
 				<h2 className="content__subTitle">Overdue</h2>
 				<hr />
-				{filterTasksOverdue(tasks).map((task) => (
+				{overdueTasks.map((task) => (
 					<Task key={task.id} task={task} />
 				))}
 			</div>
@@ -28,7 +31,7 @@ export default function Today() {
 					today
 				)} · Today`}</h2>
 				<hr />
-				{filterTasksByDueDate(tasks, today).map((task) => (
+				{todayTasks.map((task) => (
 					<Task key={task.id} task={task} />
 				))}
 				<AddTask dueDate={today} />

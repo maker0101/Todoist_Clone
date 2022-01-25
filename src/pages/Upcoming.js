@@ -4,11 +4,16 @@ import AddTask from '../components/AddTask';
 import useCrudTasks from '../hooks/useCrudTasks';
 import { dateToDayMonth } from '../utilities/transform-dates';
 import { calculateUpcomingDays } from '../utilities/calculate-upcoming-days.js';
-import { filterTasksByDueDate, filterTasksOverdue } from '../utilities/filter-tasks';
+import {
+	filterTasksByDueDate,
+	filterTasksOverdue,
+} from '../utilities/filter-tasks';
+import { sortTasksByDueDateAsc } from '../utilities/sort-tasks';
 
 export default function Upcoming() {
 	const { tasks } = useCrudTasks();
 	const [upcomingDays, setUpcomingDays] = useState([]);
+	const overdueTasks = sortTasksByDueDateAsc(filterTasksOverdue(tasks));
 
 	useEffect(() => setUpcomingDays(calculateUpcomingDays(7)), []);
 
@@ -23,7 +28,7 @@ export default function Upcoming() {
 			<div className="content__section">
 				<h2 className="content__subTitle">Overdue</h2>
 				<hr />
-				{filterTasksOverdue(tasks).map((task) => (
+				{overdueTasks.map((task) => (
 					<Task key={task.id} task={task} />
 				))}
 			</div>

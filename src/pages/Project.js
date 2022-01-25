@@ -8,13 +8,14 @@ import { filterTasksByProjectId } from '../utilities/filter-tasks';
 export default function Project(props) {
 	const { selectedProject } = useContext(SelectedProjectContext);
 	const { tasks } = useCrudTasks();
+	const projectTasks = filterTasksByProjectId(tasks, selectedProject.id);
 
 	return (
 		<div className="content">
 			<h1 className="content__title">
 				{selectedProject && selectedProject.name}
 			</h1>
-			{filterTasksByProjectId(tasks, selectedProject.id).map((task) => (
+			{projectTasks.map((task) => (
 				<Task
 					key={task.id}
 					task={task}
