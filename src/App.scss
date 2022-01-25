@@ -43,6 +43,10 @@ body {
 	overscroll-behavior: none;
 }
 
+h1 {
+	font-size: $font-size-large;
+}
+
 h2 {
 	margin: 0;
 	font-size: $font-size-primary;
@@ -65,6 +69,15 @@ hr {
 a {
 	text-decoration: none;
 	color: $color-black-1;
+}
+
+// Removes dropdown arrows in major browsers
+select {
+	-moz-appearance: none;
+	-webkit-appearance: none;
+}
+select::-ms-expand {
+	display: none;
 }
 
 //Mixins
@@ -291,10 +304,6 @@ a {
 	padding: 70px 50px;
 	overflow: scroll;
 
-	.content__title {
-		font-size: $font-size-large;
-	}
-
 	.content__section {
 		margin-top: 45px;
 
@@ -422,9 +431,10 @@ a {
 		.taskForm__select {
 			display: inline-block;
 			width: 130px;
-			height: 28px;
+			height: 30px;
 			margin-right: 8px;
-			padding: 5px;
+			padding-top: 3px;
+			padding-left: 10px;
 			cursor: pointer;
 			border: 1px solid $color-grey-3;
 			border-radius: $border-radius-small;
@@ -456,6 +466,58 @@ a {
 
 .taskForm--inModal > .taskForm__buttons {
 	padding: 16px;
+}
+
+// Project Form
+.projectForm {
+	.projectForm__heading {
+		display: flex;
+		align-items: center;
+		height: 50px;
+		width: 100%;
+		padding: 0 24px;
+		background-color: $color-grey-2;
+		border-bottom: 1px solid $color-grey-4;
+		border-radius: $border-radius-large $border-radius-large 0 0;
+
+		.projectForm__title {
+			padding-top: 5px;
+			font-size: 16px;
+		}
+	}
+
+	.projectForm__inputs {
+		display: flex;
+		flex-direction: column;
+		padding: 24px 24px 0 24px;
+
+		label {
+			margin-bottom: 12px;
+		}
+
+		.projectForm__input {
+			margin-bottom: 24px;
+			height: 30px;
+			width: 100%;
+			padding-top: 3px;
+			padding-left: 10px;
+			border-radius: $border-radius-medium;
+			border: 1px solid $color-grey-3;
+		}
+
+		.projectForm__input:focus {
+			outline: none;
+			border: 1px solid $color-grey-5;
+		}
+	}
+
+	.projectForm__buttons {
+		display: flex;
+		justify-content: flex-end;
+		height: 56px;
+		padding: 12px 24px;
+		border-top: 1px solid $color-grey-4;
+	}
 }
 
 // Modal
