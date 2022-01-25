@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import Task from '../components/Task';
 import AddTask from '../components/AddTask';
 import useCrudTasks from '../hooks/useCrudTasks';
-import { dateToDayMonth } from '../utilities/transform-dates';
 import { calculateUpcomingDays } from '../utilities/calculate-upcoming-days.js';
 import {
 	filterTasksByDueDate,
@@ -14,13 +13,10 @@ export default function Upcoming() {
 	const { tasks } = useCrudTasks();
 	const [upcomingDays, setUpcomingDays] = useState([]);
 	const overdueTasks = sortTasksByDueDateAsc(filterTasksOverdue(tasks));
+	const daySubheading = ({ dateShort, todayTomorrow, weekday }) =>
+		`${dateShort} · ${todayTomorrow ? todayTomorrow : weekday}`;
 
 	useEffect(() => setUpcomingDays(calculateUpcomingDays(7)), []);
-
-	const daySubheading = (day) =>
-		`${dateToDayMonth(new Date(day.date))} · ${
-			day.todayTomorrow ? day.todayTomorrow : day.weekday
-		}`;
 
 	return (
 		<div className="content">
