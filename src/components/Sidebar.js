@@ -6,7 +6,7 @@ import { SIDEBAR_NAV_DATA } from '../constants/sidebar-nav-data';
 import useCrudTasks from '../hooks/useCrudTasks';
 import useProjects from '../hooks/useProjects';
 import useCountTasks from '../hooks/useCountTasks';
-import { getColorHEX } from '../utilities/get-color';
+import { getColorHEXById } from '../utilities/get-color';
 
 export default function Sidebar({ isSidebarHidden, setIsProjectModalOpen }) {
 	const [isAccordionOpen, setIsAccordionOpen] = useState(true);
@@ -62,7 +62,7 @@ export default function Sidebar({ isSidebarHidden, setIsProjectModalOpen }) {
 							activeclassname="selected">
 							<VscCircleFilled
 								className="sidebar__icon"
-								style={{ color: getColorHEX(project.colorId) }}
+								style={{ color: getColorHEXById(project.colorId) }}
 							/>
 							<div>{project.name}</div>
 							<div className="sidebar__info">

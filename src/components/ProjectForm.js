@@ -1,9 +1,18 @@
+import { useState } from 'react';
 import useProjects from '../hooks/useProjects';
 import useProjectForm from '../hooks/useProjectForm';
 import useProjectModal from '../hooks/useProjectModal';
 import { PROJECT_COLORS } from '../constants/project-colors';
+import { getColorIdByName, getColorNameById } from '../utilities/get-color';
 
 export default function ProjectForm({ closeProjectModal }) {
+	const [projectForm, setProjectForm] = useState({
+		name: '',
+		colorId: 7,
+		inInbox: false,
+		userId: 'userid1',
+	});
+
 	return (
 		<form
 			className="projectForm"
@@ -22,8 +31,10 @@ export default function ProjectForm({ closeProjectModal }) {
 					type="text"
 					id="projectName"
 					name="name"
-					//value={}
-					onChange={(e) => console.log(e)}
+					value={projectForm.name}
+					onChange={(e) =>
+						setProjectForm({ ...projectForm, name: e.target.value })
+					}
 				/>
 				<label htmlFor="projectColors">
 					<h2>Color</h2>
@@ -33,8 +44,13 @@ export default function ProjectForm({ closeProjectModal }) {
 						required
 						className="projectForm__input projectForm__select"
 						id="projectColors"
-						//value={}
-						onChange={(e) => console.log(e)}>
+						value={getColorNameById(projectForm.colorId)}
+						onChange={(e) =>
+							setProjectForm({
+								...projectForm,
+								colorId: getColorIdByName(e.target.value),
+							})
+						}>
 						{PROJECT_COLORS.map((color) => (
 							<option key={color.id} value={color.name}>
 								{color.name}
@@ -48,7 +64,7 @@ export default function ProjectForm({ closeProjectModal }) {
 					className="button button__primary"
 					type="submit"
 					value=""
-					disabled={false ? false : true}
+					disabled={projectForm.name ? false : true}
 					onClick={() => console.log('Add')}>
 					Add
 				</button>
