@@ -1,3 +1,4 @@
+import { useContext } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import Sidebar from './Sidebar';
 import Inbox from '../pages/Inbox';
@@ -6,12 +7,12 @@ import Upcoming from '../pages/Upcoming';
 import Project from '../pages/Project';
 import ProjectModal from './ProjectModal';
 import TaskModal from './TaskModal';
-import useTaskModal from '../hooks/useTaskModal';
-import useProjectModal from '../hooks/useProjectModal';
+import { ProjectModalContext } from '../contexts/ProjectModalContext';
+import { TaskModalContext } from '../contexts/TaskModalContext';
 
 export default function Main({ isSidebarHidden }) {
-	const { isProjectModalOpen } = useProjectModal();
-	const { isTaskModalOpen } = useTaskModal();
+	const { isProjectModalOpen } = useContext(ProjectModalContext);
+	const { isTaskModalOpen } = useContext(TaskModalContext);
 
 	return (
 		<div className="main">

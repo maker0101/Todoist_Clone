@@ -14,7 +14,6 @@ import {
 import { db } from '../firebase';
 import { SelectedProjectContext } from '../contexts/SelectedProjectContext';
 import { ProjectModalContext } from '../contexts/ProjectModalContext';
-import useProjectForm from './useProjectForm';
 
 // Question: Why do I run into a "RangeError: Maximum call stack size exceeded" when uncommenting the below line?
 export default function useProjects() {

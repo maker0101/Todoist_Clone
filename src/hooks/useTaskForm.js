@@ -5,7 +5,7 @@ import { SelectedProjectContext } from '../contexts/SelectedProjectContext';
 import { dateToYearMonthDay } from '../utilities/transform-dates';
 
 export default function useTaskForm() {
-	const { taskForm, setTaskForm } = useContext(TaskFormContext);
+	const { setTaskForm } = useContext(TaskFormContext);
 	const { selectedProject } = useContext(SelectedProjectContext);
 	const { tasks, createTask, updateTask } = useCrudTasks();
 
@@ -79,8 +79,6 @@ export default function useTaskForm() {
 	};
 
 	return {
-		taskForm,
-		setTaskForm,
 		clearTaskForm,
 		populateTaskForm,
 		handleTaskFormOpen,

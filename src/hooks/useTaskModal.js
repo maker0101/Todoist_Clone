@@ -3,7 +3,7 @@ import { TaskModalContext } from '../contexts/TaskModalContext';
 import useTaskForm from './useTaskForm';
 
 export default function useTaskModal() {
-	const { isTaskModalOpen, setIsTaskModalOpen } = useContext(TaskModalContext);
+	const { setIsTaskModalOpen } = useContext(TaskModalContext);
 	const { populateTaskForm } = useTaskForm();
 
 	const handleTaskModalOpen = (task) => {
@@ -12,8 +12,6 @@ export default function useTaskModal() {
 	};
 
 	return {
-		isTaskModalOpen,
-		setIsTaskModalOpen,
 		handleTaskModalOpen,
 	};
 }

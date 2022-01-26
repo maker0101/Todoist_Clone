@@ -1,10 +1,10 @@
-import { useRef } from 'react';
+import { useContext, useRef } from 'react';
 import ProjectForm from './ProjectForm';
 import useModal from '../hooks/useModal';
-import useProjectModal from '../hooks/useProjectModal';
+import { ProjectModalContext } from '../contexts/ProjectModalContext';
 
 export default function ProjectModal() {
-	const { setIsProjectModalOpen } = useProjectModal();
+	const { setIsProjectModalOpen } = useContext(ProjectModalContext);
 	const projectModalOverlayRef = useRef(null);
 	const { closeModalOnOverlayClick } = useModal();
 

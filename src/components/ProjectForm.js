@@ -3,14 +3,14 @@ import { db } from '../firebase';
 import { VscTrash } from 'react-icons/vsc';
 import useProjects from '../hooks/useProjects';
 import useProjectForm from '../hooks/useProjectForm';
-import useProjectModal from '../hooks/useProjectModal';
 import { PROJECT_COLORS } from '../constants/project-colors';
 import { getColorIdByName, getColorNameById } from '../utilities/get-color';
 import { ProjectFormContext } from '../contexts/ProjectFormContext';
+import { ProjectModalContext } from '../contexts/ProjectModalContext';
 
 export default function ProjectForm() {
 	const { projectForm, setProjectForm } = useContext(ProjectFormContext);
-	const { setIsProjectModalOpen } = useProjectModal();
+	const { setIsProjectModalOpen } = useContext(ProjectModalContext);
 	const { handleProjectFormSubmit } = useProjectForm();
 	const { handleDeleteProject } = useProjects();
 

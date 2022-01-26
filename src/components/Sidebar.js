@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import { BsChevronDown } from 'react-icons/bs';
 import { VscCircleFilled, VscAdd, VscEdit } from 'react-icons/vsc';
@@ -8,16 +8,17 @@ import useProjects from '../hooks/useProjects';
 import useCountTasks from '../hooks/useCountTasks';
 import useProjectModal from '../hooks/useProjectModal';
 import { getColorHEXById } from '../utilities/get-color';
+import { ProjectModalContext } from '../contexts/ProjectModalContext';
 
 export default function Sidebar({ isSidebarHidden }) {
 	const [isAccordionOpen, setIsAccordionOpen] = useState(true);
 	const { tasks } = useCrudTasks();
+	const { setIsProjectModalOpen } = useContext(ProjectModalContext);
 	const { countTasksOfProject, countTasksOfNavItems } = useCountTasks();
 	const { filterProjectsNoInbox } = useProjects();
-	const { setIsProjectModalOpen, handleProjectModalOpen } = useProjectModal();
+	const { handleProjectModalOpen } = useProjectModal();
 
 	const toggleAccordion = () => setIsAccordionOpen(() => !isAccordionOpen);
-
 
 	return (
 		<nav className={`sidebar ${isSidebarHidden ? 'sidebar__hidden' : ''}`}>

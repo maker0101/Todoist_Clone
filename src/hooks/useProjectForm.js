@@ -3,7 +3,7 @@ import useProjects from './useProjects';
 import { ProjectFormContext } from '../contexts/ProjectFormContext';
 
 export default function useProjectForm() {
-	const { projectForm, setProjectForm } = useContext(ProjectFormContext);
+	const { setProjectForm } = useContext(ProjectFormContext);
 	const { projects, updateProject, createProject } = useProjects();
 
 	const clearProjectForm = () => {
@@ -60,8 +60,6 @@ export default function useProjectForm() {
 	};
 
 	return {
-		projectForm,
-		setProjectForm,
 		clearProjectForm,
 		handleProjectFormSubmit,
 		populateProjectForm,

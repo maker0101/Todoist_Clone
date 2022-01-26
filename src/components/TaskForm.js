@@ -1,7 +1,9 @@
+import { useContext } from 'react';
 import { db } from '../firebase';
 import useProjects from '../hooks/useProjects';
 import useTaskForm from '../hooks/useTaskForm';
-import useTaskModal from '../hooks/useTaskModal';
+import { TaskFormContext } from '../contexts/TaskFormContext';
+import { TaskModalContext } from '../contexts/TaskModalContext';
 
 export default function TaskForm({
 	selectedProjectId,
@@ -9,9 +11,9 @@ export default function TaskForm({
 	addedClassName,
 }) {
 	const { projects } = useProjects();
-	const { taskForm, setTaskForm, handleTaskFormSubmit, handleTaskFormCancel } =
-		useTaskForm();
-	const { isTaskModalOpen, setIsTaskModalOpen } = useTaskModal();
+	const { taskForm, setTaskForm } = useContext(TaskFormContext);
+	const { handleTaskFormSubmit, handleTaskFormCancel } = useTaskForm();
+	const { isTaskModalOpen, setIsTaskModalOpen } = useContext(TaskModalContext);
 
 	return (
 		<form
