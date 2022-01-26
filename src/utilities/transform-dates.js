@@ -23,7 +23,7 @@ export const dateToYearMonthDay = (date) => {
 	const year = date.getFullYear();
 
 	if (day < 10) day = `0${day}`;
-	if (month === 1) month = `0${month}`;
+	if (month < 10) month = `0${month}`;
 
 	return `${year}-${month}-${day}`;
 };
