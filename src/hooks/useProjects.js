@@ -1,20 +1,24 @@
 import { useState, useEffect, useContext } from 'react';
-import { useLocation, matchPath } from 'react-router-dom';
+import { useLocation, matchPath, useNavigate } from 'react-router-dom';
 import {
 	onSnapshot,
 	collection,
+	doc,
 	query,
 	where,
 	addDoc,
+	updateDoc,
+	deleteDoc,
 	serverTimestamp,
 } from 'firebase/firestore';
 import { db } from '../firebase';
 import { SelectedProjectContext } from '../contexts/SelectedProjectContext';
+import useTaskForm from './useTaskForm';
 
 export default function useProjects() {
 	const [projects, setProjects] = useState([]);
-
 	const { setSelectedProject } = useContext(SelectedProjectContext);
+	const { clearTaskForm } = useTaskForm();
 	const location = useLocation();
 	const match = matchPath(
 		{
@@ -24,14 +28,24 @@ export default function useProjects() {
 		},
 		location.pathname
 	);
+	const navigate = useNavigate();
 
-	const updateProject = (db, projectForm, userId) => {
-		console.log('Udate project');
-		console.log(projectForm);
+	const updateProject = async (db, projectForm, userId) => {
+		console.log(projectForm.id);
+		try {
+			const projectDoc = doc(db, 'projects', projectForm.id);
+			await updateDoc(projectDoc, {
+				name: projectForm.name,
+				colorId: projectForm.colorId,
+				isInbox: projectForm.isInbox,
+				userId: userId,
+			});
+		} catch (err) {
+			console.error(err);
+		}
 	};
 
 	const createProject = async (db, projectForm, userId) => {
-		console.log(projectForm);
 		try {
 			await addDoc(collection(db, 'projects'), {
 				name: projectForm.name,
@@ -43,6 +57,21 @@ export default function useProjects() {
 		} catch (err) {
 			console.error(err);
 		}
+	};
+
+	const deleteProject = async (db, projectId) => {
+		try {
+			const projectDoc = doc(db, 'projects', projectId);
+			await deleteDoc(projectDoc);
+		} catch (err) {
+			console.error(err);
+		}
+	};
+
+	const handleDeleteProject = (db, projectId) => {
+		deleteProject(db, projectId);
+		clearTaskForm();
+		navigate('/');
 	};
 
 	const filterProjectsNoInbox = () =>
@@ -74,5 +103,11 @@ export default function useProjects() {
 	useEffect(() => getProjects(db), []);
 	useEffect(() => getSelectedProject(), [location, projects]);
 
-	return { projects, updateProject, createProject, filterProjectsNoInbox };
+	return {
+		projects,
+		updateProject,
+		createProject,
+		handleDeleteProject,
+		filterProjectsNoInbox,
+	};
 }

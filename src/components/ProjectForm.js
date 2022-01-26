@@ -1,15 +1,21 @@
-import { useState } from 'react';
 import { db } from '../firebase';
 import { VscTrash } from 'react-icons/vsc';
 import useProjects from '../hooks/useProjects';
 import useProjectForm from '../hooks/useProjectForm';
-import useProjectModal from '../hooks/useProjectModal';
 import { PROJECT_COLORS } from '../constants/project-colors';
 import { getColorIdByName, getColorNameById } from '../utilities/get-color';
 
-export default function ProjectForm({ closeProjectModal }) {
+export default function ProjectForm({
+	setIsProjectModalOpen,
+	closeProjectModal,
+}) {
 	const { projectForm, setProjectForm, handleProjectFormSubmit } =
 		useProjectForm();
+	const { handleDeleteProject } = useProjects();
+
+	const isEditMode = projectForm.id ? true : false;
+	const formTitle = isEditMode ? 'Edit project' : 'Add project';
+	const primaryBtnText = isEditMode ? 'Save' : 'Add';
 
 	return (
 		<form
@@ -24,7 +30,7 @@ export default function ProjectForm({ closeProjectModal }) {
 				)
 			}>
 			<div className="projectForm__heading">
-				<h1 className="projectForm__title">Add Project</h1>
+				<h1 className="projectForm__title">{formTitle}</h1>
 			</div>
 			<div className="projectForm__inputs">
 				<label htmlFor="projectName">
@@ -71,7 +77,7 @@ export default function ProjectForm({ closeProjectModal }) {
 					type="submit"
 					value=""
 					disabled={projectForm.name ? false : true}>
-					Add
+					{primaryBtnText}
 				</button>
 				<button
 					className="button button__secondary"
@@ -79,7 +85,14 @@ export default function ProjectForm({ closeProjectModal }) {
 					onClick={() => closeProjectModal()}>
 					Cancel
 				</button>
-				<VscTrash className="projectForm__delete" />
+				{isEditMode && (
+					<VscTrash
+						className="projectForm__delete"
+						onClick={() =>
+							handleDeleteProject(db, projectForm.id, setIsProjectModalOpen)
+						}
+					/>
+				)}
 			</div>
 		</form>
 	);

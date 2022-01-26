@@ -29,9 +29,7 @@ export default function Main({ isSidebarHidden }) {
 			</Routes>
 			{isTaskModalOpen && <TaskModal />}
 			{isProjectModalOpen && (
-				<ProjectModal
-					setIsProjectModalOpen={setIsProjectModalOpen}
-				/>
+				<ProjectModal setIsProjectModalOpen={setIsProjectModalOpen} />
 			)}
 		</div>
 	);

@@ -62,6 +62,7 @@ export default function useProjectForm() {
 	return {
 		projectForm,
 		setProjectForm,
+		clearProjectForm,
 		handleProjectFormSubmit,
 		populateProjectForm,
 	};

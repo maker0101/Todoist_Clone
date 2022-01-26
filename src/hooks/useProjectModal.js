@@ -5,10 +5,13 @@ export default function useProjectModal() {
 	const openProjectModal = (setIsProjectModalOpen) =>
 		setIsProjectModalOpen(true);
 
+	const closeProjectModal = (setIsProjectModalOpen) =>
+		setIsProjectModalOpen(false);
+
 	const handleProjectModalOpen = (setIsProjectModalOpen, project) => {
 		populateProjectForm(project);
 		openProjectModal(setIsProjectModalOpen);
 	};
 
-	return { handleProjectModalOpen };
+	return { handleProjectModalOpen, closeProjectModal };
 }

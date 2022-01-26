@@ -18,6 +18,7 @@ export default function Sidebar({ isSidebarHidden, setIsProjectModalOpen }) {
 
 	const toggleAccordion = () => setIsAccordionOpen(() => !isAccordionOpen);
 
+
 	return (
 		<nav className={`sidebar ${isSidebarHidden ? 'sidebar__hidden' : ''}`}>
 			<div className="sidebar__section">
