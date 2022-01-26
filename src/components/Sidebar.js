@@ -9,12 +9,12 @@ import useCountTasks from '../hooks/useCountTasks';
 import useProjectModal from '../hooks/useProjectModal';
 import { getColorHEXById } from '../utilities/get-color';
 
-export default function Sidebar({ isSidebarHidden, setIsProjectModalOpen }) {
+export default function Sidebar({ isSidebarHidden }) {
 	const [isAccordionOpen, setIsAccordionOpen] = useState(true);
 	const { tasks } = useCrudTasks();
 	const { countTasksOfProject, countTasksOfNavItems } = useCountTasks();
 	const { filterProjectsNoInbox } = useProjects();
-	const { handleProjectModalOpen } = useProjectModal();
+	const { setIsProjectModalOpen, handleProjectModalOpen } = useProjectModal();
 
 	const toggleAccordion = () => setIsAccordionOpen(() => !isAccordionOpen);
 

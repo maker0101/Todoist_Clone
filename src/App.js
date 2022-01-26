@@ -20,7 +20,7 @@ function App() {
 			<SelectedProjectContext.Provider
 				value={{ selectedProject, setSelectedProject }}>
 				<ProjectModalContext.Provider
-					value={(isProjectModalOpen, setIsProjectModalOpen)}>
+					value={{ isProjectModalOpen, setIsProjectModalOpen }}>
 					<TaskModalContext.Provider
 						value={{ isTaskModalOpen, setIsTaskModalOpen }}>
 						<ProjectFormContext.Provider

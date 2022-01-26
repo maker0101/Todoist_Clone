@@ -28,7 +28,11 @@ Of course I tried to google it and read some interesting material about it, like
 
 However, I'm unable to locate the specific piece of code that's causing the error and thus I'm unable to start thinking about solving it. Could you please help me out with this one? And teach me how I can find and fix it next time by myself?
 
-### 2. state/setState as function arguments (example below needs to be updated)
+### 2. Question: Why do I run into a "RangeError: Maximum call stack size exceeded" when uncommenting the lines in useProject?
+
+### 3. Is it ok to have useEffect inside a function which is inside a custom hook (see useModal))?
+
+### 3. state/setState as function arguments (example below needs to be updated)
 
 If I understood your past comments correctly, you advice against passing state and setState as arguments to another function. I agree that it doesn't look elegant. But what to do in a situation like in "AddTask.js":
 
@@ -44,7 +48,7 @@ I know I could put `isTaskFormOpen` and `setIsTaskFormOpen` in a React context o
 
 **How can I avoid passing the state/setState in a situation like this?**
 
-### 3. Pure functions or less code? (example below needs to be updated)
+### 4. Pure functions or less code? (example below needs to be updated)
 
 In `useCrudTasks.js` I noticed that all my functions (e.g. createTasks, deleteTasks, ...) have `db`as argument. I am importing `db`in the file as well.
 
@@ -52,7 +56,7 @@ From the perspective of pure functions it seems right to leave `db` in as functi
 
 What would you recommend in situations like these. Leave argument in and have pure functions, or remove argument and have less code?
 
-### 4. Which State Management Library should I learn first
+### 5. Which State Management Library should I learn first
 
 I'm slowly feeling the pain and limitations of React regarding state management.
 

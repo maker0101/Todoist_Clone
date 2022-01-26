@@ -1,18 +1,22 @@
+import { useContext } from 'react';
 import { db } from '../firebase';
 import { VscTrash } from 'react-icons/vsc';
 import useProjects from '../hooks/useProjects';
 import useProjectForm from '../hooks/useProjectForm';
+import useProjectModal from '../hooks/useProjectModal';
 import { PROJECT_COLORS } from '../constants/project-colors';
 import { getColorIdByName, getColorNameById } from '../utilities/get-color';
+import { ProjectFormContext } from '../contexts/ProjectFormContext';
 
-export default function ProjectForm({ setIsProjectModalOpen }) {
-	const { projectForm, setProjectForm, handleProjectFormSubmit } =
-		useProjectForm();
+export default function ProjectForm() {
+	const { projectForm, setProjectForm } = useContext(ProjectFormContext);
+	const { setIsProjectModalOpen } = useProjectModal();
+	const { handleProjectFormSubmit } = useProjectForm();
 	const { handleDeleteProject } = useProjects();
 
-	const isEditMode = projectForm.id ? true : false;
-	const formTitle = isEditMode ? 'Edit project' : 'Add project';
-	const primaryBtnText = isEditMode ? 'Save' : 'Add';
+	const inEditMode = projectForm.id ? true : false;
+	const formTitle = inEditMode ? 'Edit project' : 'Add project';
+	const primaryBtnText = inEditMode ? 'Save' : 'Add';
 
 	return (
 		<form
@@ -82,7 +86,7 @@ export default function ProjectForm({ setIsProjectModalOpen }) {
 					onClick={() => setIsProjectModalOpen(false)}>
 					Cancel
 				</button>
-				{isEditMode && (
+				{inEditMode && (
 					<VscTrash
 						className="projectForm__delete"
 						onClick={() =>

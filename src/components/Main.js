@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import Sidebar from './Sidebar';
 import Inbox from '../pages/Inbox';
@@ -8,17 +7,15 @@ import Project from '../pages/Project';
 import ProjectModal from './ProjectModal';
 import TaskModal from './TaskModal';
 import useTaskModal from '../hooks/useTaskModal';
+import useProjectModal from '../hooks/useProjectModal';
 
 export default function Main({ isSidebarHidden }) {
-	const [isProjectModalOpen, setIsProjectModalOpen] = useState(false);
+	const { isProjectModalOpen } = useProjectModal();
 	const { isTaskModalOpen } = useTaskModal();
 
 	return (
 		<div className="main">
-			<Sidebar
-				isSidebarHidden={isSidebarHidden}
-				setIsProjectModalOpen={setIsProjectModalOpen}
-			/>
+			<Sidebar isSidebarHidden={isSidebarHidden} />
 			<Routes>
 				<Route path="/" element={<Navigate to="/today" />} />
 				<Route path="/inbox" element={<Inbox />}></Route>
@@ -28,9 +25,7 @@ export default function Main({ isSidebarHidden }) {
 				<Route path="*" element={<Navigate to="/" />} />
 			</Routes>
 			{isTaskModalOpen && <TaskModal />}
-			{isProjectModalOpen && (
-				<ProjectModal setIsProjectModalOpen={setIsProjectModalOpen} />
-			)}
+			{isProjectModalOpen && <ProjectModal />}
 		</div>
 	);
 }
