@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { BsChevronDown } from 'react-icons/bs';
-import { VscCircleFilled, VscAdd } from 'react-icons/vsc';
+import { VscCircleFilled, VscAdd, VscEdit } from 'react-icons/vsc';
 import { SIDEBAR_NAV_DATA } from '../constants/sidebar-nav-data';
 import useCrudTasks from '../hooks/useCrudTasks';
 import useProjects from '../hooks/useProjects';
 import useCountTasks from '../hooks/useCountTasks';
+import useProjectModal from '../hooks/useProjectModal';
 import { getColorHEXById } from '../utilities/get-color';
 
 export default function Sidebar({ isSidebarHidden, setIsProjectModalOpen }) {
@@ -13,9 +14,9 @@ export default function Sidebar({ isSidebarHidden, setIsProjectModalOpen }) {
 	const { tasks } = useCrudTasks();
 	const { countTasksOfProject, countTasksOfNavItems } = useCountTasks();
 	const { filterProjectsNoInbox } = useProjects();
+	const { handleProjectModalOpen } = useProjectModal();
 
 	const toggleAccordion = () => setIsAccordionOpen(() => !isAccordionOpen);
-	const openProjectModal = () => setIsProjectModalOpen(true);
 
 	return (
 		<nav className={`sidebar ${isSidebarHidden ? 'sidebar__hidden' : ''}`}>
@@ -50,7 +51,7 @@ export default function Sidebar({ isSidebarHidden, setIsProjectModalOpen }) {
 					<h2 onClick={() => toggleAccordion()}>Projects</h2>
 					<VscAdd
 						className="sidebar__addProject"
-						onClick={() => openProjectModal()}
+						onClick={() => handleProjectModalOpen(setIsProjectModalOpen)}
 					/>
 				</div>
 				{isAccordionOpen &&
@@ -68,6 +69,12 @@ export default function Sidebar({ isSidebarHidden, setIsProjectModalOpen }) {
 							<div className="sidebar__info">
 								{countTasksOfProject(tasks, project.id)}
 							</div>
+							<VscEdit
+								className="sidebar__edit"
+								onClick={() =>
+									handleProjectModalOpen(setIsProjectModalOpen, project)
+								}
+							/>
 						</NavLink>
 					))}
 			</div>

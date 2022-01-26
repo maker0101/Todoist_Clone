@@ -22,9 +22,9 @@ export default function useTaskForm() {
 	const populateTaskForm = (task = '', dueDate) => {
 		dueDate = dueDate ? dateToYearMonthDay(dueDate) : '';
 
-		let initialTaskForm;
+		let populatedTaskForm;
 		if (task) {
-			initialTaskForm = {
+			populatedTaskForm = {
 				id: task.id ? task.id : '',
 				name: task.name ? task.name : '',
 				description: task.description ? task.description : '',
@@ -36,7 +36,7 @@ export default function useTaskForm() {
 					: 'GtbY3fGVBVrTJmJH4IGd',
 			};
 		} else {
-			initialTaskForm = {
+			populatedTaskForm = {
 				id: '',
 				name: '',
 				description: '',
@@ -47,7 +47,7 @@ export default function useTaskForm() {
 			};
 		}
 
-		setTaskForm(initialTaskForm);
+		setTaskForm(populatedTaskForm);
 	};
 
 	const handleTaskFormOpen = (setIsTaskFormOpen, dueDate = '') => {

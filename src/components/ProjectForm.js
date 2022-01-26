@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { db } from '../firebase';
+import { VscTrash } from 'react-icons/vsc';
 import useProjects from '../hooks/useProjects';
 import useProjectForm from '../hooks/useProjectForm';
 import useProjectModal from '../hooks/useProjectModal';
@@ -7,14 +8,8 @@ import { PROJECT_COLORS } from '../constants/project-colors';
 import { getColorIdByName, getColorNameById } from '../utilities/get-color';
 
 export default function ProjectForm({ closeProjectModal }) {
-	const [projectForm, setProjectForm] = useState({
-		name: '',
-		colorId: 7,
-		isInbox: false,
-		userId: 'userid1',
-	});
-
-	const { handleProjectFormSubmit } = useProjectForm();
+	const { projectForm, setProjectForm, handleProjectFormSubmit } =
+		useProjectForm();
 
 	return (
 		<form
@@ -24,7 +19,6 @@ export default function ProjectForm({ closeProjectModal }) {
 					e,
 					db,
 					projectForm,
-					setProjectForm,
 					'userid1',
 					closeProjectModal
 				)
@@ -85,6 +79,7 @@ export default function ProjectForm({ closeProjectModal }) {
 					onClick={() => closeProjectModal()}>
 					Cancel
 				</button>
+				<VscTrash className="projectForm__delete" />
 			</div>
 		</form>
 	);

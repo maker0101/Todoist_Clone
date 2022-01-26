@@ -254,6 +254,13 @@ select::-ms-expand {
 				@include text-small();
 				text-align: center;
 			}
+
+			.sidebar__edit {
+				display: none;
+				width: 100%;
+				justify-content: center;
+				color: $color-grey-5;
+			}
 		}
 
 		.sidebar__sectionTitle {
@@ -270,6 +277,14 @@ select::-ms-expand {
 					background-color: $color-grey-4;
 				}
 			}
+		}
+
+		.sidebar__item:hover .sidebar__info {
+			display: none;
+		}
+
+		.sidebar__item:hover .sidebar__edit {
+			display: flex;
 		}
 
 		.sidebar__addProject {
@@ -513,10 +528,18 @@ select::-ms-expand {
 
 	.projectForm__buttons {
 		display: flex;
-		justify-content: flex-end;
 		height: 56px;
 		padding: 12px 24px;
 		border-top: 1px solid $color-grey-4;
+	}
+
+	.projectForm__delete {
+		height: 100%;
+		color: $color-grey-5;
+		font-size: 18px;
+		justify-content: flex-end;
+		margin-left: auto;
+		cursor: pointer;
 	}
 }
 
