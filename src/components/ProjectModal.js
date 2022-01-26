@@ -6,7 +6,6 @@ export default function ProjectModal({ setIsProjectModalOpen }) {
 	const projectModalOverlayRef = useRef(null);
 	const { closeModalOnOverlayClick } = useModal();
 
-	const closeProjectModal = () => setIsProjectModalOpen(false);
 	closeModalOnOverlayClick(projectModalOverlayRef, () =>
 		setIsProjectModalOpen(false)
 	);
@@ -14,10 +13,7 @@ export default function ProjectModal({ setIsProjectModalOpen }) {
 	return (
 		<div ref={projectModalOverlayRef} className="modal__bgOverlay">
 			<div className="modal__formContainer">
-				<ProjectForm
-					setIsProjectModalOpen={setIsProjectModalOpen}
-					closeProjectModal={closeProjectModal}
-				/>
+				<ProjectForm setIsProjectModalOpen={setIsProjectModalOpen} />
 			</div>
 		</div>
 	);

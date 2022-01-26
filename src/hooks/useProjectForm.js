@@ -42,7 +42,7 @@ export default function useProjectForm() {
 		db,
 		projectForm,
 		userId,
-		closeProjectModal
+		setIsProjectModalOpen
 	) => {
 		e.preventDefault();
 
@@ -55,7 +55,7 @@ export default function useProjectForm() {
 			createProject(db, projectForm, userId);
 		}
 
-		closeProjectModal();
+		setIsProjectModalOpen(false);
 		clearProjectForm();
 	};
 

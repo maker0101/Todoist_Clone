@@ -5,10 +5,7 @@ import useProjectForm from '../hooks/useProjectForm';
 import { PROJECT_COLORS } from '../constants/project-colors';
 import { getColorIdByName, getColorNameById } from '../utilities/get-color';
 
-export default function ProjectForm({
-	setIsProjectModalOpen,
-	closeProjectModal,
-}) {
+export default function ProjectForm({ setIsProjectModalOpen }) {
 	const { projectForm, setProjectForm, handleProjectFormSubmit } =
 		useProjectForm();
 	const { handleDeleteProject } = useProjects();
@@ -26,7 +23,7 @@ export default function ProjectForm({
 					db,
 					projectForm,
 					'userid1',
-					closeProjectModal
+					setIsProjectModalOpen
 				)
 			}>
 			<div className="projectForm__heading">
@@ -82,7 +79,7 @@ export default function ProjectForm({
 				<button
 					className="button button__secondary"
 					type="button"
-					onClick={() => closeProjectModal()}>
+					onClick={() => setIsProjectModalOpen(false)}>
 					Cancel
 				</button>
 				{isEditMode && (
