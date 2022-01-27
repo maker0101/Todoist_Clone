@@ -334,7 +334,7 @@ select::-ms-expand {
   padding: 4px 0;
   cursor: pointer;
 
-  .task__line {
+  .task__row {
     @include va;
     display: grid;
     grid-template-columns: 30px auto 50px;

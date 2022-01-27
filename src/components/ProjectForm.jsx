@@ -3,10 +3,10 @@ import { db } from '../firebase';
 import useProjectForm from '../hooks/useProjectForm';
 import { ProjectFormContext } from '../contexts/ProjectFormContext';
 import { ProjectModalContext } from '../contexts/ProjectModalContext';
+import ProjectFormHeading from './ProjectFormHeading';
 import ProjectFormInputName from './ProjectFormInputName';
 import ProjectFormInputColor from './ProjectFormInputColor';
 import ProjectFormButtons from './ProjectFormButtons';
-import ProjectFormHeading from './ProjectFormHeading';
 
 const ProjectForm = () => {
   const { projectForm } = useContext(ProjectFormContext);

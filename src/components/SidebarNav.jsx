@@ -13,8 +13,7 @@ const SidebarNav = () => {
         <NavLink
           key={item.id}
           to={item.to}
-          className='sidebar__item sidebar__navItem'
-          activeclassname='selected'>
+          className='sidebar__item sidebar__navItem'>
           <div
             className={`sidebar__icon ${item.iconClassName}`}
             style={{ color: item.iconColor }}>

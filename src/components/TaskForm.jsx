@@ -8,13 +8,13 @@ import TaskFormDueDate from './TaskFormDueDate';
 import TaskFormProject from './TaskFormProject';
 import TaskFormButtons from './TaskFormButtons';
 
-const TaskForm = ({ selectedProjectId, setIsTaskFormOpen, addedClassName }) => {
+const TaskForm = ({ selectedProjectId, setIsTaskFormOpen, inModal }) => {
   const { taskForm, setTaskForm } = useContext(TaskFormContext);
   const { handleTaskFormSubmit } = useTaskForm();
 
   return (
     <form
-      className={`taskForm ${addedClassName}`}
+      className={`taskForm ${inModal}`}
       onSubmit={(e) => {
         handleTaskFormSubmit(e, db, taskForm, 'userid1', selectedProjectId);
       }}>

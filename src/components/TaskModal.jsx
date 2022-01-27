@@ -15,7 +15,7 @@ const TaskModal = () => {
   return (
     <div ref={taskModalOverlayRef} className='modal__bgOverlay'>
       <div className='modal__formContainer'>
-        <TaskForm addedClassName='taskForm--inModal' />
+        <TaskForm inModal='taskForm--inModal' />
       </div>
     </div>
   );

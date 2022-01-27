@@ -1,19 +1,14 @@
 import { useState, useContext } from 'react';
-import { NavLink } from 'react-router-dom';
 import { BsChevronDown } from 'react-icons/bs';
-import { VscCircleFilled, VscAdd, VscEdit } from 'react-icons/vsc';
-import useCrudTasks from '../hooks/useCrudTasks';
+import { VscAdd } from 'react-icons/vsc';
 import useProjects from '../hooks/useProjects';
-import useCountTasks from '../hooks/useCountTasks';
 import useProjectModal from '../hooks/useProjectModal';
-import { getColorHEXById } from '../utilities/get-color';
 import { ProjectModalContext } from '../contexts/ProjectModalContext';
+import SidebarProject from './SidebarProject';
 
 const SidebarProjects = () => {
   const [isAccordionOpen, setIsAccordionOpen] = useState(true);
-  const { tasks } = useCrudTasks();
   const { setIsProjectModalOpen } = useContext(ProjectModalContext);
-  const { countTasksOfProject } = useCountTasks();
   const { filterProjectsNoInbox } = useProjects();
   const { handleProjectModalOpen } = useProjectModal();
 
@@ -36,26 +31,7 @@ const SidebarProjects = () => {
       </div>
       {isAccordionOpen &&
         filterProjectsNoInbox().map((project) => (
-          <NavLink
-            to={`/project/${project.id}`}
-            key={project.id}
-            className='sidebar__item'
-            activeclassname='selected'>
-            <VscCircleFilled
-              className='sidebar__icon'
-              style={{ color: getColorHEXById(project.colorId) }}
-            />
-            <div>{project.name}</div>
-            <div className='sidebar__info'>
-              {countTasksOfProject(tasks, project.id)}
-            </div>
-            <VscEdit
-              className='sidebar__edit'
-              onClick={() =>
-                handleProjectModalOpen(setIsProjectModalOpen, project)
-              }
-            />
-          </NavLink>
+          <SidebarProject key={project.id} project={project} />
         ))}
     </div>
   );
