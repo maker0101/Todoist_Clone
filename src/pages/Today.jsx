@@ -1,5 +1,5 @@
 import Task from '../components/Task';
-import AddTask from '../components/AddTask';
+import TaskAdd from '../components/TaskAdd';
 import useCrudTasks from '../hooks/useCrudTasks';
 import { dateToDayMonth } from '../utilities/transform-dates';
 import {
@@ -34,7 +34,7 @@ const Today = () => {
         {todayTasks.map((task) => (
           <Task key={task.id} task={task} />
         ))}
-        <AddTask dueDate={today} />
+        <TaskAdd dueDate={today} />
       </div>
     </div>
   );

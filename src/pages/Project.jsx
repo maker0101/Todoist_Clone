@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import useCrudTasks from '../hooks/useCrudTasks';
 import Task from '../components/Task';
-import AddTask from '../components/AddTask';
+import TaskAdd from '../components/TaskAdd';
 import { SelectedProjectContext } from '../contexts/SelectedProjectContext';
 import { filterTasksByProjectId } from '../utilities/filter-tasks';
 
@@ -18,7 +18,7 @@ const Project = () => {
       {projectTasks.map((task) => (
         <Task key={task.id} task={task} />
       ))}
-      <AddTask selectedProjectId={selectedProject ? selectedProject.id : ''} />
+      <TaskAdd selectedProjectId={selectedProject ? selectedProject.id : ''} />
     </div>
   );
 };

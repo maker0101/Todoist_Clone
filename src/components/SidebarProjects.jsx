@@ -9,7 +9,7 @@ import useProjectModal from '../hooks/useProjectModal';
 import { getColorHEXById } from '../utilities/get-color';
 import { ProjectModalContext } from '../contexts/ProjectModalContext';
 
-const SidebarSectionProjects = () => {
+const SidebarProjects = () => {
   const [isAccordionOpen, setIsAccordionOpen] = useState(true);
   const { tasks } = useCrudTasks();
   const { setIsProjectModalOpen } = useContext(ProjectModalContext);
@@ -61,4 +61,4 @@ const SidebarSectionProjects = () => {
   );
 };
 
-export default SidebarSectionProjects;
+export default SidebarProjects;

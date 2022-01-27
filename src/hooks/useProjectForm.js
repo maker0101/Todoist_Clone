@@ -37,13 +37,7 @@ const useProjectForm = () => {
     setProjectForm(populatedProjectForm);
   };
 
-  const handleProjectFormSubmit = (
-    e,
-    db,
-    projectForm,
-    userId,
-    setIsProjectModalOpen
-  ) => {
+  const handleSubmit = (e, db, projectForm, userId, setIsProjectModalOpen) => {
     e.preventDefault();
 
     const projectExists =
@@ -61,7 +55,7 @@ const useProjectForm = () => {
 
   return {
     clearProjectForm,
-    handleProjectFormSubmit,
+    handleSubmit,
     populateProjectForm,
   };
 };

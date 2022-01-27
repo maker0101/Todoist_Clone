@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import Task from '../components/Task';
-import AddTask from '../components/AddTask';
+import TaskAdd from '../components/TaskAdd';
 import useCrudTasks from '../hooks/useCrudTasks';
 import { calculateUpcomingDays } from '../utilities/calculate-upcoming-days.js';
 import {
@@ -36,7 +36,7 @@ const Upcoming = () => {
           {filterTasksByDueDate(tasks, new Date(day.date)).map((task) => (
             <Task key={task.id} task={task} />
           ))}
-          <AddTask dueDate={day.date} />
+          <TaskAdd dueDate={day.date} />
         </div>
       ))}
     </div>

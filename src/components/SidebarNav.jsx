@@ -3,7 +3,7 @@ import { SIDEBAR_NAV_DATA } from '../constants/sidebar-nav-data';
 import useCrudTasks from '../hooks/useCrudTasks';
 import useCountTasks from '../hooks/useCountTasks';
 
-const SidebarSectionNav = () => {
+const SidebarNav = () => {
   const { tasks } = useCrudTasks();
   const { countTasksOfNavItems } = useCountTasks();
 
@@ -30,4 +30,4 @@ const SidebarSectionNav = () => {
   );
 };
 
-export default SidebarSectionNav;
+export default SidebarNav;

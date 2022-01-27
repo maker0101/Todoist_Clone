@@ -1,7 +1,8 @@
 ## Known issues/bugs
 
-- memory leak error
-- RangeError
+- [ ] memory leak error
+- [ ] RangeError
+- [ ] Preselected Project not changing when Task form is open while changing project
 
 ## Planned Features
 

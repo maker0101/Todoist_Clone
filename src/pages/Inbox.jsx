@@ -1,5 +1,5 @@
 import Task from '../components/Task';
-import AddTask from '../components/AddTask';
+import TaskAdd from '../components/TaskAdd';
 import useCrudTasks from '../hooks/useCrudTasks';
 import { filterTasksByProjectId } from '../utilities/filter-tasks';
 
@@ -13,7 +13,7 @@ const Inbox = () => {
       {inboxTasks.map((task) => (
         <Task key={task.id} task={task} />
       ))}
-      <AddTask />
+      <TaskAdd />
     </div>
   );
 };

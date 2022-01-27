@@ -16,15 +16,15 @@ However, I'm unable to locate the specific piece of code that's causing the erro
 
 ### 3. state/setState as function arguments (example below needs to be updated)
 
-If I understood your past comments correctly, you advice against passing state and setState as arguments to another function. I agree that it doesn't look elegant. But what to do in a situation like in "AddTask.js":
+If I understood your past comments correctly, you advice against passing state and setState as arguments to another function. I agree that it doesn't look elegant. But what to do in a situation like in "TaskAdd.js":
 
 `handleTaskFormOpen(isTaskFormOpen, setIsTaskFormOpen)`
 
 Here I have the folliwing situation:
 
-- the state `isTaskFormOpen`is defined in `AddTask.js` (it's not in a context, thus hard to access from `useTaskForm.js`)
+- the state `isTaskFormOpen`is defined in `TaskAdd.js` (it's not in a context, thus hard to access from `useTaskForm.js`)
 - `handleTaskFormOpen` is defined in `useTaskForm.js` (and thus can not directly access `isTaskFormOpen` and `setIsTaskFormOpen`)
-- `handleTaskFormOpen` is doing more than just open the taskForm. Thus toggling the taskform directly in `AddTask.js` is not an option
+- `handleTaskFormOpen` is doing more than just open the taskForm. Thus toggling the taskform directly in `TaskAdd.js` is not an option
 
 I know I could put `isTaskFormOpen` and `setIsTaskFormOpen` in a React context or use another state management library, but this has it's downsides as well.
 
@@ -52,6 +52,3 @@ From what I've read so far:
 - Immer.js: Don't really know if it fits
 
 What I'm looking for at the moment is a way to define my most important states in a central space somewhere and then being able to get and set these states from anywhere in my application easily.
-
-
-
