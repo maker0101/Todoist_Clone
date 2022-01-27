@@ -73,4 +73,4 @@ I will not be accepting PR's on this repository. Feel free to fork and maintain 
 
 - This project was originally inspired by Karl Hadwen's YouTube tutorial [Building Todoist From Scratch](https://youtu.be/HgfA4W_VjmI). However, I decided to build it more or less from scratch after watching the first few hours of the video.
 - Code organization heavily inspired by Ivor Reic inspiring [Jira Clone](https://github.com/oldboyxx/jira_clone/tree/190dfcd9dc62189a2852acf8e9e7869178a8008c) repo. // TODO: to be implemented.
-- To my awesome code tutor Esen for encouragement and super valuable code feedback.
+- Big thanks to my awesome code tutor [Esen](https://github.com/snqb) for encouragement and your super valuable code feedback.
