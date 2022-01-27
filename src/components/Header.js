@@ -3,7 +3,7 @@ import { VscMenu, VscHome, VscAdd, VscAccount, VscBell } from 'react-icons/vsc';
 import { IoSearchOutline } from 'react-icons/io5';
 import useTaskModal from '../hooks/useTaskModal';
 
-const Header = ({ isSidebarHidden, setIsSidebarHidden }) => {
+const Header = ({ isSidebarOpen, setIsSidebarOpen }) => {
   const { handleTaskModalOpen } = useTaskModal();
 
   return (
@@ -11,7 +11,7 @@ const Header = ({ isSidebarHidden, setIsSidebarHidden }) => {
       <div className='header__left'>
         <VscMenu
           className='header__item'
-          onClick={() => setIsSidebarHidden(() => !isSidebarHidden)}
+          onClick={() => setIsSidebarOpen(() => !isSidebarOpen)}
         />
         <Link to='/today'>
           <VscHome className='header__item' />

@@ -8,7 +8,7 @@ import { ProjectFormContext } from './contexts/ProjectFormContext';
 import { TaskFormContext } from './contexts/TaskFormContext';
 
 const App = () => {
-  const [isSidebarHidden, setIsSidebarHidden] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(true);
   const [selectedProject, setSelectedProject] = useState('');
   const [isProjectModalOpen, setIsProjectModalOpen] = useState(false);
   const [isTaskModalOpen, setIsTaskModalOpen] = useState(false);
@@ -27,10 +27,10 @@ const App = () => {
               value={{ projectForm, setProjectForm }}>
               <TaskFormContext.Provider value={{ taskForm, setTaskForm }}>
                 <Header
-                  isSidebarHidden={isSidebarHidden}
-                  setIsSidebarHidden={setIsSidebarHidden}
+                  isSidebarOpen={isSidebarOpen}
+                  setIsSidebarOpen={setIsSidebarOpen}
                 />
-                <Main isSidebarHidden={isSidebarHidden} />
+                <Main isSidebarOpen={isSidebarOpen} />
               </TaskFormContext.Provider>
             </ProjectFormContext.Provider>
           </TaskModalContext.Provider>

@@ -10,13 +10,13 @@ import TaskModal from './TaskModal';
 import { ProjectModalContext } from '../contexts/ProjectModalContext';
 import { TaskModalContext } from '../contexts/TaskModalContext';
 
-const Main = ({ isSidebarHidden }) => {
+const Main = ({ isSidebarOpen }) => {
   const { isProjectModalOpen } = useContext(ProjectModalContext);
   const { isTaskModalOpen } = useContext(TaskModalContext);
 
   return (
     <div className='main'>
-      <Sidebar isSidebarHidden={isSidebarHidden} />
+      {isSidebarOpen && <Sidebar />}
       <Routes>
         <Route path='/' element={<Navigate to='/today' />} />
         <Route path='/inbox' element={<Inbox />}></Route>
