@@ -27,7 +27,7 @@ const Sidebar = ({ isSidebarHidden }) => {
           <NavLink
             key={item.id}
             to={item.to}
-            className='sidebar__item'
+            className='sidebar__item sidebar__navItem'
             activeclassname='selected'>
             <div
               className={`sidebar__icon ${item.iconClassName}`}

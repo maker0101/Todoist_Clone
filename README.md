@@ -33,7 +33,7 @@ This project might be interesting for anyone looking for a React project to prac
 
 ## What's missing?
 
-There are features missing from this showcase product which should exist in a real product:
+tbd
 
 ### Features
 

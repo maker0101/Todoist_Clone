@@ -279,8 +279,12 @@ select::-ms-expand {
       }
     }
 
-    .sidebar__item:hover .sidebar__info {
-      display: none;
+    .sidebar__item {
+      &:not(.sidebar__navItem) {
+        &:hover .sidebar__info {
+          display: none;
+        }
+      }
     }
 
     .sidebar__item:hover .sidebar__edit {

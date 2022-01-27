@@ -1,12 +1,14 @@
 ## Known issues/bugs
 
-Sidebar nav item count disappears on hover.
+- memory leak error
+- RangeError
 
 ## Planned Features
 
 - [ ] Task Search
 - [ ] Header modals on click
 - [ ] Adding Tests
+- Closing
 
 ## Maybe
 
