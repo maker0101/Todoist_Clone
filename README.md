@@ -7,11 +7,11 @@
 This is a simplified Todoist clone built with React and Firebase.
 I've build it to practice my newly aquired React skills after finishing the great [Learn React for free](https://scrimba.com/learn/learnreact) course on Scrimba.com.
 
-It's a more _complex_ coding project than I've previously attempted, as I wanted to...
+It's a more _complex_ coding project than I've previously attempted, as I wanted to:
 
-...practice React under more _real world_ conditions to find and push my limits.
-...experience some of the pain points and needs of a growing code base (e.g. organizing files, automated testing, ...).
-...go from zero to a fully deployed web app for the first time.
+- Practice React under more _real world_ conditions to find and push my limits.
+- Experience some of the pain points and needs of a growing code base (e.g. organizing files, automated testing, ...).
+- Go from zero to a fully deployed web app for the first time.
 
 This project might be interesting for anyone looking for a React project to practice their coding skills after finishing an introductory / intermediate React online course. I hope it helps you to become a better programmer, too 🤓.
 
