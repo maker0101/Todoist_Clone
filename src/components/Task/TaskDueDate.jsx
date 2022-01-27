@@ -1,6 +1,6 @@
 import { BsCalendar4Event } from 'react-icons/bs';
-import { dateToDayMonth } from '../utilities/transform-dates';
-import useTaskModal from '../hooks/useTaskModal';
+import { dateToDayMonth } from '../../utilities/transform-dates';
+import useTaskModal from '../../hooks/useTaskModal';
 
 const TaskDueDate = ({ task }) => {
   const { handleTaskModalOpen } = useTaskModal();

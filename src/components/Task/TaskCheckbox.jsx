@@ -1,5 +1,5 @@
-import { db } from '../firebase';
-import useCrudTasks from '../hooks/useCrudTasks';
+import { db } from '../../firebase';
+import useCrudTasks from '../../hooks/useCrudTasks';
 
 const TaskCheckbox = ({ task }) => {
   const { toggleIsChecked } = useCrudTasks();

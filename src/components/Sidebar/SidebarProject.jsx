@@ -1,11 +1,11 @@
 import { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import { VscCircleFilled, VscAdd, VscEdit } from 'react-icons/vsc';
-import useCrudTasks from '../hooks/useCrudTasks';
-import useCountTasks from '../hooks/useCountTasks';
-import useProjectModal from '../hooks/useProjectModal';
-import { getColorHEXById } from '../utilities/get-color';
-import { ProjectModalContext } from '../contexts/ProjectModalContext';
+import useCrudTasks from '../../hooks/useCrudTasks';
+import useCountTasks from '../../hooks/useCountTasks';
+import useProjectModal from '../../hooks/useProjectModal';
+import { getColorHEXById } from '../../utilities/get-color';
+import { ProjectModalContext } from '../../contexts/ProjectModalContext';
 
 const SidebarProject = ({ project }) => {
   const { tasks } = useCrudTasks();

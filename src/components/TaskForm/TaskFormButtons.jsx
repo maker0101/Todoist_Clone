@@ -1,6 +1,6 @@
 import { useContext } from 'react';
-import { TaskModalContext } from '../contexts/TaskModalContext';
-import useTaskForm from '../hooks/useTaskForm';
+import { TaskModalContext } from '../../contexts/TaskModalContext';
+import useTaskForm from '../../hooks/useTaskForm';
 
 const TaskFormButtons = ({
   taskForm,

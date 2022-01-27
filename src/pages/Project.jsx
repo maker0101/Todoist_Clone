@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import useCrudTasks from '../hooks/useCrudTasks';
-import Task from '../components/Task';
-import TaskAdd from '../components/TaskAdd';
+import Task from '../components/Task/Task';
+import TaskAdd from '../components/Task/TaskAdd';
 import { SelectedProjectContext } from '../contexts/SelectedProjectContext';
 import { filterTasksByProjectId } from '../utilities/filter-tasks';
 

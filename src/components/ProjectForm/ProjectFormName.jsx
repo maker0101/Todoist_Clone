@@ -1,7 +1,7 @@
 import { useContext } from 'react';
-import { ProjectFormContext } from '../contexts/ProjectFormContext';
+import { ProjectFormContext } from '../../contexts/ProjectFormContext';
 
-const ProjectFormInputName = () => {
+const ProjectFormName = () => {
   const { projectForm, setProjectForm } = useContext(ProjectFormContext);
 
   return (
@@ -25,4 +25,4 @@ const ProjectFormInputName = () => {
   );
 };
 
-export default ProjectFormInputName;
+export default ProjectFormName;

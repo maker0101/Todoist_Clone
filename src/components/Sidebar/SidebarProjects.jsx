@@ -1,9 +1,9 @@
 import { useState, useContext } from 'react';
 import { BsChevronDown } from 'react-icons/bs';
 import { VscAdd } from 'react-icons/vsc';
-import useProjects from '../hooks/useProjects';
-import useProjectModal from '../hooks/useProjectModal';
-import { ProjectModalContext } from '../contexts/ProjectModalContext';
+import useProjects from '../../hooks/useProjects';
+import useProjectModal from '../../hooks/useProjectModal';
+import { ProjectModalContext } from '../../contexts/ProjectModalContext';
 import SidebarProject from './SidebarProject';
 
 const SidebarProjects = () => {

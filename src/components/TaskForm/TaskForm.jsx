@@ -1,7 +1,7 @@
 import { useContext } from 'react';
-import { db } from '../firebase';
-import useTaskForm from '../hooks/useTaskForm';
-import { TaskFormContext } from '../contexts/TaskFormContext';
+import { db } from '../../firebase';
+import useTaskForm from '../../hooks/useTaskForm';
+import { TaskFormContext } from '../../contexts/TaskFormContext';
 import TaskFormName from './TaskFormName';
 import TaskFormDesc from './TaskFormDesc';
 import TaskFormDueDate from './TaskFormDueDate';

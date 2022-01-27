@@ -1,11 +1,11 @@
 import { useContext } from 'react';
-import { db } from '../firebase';
-import useProjectForm from '../hooks/useProjectForm';
-import { ProjectFormContext } from '../contexts/ProjectFormContext';
-import { ProjectModalContext } from '../contexts/ProjectModalContext';
+import { db } from '../../firebase';
+import useProjectForm from '../../hooks/useProjectForm';
+import { ProjectFormContext } from '../../contexts/ProjectFormContext';
+import { ProjectModalContext } from '../../contexts/ProjectModalContext';
 import ProjectFormHeading from './ProjectFormHeading';
-import ProjectFormInputName from './ProjectFormInputName';
-import ProjectFormInputColor from './ProjectFormInputColor';
+import ProjectFormName from './ProjectFormName';
+import ProjectFormColor from './ProjectFormColor';
 import ProjectFormButtons from './ProjectFormButtons';
 
 const ProjectForm = () => {
@@ -21,8 +21,8 @@ const ProjectForm = () => {
       }>
       <ProjectFormHeading />
       <div className='projectForm__inputs'>
-        <ProjectFormInputName />
-        <ProjectFormInputColor />
+        <ProjectFormName />
+        <ProjectFormColor />
       </div>
       <ProjectFormButtons />
     </form>

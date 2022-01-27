@@ -1,7 +1,7 @@
 import { useContext, useRef } from 'react';
-import ProjectForm from './ProjectForm';
-import useModal from '../hooks/useModal';
-import { ProjectModalContext } from '../contexts/ProjectModalContext';
+import ProjectForm from '../ProjectForm/ProjectForm';
+import useModal from '../../hooks/useModal';
+import { ProjectModalContext } from '../../contexts/ProjectModalContext';
 
 const ProjectModal = () => {
   const { setIsProjectModalOpen } = useContext(ProjectModalContext);

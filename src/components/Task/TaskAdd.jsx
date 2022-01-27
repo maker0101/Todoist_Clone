@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { VscAdd } from 'react-icons/vsc';
-import TaskForm from './TaskForm';
-import useTaskForm from '../hooks/useTaskForm';
+import TaskForm from '../TaskForm/TaskForm';
+import useTaskForm from '../../hooks/useTaskForm';
 
 const TaskAdd = ({ selectedProjectId, dueDate }) => {
   const [isTaskFormOpen, setIsTaskFormOpen] = useState(false);

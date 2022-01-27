@@ -1,9 +1,9 @@
 import { useContext } from 'react';
-import { PROJECT_COLORS } from '../constants/project-colors';
-import { getColorIdByName, getColorNameById } from '../utilities/get-color';
-import { ProjectFormContext } from '../contexts/ProjectFormContext';
+import { PROJECT_COLORS } from '../../constants/project-colors';
+import { getColorIdByName, getColorNameById } from '../../utilities/get-color';
+import { ProjectFormContext } from '../../contexts/ProjectFormContext';
 
-const ProjectFormInputColor = () => {
+const ProjectFormColor = () => {
   const { projectForm, setProjectForm } = useContext(ProjectFormContext);
 
   return (
@@ -34,4 +34,4 @@ const ProjectFormInputColor = () => {
   );
 };
 
-export default ProjectFormInputColor;
+export default ProjectFormColor;

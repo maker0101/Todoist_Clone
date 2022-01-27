@@ -1,9 +1,9 @@
 import { useContext } from 'react';
-import { db } from '../firebase';
+import { db } from '../../firebase';
 import { VscTrash } from 'react-icons/vsc';
-import useProjects from '../hooks/useProjects';
-import { ProjectFormContext } from '../contexts/ProjectFormContext';
-import { ProjectModalContext } from '../contexts/ProjectModalContext';
+import useProjects from '../../hooks/useProjects';
+import { ProjectFormContext } from '../../contexts/ProjectFormContext';
+import { ProjectModalContext } from '../../contexts/ProjectModalContext';
 
 const ProjectFormButtons = () => {
   const { projectForm } = useContext(ProjectFormContext);

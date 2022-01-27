@@ -1,5 +1,5 @@
-import Task from '../components/Task';
-import TaskAdd from '../components/TaskAdd';
+import Task from '../components/Task/Task';
+import TaskAdd from '../components/Task/TaskAdd';
 import useCrudTasks from '../hooks/useCrudTasks';
 import { filterTasksByProjectId } from '../utilities/filter-tasks';
 

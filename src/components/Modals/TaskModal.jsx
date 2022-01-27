@@ -1,7 +1,7 @@
 import { useContext, useRef } from 'react';
-import TaskForm from './TaskForm';
-import useModal from '../hooks/useModal';
-import { TaskModalContext } from '../contexts/TaskModalContext';
+import TaskForm from '../TaskForm/TaskForm';
+import useModal from '../../hooks/useModal';
+import { TaskModalContext } from '../../contexts/TaskModalContext';
 
 const TaskModal = () => {
   const { setIsTaskModalOpen } = useContext(TaskModalContext);

@@ -1,7 +1,7 @@
 import { NavLink } from 'react-router-dom';
-import { SIDEBAR_NAV_DATA } from '../constants/sidebar-nav-data';
-import useCrudTasks from '../hooks/useCrudTasks';
-import useCountTasks from '../hooks/useCountTasks';
+import { SIDEBAR_NAV_DATA } from '../../constants/sidebar-nav-data';
+import useCrudTasks from '../../hooks/useCrudTasks';
+import useCountTasks from '../../hooks/useCountTasks';
 
 const SidebarNav = () => {
   const { tasks } = useCrudTasks();

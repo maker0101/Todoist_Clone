@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import Task from '../components/Task';
-import TaskAdd from '../components/TaskAdd';
+import Task from '../components/Task/Task';
+import TaskAdd from '../components/Task/TaskAdd';
 import useCrudTasks from '../hooks/useCrudTasks';
 import { calculateUpcomingDays } from '../utilities/calculate-upcoming-days.js';
 import {

@@ -1,12 +1,12 @@
 import { useContext } from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
-import Sidebar from './Sidebar';
+import Sidebar from './Sidebar/Sidebar';
 import Inbox from '../pages/Inbox';
 import Today from '../pages/Today';
 import Upcoming from '../pages/Upcoming';
 import Project from '../pages/Project';
-import ProjectModal from './ProjectModal';
-import TaskModal from './TaskModal';
+import ProjectModal from './Modals/ProjectModal';
+import TaskModal from './Modals/TaskModal';
 import { ProjectModalContext } from '../contexts/ProjectModalContext';
 import { TaskModalContext } from '../contexts/TaskModalContext';
 
