@@ -3,39 +3,41 @@ import AddTask from '../components/AddTask';
 import useCrudTasks from '../hooks/useCrudTasks';
 import { dateToDayMonth } from '../utilities/transform-dates';
 import {
-	filterTasksByDueDate,
-	filterTasksOverdue,
+  filterTasksByDueDate,
+  filterTasksOverdue,
 } from '../utilities/filter-tasks';
 import { sortTasksByDueDateAsc } from '../utilities/sort-tasks';
 
-export default function Today() {
-	const { tasks } = useCrudTasks();
-	const today = new Date();
-	const overdueTasks = sortTasksByDueDateAsc(filterTasksOverdue(tasks));
-	const todayTasks = filterTasksByDueDate(tasks, today);
+const Today = () => {
+  const { tasks } = useCrudTasks();
+  const today = new Date();
+  const overdueTasks = sortTasksByDueDateAsc(filterTasksOverdue(tasks));
+  const todayTasks = filterTasksByDueDate(tasks, today);
 
-	return (
-		<div className="content">
-			<h1 className="content__title">Today</h1>
+  return (
+    <div className='content'>
+      <h1 className='content__title'>Today</h1>
 
-			<div className="content__section">
-				<h2 className="content__subTitle">Overdue</h2>
-				<hr />
-				{overdueTasks.map((task) => (
-					<Task key={task.id} task={task} />
-				))}
-			</div>
+      <div className='content__section'>
+        <h2 className='content__subTitle'>Overdue</h2>
+        <hr />
+        {overdueTasks.map((task) => (
+          <Task key={task.id} task={task} />
+        ))}
+      </div>
 
-			<div className="content__section">
-				<h2 className="content__subTitle">{`${dateToDayMonth(
-					today
-				)} · Today`}</h2>
-				<hr />
-				{todayTasks.map((task) => (
-					<Task key={task.id} task={task} />
-				))}
-				<AddTask dueDate={today} />
-			</div>
-		</div>
-	);
-}
+      <div className='content__section'>
+        <h2 className='content__subTitle'>{`${dateToDayMonth(
+          today
+        )} · Today`}</h2>
+        <hr />
+        {todayTasks.map((task) => (
+          <Task key={task.id} task={task} />
+        ))}
+        <AddTask dueDate={today} />
+      </div>
+    </div>
+  );
+};
+
+export default Today;
