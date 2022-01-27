@@ -1,90 +1,76 @@
-# General
+<h1 align="center">A simplified Todoist clone built with React and Firebase</h1>
 
-This project is a clone attempt of Todoist: https://todoist.com
+![Todoist Clone Screenshot](todoist-clone-preview.png)
 
-## Features implemented
+## What is this and who is it for ⭐
 
-- [x] Todoist UI
-- [x] Data persisted in Firestore/Firebase
-- [x] Add new tasks
-- [x] Edit existing Tasks
-- [x] Delete tasks
-- [x] Check tasks as done
-- [x] Display task count per project
-- [x] Preserve tasks in order of time created
-- [x] Assign and Filter tasks by project
-- [x] Sidebar: Toggle show/hide
-- [x] Due dates for tasks
+This is a simplified Todoist clone built with React and Firebase.
+I've build it to practice my newly aquired React skills after finishing the great [Learn React for free](https://scrimba.com/learn/learnreact) course on Scrimba.com.
 
-## Questions
+It's a more _complex_ coding project than I've previously attempted, as I wanted to...
 
-### 1. Memory leak Error
+- ...practice React under more _real world_ conditions to find and push my limits.
+- ...experience some of the pain points and needs of a growing code base (e.g. organizing files, automated testing, ...).
+- ...go from zero to a fully deployed web app for the first time.
 
-When creating, deleting or checking a task as done, I sometimes (not always) get the follwing error message:
+This project might be interesting for anyone looking for a React project to practice their coding skills after finishing an introductory/intermediate React online course. I hope it might help you to become a better programmer, too 🤓.
 
-`Warning: Can't perform a React state update on an unmounted component. This is a no-op, but it indicates a memory leak in your application. To fix, cancel all subscriptions and asynchronous tasks in a useEffect cleanup function.`
+## Features
 
-Of course I tried to google it and read some interesting material about it, like: https://dev.to/jexperton/how-to-fix-the-react-memory-leak-warning-d4i
+- Written in modern React, only functional components with hooks
+- Simple local React state management, without redux, recoil, mobx, or similar
+- Todoist UI (as of January 2022)
+- Add, delete and edit projects
+- Add, delete, search and edit tasks. Assign due dates and organize tasks into projects.
 
-However, I'm unable to locate the specific piece of code that's causing the error and thus I'm unable to start thinking about solving it. Could you please help me out with this one? And teach me how I can find and fix it next time by myself?
+## Setting up development environment 🛠
 
-### 2. Question: Why do I run into a "RangeError: Maximum call stack size exceeded" when uncommenting the lines in useProject?
+- tbd
 
-### 3. Is it ok to have useEffect inside a function which is inside a custom hook (see useModal))?
+## Running automated tests 🚥
 
-### 3. state/setState as function arguments (example below needs to be updated)
+- tbd
 
-If I understood your past comments correctly, you advice against passing state and setState as arguments to another function. I agree that it doesn't look elegant. But what to do in a situation like in "AddTask.js":
+## What's missing?
 
-`handleTaskFormOpen(isTaskFormOpen, setIsTaskFormOpen)`
+There are features missing from this showcase product which should exist in a real product:
 
-Here I have the folliwing situation:
+### Features
 
-- the state `isTaskFormOpen`is defined in `AddTask.js` (it's not in a context, thus hard to access from `useTaskForm.js`)
-- `handleTaskFormOpen` is defined in `useTaskForm.js` (and thus can not directly access `isTaskFormOpen` and `setIsTaskFormOpen`)
-- `handleTaskFormOpen` is doing more than just open the taskForm. Thus toggling the taskform directly in `AddTask.js` is not an option
+tbd
 
-I know I could put `isTaskFormOpen` and `setIsTaskFormOpen` in a React context or use another state management library, but this has it's downsides as well.
+### Authentification system 🔐
 
-**How can I avoid passing the state/setState in a situation like this?**
+tbd
 
-### 4. Pure functions or less code? (example below needs to be updated)
+### Migrations 🗄
 
-In `useCrudTasks.js` I noticed that all my functions (e.g. createTasks, deleteTasks, ...) have `db`as argument. I am importing `db`in the file as well.
+tbd
 
-From the perspective of pure functions it seems right to leave `db` in as function argument. But it's unnecessary code I could remove.
+### Accessibility ♿
 
-What would you recommend in situations like these. Leave argument in and have pure functions, or remove argument and have less code?
+tbd
 
-### 5. Which State Management Library should I learn first
+### Test coverage 🧪
 
-I'm slowly feeling the pain and limitations of React regarding state management.
+tbd
 
-Which state management library should I learn (first)? There seems to be a huge variety.
+## Author: Max Breitsprecher
 
-From what I've read so far:
+- Website: tbd
+- Email: tbd
+- Github profile: tbd
 
-- Redux: most popular, but a bit dated and clunky
-- Zustand: supposed to be great
-- Jotai: seems great too
-- Immer.js: Don't really know if it fits
+## Contributing
 
-What I'm looking for at the moment is a way to define my most important states in a central space somewhere and then being able to get and set these states from anywhere in my application easily.
+I will not be accepting PR's on this repository. Feel free to fork and maintain your own version.
 
-## Known issues/bugs
+## License
 
-currently none
+[MIT](https://opensource.org/licenses/MIT)
 
-## Planned Features
+## Thanks
 
-- [ ] CRUD for projects
-- [ ] Adding Tests
-
-## Maybe
-
-- [ ] Make app responsive
-- [ ] Remember user settings (e.g Sidebar hidden, last navitem/project selected, ...)
-- [ ] User authentification
-- [ ] Search, dynamic sorting and filtering, ... https://listjs.com/?ref=vanillalist
-- [ ] Drag and drop projects and tasks: https://shopify.github.io/draggable/
-- [ ] Keyboard shortcuts: https://github.com/madrobby/keymaster?ref=vanillalist
+- This project was originally inspired by Karl Hadwen's YouTube tutorial [Building Todoist From Scratch](https://youtu.be/HgfA4W_VjmI). However, I decided to build it more or less from scratch after watching the first few hours of the video.
+- Code organization heavily inspired by Ivor Reic inspiring [Jira Clone](https://github.com/oldboyxx/jira_clone/tree/190dfcd9dc62189a2852acf8e9e7869178a8008c) repo. // TODO: to be implemented.
+- To my awesome code tutor Esen for encouragement and super valuable code feedback.
