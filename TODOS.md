@@ -6,18 +6,18 @@
 
 ## Planned Features
 
+- [ ] Firebase keys in .env file
+- [ ] Configure Firebase/Firestore rules correctly
+- [ ] default sort projects in Sidebar by dateCreated
+- [ ] Add basic responsiveness (mainly Sidebar behaviour)
 - [ ] Task Search
+- [ ] Split css into separate css files per component (maybe via styled components)
 - [ ] Header modals on click
 - [ ] Adding Tests
-- Closing
+- [ ] Closing modal behaviour after save, add action
+- [ ] Deploy
 
 ## Maybe
 
-- [ ] Make app responsive
-- [ ] Remember user settings (e.g Sidebar hidden, last navitem/project selected, ...)
 - [ ] User authentification
-- [ ] Search, dynamic sorting and filtering, ... https://listjs.com/?ref=vanillalist
-- [ ] Drag and drop projects and tasks: https://shopify.github.io/draggable/
-- [ ] Keyboard shortcuts: https://github.com/madrobby/keymaster?ref=vanillalist
-
-// TODO: file to be deleted at the end.
+- [ ] Basic error handling/Logging
