@@ -1,36 +1,17 @@
-import { useState } from 'react';
 import { IoSearchOutline } from 'react-icons/io5';
 import useCrudTasks from '../hooks/useCrudTasks';
-import useTaskModal from '../hooks/useTaskModal';
+import useSearch from '../hooks/useSearch';
 
 function Search() {
   const { tasks } = useCrudTasks();
-  const [searchInput, setSearchInput] = useState('');
-  const [searchResults, setSearchResults] = useState([]);
-  const { handleTaskModalOpen } = useTaskModal();
+  const {
+    searchInput,
+    searchResults,
+    handleTaskSearch,
+    handleSearchResultOpen,
+  } = useSearch();
 
   const isSearchResultsOpen = searchResults.length > 0;
-
-  const handleTaskSearch = (e, tasks) => {
-    const searchTerm = e.target.value;
-    setSearchInput(searchTerm);
-
-    const filteredTasks = tasks.filter((task) =>
-      task.name.toLowerCase().includes(searchTerm.toLowerCase())
-    );
-
-    searchTerm === '' ? setSearchResults([]) : setSearchResults(filteredTasks);
-  };
-
-  const clearSearch = () => {
-    setSearchInput('');
-    setSearchResults([]);
-  };
-
-  const handleSearchResultOpen = (task) => {
-    handleTaskModalOpen(task);
-    clearSearch();
-  };
 
   return (
     <div className='search'>
@@ -41,6 +22,7 @@ function Search() {
         className='search__bar'
         onChange={(e) => handleTaskSearch(e, tasks)}
       />
+      <IoSearchOutline className='search__icon' />
       {isSearchResultsOpen && (
         <div className='search__results'>
           {searchResults.map((task) => (

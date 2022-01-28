@@ -1,0 +1,38 @@
+import { useState } from 'react';
+import useTaskModal from '../hooks/useTaskModal';
+
+const useSearch = () => {
+  const [searchInput, setSearchInput] = useState('');
+  const [searchResults, setSearchResults] = useState([]);
+  const { handleTaskModalOpen } = useTaskModal();
+
+  const clearSearch = () => {
+    setSearchInput('');
+    setSearchResults([]);
+  };
+
+  const handleSearchResultOpen = (task) => {
+    handleTaskModalOpen(task);
+    clearSearch();
+  };
+
+  const handleTaskSearch = (e, tasks) => {
+    const searchTerm = e.target.value;
+    setSearchInput(e.target.value);
+
+    const filteredTasks = tasks.filter((task) =>
+      task.name.toLowerCase().includes(searchTerm.toLowerCase())
+    );
+
+    searchTerm ? setSearchResults(filteredTasks) : setSearchResults([]);
+  };
+
+  return {
+    searchInput,
+    searchResults,
+    handleSearchResultOpen,
+    handleTaskSearch,
+  };
+};
+
+export default useSearch;
