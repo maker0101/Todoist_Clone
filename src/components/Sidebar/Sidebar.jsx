@@ -1,9 +1,9 @@
 import SidebarNav from './SidebarNav';
 import SidebarProjects from './SidebarProjects';
 
-const Sidebar = () => {
+const Sidebar = ({ isSidebarOpen }) => {
   return (
-    <nav className='sidebar'>
+    <nav className={`sidebar ${isSidebarOpen && 'sidebar__mobile'}`}>
       <SidebarNav />
       <SidebarProjects />
     </nav>

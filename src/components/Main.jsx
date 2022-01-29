@@ -16,7 +16,7 @@ const Main = ({ isSidebarOpen }) => {
 
   return (
     <div className='main'>
-      {isSidebarOpen && <Sidebar />}
+      {isSidebarOpen && <Sidebar isSidebarOpen={isSidebarOpen} />}
       <Routes>
         <Route path='/' element={<Navigate to='/today' />} />
         <Route path='/inbox' element={<Inbox />}></Route>

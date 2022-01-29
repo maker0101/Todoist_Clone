@@ -11,12 +11,12 @@ const useSearch = () => {
     setSearchResults([]);
   };
 
-  const handleSearchResultOpen = (task) => {
+  const handleTaskOpen = (task) => {
     handleTaskModalOpen(task);
     clearSearch();
   };
 
-  const handleTaskSearch = (e, tasks) => {
+  const handleSearch = (e, tasks) => {
     const searchTerm = e.target.value;
     setSearchInput(e.target.value);
 
@@ -30,8 +30,8 @@ const useSearch = () => {
   return {
     searchInput,
     searchResults,
-    handleSearchResultOpen,
-    handleTaskSearch,
+    handleTaskOpen,
+    handleSearch,
   };
 };
 

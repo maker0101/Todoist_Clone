@@ -4,14 +4,10 @@ import useSearch from '../hooks/useSearch';
 
 function Search() {
   const { tasks } = useCrudTasks();
-  const {
-    searchInput,
-    searchResults,
-    handleTaskSearch,
-    handleSearchResultOpen,
-  } = useSearch();
+  const { searchInput, searchResults, handleSearch, handleTaskOpen } =
+    useSearch();
 
-  const isSearchResultsOpen = searchResults.length > 0;
+  const areResultsOpen = searchResults.length > 0;
 
   return (
     <div className='search'>
@@ -20,16 +16,16 @@ function Search() {
         placeholder='Search'
         value={searchInput}
         className='search__bar'
-        onChange={(e) => handleTaskSearch(e, tasks)}
+        onChange={(e) => handleSearch(e, tasks)}
       />
       <IoSearchOutline className='search__icon' />
-      {isSearchResultsOpen && (
+      {areResultsOpen && (
         <div className='search__results'>
           {searchResults.map((task) => (
             <div
               key={task.id}
               className='search__result'
-              onClick={() => handleSearchResultOpen(task)}>
+              onClick={() => handleTaskOpen(task)}>
               {task.name}
             </div>
           ))}

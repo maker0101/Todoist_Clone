@@ -148,7 +148,7 @@ select::-ms-expand {
   background-color: $color-red-1;
   padding: 0 40px;
   color: $color-white;
-  z-index: 1;
+  z-index: 100;
 
   .header__left {
     @include va;
@@ -246,6 +246,8 @@ select::-ms-expand {
   position: absolute;
   top: 28px;
   width: 183px;
+  max-height: 300px;
+  overflow: scroll;
   font-size: $font-size-small;
   color: black;
   border: 1px solid $color-grey-4;
@@ -282,6 +284,7 @@ select::-ms-expand {
   padding-left: 35px;
   padding-right: 5px;
   background-color: $color-grey-2;
+  z-index: 10;
 
   .sidebar__section {
     margin-top: 15px;
@@ -368,6 +371,17 @@ select::-ms-expand {
 
   .sidebar__section:hover .sidebar__addProject {
     display: flex;
+  }
+}
+
+@media screen and (max-width: 720px) {
+  .sidebar {
+    transform: translateX(-100%);
+    position: absolute;
+  }
+
+  .sidebar__mobile {
+    transform: translateX(0);
   }
 }
 
