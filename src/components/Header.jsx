@@ -1,19 +1,39 @@
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { VscMenu, VscHome, VscAdd, VscAccount, VscBell } from 'react-icons/vsc';
-import { IoSearchOutline } from 'react-icons/io5';
+import {
+  VscMenu,
+  VscHome,
+  VscAdd,
+  VscAccount,
+  VscBell,
+  VscChromeClose,
+} from 'react-icons/vsc';
 import useTaskModal from '../hooks/useTaskModal';
 import Search from './Search';
+import useMediaQuery from '../hooks/useMediaQuery';
+import { SidebarContext } from '../contexts/SidebarContext';
 
-const Header = ({ isSidebarOpen, setIsSidebarOpen }) => {
+const Header = () => {
   const { handleTaskModalOpen } = useTaskModal();
+  const { isDesktop } = useMediaQuery();
+  const { isSidebarOpen, setIsSidebarOpen } = useContext(SidebarContext);
+
+  const isCloseVisible = !isDesktop && isSidebarOpen;
 
   return (
     <header className='header'>
       <div className='header__left'>
-        <VscMenu
-          className='header__item'
-          onClick={() => setIsSidebarOpen(() => !isSidebarOpen)}
-        />
+        {isCloseVisible ? (
+          <VscChromeClose
+            className='header__item'
+            onClick={() => setIsSidebarOpen(() => !isSidebarOpen)}
+          />
+        ) : (
+          <VscMenu
+            className='header__item'
+            onClick={() => setIsSidebarOpen(() => !isSidebarOpen)}
+          />
+        )}
         <Link to='/today'>
           <VscHome className='header__item' />
         </Link>

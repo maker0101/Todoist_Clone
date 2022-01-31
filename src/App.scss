@@ -184,6 +184,10 @@ select::-ms-expand {
   a {
     color: $color-white;
   }
+
+  @media screen and (max-width: 720px) {
+    padding: 0 12px;
+  }
 }
 
 // Search
@@ -191,6 +195,10 @@ select::-ms-expand {
   position: relative;
   display: flex;
   align-items: center;
+
+  @media screen and (max-width: 350px) {
+    display: none;
+  }
 }
 
 .search__bar {
@@ -202,6 +210,14 @@ select::-ms-expand {
   border: none;
   border-radius: $border-radius-small;
   background-color: $color-grey-7;
+
+  @media screen and (max-width: 720px) {
+    width: 212px;
+  }
+
+  @media screen and (max-width: 440px) {
+    width: 140px;
+  }
 }
 
 .searchbar,
@@ -256,6 +272,10 @@ select::-ms-expand {
   box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
     rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
 
+  @media screen and (max-width: 720px) {
+    width: 140px;
+  }
+
   .search__result {
     display: flex;
     align-items: center;
@@ -280,11 +300,13 @@ select::-ms-expand {
   min-width: 300px;
   max-width: 300px;
   height: 100vh;
-  padding-top: 60px;
-  padding-left: 35px;
-  padding-right: 5px;
+  padding: 60px 6px 0 35px;
   background-color: $color-grey-2;
   z-index: 10;
+
+  @media screen and (max-width: 720px) {
+    padding-left: 6px;
+  }
 
   .sidebar__section {
     margin-top: 15px;
@@ -382,6 +404,19 @@ select::-ms-expand {
 
   .sidebar__mobile {
     transform: translateX(0);
+  }
+}
+
+.sidebar__bgOverlay {
+  display: none;
+  position: absolute;
+  width: 100%;
+  height: 100vh;
+  background-color: #00000080;
+  z-index: 9;
+
+  @media screen and (max-width: 720px) {
+    display: flex;
   }
 }
 
@@ -627,7 +662,7 @@ select::-ms-expand {
   height: 100vh;
   width: 100vw;
   background-color: transparent;
-  z-index: 2;
+  z-index: 20;
 
   .modal__formContainer {
     width: 100%;

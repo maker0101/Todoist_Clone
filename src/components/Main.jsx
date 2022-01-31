@@ -9,14 +9,23 @@ import ProjectModal from './Modals/ProjectModal';
 import TaskModal from './Modals/TaskModal';
 import { ProjectModalContext } from '../contexts/ProjectModalContext';
 import { TaskModalContext } from '../contexts/TaskModalContext';
+import { SidebarContext } from '../contexts/SidebarContext';
 
-const Main = ({ isSidebarOpen }) => {
+const Main = () => {
   const { isProjectModalOpen } = useContext(ProjectModalContext);
   const { isTaskModalOpen } = useContext(TaskModalContext);
+  const { isSidebarOpen, setIsSidebarOpen } = useContext(SidebarContext);
 
   return (
     <div className='main'>
-      {isSidebarOpen && <Sidebar isSidebarOpen={isSidebarOpen} />}
+      {isSidebarOpen && (
+        <>
+          <Sidebar isSidebarOpen={isSidebarOpen} />
+          <div
+            className='sidebar__bgOverlay'
+            onClick={() => setIsSidebarOpen(false)}></div>
+        </>
+      )}
       <Routes>
         <Route path='/' element={<Navigate to='/today' />} />
         <Route path='/inbox' element={<Inbox />}></Route>

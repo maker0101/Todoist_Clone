@@ -1,11 +1,13 @@
 import { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
-import { VscCircleFilled, VscAdd, VscEdit } from 'react-icons/vsc';
+import { VscCircleFilled, VscEdit } from 'react-icons/vsc';
 import useCrudTasks from '../../hooks/useCrudTasks';
 import useCountTasks from '../../hooks/useCountTasks';
 import useProjectModal from '../../hooks/useProjectModal';
+import useMediaQuery from '../../hooks/useMediaQuery';
 import { getColorHEXById } from '../../utilities/get-color';
 import { ProjectModalContext } from '../../contexts/ProjectModalContext';
+import { SidebarContext } from '../../contexts/SidebarContext';
 
 const SidebarProject = ({ project }) => {
   const { tasks } = useCrudTasks();
@@ -13,10 +15,12 @@ const SidebarProject = ({ project }) => {
   const { countTasksOfProject } = useCountTasks();
   const { handleProjectModalOpen } = useProjectModal();
 
+  // TODO: Close sidebar on click
+  const { isDesktop } = useMediaQuery();
+  const { isSidebarOpen, setIsSidebarOpen } = useContext(SidebarContext);
+
   return (
-    <NavLink
-      to={`/project/${project.id}`}
-      className='sidebar__item'>
+    <NavLink to={`/project/${project.id}`} className='sidebar__item'>
       <VscCircleFilled
         className='sidebar__icon'
         style={{ color: getColorHEXById(project.colorId) }}
