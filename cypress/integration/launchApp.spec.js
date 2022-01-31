@@ -1,4 +1,4 @@
-describe('Launching web app', () => {
+describe('Launch app', () => {
   beforeEach(() => {
     cy.visit('http://localhost:3000');
   });
