@@ -5,29 +5,29 @@
 ## What is this and who is it for ⭐
 
 This is a simplified Todoist clone built with React and Firebase.
-I've built it to practice React after finishing an online [introductory course on React](https://scrimba.com/learn/learnreact).
+I've built it to practice React after finishing an online [introductory course on React on Scrimba](https://scrimba.com/learn/learnreact).
 
 It's a more _complex_ coding project than anything I've attempted previously, as I wanted to:
 
 - Practice React under more _real-world_ conditions to find and push my limits.
-- Experience some of the pain points and needs of a growing codebase (e.g. organizing files, automated testing, ...).
+- Experience some of the pain points and needs of a growing codebase (e.g. managing state, organizing files, automated testing, ...).
 - Go from zero to a fully deployed web app for the first time.
 
-This project might be interesting for anyone learning React, who's looking for a practice project:
+This project might be interesting for anyone learning React, who's looking for a practice project that's...
 
-- That's challenging, but not overwhelming.
-- That's using 'pure' React and vanilla JS (no Redux, jQuery, Typescript, ... )
-- That's frontend focused (backend implemented via Firebase / Firestore)
+- ... challenging, but not overwhelming.
+- ... using 'pure' React and vanilla JS (no Redux, jQuery, Typescript, ... ).
+- ... frontend focused (backend implemented via Firebase / Firestore).
 
 I hope it helps you to become a better React programmer, too 🤓.
 
 ## Features
 
-- Written in modern React, only functional components with hooks
-- Simple local React state management, without redux or similar
-- Todoist UI (as of January 2022)
-- Add, delete and edit projects
-- Add, delete, search and edit tasks. Assign due dates and organize tasks into projects.
+- Written in **modern React**, only functional components with hooks
+- **Simple** local React **state management**(without Redux, Recoil or similar)
+- **Todoist UI** (as of January 2022)
+- Add, delete and edit **projects** working
+- Add, delete, search and edit **tasks**. Assign due dates and organize tasks into projects
 
 ## Setting up development environment 🛠
 

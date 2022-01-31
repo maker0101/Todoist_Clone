@@ -19,7 +19,7 @@ const SidebarNav = () => {
           key={item.id}
           to={item.to}
           className='sidebar__item sidebar__navItem'
-          onClick={() => !isDesktop && setIsSidebarOpen(!isSidebarOpen)}>
+          onClick={() => !isDesktop && setIsSidebarOpen(false)}>
           <div
             className={`sidebar__icon ${item.iconClassName}`}
             style={{ color: item.iconColor }}>

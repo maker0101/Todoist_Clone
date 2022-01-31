@@ -41,8 +41,14 @@ const Header = () => {
       </div>
       <div className='header__right'>
         <VscAdd className='header__item' onClick={handleTaskModalOpen} />
-        <VscBell className='header__item' />
-        <VscAccount className='header__item' />
+        <VscBell
+          title='Not implemented'
+          className='header__item header__disabled'
+        />
+        <VscAccount
+          title='Not implemented'
+          className='header__item header__disabled'
+        />
       </div>
     </header>
   );

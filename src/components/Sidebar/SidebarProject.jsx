@@ -12,15 +12,18 @@ import { SidebarContext } from '../../contexts/SidebarContext';
 const SidebarProject = ({ project }) => {
   const { tasks } = useCrudTasks();
   const { setIsProjectModalOpen } = useContext(ProjectModalContext);
+  const { isSidebarOpen, setIsSidebarOpen } = useContext(SidebarContext);
   const { countTasksOfProject } = useCountTasks();
   const { handleProjectModalOpen } = useProjectModal();
-
-  // TODO: Close sidebar on click
   const { isDesktop } = useMediaQuery();
-  const { isSidebarOpen, setIsSidebarOpen } = useContext(SidebarContext);
 
   return (
-    <NavLink to={`/project/${project.id}`} className='sidebar__item'>
+    <NavLink
+      to={`/project/${project.id}`}
+      className='sidebar__item'
+      // TODO: Selected project not loaded on click, but previously selected
+      //onClick={() => !isDesktop && setIsSidebarOpen(false)}
+    >
       <VscCircleFilled
         className='sidebar__icon'
         style={{ color: getColorHEXById(project.colorId) }}
