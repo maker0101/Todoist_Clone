@@ -28,12 +28,15 @@ I hope it helps you to become a better React programmer, too 🤓.
 - **Todoist UI** (as of January 2022)
 - Add, delete and edit **projects** working
 - Add, delete, search and edit **tasks**. Assign due dates and organize tasks into projects
+- **End-to-end tested** with Cypress
 
-## Setting up development environment 🛠
+## Getting started
+
+### Setting up development environment 🛠
 
 TBD
 
-## Running automated tests 🚥
+### Running automated tests 🚥
 
 TBD
 
@@ -76,4 +79,4 @@ If you have any questions or feedback, feel free to say hi via email. 👋
 ## Shout out
 
 - This project was originally inspired by Karl Hadwen's YouTube tutorial [Building Todoist From Scratch](https://youtu.be/HgfA4W_VjmI).
-- Big thanks to my awesome code tutor [Esen](https://github.com/snqb) for his patience, encouragement super valuable code reviews.
+- Big thanks to my awesome code tutor [Esen](https://github.com/snqb) for his patience, encouragement and super valuable code reviews.
