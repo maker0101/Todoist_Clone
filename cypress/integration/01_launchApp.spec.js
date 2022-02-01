@@ -1,14 +1,15 @@
 describe('Launch app', () => {
   beforeEach(() => {
-    cy.visit('http://localhost:3000');
+    cy.visit('');
   });
 
   it('Redirects / to /today', () => {
-    cy.url().should('be.equal', 'http://localhost:3000/today');
+    cy.location('pathname').should('eq', '/today');
   });
 
+  // TODO: Add data-cy attribute to all relevant HTML elements and target these as per best practices: https://docs.cypress.io/guides/references/best-practices
   it('Header correctly displayed', () => {
-    cy.get('header').and('be.visible');
+    cy.get('[data-cy=header]').and('be.visible');
     cy.get('header').find('svg').should('have.length', 6);
     cy.get('input').and('be.visible');
   });

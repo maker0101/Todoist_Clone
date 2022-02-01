@@ -24,11 +24,11 @@ I hope it helps you to become a better React programmer, too 🤓.
 ## Features
 
 - Written in **modern React**, only functional components with hooks
-- **Simple** local React **state management**(without Redux, Recoil or similar)
+- **Simple** local React **state management** (without Redux, Recoil or similar)
 - **Todoist UI** (as of January 2022)
-- Add, delete and edit **projects** working
-- Add, delete, search and edit **tasks**. Assign due dates and organize tasks into projects
 - **End-to-end tested** with Cypress
+- Users can add, delete and edit **projects**
+- Users can add, delete, search and edit **tasks**. Assign due dates and organize tasks into projects is possible as well.
 
 ## Getting started
 

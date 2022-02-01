@@ -21,7 +21,7 @@ const Header = () => {
   const isCloseVisible = !isDesktop && isSidebarOpen;
 
   return (
-    <header className='header'>
+    <header className='header' data-cy='header'>
       <div className='header__left'>
         {isCloseVisible ? (
           <VscChromeClose
