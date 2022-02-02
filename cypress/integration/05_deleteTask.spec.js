@@ -1,3 +1,4 @@
+/*
 describe('Delete tasks', () => {
   beforeEach(() => {
     cy.visit('http://localhost:3000');
@@ -10,3 +11,4 @@ describe('Delete tasks', () => {
     cy.get('.task').contains('YYYYY');
   });
 });
+*/

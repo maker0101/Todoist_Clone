@@ -1,3 +1,4 @@
+/*
 describe('Edit tasks', () => {
   beforeEach(() => {
     cy.visit('http://localhost:3000');
@@ -26,3 +27,4 @@ describe('Edit tasks', () => {
     cy.get('.task').should('contain', 'YYYYY').and('contain', 'yyyyy');
   });
 });
+*/

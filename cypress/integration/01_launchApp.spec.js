@@ -8,33 +8,33 @@ describe('Launch app', () => {
   });
 
   it('Header elements visible', () => {
-    cy.get('[data-cy=header]').and('be.visible');
-    cy.get('[data-cy=header__item]').should('have.length', 5).and('be.visible');
-    cy.get('[data-cy=search_bar]').and('be.visible');
+    cy.getByTestId('header').and('be.visible');
+    cy.getByTestId('header__item').should('have.length', 5).and('be.visible');
+    cy.getByTestId('search_bar').and('be.visible');
   });
 
   it('Sidebar elements visible', () => {
-    cy.get('[data-cy=sidebar]').and('be.visible');
-    cy.get('[data-cy=sidebar]').contains('Inbox').and('be.visible');
-    cy.get('[data-cy=sidebar]').contains('Today').and('be.visible');
-    cy.get('[data-cy=sidebar]').contains('Upcoming').and('be.visible');
-    cy.get('[data-cy=sidebar]').contains('Projects').and('be.visible');
+    cy.getByTestId('sidebar').and('be.visible');
+    cy.getByTestId('sidebar').contains('Inbox').and('be.visible');
+    cy.getByTestId('sidebar').contains('Today').and('be.visible');
+    cy.getByTestId('sidebar').contains('Upcoming').and('be.visible');
+    cy.getByTestId('sidebar').contains('Projects').and('be.visible');
   });
 
   it('Today page elements visible', () => {
-    cy.get('[data-cy=main]').contains('Today').and('be.visible');
-    cy.get('[data-cy=content__subtitle]')
+    cy.getByTestId('main').contains('Today').and('be.visible');
+    cy.getByTestId('content__subtitle')
       .first()
       .contains('Overdue')
       .and('be.visible');
-    cy.get('[data-cy=content__subtitle]')
+    cy.getByTestId('content__subtitle')
       .last()
       .contains(/[0-31]/)
       .and('be.visible');
-    cy.get('[data-cy=content__subtitle]')
+    cy.getByTestId('content__subtitle')
       .last()
       .contains('Today')
       .and('be.visible');
-    cy.get('[data-cy=main]').contains('Add Task').and('be.visible');
+    cy.getByTestId('main').contains('Add Task').and('be.visible');
   });
 });
