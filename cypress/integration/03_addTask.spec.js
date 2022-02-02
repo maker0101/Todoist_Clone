@@ -8,7 +8,6 @@ describe('Add task', () => {
         .type('XXXXX')
         .should('have.value', 'XXXXX');
       cy.getByTestId('taskForm__desc')
-        .click()
         .type('xxxxx')
         .should('have.value', 'xxxxx');
       cy.get('button').contains('Add Task').should('not.be.disabled');
@@ -28,12 +27,10 @@ describe('Add task', () => {
       .within(() => {
         cy.get('button').contains('Add Task').should('be.disabled');
         cy.getByTestId('taskForm__name')
-          .click()
           .type('XXXXX2')
           .should('have.value', 'XXXXX2');
 
         cy.getByTestId('taskForm__desc')
-          .click()
           .type('xxxxx2')
           .should('have.value', 'xxxxx2');
         cy.get('button').contains('Add Task').should('not.be.disabled');
