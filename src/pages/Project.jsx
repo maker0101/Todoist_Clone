@@ -12,7 +12,7 @@ const Project = () => {
 
   return (
     <div className='content'>
-      <h1 className='content__title'>
+      <h1 className='content__title' data-cy='content__title'>
         {selectedProject && selectedProject.name}
       </h1>
       {projectTasks.map((task) => (

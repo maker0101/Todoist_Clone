@@ -7,7 +7,7 @@ const Sidebar = () => {
   const { isSidebarOpen } = useContext(SidebarContext);
 
   return (
-    <nav className={`sidebar ${isSidebarOpen && 'sidebar__mobile'}`}>
+    <nav className={`sidebar ${isSidebarOpen && 'sidebar__mobile'}`} data-cy='sidebar'>
       <SidebarNav />
       <SidebarProjects />
     </nav>

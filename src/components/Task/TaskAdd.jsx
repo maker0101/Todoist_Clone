@@ -19,6 +19,7 @@ const TaskAdd = ({ selectedProjectId, dueDate }) => {
         ) : (
           <div
             className='addTask__line'
+            data-cy='addTask'
             onClick={() => handleTaskFormOpen(setIsTaskFormOpen, dueDate)}>
             <VscAdd className='addTask__icon' />
             <div className='addTask__text'>Add Task</div>

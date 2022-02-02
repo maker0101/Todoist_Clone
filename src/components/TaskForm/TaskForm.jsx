@@ -15,6 +15,7 @@ const TaskForm = ({ selectedProjectId, setIsTaskFormOpen, inModal }) => {
   return (
     <form
       className={`taskForm ${inModal}`}
+      data-cy='taskForm'
       onSubmit={(e) => {
         handleTaskFormSubmit(e, db, taskForm, 'userid1', selectedProjectId);
       }}>

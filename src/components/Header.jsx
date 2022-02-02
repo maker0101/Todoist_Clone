@@ -26,28 +26,37 @@ const Header = () => {
         {isCloseVisible ? (
           <VscChromeClose
             className='header__item'
+            data-cy='header__item'
             onClick={() => setIsSidebarOpen(() => !isSidebarOpen)}
           />
         ) : (
           <VscMenu
             className='header__item'
+            data-cy='header__item'
             onClick={() => setIsSidebarOpen(() => !isSidebarOpen)}
           />
         )}
         <Link to='/today'>
-          <VscHome className='header__item' />
+          <VscHome className='header__item' data-cy='header__item' />
         </Link>
         <Search />
       </div>
       <div className='header__right'>
-        <VscAdd className='header__item' onClick={handleTaskModalOpen} />
+        <VscAdd
+          className='header__item'
+          data-cy='header__item'
+          id='header__addTask'
+          onClick={handleTaskModalOpen}
+        />
         <VscBell
           title='Not implemented'
           className='header__item header__disabled'
+          data-cy='header__item'
         />
         <VscAccount
           title='Not implemented'
           className='header__item header__disabled'
+          data-cy='header__item'
         />
       </div>
     </header>

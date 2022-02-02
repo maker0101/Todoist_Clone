@@ -17,7 +17,7 @@ const Main = () => {
   const { isSidebarOpen, setIsSidebarOpen } = useContext(SidebarContext);
 
   return (
-    <div className='main'>
+    <div className='main' data-cy='main'>
       {isSidebarOpen && (
         <>
           <Sidebar isSidebarOpen={isSidebarOpen} />

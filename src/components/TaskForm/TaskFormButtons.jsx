@@ -10,6 +10,8 @@ const TaskFormButtons = ({
   const { isTaskModalOpen, setIsTaskModalOpen } = useContext(TaskModalContext);
   const { handleTaskFormCancel } = useTaskForm();
 
+  const primaryBtnText = isTaskModalOpen && taskForm.id ? 'Save' : 'Add Task';
+
   return (
     <div className='taskForm__buttons'>
       <button
@@ -17,7 +19,7 @@ const TaskFormButtons = ({
         type='submit'
         value=''
         disabled={taskForm.name ? false : true}>
-        {isTaskModalOpen ? 'Save' : 'Add Task'}
+        {primaryBtnText}
       </button>
       <button
         className='button button__secondary'

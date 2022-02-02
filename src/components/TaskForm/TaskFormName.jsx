@@ -4,6 +4,7 @@ const TaskFormName = ({ taskForm, setTaskForm }) => {
       required
       autoFocus
       className='taskForm__input taskForm__name'
+      data-cy='taskForm__name'
       type='text'
       id='taskName'
       name='name'

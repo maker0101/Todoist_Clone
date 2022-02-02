@@ -20,7 +20,9 @@ const Upcoming = () => {
 
   return (
     <div className='content'>
-      <h1 className='content__title'>Upcoming</h1>
+      <h1 className='content__title' data-cy='content__title'>
+        Upcoming
+      </h1>
       <div className='content__section'>
         <h2 className='content__subTitle'>Overdue</h2>
         <hr />

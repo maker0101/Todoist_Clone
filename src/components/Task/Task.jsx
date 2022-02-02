@@ -11,7 +11,7 @@ const Task = ({ task }) => {
 
   return (
     <>
-      <div className='task'>
+      <div className='task' data-cy='task'>
         <div className='task__row'>
           <TaskCheckbox task={task} />
           <div className='task__name' onClick={() => handleTaskModalOpen(task)}>

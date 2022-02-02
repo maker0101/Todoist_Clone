@@ -21,6 +21,7 @@ const SidebarProject = ({ project }) => {
     <NavLink
       to={`/project/${project.id}`}
       className='sidebar__item'
+      data-cy='sidebar__project'
       // TODO: Selected project not loaded on click, but previously selected
       //onClick={() => !isDesktop && setIsSidebarOpen(false)}
     >

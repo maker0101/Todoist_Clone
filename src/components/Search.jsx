@@ -16,6 +16,7 @@ function Search() {
         placeholder='Search'
         value={searchInput}
         className='search__bar'
+        data-cy='search_bar'
         onChange={(e) => handleSearch(e, tasks)}
       />
       <IoSearchOutline className='search__icon' />

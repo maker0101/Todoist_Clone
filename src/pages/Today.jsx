@@ -16,10 +16,14 @@ const Today = () => {
 
   return (
     <div className='content'>
-      <h1 className='content__title'>Today</h1>
+      <h1 className='content__title' data-cy='content__title'>
+        Today
+      </h1>
 
       <div className='content__section'>
-        <h2 className='content__subTitle'>Overdue</h2>
+        <h2 className='content__subTitle' data-cy='content__subtitle'>
+          Overdue
+        </h2>
         <hr />
         {overdueTasks.map((task) => (
           <Task key={task.id} task={task} />
@@ -27,9 +31,9 @@ const Today = () => {
       </div>
 
       <div className='content__section'>
-        <h2 className='content__subTitle'>{`${dateToDayMonth(
-          today
-        )} · Today`}</h2>
+        <h2
+          className='content__subTitle'
+          data-cy='content__subtitle'>{`${dateToDayMonth(today)} · Today`}</h2>
         <hr />
         {todayTasks.map((task) => (
           <Task key={task.id} task={task} />

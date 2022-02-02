@@ -7,29 +7,34 @@ describe('Launch app', () => {
     cy.location('pathname').should('eq', '/today');
   });
 
-  // TODO: Add data-cy attribute to all relevant HTML elements and target these as per best practices: https://docs.cypress.io/guides/references/best-practices
-  it('Header correctly displayed', () => {
+  it('Header elements visible', () => {
     cy.get('[data-cy=header]').and('be.visible');
-    cy.get('header').find('svg').should('have.length', 6);
-    cy.get('input').and('be.visible');
+    cy.get('[data-cy=header__item]').should('have.length', 5).and('be.visible');
+    cy.get('[data-cy=search_bar]').and('be.visible');
   });
 
-  it('Sidebar correctly displayed', () => {
-    cy.get('.sidebar').and('be.visible');
-    cy.get('.sidebar').contains('Inbox').and('be.visible');
-    cy.get('.sidebar').contains('Today').and('be.visible');
-    cy.get('.sidebar').contains('Upcoming').and('be.visible');
-    cy.get('.sidebar').contains('Projects').and('be.visible');
+  it('Sidebar elements visible', () => {
+    cy.get('[data-cy=sidebar]').and('be.visible');
+    cy.get('[data-cy=sidebar]').contains('Inbox').and('be.visible');
+    cy.get('[data-cy=sidebar]').contains('Today').and('be.visible');
+    cy.get('[data-cy=sidebar]').contains('Upcoming').and('be.visible');
+    cy.get('[data-cy=sidebar]').contains('Projects').and('be.visible');
   });
 
-  it('Today page correctly displayed', () => {
-    cy.get('.content__title').contains('Today').and('be.visible');
-    cy.get('.content__subTitle').first().contains('Overdue').and('be.visible');
-    cy.get('.content__subTitle')
+  it('Today page elements visible', () => {
+    cy.get('[data-cy=main]').contains('Today').and('be.visible');
+    cy.get('[data-cy=content__subtitle]')
+      .first()
+      .contains('Overdue')
+      .and('be.visible');
+    cy.get('[data-cy=content__subtitle]')
       .last()
       .contains(/[0-31]/)
       .and('be.visible');
-    cy.get('.content__subTitle').last().contains('Today').and('be.visible');
-    cy.get('.addTask__text').contains('Add Task').and('be.visible');
+    cy.get('[data-cy=content__subtitle]')
+      .last()
+      .contains('Today')
+      .and('be.visible');
+    cy.get('[data-cy=main]').contains('Add Task').and('be.visible');
   });
 });

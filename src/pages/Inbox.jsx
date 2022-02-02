@@ -9,7 +9,9 @@ const Inbox = () => {
 
   return (
     <div className='content'>
-      <h1 className='content__title'>Inbox</h1>
+      <h1 className='content__title' data-cy='content__title'>
+        Inbox
+      </h1>
       {inboxTasks.map((task) => (
         <Task key={task.id} task={task} />
       ))}
