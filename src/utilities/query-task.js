@@ -1,7 +1,7 @@
 import { dateToDayMonth, harmonizeDateTime } from './transform-dates';
 
 export const isTaskDueDateDefined = (task) => {
-  return Boolean(task.dueDate);
+  return !!task.dueDate;
 };
 
 export const isTaskDue = (task, dateObject) => {

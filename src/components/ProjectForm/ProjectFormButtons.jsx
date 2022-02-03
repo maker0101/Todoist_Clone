@@ -19,7 +19,7 @@ const ProjectFormButtons = () => {
         className='button button__primary'
         type='submit'
         value=''
-        disabled={Boolean(!projectForm.name)}>
+        disabled={!projectForm.name}>
         {primaryBtnText}
       </button>
       <button

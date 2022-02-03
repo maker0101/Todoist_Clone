@@ -1,6 +1,6 @@
 export const sortTasksByDueDateAsc = (tasks) => {
   if (!tasks) return;
   return tasks
-    .filter((task) => Boolean(task.dueDate))
+    .filter((task) => !!task.dueDate)
     .sort((a, b) => new Date(a.dueDate) - new Date(b.dueDate));
 };
