@@ -1,4 +1,9 @@
-const TaskFormName = ({ taskForm, setTaskForm }) => {
+import { useContext } from 'react';
+import { TaskFormContext } from '../../contexts/TaskFormContext';
+
+const TaskFormName = () => {
+  const { taskForm, setTaskForm } = useContext(TaskFormContext);
+
   return (
     <input
       required

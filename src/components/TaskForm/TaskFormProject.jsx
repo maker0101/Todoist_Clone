@@ -1,6 +1,9 @@
+import { useContext } from 'react';
+import { TaskFormContext } from '../../contexts/TaskFormContext';
 import useProjects from '../../hooks/useProjects';
 
-const TaskFormProject = ({ taskForm, setTaskForm }) => {
+const TaskFormProject = () => {
+  const { taskForm, setTaskForm } = useContext(TaskFormContext);
   const { projects } = useProjects();
 
   return (

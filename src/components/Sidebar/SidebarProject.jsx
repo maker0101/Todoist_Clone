@@ -2,10 +2,10 @@ import { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import { VscCircleFilled, VscEdit } from 'react-icons/vsc';
 import useCrudTasks from '../../hooks/useCrudTasks';
-import useCountTasks from '../../hooks/useCountTasks';
 import useProjectModal from '../../hooks/useProjectModal';
 import useMediaQuery from '../../hooks/useMediaQuery';
 import { getColorHEXById } from '../../utilities/get-color';
+import { countTasksOfProject } from '../../utilities/count-tasks';
 import { ProjectModalContext } from '../../contexts/ProjectModalContext';
 import { SidebarContext } from '../../contexts/SidebarContext';
 
@@ -13,7 +13,6 @@ const SidebarProject = ({ project }) => {
   const { tasks } = useCrudTasks();
   const { setIsProjectModalOpen } = useContext(ProjectModalContext);
   const { isSidebarOpen, setIsSidebarOpen } = useContext(SidebarContext);
-  const { countTasksOfProject } = useCountTasks();
   const { handleProjectModalOpen } = useProjectModal();
   const { isDesktop } = useMediaQuery();
 

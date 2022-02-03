@@ -12,9 +12,9 @@ const TaskDueDate = ({ task }) => {
       <span className='task__dueDateIcon'>
         <BsCalendar4Event />
       </span>
-      <span className='task__dueDate'>
-        {task.dueDate && dateToDayMonth(task.dueDate)}
-      </span>
+      {task.dueDate && (
+        <span className='task__dueDate'>{dateToDayMonth(task.dueDate)}</span>
+      )}
     </div>
   );
 };

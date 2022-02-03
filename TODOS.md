@@ -1,6 +1,6 @@
 ## Known issues/bugs
 
-- [ ] Append objects with ? to avoid error when trying to access object keys that are not defined
+- [ ] Dates not preselected in Today / Upcoming view when adding tasks (both inline and via header)
 - [ ] Rename firebase.js to firebase-config.js to avoid confusions with firebase node module
 - [ ] Wire in and clean Auth component
 - [ ] Phishing Suspection Warning when opening deployed site in Chrome

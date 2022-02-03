@@ -3,21 +3,21 @@ describe('Navigate app', () => {
     cy.visit('');
   });
 
-  it('Navigate from Today to Inbox', () => {
+  it('shows Inbox page (from Today)', () => {
     cy.getByTestId('sidebar').contains('Inbox').click();
     cy.location('pathname').should('eq', '/inbox');
     cy.getByTestId('content__title').contains('Inbox').and('be.visible');
     cy.getByTestId('addTask').contains('Add Task').and('be.visible');
   });
 
-  it('Navigate from Today to Upcoming', () => {
+  it('shows Upcoming page (from Today)', () => {
     cy.getByTestId('sidebar').contains('Upcoming').click();
     cy.location('pathname').should('eq', '/upcoming');
     cy.getByTestId('content__title').contains('Upcoming').and('be.visible');
     cy.getByTestId('addTask').contains('Add Task').and('be.visible');
   });
 
-  it('Navigate from Today to (first) Project', () => {
+  it('shows Project page (from Today)', () => {
     cy.getByTestId('sidebar__project').first().click();
     cy.location('pathname').should('include', '/project');
     cy.getByTestId('content__title').should('be.visible');

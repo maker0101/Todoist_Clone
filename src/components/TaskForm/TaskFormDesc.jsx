@@ -1,4 +1,9 @@
-const TaskFormDesc = ({ taskForm, setTaskForm }) => {
+import { useContext } from 'react';
+import { TaskFormContext } from '../../contexts/TaskFormContext';
+
+const TaskFormDesc = () => {
+  const { taskForm, setTaskForm } = useContext(TaskFormContext);
+
   return (
     <textarea
       className='taskForm__input taskForm__description'

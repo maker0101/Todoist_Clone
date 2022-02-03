@@ -4,8 +4,7 @@ import { ProjectFormContext } from '../../contexts/ProjectFormContext';
 const ProjectFormHeading = () => {
   const { projectForm } = useContext(ProjectFormContext);
 
-  const inEditMode = projectForm.id ? true : false;
-  const formTitle = inEditMode ? 'Edit project' : 'Add project';
+  const formTitle = projectForm.id ? 'Edit project' : 'Add project';
 
   return (
     <div className='projectForm__heading'>

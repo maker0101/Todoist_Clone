@@ -1,4 +1,9 @@
-const TaskFormDueDate = ({ taskForm, setTaskForm }) => {
+import { useContext } from 'react';
+import { TaskFormContext } from '../../contexts/TaskFormContext';
+
+const TaskFormDueDate = () => {
+  const { taskForm, setTaskForm } = useContext(TaskFormContext);
+
   return (
     <input
       className='taskForm__select'

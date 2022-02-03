@@ -1,12 +1,12 @@
 import { useContext } from 'react';
+import { SelectedProjectContext } from '../../contexts/SelectedProjectContext';
+import { TaskFormContext } from '../../contexts/TaskFormContext';
 import { TaskModalContext } from '../../contexts/TaskModalContext';
 import useTaskForm from '../../hooks/useTaskForm';
 
-const TaskFormButtons = ({
-  taskForm,
-  selectedProjectId,
-  setIsTaskFormOpen,
-}) => {
+const TaskFormButtons = ({ setIsTaskFormOpen }) => {
+  const { selectedProjectId } = useContext(SelectedProjectContext);
+  const { taskForm } = useContext(TaskFormContext);
   const { isTaskModalOpen, setIsTaskModalOpen } = useContext(TaskModalContext);
   const { handleTaskFormCancel } = useTaskForm();
 

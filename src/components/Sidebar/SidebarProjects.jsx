@@ -21,9 +21,9 @@ const SidebarProjects = () => {
           className={`sidebar__icon sidebar__iconChevron ${
             !isAccordionOpen && 'sidebar__iconChevronNotShowing'
           }`}
-          onClick={() => toggleAccordion()}
+          onClick={toggleAccordion}
         />
-        <h2 onClick={() => toggleAccordion()}>Projects</h2>
+        <h2 onClick={toggleAccordion}>Projects</h2>
         <VscAdd
           className='sidebar__addProject'
           onClick={() => handleProjectModalOpen(setIsProjectModalOpen)}

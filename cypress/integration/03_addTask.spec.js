@@ -1,5 +1,5 @@
 describe('Add task', () => {
-  it('Add task on Inbox page via inline', () => {
+  it('adds task via inline form', () => {
     cy.visit('/inbox');
     cy.getByTestId('addTask').click();
     cy.getByTestId('taskForm').within(() => {
@@ -19,7 +19,7 @@ describe('Add task', () => {
     cy.getByTestId('task').should('contain', 'XXXXX').and('contain', 'xxxxx');
   });
 
-  it('Add task on Inbox page via Header', () => {
+  it('adds task via modal', () => {
     cy.visit('/inbox');
     cy.get('[data-cy=header__item][id=header__addTask]').click();
     cy.getByTestId('taskForm')

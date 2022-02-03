@@ -5,7 +5,7 @@ describe('Delete tasks', () => {
     cy.location('pathname').should('eq', '/today');
   });
 
-  it('Edit task in Inbox by clicking task name', () => {
+  it('deletes task', () => {
     cy.get('.sidebar').contains('Inbox').click();
     cy.location('pathname').should('eq', '/inbox');
     cy.get('.task').contains('YYYYY');

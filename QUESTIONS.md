@@ -17,3 +17,8 @@ Why do I run into a "RangeError: Maximum call stack size exceeded" when uncommen
 ### 3. useEffect inside a function inside custom hook
 
 Is it ok to have useEffect inside a function which is inside a custom hook (see `useModal` line 6))?
+
+### 4. Which datatype to use when no value is available?
+I've noticed that I'm often using empty strings when I have no value that I can set, e.g. in `default-task.js` but many other places as well.
+
+Would you advice against this and instead recommend to explicitly set null instead?

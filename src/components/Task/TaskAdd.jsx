@@ -3,7 +3,7 @@ import { VscAdd } from 'react-icons/vsc';
 import TaskForm from '../TaskForm/TaskForm';
 import useTaskForm from '../../hooks/useTaskForm';
 
-const TaskAdd = ({ selectedProjectId, dueDate }) => {
+const TaskAdd = ({ dueDate }) => {
   const [isTaskFormOpen, setIsTaskFormOpen] = useState(false);
   const { handleTaskFormOpen } = useTaskForm();
 
@@ -12,7 +12,6 @@ const TaskAdd = ({ selectedProjectId, dueDate }) => {
       <div className='task'>
         {isTaskFormOpen ? (
           <TaskForm
-            selectedProjectId={selectedProjectId}
             isTaskFormOpen={isTaskFormOpen}
             setIsTaskFormOpen={setIsTaskFormOpen}
           />

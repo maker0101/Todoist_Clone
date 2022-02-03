@@ -7,13 +7,13 @@ describe('Launch app', () => {
     cy.location('pathname').should('eq', '/today');
   });
 
-  it('Header elements visible', () => {
+  it('shows header', () => {
     cy.getByTestId('header').and('be.visible');
     cy.getByTestId('header__item').should('have.length', 5).and('be.visible');
     cy.getByTestId('search_bar').and('be.visible');
   });
 
-  it('Sidebar elements visible', () => {
+  it('shows sidebar', () => {
     cy.getByTestId('sidebar').and('be.visible');
     cy.getByTestId('sidebar').contains('Inbox').and('be.visible');
     cy.getByTestId('sidebar').contains('Today').and('be.visible');
@@ -21,7 +21,7 @@ describe('Launch app', () => {
     cy.getByTestId('sidebar').contains('Projects').and('be.visible');
   });
 
-  it('Today page elements visible', () => {
+  it('shows Today page', () => {
     cy.getByTestId('main').contains('Today').and('be.visible');
     cy.getByTestId('content__subtitle')
       .first()

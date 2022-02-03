@@ -6,7 +6,7 @@ describe('Edit tasks', () => {
   });
 
   //TODO: Tests should run in isolation -> this and the following ones depend on previous
-  it('Edit task in Inbox by clicking task name', () => {
+  it('edits task by clicking task name', () => {
     cy.get('.sidebar').contains('Inbox').click();
     cy.location('pathname').should('eq', '/inbox');
     cy.get('.content').should('contain', 'XXXXX2').click();
