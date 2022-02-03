@@ -18,6 +18,7 @@ This project might be interesting for anyone learning React, who's looking for a
 - ... challenging, but not overwhelming.
 - ... using 'pure' React and vanilla JS (no Redux, jQuery, Typescript, ... ).
 - ... frontend focused (backend implemented via Firebase / Firestore).
+- ... focused on CRUD operations.
 
 I hope it helps you to become a better React programmer, too 🤓.
 
@@ -28,7 +29,7 @@ I hope it helps you to become a better React programmer, too 🤓.
 - **Todoist UI** (as of January 2022)
 - **End-to-end tested** with Cypress
 - Users can add, delete and edit **projects**
-- Users can add, delete, search and edit **tasks**. Assign due dates and organize tasks into projects is possible as well.
+- Users can add, delete, search and edit **tasks**. Assigning due dates and organizing tasks into projects is possible as well.
 
 ## Getting started
 
