@@ -1,5 +1,7 @@
 ## Known issues/bugs
 
+- [ ] Phishing Suspection Warning when opening deployed site in Chrome
+- [ ] Checkboxes bug in Safari: default checkboxes overlap custom ones
 - [ ] memory leak error
 - [ ] RangeError
 - [ ] Preselected Project not changing when Task form is open while changing project
