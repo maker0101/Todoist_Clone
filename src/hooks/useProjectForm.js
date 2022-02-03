@@ -1,37 +1,28 @@
 import { useContext } from 'react';
 import useProjects from './useProjects';
 import { ProjectFormContext } from '../contexts/ProjectFormContext';
+import { defaultProject } from '../utilities/default-project';
 
 const useProjectForm = () => {
   const { setProjectForm } = useContext(ProjectFormContext);
   const { projects, updateProject, createProject } = useProjects();
 
   const clearProjectForm = () => {
-    setProjectForm({
-      name: '',
-      colorId: 7,
-      isInbox: false,
-      userId: 'userid1',
-    });
+    setProjectForm(defaultProject);
   };
 
   const populateProjectForm = (project = {}) => {
     let populatedProjectForm;
     if (project) {
       populatedProjectForm = {
-        id: project.id ? project.id : '',
-        name: project.name ? project.name : '',
-        isInbox: project.isInbox ? project.isInbox : false,
-        colorId: project.colorId ? project.colorId : 7,
-        userId: project.userId ? project.userId : 'userid1',
+        id: project.id || defaultProject.id,
+        name: project?.name || defaultProject.name,
+        isInbox: project?.isInbox || defaultProject.isInbox,
+        colorId: project?.colorId || defaultProject.colorId,
+        userId: project?.userId || defaultProject.userId,
       };
     } else {
-      populatedProjectForm = {
-        name: '',
-        colorId: 7,
-        isInbox: false,
-        userId: 'userid1',
-      };
+      populatedProjectForm = defaultProject;
     }
 
     setProjectForm(populatedProjectForm);

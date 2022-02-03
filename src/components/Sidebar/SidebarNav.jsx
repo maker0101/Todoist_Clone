@@ -10,7 +10,7 @@ const SidebarNav = () => {
   const { tasks } = useCrudTasks();
   const { countTasksOfNavItems } = useCountTasks();
   const { isDesktop } = useMediaQuery();
-  const { isSidebarOpen, setIsSidebarOpen } = useContext(SidebarContext);
+  const { setIsSidebarOpen } = useContext(SidebarContext);
 
   return (
     <div className='sidebar__section'>

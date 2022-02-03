@@ -24,7 +24,7 @@ const useSearch = () => {
       task.name.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
-    searchTerm ? setSearchResults(filteredTasks) : setSearchResults([]);
+    setSearchResults(searchTerm ? filteredTasks : []);
   };
 
   return {

@@ -3,6 +3,7 @@ import useCrudTasks from './useCrudTasks';
 import { TaskFormContext } from '../contexts/TaskFormContext';
 import { SelectedProjectContext } from '../contexts/SelectedProjectContext';
 import { dateToYearMonthDay } from '../utilities/transform-dates';
+import { defaultTask } from '../utilities/default-task';
 
 const useTaskForm = () => {
   const { setTaskForm } = useContext(TaskFormContext);
@@ -11,10 +12,7 @@ const useTaskForm = () => {
 
   const clearTaskForm = (projectId) => {
     setTaskForm({
-      id: '',
-      name: '',
-      description: '',
-      dueDate: '',
+      ...defaultTask,
       projectId: projectId,
     });
   };
@@ -25,25 +23,17 @@ const useTaskForm = () => {
     let populatedTaskForm;
     if (task) {
       populatedTaskForm = {
-        id: task.id ? task.id : '',
-        name: task.name ? task.name : '',
-        description: task.description ? task.description : '',
-        dueDate: task.dueDate ? task.dueDate : dueDate,
-        projectId: task.projectId
-          ? task.projectId
-          : selectedProject
-          ? selectedProject.id
-          : 'GtbY3fGVBVrTJmJH4IGd',
+        id: task?.id || defaultTask.id,
+        name: task?.name || defaultTask.name,
+        description: task?.description || defaultTask.description,
+        dueDate: task?.dueDate || defaultTask.dueDate,
+        projectId:
+          task?.projectId || selectedProject?.id || defaultTask.projectId,
       };
     } else {
       populatedTaskForm = {
-        id: '',
-        name: '',
-        description: '',
-        dueDate: '',
-        projectId: selectedProject
-          ? selectedProject.id
-          : 'GtbY3fGVBVrTJmJH4IGd',
+        ...defaultTask,
+        projectId: selectedProject?.id || defaultTask.projectId,
       };
     }
 

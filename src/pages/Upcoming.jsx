@@ -14,7 +14,7 @@ const Upcoming = () => {
   const [upcomingDays, setUpcomingDays] = useState([]);
   const overdueTasks = sortTasksByDueDateAsc(filterTasksOverdue(tasks));
   const daySubheading = ({ dateShort, todayTomorrow, weekday }) =>
-    `${dateShort} · ${todayTomorrow ? todayTomorrow : weekday}`;
+    `${dateShort} · ${todayTomorrow || weekday}`;
 
   useEffect(() => setUpcomingDays(calculateUpcomingDays(7)), []);
 

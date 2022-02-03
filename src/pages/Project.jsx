@@ -13,12 +13,12 @@ const Project = () => {
   return (
     <div className='content'>
       <h1 className='content__title' data-cy='content__title'>
-        {selectedProject && selectedProject.name}
+        {selectedProject?.name}
       </h1>
       {projectTasks.map((task) => (
         <Task key={task.id} task={task} />
       ))}
-      <TaskAdd selectedProjectId={selectedProject ? selectedProject.id : ''} />
+      <TaskAdd selectedProjectId={selectedProject?.id} />
     </div>
   );
 };

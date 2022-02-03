@@ -18,7 +18,7 @@ const TaskFormButtons = ({
         className='button button__primary'
         type='submit'
         value=''
-        disabled={taskForm.name ? false : true}>
+        disabled={Boolean(!taskForm.name)}>
         {primaryBtnText}
       </button>
       <button

@@ -15,6 +15,7 @@ import { db } from '../firebase';
 import useProjectForm from './useProjectForm';
 import { SelectedProjectContext } from '../contexts/SelectedProjectContext';
 import { ProjectModalContext } from '../contexts/ProjectModalContext';
+import { inboxProjectId } from '../constants/inbox-project-id';
 
 // Question: Why do I run into a "RangeError: Maximum call stack size exceeded" when uncommenting the below line?
 const useProjects = () => {
@@ -84,9 +85,9 @@ const useProjects = () => {
     const findProjectById = (projects, projectId) =>
       projects.find((project) => project.id === projectId);
 
-    const selectProjectId = match ? match.params.id : 'GtbY3fGVBVrTJmJH4IGd';
+    const selectProjectId = match?.params.id || inboxProjectId;
     const selectProject = findProjectById(projects, selectProjectId);
-    setSelectedProject(selectProject ? selectProject : '');
+    setSelectedProject(selectProject || '');
   };
 
   const getProjects = (db) => {
