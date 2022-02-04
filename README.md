@@ -1,57 +1,83 @@
-# General
+<h1 align="center">A simplified Todoist clone built with React and Firebase</h1>
 
-This project is a clone attempt of Todoist: https://todoist.com
+![Todoist Clone Screenshot](todoist-clone-preview.png)
 
-## Features implemented
+## What is this and who is it for ⭐
 
-- [x] Clone Todoist styling
-- [x] Firebase/Firestore setup & get tasks and projects dynamically from Firestore
-- [x] Add new tasks
-- [x] Delete tasks
-- [x] Check tasks as done
-- [x] Display task count per project
-- [x] Preserve tasks in order of time created
-- [x] Assign and Filter tasks by project
-- [x] Sidebar: Toggle show/hide
-- [x] Due dates for tasks
+This is a simplified Todoist clone built with React and Firebase.
+I've built it to practice React after finishing an online [introductory course on React on Scrimba](https://scrimba.com/learn/learnreact).
 
-## Questions
+It's a more _complex_ coding project than anything I've attempted previously, as I wanted to:
 
-### 1. Memory leak Error
+- Practice React under more _real-world_ conditions to find and push my limits.
+- Experience some of the pain points and needs of a growing codebase (e.g. managing state, organizing files, automated testing, ...).
+- Go from zero to a fully deployed web app for the first time.
 
-When creating, deleting or checking a task as done, I sometimes (not always) get the follwing error message:
+This project might be interesting for anyone learning React, who's looking for a practice project that's...
 
-`Warning: Can't perform a React state update on an unmounted component. This is a no-op, but it indicates a memory leak in your application. To fix, cancel all subscriptions and asynchronous tasks in a useEffect cleanup function.`
+- ... challenging, but not overwhelming.
+- ... using 'pure' React and vanilla JS (no Redux, jQuery, Typescript, ... ).
+- ... frontend focused (backend implemented via Firebase / Firestore).
+- ... focused on CRUD operations.
 
-Of course I tried to google it and read some interesting material about it, like: https://dev.to/jexperton/how-to-fix-the-react-memory-leak-warning-d4i
+I hope it helps you to become a better React programmer, too 🤓.
 
-However, I'm unable to locate the specific piece of code that's causing the error and thus I'm unable to start thinking about solving it. Could you please help me out with this one? And teach me how I can find and fix it next time by myself?
+## Features
 
-### 2. Moving state inside custom hooks and export/import state freely from there -> Why is this pattern not more often recommended?
+- Written in **modern React**, only functional components with hooks
+- **Simple** local React **state management** (without Redux, Recoil or similar)
+- **Todoist UI** (as of January 2022)
+- **End-to-end tested** with Cypress
+- Users can add, delete and edit **projects**
+- Users can add, delete, search and edit **tasks**. Assigning due dates and organizing tasks into projects is possible as well.
 
-Seems elegant, avoids problems of "Props drilling", avoids negative effects of useContext and lessens need for additional tools like Redux.
-Why is this pattern not recommended all over the internet? I couldn't find it in any of the materials I studied so far.
+## Getting started
 
-### 3. Exporting via wrapper function
+### Setting up development environment 🛠
 
-I saw the pattern of exporting values and functions from inside a wrapper function first time when using custom hooks. I somehow find this approach elegant and are wondering if it's considered good practice to import anything like this, e.g. utility functions, constants etc. Or should it be restricted to custom hooks and maybe has negative side effects I'm unaware of?
+TBD
 
-## Known issues/bugs
+### Running automated tests 🚥
 
-- Remove setters from inside getTasks and getProjects and move into useEffect hooks
-- Overdue tasks need to be sorted by due date and years need to be considered
+TBD
 
-## Planned Features
+## What's missing?
 
-- [ ] Edit existing Tasks
-- [ ] CRUD for projects
-- [ ] Adding Tests
+TBD
 
-## Maybe
+### Features
 
-- [ ] Make app responsive
-- [ ] Remember user settings (e.g Sidebar hidden, last navitem/project selected, ...)
-- [ ] User authentification
-- [ ] Search, dynamic sorting and filtering, ... https://listjs.com/?ref=vanillalist
-- [ ] Drag and drop projects and tasks: https://shopify.github.io/draggable/
-- [ ] Keyboard shortcuts: https://github.com/madrobby/keymaster?ref=vanillalist
+TBD
+
+### Authentification system 🔐
+
+TBD
+
+### Migrations 🗄
+
+TBD
+
+### Accessibility ♿
+
+TBD
+
+### Test coverage 🧪
+
+TBD
+
+## Author: Max Breitsprecher
+
+- Website: TBD
+- Email: TBD
+- Github profile: TBD
+
+If you have any questions or feedback, feel free to say hi via email. 👋
+
+## License
+
+[MIT](https://opensource.org/licenses/MIT)
+
+## Shout out
+
+- This project was originally inspired by Karl Hadwen's YouTube tutorial [Building Todoist From Scratch](https://youtu.be/HgfA4W_VjmI).
+- Big thanks to my awesome code tutor [Esen](https://github.com/snqb) for his patience, encouragement and super valuable code reviews.

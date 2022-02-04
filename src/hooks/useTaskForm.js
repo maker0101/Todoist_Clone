@@ -1,45 +1,80 @@
-import { useState } from 'react';
+import { useContext } from 'react';
 import useCrudTasks from './useCrudTasks';
+import { TaskFormContext } from '../contexts/TaskFormContext';
+import { SelectedProjectContext } from '../contexts/SelectedProjectContext';
+import { dateToYearMonthDay } from '../utilities/transform-dates';
+import { defaultTask } from '../utilities/default-task';
 
-export default function useTaskForm() {
-	const [taskForm, setTaskForm] = useState({
-		name: '',
-		description: '',
-		dueDate: '',
-		projectId: 'GtbY3fGVBVrTJmJH4IGd',
-	});
-	const { createTask } = useCrudTasks();
+const useTaskForm = () => {
+  const { setTaskForm } = useContext(TaskFormContext);
+  const { selectedProject } = useContext(SelectedProjectContext);
+  const { tasks, createTask, updateTask } = useCrudTasks();
 
-	const clearTaskForm = (projectId) => {
-		setTaskForm({
-			name: '',
-			description: '',
-			dueDate: '',
-			projectId: projectId,
-		});
-	};
+  const clearTaskForm = (projectId) => {
+    setTaskForm({
+      ...defaultTask,
+      projectId: projectId,
+    });
+  };
 
-	const autoSelectProjectId = (selectedProject) =>
-		setTaskForm({
-			...taskForm,
-			projectId: selectedProject ? selectedProject : 'GtbY3fGVBVrTJmJH4IGd',
-		});
+  const populateTaskForm = (task = '', dueDate) => {
+    dueDate = dueDate ? dateToYearMonthDay(dueDate) : '';
 
-	const toggleIsTaskFormHidden = (isTaskFormHidden, setIsTaskFormHiddenFn) => {
-		setIsTaskFormHiddenFn(() => !isTaskFormHidden);
-	};
+    let populatedTaskForm;
+    if (task) {
+      populatedTaskForm = {
+        id: task?.id || defaultTask.id,
+        name: task?.name || defaultTask.name,
+        description: task?.description || defaultTask.description,
+        dueDate: task?.dueDate || defaultTask.dueDate,
+        projectId:
+          task?.projectId || selectedProject?.id || defaultTask.projectId,
+      };
+    } else {
+      populatedTaskForm = {
+        ...defaultTask,
+        projectId: selectedProject?.id || defaultTask.projectId,
+      };
+    }
 
-	const handleTaskFormSubmit = (e, db, taskForm, userId, selectedProjectId) => {
-		createTask(e, db, taskForm, userId);
-		clearTaskForm(selectedProjectId);
-	};
+    setTaskForm(populatedTaskForm);
+  };
 
-	return {
-		taskForm,
-		setTaskForm,
-		handleTaskFormSubmit,
-		clearTaskForm,
-		autoSelectProjectId,
-		toggleIsTaskFormHidden,
-	};
-}
+  const handleTaskFormOpen = (setIsTaskFormOpen, dueDate = '') => {
+    const task = {};
+    populateTaskForm(task, dueDate);
+    setIsTaskFormOpen(true);
+  };
+
+  const handleTaskFormSubmit = (e, db, taskForm, userId, selectedProjectId) => {
+    e.preventDefault();
+    const taskExists =
+      tasks.filter((task) => task.id === taskForm.id).length > 0;
+
+    taskExists
+      ? updateTask(db, taskForm, userId)
+      : createTask(db, taskForm, userId);
+
+    clearTaskForm(selectedProjectId);
+  };
+
+  const handleTaskFormCancel = (
+    isTaskModalOpen,
+    setIsTaskModalOpen,
+    setIsTaskFormOpen,
+    selectedProjectId
+  ) => {
+    isTaskModalOpen ? setIsTaskModalOpen(false) : setIsTaskFormOpen(false);
+    clearTaskForm(selectedProjectId);
+  };
+
+  return {
+    clearTaskForm,
+    populateTaskForm,
+    handleTaskFormOpen,
+    handleTaskFormSubmit,
+    handleTaskFormCancel,
+  };
+};
+
+export default useTaskForm;

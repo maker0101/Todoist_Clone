@@ -1,15 +1,29 @@
 import { MONTHS_OF_YEAR } from '../constants/months-of-year';
 
-export const dateToDayMonth = (date) => {
-	const day = date.getDate();
-	const month = date.getMonth();
-	return day.toString() + ' ' + MONTHS_OF_YEAR[month];
+// Input: Date object, e.g. 'Tue Jan 25 2022 08:37:08 GMT+0100'
+// Output: Date object, e.g. 'Tue Jan 25 2022 00:00:00 GMT+0100'
+export const harmonizeDateTime = (date) => {
+  return new Date(date.toDateString());
 };
 
-export const dateToFormInput = (date) =>
-	date ? date.toISOString().split('T')[0] : '';
+// Input: String, e.g. "2022-01-25"
+// Output: String, e.g. '25 Jan'
+export const dateToDayMonth = (date) => {
+  const dateObject = new Date(date);
+  const day = dateObject.getDate();
+  const month = MONTHS_OF_YEAR[dateObject.getMonth()];
+  return `${day} ${month}`;
+};
 
-export const dateToDateWithoutTime = (date) => new Date(date.toDateString());
+// Input: Date object, e.g. 'Tue Jan 25 2022 08:37:08 GMT+0100'
+// Output: String, 'YYYY-MM-DD'
+export const dateToYearMonthDay = (date) => {
+  let day = date.getDate();
+  let month = date.getMonth() + 1;
+  const year = date.getFullYear();
 
-export const timestampToDate = (timestamp) =>
-	new Date(new Date(timestamp.seconds * 1000).toDateString());
+  if (day < 10) day = `0${day}`;
+  if (month < 10) month = `0${month}`;
+
+  return `${year}-${month}-${day}`;
+};
