@@ -1,11 +1,10 @@
 import { useContext, useRef } from 'react';
 import TaskForm from '../TaskForm/TaskForm';
-import useModal from '../../hooks/useModal';
 import { TaskModalContext } from '../../contexts/TaskModalContext';
+import { closeModalOnOverlayClick } from '../../utilities/close-modal-on-overlay-click';
 
 const TaskModal = () => {
   const { setIsTaskModalOpen } = useContext(TaskModalContext);
-  const { closeModalOnOverlayClick } = useModal();
   const taskModalOverlayRef = useRef(null);
 
   closeModalOnOverlayClick(taskModalOverlayRef, () =>

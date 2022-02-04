@@ -1,24 +1,7 @@
 # Questions
 
-### 1. Memory leak Error
+### 1. Which datatype to use when no value is available?
 
-When creating, deleting or checking a task as done, I sometimes (not always) get the follwing error message:
+I've noticed that I'm often using empty strings ('') when I have no value that I can set, e.g. in `default-task.js` and in many other places as well.
 
-`Warning: Can't perform a React state update on an unmounted component. This is a no-op, but it indicates a memory leak in your application. To fix, cancel all subscriptions and asynchronous tasks in a useEffect cleanup function.`
-
-Of course I tried to google it and read some interesting material about it, like: https://dev.to/jexperton/how-to-fix-the-react-memory-leak-warning-d4i
-
-However, I'm unable to locate the specific piece of code that's causing the error and thus I'm unable to start thinking about solving it. Could you please help me out with this one? And teach me how I can find and fix it next time by myself?
-
-### 2. RangeError
-
-Why do I run into a "RangeError: Maximum call stack size exceeded" when uncommenting the line 24 in `useProjects`?
-
-### 3. useEffect inside a function inside custom hook
-
-Is it ok to have useEffect inside a function which is inside a custom hook (see `useModal` line 6))?
-
-### 4. Which datatype to use when no value is available?
-I've noticed that I'm often using empty strings when I have no value that I can set, e.g. in `default-task.js` but many other places as well.
-
-Would you advice against this and instead recommend to explicitly set null instead?
+Would you advice against this and instead recommend to explicitly set `null`?
