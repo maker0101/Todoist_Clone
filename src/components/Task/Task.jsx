@@ -1,4 +1,4 @@
-import { db } from '../../firebase';
+import { db } from '../../firebase-config';
 import { VscTrash, VscEdit } from 'react-icons/vsc';
 import useCrudTasks from '../../hooks/useCrudTasks';
 import useTaskModal from '../../hooks/useTaskModal';

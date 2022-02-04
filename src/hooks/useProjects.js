@@ -11,7 +11,7 @@ import {
   deleteDoc,
   serverTimestamp,
 } from 'firebase/firestore';
-import { db } from '../firebase';
+import { db } from '../firebase-config';
 import { SelectedProjectContext } from '../contexts/SelectedProjectContext';
 import { ProjectFormContext } from '../contexts/ProjectFormContext';
 import { ProjectModalContext } from '../contexts/ProjectModalContext';

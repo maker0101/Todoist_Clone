@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { db } from '../../firebase';
+import { db } from '../../firebase-config';
 import useProjectForm from '../../hooks/useProjectForm';
 import { ProjectFormContext } from '../../contexts/ProjectFormContext';
 import { ProjectModalContext } from '../../contexts/ProjectModalContext';

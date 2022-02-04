@@ -6,7 +6,7 @@ import {
   onAuthStateChanged,
   signOut,
 } from 'firebase/auth';
-import { auth } from '../firebase';
+import { auth } from '../firebase-config';
 
 // TODO: needs to be cleaned and wired into to App (put in custom hook)
 const Auth = () => {

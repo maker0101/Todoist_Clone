@@ -1,12 +1,8 @@
 ## Known issues/bugs
 
 - [ ] Dates not preselected in Today / Upcoming view when adding tasks (both inline and via header)
-- [ ] Rename firebase.js to firebase-config.js to avoid confusions with firebase node module
 - [ ] Wire in and clean Auth component
 - [ ] Phishing Suspection Warning when opening deployed site in Chrome
-- [ ] Checkboxes bug in Safari: default checkboxes overlap custom ones
-- [ ] memory leak error
-- [ ] RangeError
 - [ ] Preselected Project not changing when Task form is open while changing project
 - [ ] Loading a project URL directly (not via home -> then to project) shows empty page
 

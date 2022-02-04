@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { db } from '../../firebase';
+import { db } from '../../firebase-config';
 import { VscTrash } from 'react-icons/vsc';
 import useProjects from '../../hooks/useProjects';
 import { ProjectFormContext } from '../../contexts/ProjectFormContext';

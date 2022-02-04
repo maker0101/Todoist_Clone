@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { db } from '../../firebase';
+import { db } from '../../firebase-config';
 import useTaskForm from '../../hooks/useTaskForm';
 import { SelectedProjectContext } from '../../contexts/SelectedProjectContext';
 import { TaskFormContext } from '../../contexts/TaskFormContext';

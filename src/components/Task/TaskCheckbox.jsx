@@ -1,4 +1,4 @@
-import { db } from '../../firebase';
+import { db } from '../../firebase-config';
 import useCrudTasks from '../../hooks/useCrudTasks';
 
 const TaskCheckbox = ({ task }) => {
