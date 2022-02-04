@@ -78,7 +78,7 @@ const useCrudTasks = () => {
       orderBy('createdAt')
     );
 
-    onSnapshot(tasksQuery, (querySnapshot) => {
+    return onSnapshot(tasksQuery, (querySnapshot) => {
       setTasks(
         querySnapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
       );

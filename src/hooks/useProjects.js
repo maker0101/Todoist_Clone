@@ -95,7 +95,7 @@ const useProjects = () => {
       collection(db, 'projects'),
       where('userId', '==', 'userid1')
     );
-    onSnapshot(projectsQuery, (querySnapshot) => {
+    return onSnapshot(projectsQuery, (querySnapshot) => {
       const projectsSnapshot = querySnapshot.docs.map((doc) => ({
         ...doc.data(),
         id: doc.id,
