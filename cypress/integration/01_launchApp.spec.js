@@ -29,7 +29,7 @@ describe('Launch app', () => {
       .and('be.visible');
     cy.getByTestId('content__subtitle')
       .last()
-      .contains(/[0-31]/)
+      .should('contain', /[0-31]/)
       .and('be.visible');
     cy.getByTestId('content__subtitle')
       .last()

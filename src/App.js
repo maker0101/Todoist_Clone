@@ -8,6 +8,7 @@ import { ProjectFormContext } from './contexts/ProjectFormContext';
 import { TaskFormContext } from './contexts/TaskFormContext';
 import { SidebarContext } from './contexts/SidebarContext';
 import useMediaQuery from './hooks/useMediaQuery';
+import { defaultProject } from './utilities/default-project';
 
 const App = () => {
   const { isWidthLarger720 } = useMediaQuery();
@@ -17,6 +18,8 @@ const App = () => {
   const [isTaskModalOpen, setIsTaskModalOpen] = useState(false);
   const [projectForm, setProjectForm] = useState({});
   const [taskForm, setTaskForm] = useState({});
+
+  const clearProjectForm = () => setProjectForm(defaultProject);
 
   return (
     <div className='App'>
@@ -28,7 +31,7 @@ const App = () => {
             <TaskModalContext.Provider
               value={{ isTaskModalOpen, setIsTaskModalOpen }}>
               <ProjectFormContext.Provider
-                value={{ projectForm, setProjectForm }}>
+                value={{ projectForm, setProjectForm, clearProjectForm }}>
                 <TaskFormContext.Provider value={{ taskForm, setTaskForm }}>
                   <Header />
                   <Main />

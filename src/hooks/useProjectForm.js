@@ -4,12 +4,8 @@ import { ProjectFormContext } from '../contexts/ProjectFormContext';
 import { defaultProject } from '../utilities/default-project';
 
 const useProjectForm = () => {
-  const { setProjectForm } = useContext(ProjectFormContext);
+  const { setProjectForm, clearProjectForm } = useContext(ProjectFormContext);
   const { projects, updateProject, createProject } = useProjects();
-
-  const clearProjectForm = () => {
-    setProjectForm(defaultProject);
-  };
 
   const populateProjectForm = (project = {}) => {
     let populatedProjectForm;
@@ -45,7 +41,6 @@ const useProjectForm = () => {
   };
 
   return {
-    clearProjectForm,
     handleSubmit,
     populateProjectForm,
   };

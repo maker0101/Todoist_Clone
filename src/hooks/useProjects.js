@@ -12,17 +12,16 @@ import {
   serverTimestamp,
 } from 'firebase/firestore';
 import { db } from '../firebase';
-import useProjectForm from './useProjectForm';
 import { SelectedProjectContext } from '../contexts/SelectedProjectContext';
+import { ProjectFormContext } from '../contexts/ProjectFormContext';
 import { ProjectModalContext } from '../contexts/ProjectModalContext';
 import { inboxProjectId } from '../constants/inbox-project-id';
 
-// Question: Why do I run into a "RangeError: Maximum call stack size exceeded" when uncommenting the below line?
 const useProjects = () => {
   const [projects, setProjects] = useState([]);
   const { setSelectedProject } = useContext(SelectedProjectContext);
+  const { clearProjectForm } = useContext(ProjectFormContext);
   const { setIsProjectModalOpen } = useContext(ProjectModalContext);
-  // const { clearProjectForm } = useProjectForm();
   const location = useLocation();
   const match = matchPath(
     {
@@ -73,7 +72,7 @@ const useProjects = () => {
 
   const handleDeleteProject = (db, projectId) => {
     deleteProject(db, projectId);
-    // clearProjectForm();
+    clearProjectForm();
     setIsProjectModalOpen(false);
     navigate('/inbox');
   };
