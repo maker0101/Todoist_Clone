@@ -1,10 +1,9 @@
 ## Known issues/bugs
 
-- [ ] Dates not preselected in Today / Upcoming view when adding tasks (both inline and via header)
 - [ ] Wire in and clean Auth component
 - [ ] Phishing Suspection Warning when opening deployed site in Chrome
 - [ ] Preselected Project not changing when Task form is open while changing project
-- [ ] Loading a project URL directly (not via home -> then to project) shows empty page
+- [ ] Sometimes: Loading a project URL directly (not via home -> then to project) shows empty page
 
 ## Planned Features
 

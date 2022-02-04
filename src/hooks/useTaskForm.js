@@ -26,7 +26,7 @@ const useTaskForm = () => {
         id: task?.id || defaultTask.id,
         name: task?.name || defaultTask.name,
         description: task?.description || defaultTask.description,
-        dueDate: task?.dueDate || defaultTask.dueDate,
+        dueDate: task?.dueDate || dueDate || defaultTask.dueDate,
         projectId:
           task?.projectId || selectedProject?.id || defaultTask.projectId,
       };
