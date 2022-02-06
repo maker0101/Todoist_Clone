@@ -1,18 +1,14 @@
 import Task from '../components/Task/Task';
 import TaskAdd from '../components/Task/TaskAdd';
-import useCrudTasks from '../hooks/useCrudTasks';
+import useTasks from '../hooks/useTasks';
 import { dateToDayMonth } from '../utilities/transform-dates';
-import {
-  filterTasksByDueDate,
-  filterTasksOverdue,
-} from '../utilities/filter-tasks';
-import { sortTasksByDueDateAsc } from '../utilities/sort-tasks';
 
 const Today = () => {
-  const { tasks } = useCrudTasks();
+  const { getTasks } = useTasks();
   const today = new Date();
-  const overdueTasks = sortTasksByDueDateAsc(filterTasksOverdue(tasks));
-  const todayTasks = filterTasksByDueDate(tasks, today);
+  const dateAsDayMonth = dateToDayMonth(today);
+  const overdueTasks = getTasks({ isOverdue: true });
+  const todayTasks = getTasks({ isDueToday: true });
 
   return (
     <div className='content'>
@@ -33,7 +29,7 @@ const Today = () => {
       <div className='content__section'>
         <h2
           className='content__subTitle'
-          data-cy='content__subtitle'>{`${dateToDayMonth(today)} · Today`}</h2>
+          data-cy='content__subtitle'>{`${dateAsDayMonth} · Today`}</h2>
         <hr />
         {todayTasks.map((task) => (
           <Task key={task.id} task={task} />

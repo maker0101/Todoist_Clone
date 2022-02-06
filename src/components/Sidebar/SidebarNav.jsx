@@ -2,12 +2,12 @@ import { useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import { SIDEBAR_NAV_DATA } from '../../constants/sidebar-nav-data';
 import { countTasksOfNavItems } from '../../utilities/count-tasks';
-import useCrudTasks from '../../hooks/useCrudTasks';
+import useTasks from '../../hooks/useTasks';
 import useMediaQuery from '../../hooks/useMediaQuery';
 import { SidebarContext } from '../../contexts/SidebarContext';
 
 const SidebarNav = () => {
-  const { tasks } = useCrudTasks();
+  const { tasks } = useTasks();
   const { isDesktop } = useMediaQuery();
   const { setIsSidebarOpen } = useContext(SidebarContext);
 

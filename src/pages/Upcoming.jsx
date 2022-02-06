@@ -1,18 +1,15 @@
 import { useState, useEffect } from 'react';
 import Task from '../components/Task/Task';
 import TaskAdd from '../components/Task/TaskAdd';
-import useCrudTasks from '../hooks/useCrudTasks';
+import useTasks from '../hooks/useTasks';
 import { calculateUpcomingDays } from '../utilities/calculate-upcoming-days.js';
-import {
-  filterTasksByDueDate,
-  filterTasksOverdue,
-} from '../utilities/filter-tasks';
 import { sortTasksByDueDateAsc } from '../utilities/sort-tasks';
+import { dateToYearMonthDay } from '../utilities/transform-dates';
 
 const Upcoming = () => {
-  const { tasks } = useCrudTasks();
   const [upcomingDays, setUpcomingDays] = useState([]);
-  const overdueTasks = sortTasksByDueDateAsc(filterTasksOverdue(tasks));
+  const { getTasks } = useTasks();
+  const overdueTasks = sortTasksByDueDateAsc(getTasks({ isOverdue: true }));
   const daySubheading = ({ dateShort, todayTomorrow, weekday }) =>
     `${dateShort} · ${todayTomorrow || weekday}`;
 
@@ -35,9 +32,11 @@ const Upcoming = () => {
         <div key={day.id} className='content__section'>
           <h2 className='content__subTitle'>{daySubheading(day)}</h2>
           <hr />
-          {filterTasksByDueDate(tasks, new Date(day.date)).map((task) => (
-            <Task key={task.id} task={task} />
-          ))}
+          {getTasks({ isDueOnDate: dateToYearMonthDay(day.date) }).map(
+            (task) => (
+              <Task key={task.id} task={task} />
+            )
+          )}
           <TaskAdd dueDate={day.date} />
         </div>
       ))}

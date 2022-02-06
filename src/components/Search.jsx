@@ -1,9 +1,9 @@
 import { IoSearchOutline } from 'react-icons/io5';
-import useCrudTasks from '../hooks/useCrudTasks';
+import useTasks from '../hooks/useTasks';
 import useSearch from '../hooks/useSearch';
 
 function Search() {
-  const { tasks } = useCrudTasks();
+  const { tasks } = useTasks();
   const { searchInput, searchResults, handleSearch, handleTaskOpen } =
     useSearch();
 

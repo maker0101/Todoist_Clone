@@ -33,6 +33,20 @@ const useProjects = () => {
   );
   const navigate = useNavigate();
 
+  const getProjectsFromDB = (db) => {
+    const projectsQuery = query(
+      collection(db, 'projects'),
+      where('userId', '==', 'userid1')
+    );
+    return onSnapshot(projectsQuery, (querySnapshot) => {
+      const projectsSnapshot = querySnapshot.docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id,
+      }));
+      setProjects(projectsSnapshot);
+    });
+  };
+
   const updateProject = async (db, projectForm, userId) => {
     try {
       const projectDoc = doc(db, 'projects', projectForm.id);
@@ -47,7 +61,7 @@ const useProjects = () => {
     }
   };
 
-  const createProject = async (db, projectForm, userId) => {
+  const addProject = async (db, projectForm, userId) => {
     try {
       await addDoc(collection(db, 'projects'), {
         name: projectForm.name,
@@ -89,27 +103,13 @@ const useProjects = () => {
     setSelectedProject(selectProject || '');
   };
 
-  const getProjects = (db) => {
-    const projectsQuery = query(
-      collection(db, 'projects'),
-      where('userId', '==', 'userid1')
-    );
-    return onSnapshot(projectsQuery, (querySnapshot) => {
-      const projectsSnapshot = querySnapshot.docs.map((doc) => ({
-        ...doc.data(),
-        id: doc.id,
-      }));
-      setProjects(projectsSnapshot);
-    });
-  };
-
-  useEffect(() => getProjects(db), []);
+  useEffect(() => getProjectsFromDB(db), []);
   useEffect(() => getSelectedProject(), [location, projects]);
 
   return {
     projects,
     updateProject,
-    createProject,
+    addProject,
     handleDeleteProject,
     filterProjectsNoInbox,
   };

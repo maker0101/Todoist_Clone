@@ -1,15 +1,14 @@
-import { db } from '../../firebase-config';
-import useCrudTasks from '../../hooks/useCrudTasks';
+import useTasks from '../../hooks/useTasks';
 
 const TaskCheckbox = ({ task }) => {
-  const { toggleIsChecked } = useCrudTasks();
+  const { closeTask } = useTasks();
 
   return (
     <label className='checkbox'>
       <input
         type='checkbox'
         checked={task.isChecked}
-        onChange={() => toggleIsChecked(db, task.id, task.isChecked)}></input>
+        onChange={() => closeTask(task)}></input>
       <span className='checkbox__checkmark'></span>
     </label>
   );

@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import useCrudTasks from './useCrudTasks';
+import useTasks from './useTasks';
 import { TaskFormContext } from '../contexts/TaskFormContext';
 import { SelectedProjectContext } from '../contexts/SelectedProjectContext';
 import { dateToYearMonthDay } from '../utilities/transform-dates';
@@ -8,7 +8,7 @@ import { defaultTask } from '../utilities/default-task';
 const useTaskForm = () => {
   const { setTaskForm } = useContext(TaskFormContext);
   const { selectedProject } = useContext(SelectedProjectContext);
-  const { tasks, createTask, updateTask } = useCrudTasks();
+  const { tasks, addTask, updateTask } = useTasks();
 
   const clearTaskForm = (projectId) => {
     setTaskForm({
@@ -51,9 +51,7 @@ const useTaskForm = () => {
     const taskExists =
       tasks.filter((task) => task.id === taskForm.id).length > 0;
 
-    taskExists
-      ? updateTask(db, taskForm, userId)
-      : createTask(db, taskForm, userId);
+    taskExists ? updateTask(taskForm) : addTask(taskForm);
 
     clearTaskForm(selectedProjectId);
   };

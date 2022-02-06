@@ -5,7 +5,7 @@ import { defaultProject } from '../utilities/default-project';
 
 const useProjectForm = () => {
   const { setProjectForm, clearProjectForm } = useContext(ProjectFormContext);
-  const { projects, updateProject, createProject } = useProjects();
+  const { projects, updateProject, addProject } = useProjects();
 
   const populateProjectForm = (project = {}) => {
     let populatedProjectForm;
@@ -33,7 +33,7 @@ const useProjectForm = () => {
     if (projectExists) {
       updateProject(db, projectForm, userId);
     } else {
-      createProject(db, projectForm, userId);
+      addProject(db, projectForm, userId);
     }
 
     setIsProjectModalOpen(false);

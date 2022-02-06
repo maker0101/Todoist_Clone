@@ -1,11 +1,11 @@
 import Task from '../components/Task/Task';
 import TaskAdd from '../components/Task/TaskAdd';
-import useCrudTasks from '../hooks/useCrudTasks';
-import { filterTasksByProjectId } from '../utilities/filter-tasks';
+import useTasks from '../hooks/useTasks';
+import { inboxProjectId } from '../constants/inbox-project-id';
 
 const Inbox = () => {
-  const { tasks } = useCrudTasks();
-  const inboxTasks = filterTasksByProjectId(tasks, 'GtbY3fGVBVrTJmJH4IGd');
+  const { getTasks } = useTasks();
+  const inboxTasks = getTasks({ projectId: inboxProjectId });
 
   return (
     <div className='content'>
