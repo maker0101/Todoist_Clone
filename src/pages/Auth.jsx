@@ -8,29 +8,28 @@ import {
 } from 'firebase/auth';
 import { auth } from '../firebase-config';
 import { UserContext } from '../contexts/UserContext';
+import { useNavigate } from 'react-router-dom';
 
-// TODO: needs to be cleaned and wired into to App (put in custom hook)
 const Auth = () => {
   const { user, setUser } = useContext(UserContext);
   const [registerEmail, setRegisterEmail] = useState('');
   const [registerPassword, setRegisterPassword] = useState('');
   const [loginEmail, setLoginEmail] = useState('');
   const [loginPassword, setLoginPassword] = useState('');
+  const navigate = useNavigate();
 
   onAuthStateChanged(auth, (currentUser) => {
     setUser(currentUser);
   });
 
-  console.log(user?.email);
-
   const register = async () => {
     try {
-      const userRegistered = await createUserWithEmailAndPassword(
+      await createUserWithEmailAndPassword(
         auth,
         registerEmail,
         registerPassword
       );
-      console.log(userRegistered);
+      navigate('/today');
     } catch (error) {
       console.error(error);
     }
@@ -38,12 +37,8 @@ const Auth = () => {
 
   const login = async () => {
     try {
-      const userLoggedIn = await signInWithEmailAndPassword(
-        auth,
-        loginEmail,
-        loginPassword
-      );
-      console.log(userLoggedIn);
+      await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
+      navigate('/today');
     } catch (error) {
       console.error(error);
     }
@@ -109,7 +104,7 @@ const Auth = () => {
           </div>
         </div>
       </div>
-      <h4> User Logged In:</h4>
+      <p> User Logged In:</p>
       {user?.email}
       <button onClick={logout}>Logout</button>
     </div>
