@@ -1,6 +1,6 @@
-import Header from '../components/Header';
-import SidebarContainer from '../components/Sidebar/SidebarContainer';
-import Modals from '../components/Modals/Modals';
+import Header from './Header';
+import SidebarContainer from './Sidebar/SidebarContainer';
+import Modals from './Modals/Modals';
 
 const Page = ({ children }) => {
   return (

@@ -1,4 +1,4 @@
-import Page from './Page';
+import Page from '../components/Page';
 import Task from '../components/Task/Task';
 import TaskAdd from '../components/Task/TaskAdd';
 import useTasks from '../hooks/useTasks';
