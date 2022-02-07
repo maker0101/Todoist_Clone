@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { SiTodoist } from 'react-icons/si';
 import {
   createUserWithEmailAndPassword,
@@ -7,28 +7,30 @@ import {
   signOut,
 } from 'firebase/auth';
 import { auth } from '../firebase-config';
+import { UserContext } from '../contexts/UserContext';
 
 // TODO: needs to be cleaned and wired into to App (put in custom hook)
 const Auth = () => {
+  const { user, setUser } = useContext(UserContext);
   const [registerEmail, setRegisterEmail] = useState('');
   const [registerPassword, setRegisterPassword] = useState('');
   const [loginEmail, setLoginEmail] = useState('');
   const [loginPassword, setLoginPassword] = useState('');
 
-  const [user, setUser] = useState({});
-
   onAuthStateChanged(auth, (currentUser) => {
     setUser(currentUser);
   });
 
+  console.log(user?.email);
+
   const register = async () => {
     try {
-      const user = await createUserWithEmailAndPassword(
+      const userRegistered = await createUserWithEmailAndPassword(
         auth,
         registerEmail,
         registerPassword
       );
-      console.log(user);
+      console.log(userRegistered);
     } catch (error) {
       console.error(error);
     }
@@ -36,12 +38,12 @@ const Auth = () => {
 
   const login = async () => {
     try {
-      const user = await signInWithEmailAndPassword(
+      const userLoggedIn = await signInWithEmailAndPassword(
         auth,
         loginEmail,
         loginPassword
       );
-      console.log(user);
+      console.log(userLoggedIn);
     } catch (error) {
       console.error(error);
     }
