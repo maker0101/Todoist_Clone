@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import Page from './Page';
 import Task from '../components/Task/Task';
 import TaskAdd from '../components/Task/TaskAdd';
 import useTasks from '../hooks/useTasks';
@@ -16,31 +17,33 @@ const Upcoming = () => {
   useEffect(() => setUpcomingDays(calculateUpcomingDays(7)), []);
 
   return (
-    <div className='content'>
-      <h1 className='content__title' data-cy='content__title'>
-        Upcoming
-      </h1>
-      <div className='content__section'>
-        <h2 className='content__subTitle'>Overdue</h2>
-        <hr />
-        {overdueTasks.map((task) => (
-          <Task key={task.id} task={task} />
+    <Page>
+      <div className='content'>
+        <h1 className='content__title' data-cy='content__title'>
+          Upcoming
+        </h1>
+        <div className='content__section'>
+          <h2 className='content__subTitle'>Overdue</h2>
+          <hr />
+          {overdueTasks.map((task) => (
+            <Task key={task.id} task={task} />
+          ))}
+        </div>
+
+        {upcomingDays.map((day) => (
+          <div key={day.id} className='content__section'>
+            <h2 className='content__subTitle'>{daySubheading(day)}</h2>
+            <hr />
+            {getTasks({ isDueOnDate: dateToYearMonthDay(day.date) }).map(
+              (task) => (
+                <Task key={task.id} task={task} />
+              )
+            )}
+            <TaskAdd dueDate={day.date} />
+          </div>
         ))}
       </div>
-
-      {upcomingDays.map((day) => (
-        <div key={day.id} className='content__section'>
-          <h2 className='content__subTitle'>{daySubheading(day)}</h2>
-          <hr />
-          {getTasks({ isDueOnDate: dateToYearMonthDay(day.date) }).map(
-            (task) => (
-              <Task key={task.id} task={task} />
-            )
-          )}
-          <TaskAdd dueDate={day.date} />
-        </div>
-      ))}
-    </div>
+    </Page>
   );
 };
 

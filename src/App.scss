@@ -302,6 +302,11 @@ select::-ms-expand {
   display: flex;
 }
 
+.page {
+  display: flex;
+  width: 100%;
+}
+
 // Sidebar
 .sidebar {
   @include no-select();
