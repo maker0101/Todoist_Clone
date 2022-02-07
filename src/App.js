@@ -17,7 +17,7 @@ const App = () => {
           <Route path='/today' element={<Today />}></Route>
           <Route path='/upcoming' element={<Upcoming />}></Route>
           <Route path='/project/:projectId' element={<Project />}></Route>
-          {/*<Route path='*' element={<Navigate to='/' />} />*/}
+          <Route path='*' element={<Navigate to='/' />} />
         </Routes>
       </Contexts>
     </div>
