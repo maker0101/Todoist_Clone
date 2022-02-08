@@ -25,17 +25,9 @@ const useProjects = () => {
   const { clearProjectForm } = useContext(ProjectFormContext);
   const { setIsProjectModalOpen } = useContext(ProjectModalContext);
   const location = useLocation();
-  const match = matchPath(
-    {
-      path: '/project/:id',
-      exact: true,
-      strict: true,
-    },
-    location.pathname
-  );
   const navigate = useNavigate();
 
-  const getProjectsFromDB = (db) => {
+  const getProjectsFromDB = () => {
     const projectsQuery = query(
       collection(db, 'projects'),
       where('userId', '==', user.uid)
@@ -49,12 +41,12 @@ const useProjects = () => {
     });
   };
 
-  const addProject = async (db, projectForm) => {
+  const addProject = async (project) => {
     try {
       await addDoc(collection(db, 'projects'), {
-        name: projectForm.name,
-        colorId: projectForm.colorId,
-        isInbox: projectForm.isInbox,
+        name: project.name,
+        colorId: project.colorId,
+        isInbox: project.isInbox,
         userId: user.uid,
         createdAt: serverTimestamp(),
       });
@@ -63,13 +55,13 @@ const useProjects = () => {
     }
   };
 
-  const updateProject = async (db, projectForm) => {
+  const updateProject = async (project) => {
     try {
-      const projectDoc = doc(db, 'projects', projectForm.id);
+      const projectDoc = doc(db, 'projects', project.id);
       await updateDoc(projectDoc, {
-        name: projectForm.name,
-        colorId: projectForm.colorId,
-        isInbox: projectForm.isInbox,
+        name: project.name,
+        colorId: project.colorId,
+        isInbox: project.isInbox,
         userId: user.uid,
       });
     } catch (err) {
@@ -77,17 +69,17 @@ const useProjects = () => {
     }
   };
 
-  const deleteProject = async (db, projectId) => {
-    try {
-      const projectDoc = doc(db, 'projects', projectId);
-      await deleteDoc(projectDoc);
-    } catch (err) {
-      console.error(err);
-    }
-  };
+  const handleDeleteProject = (projectId) => {
+    const deleteProject = async (projectId) => {
+      try {
+        const projectDoc = doc(db, 'projects', projectId);
+        await deleteDoc(projectDoc);
+      } catch (err) {
+        console.error(err);
+      }
+    };
 
-  const handleDeleteProject = (db, projectId) => {
-    deleteProject(db, projectId);
+    deleteProject(projectId);
     clearProjectForm();
     setIsProjectModalOpen(false);
     navigate('/inbox');
@@ -96,17 +88,29 @@ const useProjects = () => {
   const filterProjectsNoInbox = () =>
     projects.filter((project) => project.isInbox === false);
 
-  const getSelectedProject = () => {
+  const getCurrentProject = () => {
+    const match = matchPath(
+      {
+        path: '/project/:id',
+        exact: true,
+        strict: true,
+      },
+      location.pathname
+    );
+
     const findProjectById = (projects, projectId) =>
       projects.find((project) => project.id === projectId);
 
-    const selectProjectId = match?.params.id || inboxProjectId;
-    const selectProject = findProjectById(projects, selectProjectId);
-    setSelectedProject(selectProject || '');
+    const currentProjectId = match?.params.id || inboxProjectId;
+    const currentProject = findProjectById(projects, currentProjectId);
+    return currentProject;
   };
 
-  useEffect(() => getProjectsFromDB(db), []);
-  useEffect(() => getSelectedProject(), [location, projects]);
+  useEffect(() => getProjectsFromDB(), []);
+  useEffect(
+    () => setSelectedProject(getCurrentProject() || ''),
+    [location, projects]
+  );
 
   return {
     projects,

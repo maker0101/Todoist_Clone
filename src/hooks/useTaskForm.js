@@ -1,11 +1,13 @@
 import { useContext } from 'react';
 import useTasks from './useTasks';
 import { TaskFormContext } from '../contexts/TaskFormContext';
+import { TaskModalContext } from '../contexts/TaskModalContext';
 import { SelectedProjectContext } from '../contexts/SelectedProjectContext';
 import { dateToYearMonthDay } from '../utilities/transform-dates';
 import { defaultTask } from '../utilities/default-task';
 
 const useTaskForm = () => {
+  const { isTaskModalOpen, setIsTaskModalOpen } = useContext(TaskModalContext);
   const { setTaskForm } = useContext(TaskFormContext);
   const { selectedProject } = useContext(SelectedProjectContext);
   const { tasks, addTask, updateTask } = useTasks();
@@ -17,7 +19,7 @@ const useTaskForm = () => {
     });
   };
 
-  const populateTaskForm = (task = '', dueDate) => {
+  const populateTaskForm = (task = {}, dueDate) => {
     dueDate = dueDate ? dateToYearMonthDay(dueDate) : '';
 
     let populatedTaskForm;
@@ -40,30 +42,24 @@ const useTaskForm = () => {
     setTaskForm(populatedTaskForm);
   };
 
-  const handleTaskFormOpen = (setIsTaskFormOpen, dueDate = '') => {
-    const task = {};
+  const handleTaskFormOpen = (setIsTaskFormOpen, dueDate) => {
+    let task;
     populateTaskForm(task, dueDate);
     setIsTaskFormOpen(true);
   };
 
-  const handleTaskFormSubmit = (e, taskForm, selectedProjectId) => {
+  const handleTaskFormSubmit = (e, taskForm) => {
     e.preventDefault();
     const taskExists =
       tasks.filter((task) => task.id === taskForm.id).length > 0;
 
     taskExists ? updateTask(taskForm) : addTask(taskForm);
-
-    clearTaskForm(selectedProjectId);
+    clearTaskForm(selectedProject.id);
   };
 
-  const handleTaskFormCancel = (
-    isTaskModalOpen,
-    setIsTaskModalOpen,
-    setIsTaskFormOpen,
-    selectedProjectId
-  ) => {
+  const handleTaskFormCancel = (setIsTaskFormOpen) => {
     isTaskModalOpen ? setIsTaskModalOpen(false) : setIsTaskFormOpen(false);
-    clearTaskForm(selectedProjectId);
+    clearTaskForm(selectedProject.id);
   };
 
   return {

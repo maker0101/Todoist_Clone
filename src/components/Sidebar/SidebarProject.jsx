@@ -6,12 +6,10 @@ import useProjectModal from '../../hooks/useProjectModal';
 import useMediaQuery from '../../hooks/useMediaQuery';
 import { getColorHEXById } from '../../utilities/get-color';
 import { countTasksOfProject } from '../../utilities/count-tasks';
-import { ProjectModalContext } from '../../contexts/ProjectModalContext';
 import { SidebarContext } from '../../contexts/SidebarContext';
 
 const SidebarProject = ({ project }) => {
   const { tasks } = useTasks();
-  const { setIsProjectModalOpen } = useContext(ProjectModalContext);
   const { isSidebarOpen, setIsSidebarOpen } = useContext(SidebarContext);
   const { handleProjectModalOpen } = useProjectModal();
   const { isDesktop } = useMediaQuery();
@@ -34,7 +32,7 @@ const SidebarProject = ({ project }) => {
       </div>
       <VscEdit
         className='sidebar__edit'
-        onClick={() => handleProjectModalOpen(setIsProjectModalOpen, project)}
+        onClick={() => handleProjectModalOpen(project)}
       />
     </NavLink>
   );
