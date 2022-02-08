@@ -320,6 +320,7 @@ select::-ms-expand {
 
   .auth__dividerText {
     text-align: center;
+    font-size: $font-size-small;
     height: 0.5em;
     color: #777;
     border-bottom: 1px solid #dbdbdb;
@@ -437,6 +438,10 @@ select::-ms-expand {
       flex-direction: column;
     }
   }
+}
+
+.signout {
+  margin-top: 50px;
 }
 
 // Sidebar
@@ -563,10 +568,6 @@ select::-ms-expand {
   @media screen and (max-width: 720px) {
     display: flex;
   }
-}
-
-.signout {
-  margin-top: 200px;
 }
 
 // Content

@@ -9,8 +9,8 @@ import { useNavigate } from 'react-router-dom';
 
 const SignIn = () => {
   const { user, setUser } = useContext(UserContext);
-  const [loginEmail, setLoginEmail] = useState('');
-  const [loginPassword, setLoginPassword] = useState('');
+  const [signInEmail, setSignInEmail] = useState('');
+  const [signInPassword, setSignInPassword] = useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -20,7 +20,7 @@ const SignIn = () => {
   const signIn = async (e) => {
     e.preventDefault();
     try {
-      await signInWithEmailAndPassword(auth, loginEmail, loginPassword);
+      await signInWithEmailAndPassword(auth, signInEmail, signInPassword);
     } catch (error) {
       console.error(error);
     }
@@ -56,8 +56,8 @@ const SignIn = () => {
             name='email'
             autoComplete='email'
             required
-            value={loginEmail}
-            onChange={(e) => setLoginEmail(e.target.value)}
+            value={signInEmail}
+            onChange={(e) => setSignInEmail(e.target.value)}
           />
           <label htmlFor='password'>Password</label>
           <input
@@ -66,8 +66,8 @@ const SignIn = () => {
             autoComplete='current-password'
             required
             minLength={6}
-            value={loginPassword}
-            onChange={(e) => setLoginPassword(e.target.value)}
+            value={signInPassword}
+            onChange={(e) => setSignInPassword(e.target.value)}
           />
           <button type='submit' className='button__primary'>
             Login with Email
