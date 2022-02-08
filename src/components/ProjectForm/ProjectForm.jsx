@@ -17,7 +17,7 @@ const ProjectForm = () => {
     <form
       className='projectForm'
       onSubmit={(e) =>
-        handleSubmit(e, db, projectForm, 'userid1', setIsProjectModalOpen)
+        handleSubmit(e, db, projectForm, setIsProjectModalOpen)
       }>
       <ProjectFormHeading />
       <div className='projectForm__inputs'>

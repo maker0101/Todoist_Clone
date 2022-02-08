@@ -1,6 +1,6 @@
 import { useContext } from 'react';
-import { db } from '../../firebase-config';
 import useTaskForm from '../../hooks/useTaskForm';
+import { UserContext } from '../../contexts/UserContext';
 import { SelectedProjectContext } from '../../contexts/SelectedProjectContext';
 import { TaskFormContext } from '../../contexts/TaskFormContext';
 import TaskFormName from './TaskFormName';
@@ -10,6 +10,7 @@ import TaskFormProject from './TaskFormProject';
 import TaskFormButtons from './TaskFormButtons';
 
 const TaskForm = ({ setIsTaskFormOpen, inModal }) => {
+  const { user } = useContext(UserContext);
   const { selectedProjectId } = useContext(SelectedProjectContext);
   const { taskForm } = useContext(TaskFormContext);
   const { handleTaskFormSubmit } = useTaskForm();
@@ -19,7 +20,7 @@ const TaskForm = ({ setIsTaskFormOpen, inModal }) => {
       className={`taskForm ${inModal}`}
       data-cy='taskForm'
       onSubmit={(e) => {
-        handleTaskFormSubmit(e, db, taskForm, 'userid1', selectedProjectId);
+        handleTaskFormSubmit(e, taskForm, user.uid, selectedProjectId);
       }}>
       <div className='taskForm__inputs'>
         <TaskFormName />

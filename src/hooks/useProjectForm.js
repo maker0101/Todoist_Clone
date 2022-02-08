@@ -2,8 +2,10 @@ import { useContext } from 'react';
 import useProjects from './useProjects';
 import { ProjectFormContext } from '../contexts/ProjectFormContext';
 import { defaultProject } from '../utilities/default-project';
+import { UserContext } from '../contexts/UserContext';
 
 const useProjectForm = () => {
+  const { user } = useContext(UserContext);
   const { setProjectForm, clearProjectForm } = useContext(ProjectFormContext);
   const { projects, updateProject, addProject } = useProjects();
 
@@ -24,16 +26,16 @@ const useProjectForm = () => {
     setProjectForm(populatedProjectForm);
   };
 
-  const handleSubmit = (e, db, projectForm, userId, setIsProjectModalOpen) => {
+  const handleSubmit = (e, db, projectForm, setIsProjectModalOpen) => {
     e.preventDefault();
 
     const projectExists =
       projects.filter((project) => project.id === projectForm.id).length > 0;
 
     if (projectExists) {
-      updateProject(db, projectForm, userId);
+      updateProject(db, projectForm);
     } else {
-      addProject(db, projectForm, userId);
+      addProject(db, projectForm);
     }
 
     setIsProjectModalOpen(false);

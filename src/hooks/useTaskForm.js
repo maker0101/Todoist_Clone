@@ -46,7 +46,7 @@ const useTaskForm = () => {
     setIsTaskFormOpen(true);
   };
 
-  const handleTaskFormSubmit = (e, db, taskForm, userId, selectedProjectId) => {
+  const handleTaskFormSubmit = (e, taskForm, selectedProjectId) => {
     e.preventDefault();
     const taskExists =
       tasks.filter((task) => task.id === taskForm.id).length > 0;

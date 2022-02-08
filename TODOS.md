@@ -1,7 +1,7 @@
 ## Known issues/bugs
 
 - [ ] Form validation and error handling/displaying to user missing
-- [ ] Uncaught TypeError: Cannot read properties of null (reading 'className')
+- [ ] Uncaught TypeError: Cannot read properties of null (reading 'className') for 'closeModalOnOverlayClick'
 - [ ] Wire in and clean Auth component
 - [ ] Phishing Suspection Warning when opening deployed site in Chrome
 - [ ] Preselected Project not changing when Task form is open while changing project

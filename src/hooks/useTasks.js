@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import {
   collection,
   doc,
@@ -13,15 +13,16 @@ import {
 } from 'firebase/firestore';
 import { db } from '../firebase-config';
 import { isTaskOverdue, isTaskDueToday } from '../utilities/query-task';
+import { UserContext } from '../contexts/UserContext';
 
 const useTasks = () => {
-  const userId = 'userid1';
+  const { user } = useContext(UserContext);
   const [tasks, setTasks] = useState([]);
 
   const getTasksFromDB = () => {
     const tasksQuery = query(
       collection(db, 'tasks'),
-      where('userId', '==', 'userid1'),
+      where('userId', '==', user.uid),
       where('isChecked', '==', false),
       orderBy('createdAt')
     );
@@ -66,7 +67,7 @@ const useTasks = () => {
         description: task.description,
         dueDate: task.dueDate,
         projectId: task.projectId,
-        userId: userId,
+        userId: user.uid,
         createdAt: serverTimestamp(),
         isChecked: false,
       });
@@ -83,7 +84,7 @@ const useTasks = () => {
         description: task.description,
         dueDate: task.dueDate,
         projectId: task.projectId,
-        userId: userId,
+        userId: user.uid,
         isChecked: false,
       });
     } catch (err) {

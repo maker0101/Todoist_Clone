@@ -12,6 +12,7 @@ import {
   serverTimestamp,
 } from 'firebase/firestore';
 import { db } from '../firebase-config';
+import { UserContext } from '../contexts/UserContext';
 import { SelectedProjectContext } from '../contexts/SelectedProjectContext';
 import { ProjectFormContext } from '../contexts/ProjectFormContext';
 import { ProjectModalContext } from '../contexts/ProjectModalContext';
@@ -19,6 +20,7 @@ import { inboxProjectId } from '../constants/inbox-project-id';
 
 const useProjects = () => {
   const [projects, setProjects] = useState([]);
+  const { user } = useContext(UserContext);
   const { setSelectedProject } = useContext(SelectedProjectContext);
   const { clearProjectForm } = useContext(ProjectFormContext);
   const { setIsProjectModalOpen } = useContext(ProjectModalContext);
@@ -36,7 +38,7 @@ const useProjects = () => {
   const getProjectsFromDB = (db) => {
     const projectsQuery = query(
       collection(db, 'projects'),
-      where('userId', '==', 'userid1')
+      where('userId', '==', user.uid)
     );
     return onSnapshot(projectsQuery, (querySnapshot) => {
       const projectsSnapshot = querySnapshot.docs.map((doc) => ({
@@ -47,28 +49,28 @@ const useProjects = () => {
     });
   };
 
-  const updateProject = async (db, projectForm, userId) => {
+  const addProject = async (db, projectForm) => {
     try {
-      const projectDoc = doc(db, 'projects', projectForm.id);
-      await updateDoc(projectDoc, {
+      await addDoc(collection(db, 'projects'), {
         name: projectForm.name,
         colorId: projectForm.colorId,
         isInbox: projectForm.isInbox,
-        userId: userId,
+        userId: user.uid,
+        createdAt: serverTimestamp(),
       });
     } catch (err) {
       console.error(err);
     }
   };
 
-  const addProject = async (db, projectForm, userId) => {
+  const updateProject = async (db, projectForm) => {
     try {
-      await addDoc(collection(db, 'projects'), {
+      const projectDoc = doc(db, 'projects', projectForm.id);
+      await updateDoc(projectDoc, {
         name: projectForm.name,
         colorId: projectForm.colorId,
         isInbox: projectForm.isInbox,
-        userId: userId,
-        createdAt: serverTimestamp(),
+        userId: user.uid,
       });
     } catch (err) {
       console.error(err);
