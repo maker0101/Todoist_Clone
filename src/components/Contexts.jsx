@@ -19,7 +19,11 @@ const Contexts = ({ children }) => {
   const [projectForm, setProjectForm] = useState({});
   const [taskForm, setTaskForm] = useState({});
 
-  const clearProjectForm = () => setProjectForm(defaultProject);
+  const clearProjectForm = () =>
+    setProjectForm({
+      ...defaultProject,
+      userId: user.uid,
+    });
 
   return (
     <>

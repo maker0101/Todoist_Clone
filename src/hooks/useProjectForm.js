@@ -17,7 +17,7 @@ const useProjectForm = () => {
         name: project?.name || defaultProject.name,
         isInbox: project?.isInbox || defaultProject.isInbox,
         colorId: project?.colorId || defaultProject.colorId,
-        userId: project?.userId || defaultProject.userId,
+        userId: project?.userId || user.uid,
       };
     } else {
       populatedProjectForm = defaultProject;
