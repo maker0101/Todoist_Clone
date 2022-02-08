@@ -6,17 +6,13 @@ import { UserContext } from '../contexts/UserContext';
 const SignOut = () => {
   const { user, setUser } = useContext(UserContext);
 
-  onAuthStateChanged(auth, (currentUser) => {
-    setUser(currentUser);
-  });
-
-  const signout = async () => {
-    await signOut(auth);
-  };
+  const signout = async () => await signOut(auth);
+  onAuthStateChanged(auth, (currentUser) => setUser(currentUser));
 
   return (
     <div className='signout'>
-      {user?.email}
+      {user?.email || 'Guest'}
+      <br />
       <button onClick={signout}>Logout</button>
     </div>
   );

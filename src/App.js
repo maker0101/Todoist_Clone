@@ -1,7 +1,7 @@
 import { Routes, Route, Navigate } from 'react-router-dom';
 import Contexts from './components/Contexts';
-import Auth from './pages/Auth';
 import SignIn from './pages/SignIn';
+import SignUp from './pages/SignUp';
 import Inbox from './pages/Inbox';
 import Today from './pages/Today';
 import Upcoming from './pages/Upcoming';
@@ -14,8 +14,8 @@ const App = () => {
       <Contexts>
         <Routes>
           <Route path='/' element={<Navigate to='/today' />} />
-          <Route path='/auth' element={<Auth />}></Route>
           <Route path='/signin' element={<SignIn />}></Route>
+          <Route path='/signup' element={<SignUp />}></Route>
           <Route element={<ProtectedRoutes />}>
             <Route path='/inbox' element={<Inbox />}></Route>
             <Route path='/today' element={<Today />}></Route>

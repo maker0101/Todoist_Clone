@@ -1,5 +1,6 @@
 ## Known issues/bugs
 
+- [ ] Form validation and error handling/displaying to user missing
 - [ ] Uncaught TypeError: Cannot read properties of null (reading 'className')
 - [ ] Wire in and clean Auth component
 - [ ] Phishing Suspection Warning when opening deployed site in Chrome
@@ -8,7 +9,7 @@
 
 ## Planned Features
 
-- [ ] Firebase keys in .env file
+- [ ] update tests after user authentification and seeding db process implemented
 - [ ] Configure Firebase/Firestore rules correctly
 - [ ] default sort projects in Sidebar by dateCreated
 - [ ] Split css into separate css files per component (maybe via styled components)
