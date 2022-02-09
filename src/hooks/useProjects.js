@@ -41,6 +41,27 @@ const useProjects = () => {
     });
   };
 
+  const getProjectById = (projects, projectId) =>
+    projects.find((project) => project.id === projectId);
+
+  const getProjectsExceptInbox = () =>
+    projects.filter((project) => project.isInbox === false);
+
+  const getCurrentProject = () => {
+    const match = matchPath(
+      {
+        path: '/project/:id',
+        exact: true,
+        strict: true,
+      },
+      location.pathname
+    );
+
+    const currentProjectId = match?.params.id || inboxProjectId;
+    const currentProject = getProjectById(projects, currentProjectId);
+    return currentProject;
+  };
+
   const addProject = async (project) => {
     try {
       await addDoc(collection(db, 'projects'), {
@@ -69,41 +90,20 @@ const useProjects = () => {
     }
   };
 
-  const handleDeleteProject = (projectId) => {
-    const deleteProject = async (projectId) => {
-      try {
-        const projectDoc = doc(db, 'projects', projectId);
-        await deleteDoc(projectDoc);
-      } catch (err) {
-        console.error(err);
-      }
-    };
+  const deleteProject = async (projectId) => {
+    try {
+      const projectDoc = doc(db, 'projects', projectId);
+      await deleteDoc(projectDoc);
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
+  const handleDeleteProject = (projectId) => {
     deleteProject(projectId);
     clearProjectForm();
     setIsProjectModalOpen(false);
     navigate('/inbox');
-  };
-
-  const filterProjectsNoInbox = () =>
-    projects.filter((project) => project.isInbox === false);
-
-  const getCurrentProject = () => {
-    const match = matchPath(
-      {
-        path: '/project/:id',
-        exact: true,
-        strict: true,
-      },
-      location.pathname
-    );
-
-    const findProjectById = (projects, projectId) =>
-      projects.find((project) => project.id === projectId);
-
-    const currentProjectId = match?.params.id || inboxProjectId;
-    const currentProject = findProjectById(projects, currentProjectId);
-    return currentProject;
   };
 
   useEffect(() => getProjectsFromDB(), []);
@@ -117,7 +117,7 @@ const useProjects = () => {
     updateProject,
     addProject,
     handleDeleteProject,
-    filterProjectsNoInbox,
+    getProjectsExceptInbox,
   };
 };
 

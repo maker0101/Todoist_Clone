@@ -24,22 +24,17 @@ const useProjectForm = () => {
     } else {
       populatedProjectForm = defaultProject;
     }
-
+    
     setProjectForm(populatedProjectForm);
   };
 
   const handleProjectSubmit = (e, project) => {
     e.preventDefault();
 
-    const projectExists =
+    const isProjectExisting =
       projects.filter((proj) => proj.id === project.id).length > 0;
 
-    if (projectExists) {
-      updateProject(project);
-    } else {
-      addProject(project);
-    }
-
+    isProjectExisting ? updateProject(project) : addProject(project);
     setIsProjectModalOpen(false);
     clearProjectForm();
   };

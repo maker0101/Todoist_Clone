@@ -4,8 +4,12 @@ import useSearch from '../hooks/useSearch';
 
 function Search() {
   const { tasks } = useTasks();
-  const { searchInput, searchResults, handleSearch, handleTaskOpen } =
-    useSearch();
+  const {
+    searchInput,
+    searchResults,
+    handleSearch,
+    handleTaskModalOpenFromSearch,
+  } = useSearch();
 
   const areResultsOpen = searchResults.length > 0;
 
@@ -26,7 +30,7 @@ function Search() {
             <div
               key={task.id}
               className='search__result'
-              onClick={() => handleTaskOpen(task)}>
+              onClick={() => handleTaskModalOpenFromSearch(task)}>
               {task.name}
             </div>
           ))}

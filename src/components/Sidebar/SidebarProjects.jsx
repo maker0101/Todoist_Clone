@@ -8,7 +8,7 @@ import { defaultProject } from '../../utilities/default-project';
 
 const SidebarProjects = () => {
   const [isAccordionOpen, setIsAccordionOpen] = useState(true);
-  const { filterProjectsNoInbox } = useProjects();
+  const { getProjectsExceptInbox } = useProjects();
   const { handleProjectModalOpen } = useProjectModal();
 
   const toggleAccordion = () => setIsAccordionOpen(() => !isAccordionOpen);
@@ -29,7 +29,7 @@ const SidebarProjects = () => {
         />
       </div>
       {isAccordionOpen &&
-        filterProjectsNoInbox().map((project) => (
+        getProjectsExceptInbox().map((project) => (
           <SidebarProject key={project.id} project={project} />
         ))}
     </div>

@@ -34,12 +34,15 @@ const useTasks = () => {
     });
   };
 
-  /* Input: Object with parameters:
-    projectId: 'Kl3wXRZLUlto7XcA7mWd',
-    isDueOnDate: '2022-03-13',
-    isDueToday: true,
-    isOverdue: false,
-  */
+  /**
+   * Get all or selection of tasks
+   * @param {object} [query] - tasks filters
+   * @param {string} [query.projectId] - e.g. 'Kl3wXRZLUlto7XcA7mWd'
+   * @param {string} [query.isDueOnDate] -  e.g. '2022-03-13'
+   * @param {boolean} [query.isDueToday]
+   * @param {boolean} [query.isOverdue]
+   * @returns {Array} - tasks matching all specified filters
+   */
   const getTasks = (query) => {
     return tasks
       .filter((task) =>
