@@ -28,8 +28,10 @@ I hope it helps you to become a better React programmer, too 🤓.
 - **Simple** local React **state management** (without Redux, Recoil or similar)
 - **Todoist UI** (as of January 2022)
 - **End-to-end tested** with Cypress
+- User authentification via Firebase
 - Users can add, delete and edit **projects**
 - Users can add, delete, search and edit **tasks**. Assigning due dates and organizing tasks into projects is possible as well.
+- End-to-End tested with Cypress
 
 ## Getting started
 

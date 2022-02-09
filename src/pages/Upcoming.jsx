@@ -34,7 +34,7 @@ const Upcoming = () => {
           <div key={day.id} className='content__section'>
             <h2 className='content__subTitle'>{daySubheading(day)}</h2>
             <hr />
-            {getTasks({ isDueOnDate: dateToYearMonthDay(day.date) }).map(
+            {getTasks({ isDueOnDate: dateToYearMonthDay(day?.date) }).map(
               (task) => (
                 <Task key={task.id} task={task} />
               )

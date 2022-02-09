@@ -1,7 +1,10 @@
 export const closeModalOnOverlayClick = (ref, handler) => {
   const listener = (event) => {
     const el = ref?.current;
-    const modalOverlayWasClicked = el.className === event.target.className;
+
+    const modalOverlayWasClicked = el
+      ? el.className === event.target.className
+      : false;
 
     if (!modalOverlayWasClicked) return;
 

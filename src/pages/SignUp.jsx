@@ -9,12 +9,14 @@ import {
 import { auth } from '../firebase-config';
 import { UserContext } from '../contexts/UserContext';
 import { useNavigate } from 'react-router-dom';
+import useSeedDb from '../hooks/useSeedDb';
 
 const SignUp = () => {
   const { user, setUser } = useContext(UserContext);
   const [signUpEmail, setSignUpEmail] = useState('');
   const [signUpPassword, setSignUpPassword] = useState('');
   const navigate = useNavigate();
+  const { seedDb } = useSeedDb();
 
   useEffect(() => {
     user && navigate('/today');
