@@ -30,7 +30,7 @@ const useProjects = () => {
   const getProjectsFromDB = () => {
     const projectsQuery = query(
       collection(db, 'projects'),
-      where('userId', '==', user.uid)
+      where('userId', '==', user?.uid)
     );
     return onSnapshot(projectsQuery, (querySnapshot) => {
       const projectsSnapshot = querySnapshot.docs.map((doc) => ({

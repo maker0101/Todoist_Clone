@@ -16,7 +16,7 @@ const SignUp = () => {
   const [signUpEmail, setSignUpEmail] = useState('');
   const [signUpPassword, setSignUpPassword] = useState('');
   const navigate = useNavigate();
-  const { seedDb } = useSeedDb();
+  //const { seedDb } = useSeedDb();
 
   useEffect(() => {
     user && navigate('/today');
@@ -26,6 +26,7 @@ const SignUp = () => {
     e.preventDefault();
     try {
       await createUserWithEmailAndPassword(auth, signUpEmail, signUpPassword);
+      //seedDb();
     } catch (error) {
       console.error(error);
     }
