@@ -2,11 +2,11 @@ import Page from '../components/Page';
 import Task from '../components/Task/Task';
 import TaskAdd from '../components/Task/TaskAdd';
 import useTasks from '../hooks/useTasks';
-import { inboxProjectId } from '../constants/inbox-project-id';
+import { INBOX_PROJECT_ID } from '../constants/inbox-project-id';
 
 const Inbox = () => {
   const { getTasks } = useTasks();
-  const inboxTasks = getTasks({ projectId: inboxProjectId });
+  const inboxTasks = getTasks({ projectId: INBOX_PROJECT_ID });
 
   return (
     <Page>

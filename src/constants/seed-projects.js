@@ -1,4 +1,4 @@
-export const seedProjects = [
+export const SEED_PROJECTS = [
   {
     name: 'Inbox',
     isInbox: true,

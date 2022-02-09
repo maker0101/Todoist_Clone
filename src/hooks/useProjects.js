@@ -16,7 +16,7 @@ import { UserContext } from '../contexts/UserContext';
 import { SelectedProjectContext } from '../contexts/SelectedProjectContext';
 import { ProjectFormContext } from '../contexts/ProjectFormContext';
 import { ProjectModalContext } from '../contexts/ProjectModalContext';
-import { inboxProjectId } from '../constants/inbox-project-id';
+import { INBOX_PROJECT_ID } from '../constants/inbox-project-id';
 
 const useProjects = () => {
   const [projects, setProjects] = useState([]);
@@ -57,7 +57,7 @@ const useProjects = () => {
       location.pathname
     );
 
-    const currentProjectId = match?.params.id || inboxProjectId;
+    const currentProjectId = match?.params.id || INBOX_PROJECT_ID;
     const currentProject = getProjectById(projects, currentProjectId);
     return currentProject;
   };

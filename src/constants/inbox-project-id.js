@@ -1,1 +1,1 @@
-export const inboxProjectId = 'GtbY3fGVBVrTJmJH4IGd';
+export const INBOX_PROJECT_ID = 'GtbY3fGVBVrTJmJH4IGd';

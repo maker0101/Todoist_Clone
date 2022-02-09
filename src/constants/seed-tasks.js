@@ -1,4 +1,4 @@
-export const seedTasks = [
+export const SEED_TASKS = [
   {
     name: 'AAA',
     description: '',
