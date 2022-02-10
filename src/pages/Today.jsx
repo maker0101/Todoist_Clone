@@ -2,11 +2,11 @@ import Page from '../components/Page';
 import Task from '../components/Task/Task';
 import TaskAdd from '../components/Task/TaskAdd';
 import useTasks from '../hooks/useTasks';
-import { dateToDayMonth } from '../utilities/transform-dates';
+import { dateToDayMonth, dateToYearMonthDay } from '../utilities/transform-dates';
 
 const Today = () => {
   const { getTasks } = useTasks();
-  const today = new Date();
+  const today = dateToYearMonthDay(new Date());
   const dateAsDayMonth = dateToDayMonth(today);
   const overdueTasks = getTasks({ isOverdue: true });
   const todayTasks = getTasks({ isDueToday: true });

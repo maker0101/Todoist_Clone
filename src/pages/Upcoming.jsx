@@ -11,8 +11,8 @@ const Upcoming = () => {
   const [upcomingDays, setUpcomingDays] = useState([]);
   const { getTasks } = useTasks();
   const overdueTasks = sortTasksByDueDateAsc(getTasks({ isOverdue: true }));
-  const daySubheading = ({ dateShort, todayTomorrow, weekday }) =>
-    `${dateShort} · ${todayTomorrow || weekday}`;
+  const daySubheading = ({ dateAsDayMonth, todayTomorrow, weekday }) =>
+    `${dateAsDayMonth} · ${todayTomorrow || weekday}`;
 
   useEffect(() => setUpcomingDays(calculateUpcomingDays(7)), []);
 
@@ -39,7 +39,7 @@ const Upcoming = () => {
                 <Task key={task.id} task={task} />
               )
             )}
-            <TaskAdd dueDate={day.date} />
+            <TaskAdd dueDate={day.dateAsYearMonthDay} />
           </div>
         ))}
       </div>

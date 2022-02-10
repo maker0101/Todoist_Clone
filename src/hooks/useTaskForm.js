@@ -3,7 +3,6 @@ import useTasks from './useTasks';
 import { TaskFormContext } from '../contexts/TaskFormContext';
 import { TaskModalContext } from '../contexts/TaskModalContext';
 import { SelectedProjectContext } from '../contexts/SelectedProjectContext';
-import { dateToYearMonthDay } from '../utilities/transform-dates';
 import { defaultTask } from '../utilities/default-task';
 
 const useTaskForm = () => {
@@ -20,7 +19,6 @@ const useTaskForm = () => {
   };
 
   const populateTaskForm = (task = {}, dueDate = '') => {
-    dueDate = dueDate && dateToYearMonthDay(dueDate);
     let taskFormData;
 
     if (task) {
@@ -35,10 +33,10 @@ const useTaskForm = () => {
     } else {
       taskFormData = {
         ...defaultTask,
+        dueDate: dueDate || defaultTask.dueDate,
         projectId: selectedProject?.id || defaultTask.projectId,
       };
     }
-
     setTaskForm(taskFormData);
   };
 
