@@ -19,12 +19,12 @@ const useTaskForm = () => {
     });
   };
 
-  const populateTaskForm = (task = {}, dueDate) => {
-    dueDate = dueDate ? dateToYearMonthDay(dueDate) : '';
+  const populateTaskForm = (task = {}, dueDate = '') => {
+    dueDate = dueDate && dateToYearMonthDay(dueDate);
+    let taskFormData;
 
-    let populatedTaskForm;
     if (task) {
-      populatedTaskForm = {
+      taskFormData = {
         id: task?.id || defaultTask.id,
         name: task?.name || defaultTask.name,
         description: task?.description || defaultTask.description,
@@ -33,25 +33,23 @@ const useTaskForm = () => {
           task?.projectId || selectedProject?.id || defaultTask.projectId,
       };
     } else {
-      populatedTaskForm = {
+      taskFormData = {
         ...defaultTask,
         projectId: selectedProject?.id || defaultTask.projectId,
       };
     }
 
-    setTaskForm(populatedTaskForm);
+    setTaskForm(taskFormData);
   };
 
   const handleTaskFormOpen = (setIsTaskFormOpen, dueDate) => {
-    let task;
-    populateTaskForm(task, dueDate);
+    populateTaskForm(null, dueDate);
     setIsTaskFormOpen(true);
   };
 
   const handleTaskFormSubmit = (e, taskForm) => {
     e.preventDefault();
-    const taskExists =
-      tasks.filter((task) => task.id === taskForm.id).length > 0;
+    const taskExists = tasks.some((task) => task.id === taskForm.id);
 
     taskExists ? updateTask(taskForm) : addTask(taskForm);
     clearTaskForm(selectedProject.id);

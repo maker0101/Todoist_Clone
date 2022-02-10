@@ -6,7 +6,7 @@ import { UserContext } from '../contexts/UserContext';
 const SignOut = () => {
   const { user, setUser } = useContext(UserContext);
 
-  const signout = async () => await signOut(auth);
+  const signout = () => signOut(auth);
   onAuthStateChanged(auth, (currentUser) => setUser(currentUser));
 
   return (
