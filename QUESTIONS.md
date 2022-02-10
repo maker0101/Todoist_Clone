@@ -29,9 +29,7 @@ taskCRUD.js
 
 ```js
 export const addTask = (db, ...) => {...db...}
-
 export const updateTask = (db, ...) => {...db...}
-
 export const deleteTask = (db, ...) => {...db...}
 ```
 
@@ -52,9 +50,7 @@ taskCRUD.js
 import db from '...'
 
 export const addTask = (...) => {...db...}
-
 export const updateTask = (...) => {...db...}
-
 export const deleteTask = (...) => {...db...}
 ```
 
