@@ -1,3 +1,15 @@
-import { createContext } from 'react';
+import { useState, createContext } from 'react';
 
-export const TaskFormContext = createContext();
+const TaskFormContext = createContext();
+
+const TaskFormProvider = ({ children }) => {
+  const [taskForm, setTaskForm] = useState({});
+
+  return (
+    <TaskFormContext.Provider value={{ taskForm, setTaskForm }}>
+      {children}
+    </TaskFormContext.Provider>
+  );
+};
+
+export { TaskFormProvider, TaskFormContext };
