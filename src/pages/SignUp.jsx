@@ -19,14 +19,16 @@ const SignUp = () => {
   //const { seedDb } = useSeedDb();
 
   useEffect(() => {
-    user && navigate('/today');
+    if (user) {
+      //seedDb();
+      navigate('/today');
+    }
   }, [user]);
 
   const signUp = async (e) => {
     e.preventDefault();
     try {
       await createUserWithEmailAndPassword(auth, signUpEmail, signUpPassword);
-      //seedDb();
     } catch (error) {
       console.error(error);
     }

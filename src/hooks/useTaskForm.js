@@ -18,7 +18,7 @@ const useTaskForm = () => {
     });
   };
 
-  const populateTaskForm = (task = {}, dueDate = '') => {
+  const populateTaskForm = (task, dueDate = '') => {
     let taskFormData;
 
     if (task) {
@@ -37,11 +37,13 @@ const useTaskForm = () => {
         projectId: selectedProject?.id || defaultTask.projectId,
       };
     }
-    setTaskForm(taskFormData);
+    return taskFormData;
   };
 
   const handleTaskFormOpen = (setIsTaskFormOpen, dueDate) => {
-    populateTaskForm(null, dueDate);
+    const EMPTY_TASK = {};
+    const taskFormData = populateTaskForm(EMPTY_TASK, dueDate);
+    setTaskForm(taskFormData);
     setIsTaskFormOpen(true);
   };
 
