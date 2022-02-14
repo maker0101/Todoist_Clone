@@ -4,6 +4,7 @@ import { TaskFormContext } from '../contexts/TaskFormContext';
 import { TaskModalContext } from '../contexts/TaskModalContext';
 import { SelectedProjectContext } from '../contexts/SelectedProjectContext';
 import { defaultTask } from '../utilities/default-task';
+import { serverTimestamp } from 'firebase/firestore';
 
 const useTaskForm = () => {
   const { isTaskModalOpen, setIsTaskModalOpen } = useContext(TaskModalContext);
@@ -18,7 +19,8 @@ const useTaskForm = () => {
     });
   };
 
-  const populateTaskForm = (task = {}, dueDate = '') => {
+  // it is supposed to populate task form
+  const prepareGivenTaskForTheForm = (task, dueDate = '') => {
     let taskFormData;
 
     if (task) {
@@ -37,13 +39,39 @@ const useTaskForm = () => {
         projectId: selectedProject?.id || defaultTask.projectId,
       };
     }
-    setTaskForm(taskFormData);
+
+    return taskFormData;
   };
 
+  const populateTaskWithDefaultDueDate = (task, dueDate) => {
+    return {
+      ...task,
+      dueDate: task.dueDate ?? dueDate
+    }
+  }
+
+  const prepareWithAGivenDueDate = (dueDate) => {
+
+  }
+
+  const prepareDefaultTaskForm = (dueDate = '') => {
+    return prepareGivenTaskForTheForm({}, dueDate)
+  }
+
   const handleTaskFormOpen = (setIsTaskFormOpen, dueDate) => {
-    populateTaskForm(null, dueDate);
+    const populatedTask = prepareDefaultTaskForm(dueDate);
+    setTaskForm(populatedTask);
+
     setIsTaskFormOpen(true);
   };
+
+  const handleSomeOtherThing = () => {
+    const task = populateTaskForm({});
+
+    someServer.send(task)
+
+    alert('this task has been sent')
+  }
 
   const handleTaskFormSubmit = (e, taskForm) => {
     e.preventDefault();

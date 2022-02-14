@@ -18,6 +18,8 @@ import { ProjectFormContext } from '../contexts/ProjectFormContext';
 import { ProjectModalContext } from '../contexts/ProjectModalContext';
 import { INBOX_PROJECT_ID } from '../constants/inbox-project-id';
 
+prepareGivenTaskForTheForm(TASK,)
+
 const useProjects = () => {
   const [projects, setProjects] = useState([]);
   const { user } = useContext(UserContext);
@@ -27,7 +29,7 @@ const useProjects = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const getProjectsFromDB = () => {
+  const getProjectsFromDB = (query, db, collection, where) => {
     const projectsQuery = query(
       collection(db, 'projects'),
       where('userId', '==', user?.uid)
@@ -106,7 +108,8 @@ const useProjects = () => {
     navigate('/inbox');
   };
 
-  useEffect(() => getProjectsFromDB(), []);
+  useEffect(getProjectsFromDB, []);
+
   useEffect(
     () => setSelectedProject(getCurrentProject() || ''),
     [location, projects]
