@@ -113,7 +113,11 @@ const useTasks = () => {
     }
   };
 
-  useEffect(() => getTasksFromDB(), []);
+  useEffect(() => {
+    if (user) {
+      return getTasksFromDB();
+    };
+  }, [user]);
 
   return {
     tasks,
