@@ -18,6 +18,7 @@ $color-black-1: #202020;
 $font-size-small: 13px;
 $font-size-primary: 14px;
 $font-size-large: 20px;
+$font-size-extra-large: 26px;
 
 $border-radius-small: 3px;
 $border-radius-medium: 5px;
@@ -71,6 +72,10 @@ a {
   color: $color-black-1;
 }
 
+button {
+  cursor: pointer;
+}
+
 // Removes dropdown arrows in major browsers
 select {
   -moz-appearance: none;
@@ -113,7 +118,6 @@ select::-ms-expand {
   border-radius: $border-radius-medium;
   padding: 7px 10px;
   width: fit-content;
-  cursor: pointer;
 }
 
 .button:disabled {
@@ -297,9 +301,147 @@ select::-ms-expand {
   }
 }
 
-// Main
-.main {
+// Page
+.page {
   display: flex;
+  width: 100%;
+}
+
+// Auth
+.auth {
+  display: flex;
+  height: 100vh;
+  background-color: $color-grey-2;
+
+  h1 {
+    font-size: $font-size-extra-large;
+    margin-bottom: 30px;
+  }
+
+  .auth__dividerText {
+    text-align: center;
+    font-size: $font-size-small;
+    height: 0.5em;
+    color: #777;
+    border-bottom: 1px solid #dbdbdb;
+    margin-bottom: 0.5em;
+    margin: 30px 0;
+  }
+  .auth__dividerText:first-line {
+    background-color: white;
+  }
+  .auth__dividerText:before {
+    content: '__';
+    color: white;
+  }
+  .auth__dividerText:after {
+    content: '__';
+    color: white;
+  }
+
+  hr {
+    background-color: #dbdbdb;
+    margin: 30px 0;
+  }
+
+  p {
+    margin: 0;
+    text-align: center;
+    font-size: $font-size-small;
+  }
+
+  label {
+    margin-bottom: 5px;
+    font-weight: 600;
+    font-size: $font-size-small;
+  }
+
+  a {
+    color: $color-red-1;
+  }
+
+  input {
+    height: 35px;
+    padding: 10px 13px;
+    margin-bottom: 10px;
+    border: 1px solid $color-grey-3;
+    border-radius: $border-radius-small;
+  }
+
+  .auth__brand {
+    margin-bottom: 14px;
+  }
+
+  .auth__container {
+    width: 450px;
+    margin: auto;
+    padding: 25px;
+    border: 1px solid #dbdbdb;
+    border-radius: $border-radius-large;
+    background-color: white;
+
+    button {
+      font-size: $font-size-small;
+      margin: 0;
+      width: 100%;
+      padding: 6px;
+      height: 36px;
+      border-radius: $border-radius-small;
+    }
+
+    .auth__providerBtn {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      span {
+        display: flex;
+      }
+
+      svg {
+        margin-right: 10px;
+        font-size: 19px;
+      }
+
+      .auth__iconGuest {
+        color: $color-red-1;
+      }
+    }
+
+    .auth__providerBtn:first-of-type {
+      margin-bottom: 10px;
+    }
+
+    .button__primary {
+      font-weight: 600;
+    }
+
+    .auth__brand {
+      display: flex;
+      align-items: center;
+      color: $color-red-1;
+
+      svg {
+        margin-right: 10px;
+        font-size: $font-size-extra-large;
+      }
+
+      span {
+        font-size: 18px;
+        font-weight: 600;
+        letter-spacing: 0.3px;
+      }
+    }
+
+    .auth__form {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+}
+
+.signout {
+  margin-top: 50px;
 }
 
 // Sidebar
@@ -698,9 +840,7 @@ select::-ms-expand {
 
   /* Hide the browser's default checkbox */
   input {
-    position: absolute;
-    height: 0;
-    width: 0;
+    display: none;
   }
 
   /* Create a custom checkbox */

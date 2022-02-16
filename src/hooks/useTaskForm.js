@@ -1,14 +1,15 @@
 import { useContext } from 'react';
-import useCrudTasks from './useCrudTasks';
+import useTasks from './useTasks';
 import { TaskFormContext } from '../contexts/TaskFormContext';
+import { TaskModalContext } from '../contexts/TaskModalContext';
 import { SelectedProjectContext } from '../contexts/SelectedProjectContext';
-import { dateToYearMonthDay } from '../utilities/transform-dates';
 import { defaultTask } from '../utilities/default-task';
 
 const useTaskForm = () => {
+  const { isTaskModalOpen, setIsTaskModalOpen } = useContext(TaskModalContext);
   const { setTaskForm } = useContext(TaskFormContext);
   const { selectedProject } = useContext(SelectedProjectContext);
-  const { tasks, createTask, updateTask } = useCrudTasks();
+  const { tasks, addTask, updateTask } = useTasks();
 
   const clearTaskForm = (projectId) => {
     setTaskForm({
@@ -17,55 +18,46 @@ const useTaskForm = () => {
     });
   };
 
-  const populateTaskForm = (task = '', dueDate) => {
-    dueDate = dueDate ? dateToYearMonthDay(dueDate) : '';
+  const populateTaskForm = (task, dueDate = '') => {
+    let taskFormData;
 
-    let populatedTaskForm;
     if (task) {
-      populatedTaskForm = {
+      taskFormData = {
         id: task?.id || defaultTask.id,
         name: task?.name || defaultTask.name,
         description: task?.description || defaultTask.description,
-        dueDate: task?.dueDate || defaultTask.dueDate,
+        dueDate: task?.dueDate || dueDate || defaultTask.dueDate,
         projectId:
           task?.projectId || selectedProject?.id || defaultTask.projectId,
       };
     } else {
-      populatedTaskForm = {
+      taskFormData = {
         ...defaultTask,
+        dueDate: dueDate || defaultTask.dueDate,
         projectId: selectedProject?.id || defaultTask.projectId,
       };
     }
-
-    setTaskForm(populatedTaskForm);
+    return taskFormData;
   };
 
-  const handleTaskFormOpen = (setIsTaskFormOpen, dueDate = '') => {
-    const task = {};
-    populateTaskForm(task, dueDate);
+  const handleTaskFormOpen = (setIsTaskFormOpen, dueDate) => {
+    const EMPTY_TASK = {};
+    const taskFormData = populateTaskForm(EMPTY_TASK, dueDate);
+    setTaskForm(taskFormData);
     setIsTaskFormOpen(true);
   };
 
-  const handleTaskFormSubmit = (e, db, taskForm, userId, selectedProjectId) => {
+  const handleTaskFormSubmit = (e, taskForm) => {
     e.preventDefault();
-    const taskExists =
-      tasks.filter((task) => task.id === taskForm.id).length > 0;
+    const taskExists = tasks.some((task) => task.id === taskForm.id);
 
-    taskExists
-      ? updateTask(db, taskForm, userId)
-      : createTask(db, taskForm, userId);
-
-    clearTaskForm(selectedProjectId);
+    taskExists ? updateTask(taskForm) : addTask(taskForm);
+    clearTaskForm(selectedProject.id);
   };
 
-  const handleTaskFormCancel = (
-    isTaskModalOpen,
-    setIsTaskModalOpen,
-    setIsTaskFormOpen,
-    selectedProjectId
-  ) => {
+  const handleTaskFormCancel = (setIsTaskFormOpen) => {
     isTaskModalOpen ? setIsTaskModalOpen(false) : setIsTaskFormOpen(false);
-    clearTaskForm(selectedProjectId);
+    clearTaskForm(selectedProject.id);
   };
 
   return {

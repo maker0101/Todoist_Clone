@@ -3,13 +3,12 @@ import { BsChevronDown } from 'react-icons/bs';
 import { VscAdd } from 'react-icons/vsc';
 import useProjects from '../../hooks/useProjects';
 import useProjectModal from '../../hooks/useProjectModal';
-import { ProjectModalContext } from '../../contexts/ProjectModalContext';
 import SidebarProject from './SidebarProject';
+import { defaultProject } from '../../utilities/default-project';
 
 const SidebarProjects = () => {
   const [isAccordionOpen, setIsAccordionOpen] = useState(true);
-  const { setIsProjectModalOpen } = useContext(ProjectModalContext);
-  const { filterProjectsNoInbox } = useProjects();
+  const { getProjectsExceptInbox } = useProjects();
   const { handleProjectModalOpen } = useProjectModal();
 
   const toggleAccordion = () => setIsAccordionOpen(() => !isAccordionOpen);
@@ -26,11 +25,11 @@ const SidebarProjects = () => {
         <h2 onClick={toggleAccordion}>Projects</h2>
         <VscAdd
           className='sidebar__addProject'
-          onClick={() => handleProjectModalOpen(setIsProjectModalOpen)}
+          onClick={() => handleProjectModalOpen(defaultProject)}
         />
       </div>
       {isAccordionOpen &&
-        filterProjectsNoInbox().map((project) => (
+        getProjectsExceptInbox().map((project) => (
           <SidebarProject key={project.id} project={project} />
         ))}
     </div>

@@ -1,3 +1,16 @@
-import { createContext } from 'react';
+import { useState, createContext } from 'react';
 
-export const TaskModalContext = createContext({});
+const TaskModalContext = createContext({});
+
+const TaskModalProvider = ({ children }) => {
+  const [isTaskModalOpen, setIsTaskModalOpen] = useState(false);
+
+  return (
+    <TaskModalContext.Provider value={{ isTaskModalOpen, setIsTaskModalOpen }}>
+      {children}
+    </TaskModalContext.Provider>
+  );
+};
+
+export { TaskModalProvider, TaskModalContext };
+

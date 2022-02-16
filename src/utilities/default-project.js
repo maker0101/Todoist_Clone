@@ -3,5 +3,4 @@ export const defaultProject = {
   name: '',
   colorId: 7,
   isInbox: false,
-  userId: 'userid1',
 };

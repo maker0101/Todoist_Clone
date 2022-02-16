@@ -1,25 +1,27 @@
 import { useContext } from 'react';
-import useCrudTasks from '../hooks/useCrudTasks';
+import useTasks from '../hooks/useTasks';
+import Page from '../components/Page';
 import Task from '../components/Task/Task';
 import TaskAdd from '../components/Task/TaskAdd';
 import { SelectedProjectContext } from '../contexts/SelectedProjectContext';
-import { filterTasksByProjectId } from '../utilities/filter-tasks';
 
 const Project = () => {
   const { selectedProject } = useContext(SelectedProjectContext);
-  const { tasks } = useCrudTasks();
-  const projectTasks = filterTasksByProjectId(tasks, selectedProject.id);
+  const { getTasks } = useTasks();
+  const projectTasks = getTasks({ projectId: selectedProject.id });
 
   return (
-    <div className='content'>
-      <h1 className='content__title' data-cy='content__title'>
-        {selectedProject?.name}
-      </h1>
-      {projectTasks.map((task) => (
-        <Task key={task.id} task={task} />
-      ))}
-      <TaskAdd selectedProjectId={selectedProject?.id} />
-    </div>
+    <Page>
+      <div className='content'>
+        <h1 className='content__title' data-cy='content__title'>
+          {selectedProject?.name}
+        </h1>
+        {projectTasks.map((task) => (
+          <Task key={task.id} task={task} />
+        ))}
+        <TaskAdd selectedProjectId={selectedProject?.id} />
+      </div>
+    </Page>
   );
 };
 

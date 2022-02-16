@@ -6,7 +6,7 @@ const useProjectModal = () => {
   const { setIsProjectModalOpen } = useContext(ProjectModalContext);
   const { populateProjectForm } = useProjectForm();
 
-  const handleProjectModalOpen = (setIsProjectModalOpen, project) => {
+  const handleProjectModalOpen = (project) => {
     populateProjectForm(project);
     setIsProjectModalOpen(true);
   };

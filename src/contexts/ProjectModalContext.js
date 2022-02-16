@@ -1,3 +1,16 @@
-import { createContext } from 'react';
+import { useState, createContext } from 'react';
 
-export const ProjectModalContext = createContext();
+const ProjectModalContext = createContext();
+
+const ProjectModalProvider = ({ children }) => {
+  const [isProjectModalOpen, setIsProjectModalOpen] = useState(false);
+
+  return (
+    <ProjectModalContext.Provider
+      value={{ isProjectModalOpen, setIsProjectModalOpen }}>
+      {children}
+    </ProjectModalContext.Provider>
+  );
+};
+
+export { ProjectModalProvider, ProjectModalContext };

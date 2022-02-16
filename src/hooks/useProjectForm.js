@@ -1,11 +1,15 @@
 import { useContext } from 'react';
 import useProjects from './useProjects';
 import { ProjectFormContext } from '../contexts/ProjectFormContext';
+import { ProjectModalContext } from '../contexts/ProjectModalContext';
 import { defaultProject } from '../utilities/default-project';
+import { UserContext } from '../contexts/UserContext';
 
 const useProjectForm = () => {
+  const { user } = useContext(UserContext);
   const { setProjectForm, clearProjectForm } = useContext(ProjectFormContext);
-  const { projects, updateProject, createProject } = useProjects();
+  const { setIsProjectModalOpen } = useContext(ProjectModalContext);
+  const { projects, updateProject, addProject } = useProjects();
 
   const populateProjectForm = (project = {}) => {
     let populatedProjectForm;
@@ -15,7 +19,7 @@ const useProjectForm = () => {
         name: project?.name || defaultProject.name,
         isInbox: project?.isInbox || defaultProject.isInbox,
         colorId: project?.colorId || defaultProject.colorId,
-        userId: project?.userId || defaultProject.userId,
+        userId: project?.userId || user.uid,
       };
     } else {
       populatedProjectForm = defaultProject;
@@ -24,24 +28,17 @@ const useProjectForm = () => {
     setProjectForm(populatedProjectForm);
   };
 
-  const handleSubmit = (e, db, projectForm, userId, setIsProjectModalOpen) => {
+  const handleProjectSubmit = (e, project) => {
     e.preventDefault();
+    const isProjectExisting = projects.some((proj) => proj.id === project.id);
 
-    const projectExists =
-      projects.filter((project) => project.id === projectForm.id).length > 0;
-
-    if (projectExists) {
-      updateProject(db, projectForm, userId);
-    } else {
-      createProject(db, projectForm, userId);
-    }
-
+    isProjectExisting ? updateProject(project) : addProject(project);
     setIsProjectModalOpen(false);
     clearProjectForm();
   };
 
   return {
-    handleSubmit,
+    handleProjectSubmit,
     populateProjectForm,
   };
 };

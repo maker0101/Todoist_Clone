@@ -1,11 +1,15 @@
 import { IoSearchOutline } from 'react-icons/io5';
-import useCrudTasks from '../hooks/useCrudTasks';
+import useTasks from '../hooks/useTasks';
 import useSearch from '../hooks/useSearch';
 
 function Search() {
-  const { tasks } = useCrudTasks();
-  const { searchInput, searchResults, handleSearch, handleTaskOpen } =
-    useSearch();
+  const { tasks } = useTasks();
+  const {
+    searchInput,
+    searchResults,
+    handleSearch,
+    handleTaskModalOpenFromSearch,
+  } = useSearch();
 
   const areResultsOpen = searchResults.length > 0;
 
@@ -26,7 +30,7 @@ function Search() {
             <div
               key={task.id}
               className='search__result'
-              onClick={() => handleTaskOpen(task)}>
+              onClick={() => handleTaskModalOpenFromSearch(task)}>
               {task.name}
             </div>
           ))}

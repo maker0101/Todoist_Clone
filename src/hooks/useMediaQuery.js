@@ -1,10 +1,8 @@
 import { useState, useEffect } from 'react';
 
-function useMediaQuery() {
+const useMediaQuery = () => {
   const isWidthLarger720 = window.innerWidth > 720;
-
   const [isDesktop, setIsDesktop] = useState(isWidthLarger720);
-
   const updateMedia = () => setIsDesktop(isWidthLarger720);
 
   useEffect(() => {
@@ -13,6 +11,6 @@ function useMediaQuery() {
   });
 
   return { isWidthLarger720, isDesktop };
-}
+};
 
 export default useMediaQuery;
