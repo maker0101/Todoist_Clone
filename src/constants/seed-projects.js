@@ -1,3 +1,5 @@
+import { WELCOME_PROJECT_ID } from "./welcome-project-id";
+
 export const SEED_PROJECTS = [
   {
     name: 'Inbox',
@@ -9,6 +11,6 @@ export const SEED_PROJECTS = [
     name: 'Welcome 👋',
     isInbox: false,
     colorId: 19,
-    id: '99999999999999999999',
+    id: WELCOME_PROJECT_ID,
   },
 ];
