@@ -5,9 +5,9 @@
 ## What is this and who is it for ⭐
 
 This is a simplified Todoist clone built with React and Firebase.
-I've built it to practice React after finishing an online [introductory course on React on Scrimba](https://scrimba.com/learn/learnreact).
+I've built it while pursuing the [The Frontend Developer Career Path on Scrimba](https://scrimba.com/learn/frontend).
 
-It's a more _complex_ coding project than anything I've attempted previously, as I wanted to:
+It's a more _complex_ coding project than anything I've attempted previously (as of February 2022), as I wanted to:
 
 - Practice React under more _real-world_ conditions to find and push my limits.
 - Experience some of the pain points and needs of a growing codebase (e.g. managing state, organizing files, automated testing, ...).
@@ -26,12 +26,11 @@ I hope it helps you to become a better React programmer, too 🤓.
 
 - Written in **modern React**, only functional components with hooks
 - **Simple** local React **state management** (without Redux, Recoil or similar)
-- **Todoist UI** (as of January 2022)
+- **Todoist UI** (as of February 2022)
+- **User authentification** via Firebase
+- **Project CRUD** operations
+- **Task CRUD** operations and simple Search
 - **End-to-end tested** with Cypress
-- User authentification via Firebase
-- Users can add, delete and edit **projects**
-- Users can add, delete, search and edit **tasks**. Assigning due dates and organizing tasks into projects is possible as well.
-- End-to-End tested with Cypress
 
 ## Getting started
 

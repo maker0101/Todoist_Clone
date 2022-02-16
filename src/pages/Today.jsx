@@ -1,7 +1,7 @@
 import Page from '../components/Page';
 import TaskAdd from '../components/Task/TaskAdd';
 import ContentTitle from '../components/Content/ContentTitle';
-import TasksList from '../components/Content/TasksList';
+import TasksList from '../components/Task/TasksList';
 import ContentPlaceholder from '../components/Content/ContentPlaceholder';
 import useTasks from '../hooks/useTasks';
 import {

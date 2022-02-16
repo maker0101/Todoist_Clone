@@ -1,5 +1,5 @@
 import Page from '../components/Page';
-import TasksList from '../components/Content/TasksList';
+import TasksList from '../components/Task/TasksList';
 import TaskAdd from '../components/Task/TaskAdd';
 import ContentTitle from '../components/Content/ContentTitle';
 import ContentPlaceholder from '../components/Content/ContentPlaceholder';

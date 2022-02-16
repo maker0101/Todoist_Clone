@@ -6,6 +6,7 @@ import {
   doc,
   query,
   where,
+  setDoc,
   addDoc,
   updateDoc,
   deleteDoc,
@@ -60,6 +61,21 @@ const useProjects = () => {
     const currentProjectId = match?.params.id || INBOX_PROJECT_ID;
     const currentProject = getProjectById(projects, currentProjectId);
     return currentProject;
+  };
+
+  const addSeedProject = async (project) => {
+    console.log(project);
+    try {
+      await setDoc(doc(db, 'projects', project.id), {
+        name: project.name,
+        colorId: project.colorId,
+        isInbox: project.isInbox,
+        userId: user.uid,
+        createdAt: serverTimestamp(),
+      });
+    } catch (err) {
+      console.error(err);
+    }
   };
 
   const addProject = async (project) => {
@@ -120,6 +136,7 @@ const useProjects = () => {
   return {
     projects,
     updateProject,
+    addSeedProject,
     addProject,
     handleDeleteProject,
     getProjectsExceptInbox,

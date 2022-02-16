@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import Page from '../components/Page';
 import TaskAdd from '../components/Task/TaskAdd';
 import ContentTitle from '../components/Content/ContentTitle';
-import TasksList from '../components/Content/TasksList';
+import TasksList from '../components/Task/TasksList';
 import useTasks from '../hooks/useTasks';
 import { calculateUpcomingDays } from '../utilities/calculate-upcoming-days.js';
 import { sortTasksByDueDateAsc } from '../utilities/sort-tasks';

@@ -64,6 +64,7 @@ const useTasks = () => {
   };
 
   const addTask = async (task) => {
+    console.log(task);
     try {
       await addDoc(collection(db, 'tasks'), {
         name: task.name,

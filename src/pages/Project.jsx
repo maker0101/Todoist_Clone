@@ -1,7 +1,7 @@
 import { useContext } from 'react';
 import useTasks from '../hooks/useTasks';
 import Page from '../components/Page';
-import TasksList from '../components/Content/TasksList';
+import TasksList from '../components/Task/TasksList';
 import TaskAdd from '../components/Task/TaskAdd';
 import ContentTitle from '../components/Content/ContentTitle';
 import { SelectedProjectContext } from '../contexts/SelectedProjectContext';

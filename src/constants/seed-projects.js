@@ -3,10 +3,12 @@ export const SEED_PROJECTS = [
     name: 'Inbox',
     isInbox: true,
     colorId: 19,
+    id: 'GtbY3fGVBVrTJmJH4IGd',
   },
   {
-    name: 'XXXXXXXXXX Getting started',
+    name: 'Welcome 👋',
     isInbox: false,
-    colorId: 5,
+    colorId: 19,
+    id: '99999999999999999999',
   },
 ];
