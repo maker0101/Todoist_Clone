@@ -12,6 +12,7 @@ import useTaskModal from '../hooks/useTaskModal';
 import Search from './Search';
 import useMediaQuery from '../hooks/useMediaQuery';
 import { SidebarContext } from '../contexts/SidebarContext';
+import { EMPTY_TASK } from '../constants/empty-task';
 
 const Header = () => {
   const { handleTaskModalOpen } = useTaskModal();
@@ -46,7 +47,7 @@ const Header = () => {
           className='header__item'
           data-cy='header__item'
           id='header__addTask'
-          onClick={handleTaskModalOpen}
+          onClick={() => handleTaskModalOpen(EMPTY_TASK)}
         />
         <VscBell
           title='Not implemented'

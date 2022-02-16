@@ -7,7 +7,7 @@ const Page = ({ children }) => {
     <div className='page'>
       <Header />
       <SidebarContainer />
-      {children}
+      <div className='content'>{children}</div>
       <Modals />
     </div>
   );

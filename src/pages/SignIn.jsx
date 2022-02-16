@@ -14,7 +14,7 @@ const SignIn = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    user && navigate('/today');
+    if (user) navigate('/today');
   }, [user]);
 
   const signIn = async (e) => {
@@ -33,7 +33,7 @@ const SignIn = () => {
       <div className='auth__container'>
         <div className='auth__brand'>
           <SiTodoist />
-          <span>todoist</span>
+          <span>todoist clone</span>
         </div>
         <h1 className='auth__title'>Log in</h1>
         <button className='auth__providerBtn button__secondary'>

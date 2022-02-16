@@ -106,7 +106,12 @@ const useProjects = () => {
     navigate('/inbox');
   };
 
-  useEffect(() => getProjectsFromDB(), []);
+  useEffect(() => {
+    if (user) {
+      return getProjectsFromDB();
+    }
+  }, [user]);
+
   useEffect(
     () => setSelectedProject(getCurrentProject() || ''),
     [location, projects]

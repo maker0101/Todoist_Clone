@@ -1,6 +1,6 @@
 export const SEED_PROJECTS = [
   {
-    name: 'XXXXXXXXXX Inbox',
+    name: 'Inbox',
     isInbox: true,
     colorId: 19,
   },

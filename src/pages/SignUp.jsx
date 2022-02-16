@@ -16,11 +16,11 @@ const SignUp = () => {
   const [signUpEmail, setSignUpEmail] = useState('');
   const [signUpPassword, setSignUpPassword] = useState('');
   const navigate = useNavigate();
-  //const { seedDb } = useSeedDb();
+  const { seedDb } = useSeedDb();
 
   useEffect(() => {
     if (user) {
-      //seedDb();
+      seedDb();
       navigate('/today');
     }
   }, [user]);
@@ -41,7 +41,7 @@ const SignUp = () => {
       <div className='auth__container'>
         <div className='auth__brand'>
           <SiTodoist />
-          <span>todoist</span>
+          <span>todoist clone</span>
         </div>
         <h1 className='auth__title'>Sign up</h1>
         <button className='auth__providerBtn button__secondary'>

@@ -4,6 +4,7 @@ import { TaskFormContext } from '../contexts/TaskFormContext';
 import { TaskModalContext } from '../contexts/TaskModalContext';
 import { SelectedProjectContext } from '../contexts/SelectedProjectContext';
 import { defaultTask } from '../utilities/default-task';
+import { EMPTY_TASK } from '../constants/empty-task';
 
 const useTaskForm = () => {
   const { isTaskModalOpen, setIsTaskModalOpen } = useContext(TaskModalContext);
@@ -41,7 +42,6 @@ const useTaskForm = () => {
   };
 
   const handleTaskFormOpen = (setIsTaskFormOpen, dueDate) => {
-    const EMPTY_TASK = {};
     const taskFormData = populateTaskForm(EMPTY_TASK, dueDate);
     setTaskForm(taskFormData);
     setIsTaskFormOpen(true);

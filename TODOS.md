@@ -6,6 +6,7 @@
 - [ ] Sometimes: Loading a project URL directly (not via home -> then to project) shows empty page
 - [ ] update tests after user authentification and seeding db process implemented
 - [ ] Configure Firebase/Firestore rules correctly
+- [ ] SignIn/SignUp page OR on Safrai shows spaces before and after (not visible on Chrome)
 
 ## Planned Features
 

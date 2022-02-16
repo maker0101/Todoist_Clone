@@ -586,6 +586,31 @@ select::-ms-expand {
       margin-bottom: 8px;
     }
   }
+
+  .content__placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    margin-top: 15%;
+
+    .content__placeholderImg {
+      max-width: 250px;
+    }
+
+    .content_pMedium {
+      font-size: 16px;
+      font-weight: 300;
+      margin: 16px 0 6px 0;
+    }
+
+    .content_pSmall {
+      color: $color-grey-6;
+      font-size: $font-size-small;
+      font-weight: 300;
+      margin: 8px 0 24px 0;
+    }
+  }
 }
 
 //Task

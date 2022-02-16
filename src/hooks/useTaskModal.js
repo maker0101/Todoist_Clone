@@ -8,8 +8,8 @@ const useTaskModal = () => {
   const { setTaskForm } = useContext(TaskFormContext);
   const { populateTaskForm } = useTaskForm();
 
-  const handleTaskModalOpen = (task) => {
-    const taskFormData = populateTaskForm(task);
+  const handleTaskModalOpen = (task, dueDate = '') => {
+    const taskFormData = populateTaskForm(task, dueDate);
     setTaskForm(taskFormData);
     setIsTaskModalOpen(true);
   };
