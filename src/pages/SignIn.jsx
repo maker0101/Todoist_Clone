@@ -4,7 +4,14 @@ import { SiTodoist } from 'react-icons/si';
 import { FcGoogle } from 'react-icons/fc';
 import { IoPerson } from 'react-icons/io5';
 import { RiErrorWarningFill } from 'react-icons/ri';
-import { signInWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth';
+import {
+  signInWithEmailAndPassword,
+  signInWithPopup,
+  signInAnonymously,
+  onAuthStateChanged,
+  getAuth,
+  GoogleAuthProvider,
+} from 'firebase/auth';
 import { auth } from '../firebase-config';
 import { UserContext } from '../contexts/UserContext';
 
@@ -14,17 +21,36 @@ const SignIn = () => {
   const [signInPassword, setSignInPassword] = useState('');
   const [authError, setAuthError] = useState('');
   const navigate = useNavigate();
-
+  
   useEffect(() => {
     if (user) navigate('/today');
   }, [user]);
 
-  const signIn = async (e) => {
-    e.preventDefault();
+  const signIn = async (signInMethod, event = {}) => {
+    const provider = new GoogleAuthProvider();
+    const auth = getAuth();
+
     try {
-      await signInWithEmailAndPassword(auth, signInEmail, signInPassword);
+      switch (signInMethod) {
+        case 'email':
+          event.preventDefault();
+          await signInWithEmailAndPassword(auth, signInEmail, signInPassword);
+          break;
+
+        case 'google':
+          await signInWithPopup(auth, provider);
+          break;
+
+        case 'guest':
+          await signInAnonymously(auth);
+          break;
+
+        default:
+          return;
+      }
     } catch (error) {
-      setAuthError(error?.message);
+      setAuthError(error?.code);
+      console.error(error?.code);
     }
   };
 
@@ -38,13 +64,17 @@ const SignIn = () => {
           <span>todoist clone</span>
         </div>
         <h1 className='auth__title'>Log in</h1>
-        <button className='auth__providerBtn button__secondary'>
+        <button
+          onClick={() => signIn('google')}
+          className='auth__providerBtn button__secondary'>
           <span>
             <FcGoogle />
           </span>
           Continue with Google
         </button>
-        <button className='auth__providerBtn button__secondary'>
+        <button
+          onClick={() => signIn('guest')}
+          className='auth__providerBtn button__secondary'>
           <span>
             <IoPerson className='auth__iconGuest' />
           </span>
@@ -58,7 +88,7 @@ const SignIn = () => {
             <span className='auth__errorMessage'>{authError}</span>
           </p>
         )}
-        <form className='auth__form' onSubmit={(e) => signIn(e)}>
+        <form className='auth__form' onSubmit={(e) => signIn('email', e)}>
           <label htmlFor='email'>Email</label>
           <input
             type='email'

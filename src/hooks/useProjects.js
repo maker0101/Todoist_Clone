@@ -64,7 +64,6 @@ const useProjects = () => {
   };
 
   const addSeedProject = async (project) => {
-    console.log(project);
     try {
       await setDoc(doc(db, 'projects', project.id), {
         name: project.name,

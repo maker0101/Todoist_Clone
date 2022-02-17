@@ -6,6 +6,10 @@ import { RiErrorWarningFill } from 'react-icons/ri';
 import {
   createUserWithEmailAndPassword,
   onAuthStateChanged,
+  GoogleAuthProvider,
+  getAuth,
+  signInWithPopup,
+  signInAnonymously,
 } from 'firebase/auth';
 import { auth } from '../firebase-config';
 import { UserContext } from '../contexts/UserContext';
@@ -27,12 +31,35 @@ const SignUp = () => {
     }
   }, [user]);
 
-  const signUp = async (e) => {
-    e.preventDefault();
+  const signUp = async (signUpMethod, event = {}) => {
+    const provider = new GoogleAuthProvider();
+    const auth = getAuth();
+
     try {
-      await createUserWithEmailAndPassword(auth, signUpEmail, signUpPassword);
+      switch (signUpMethod) {
+        case 'email':
+          event.preventDefault();
+          await createUserWithEmailAndPassword(
+            auth,
+            signUpEmail,
+            signUpPassword
+          );
+          break;
+
+        case 'google':
+          await signInWithPopup(auth, provider);
+          break;
+
+        case 'guest':
+          await signInAnonymously(auth);
+          break;
+
+        default:
+          return;
+      }
     } catch (error) {
-      setAuthError(error?.message);
+      setAuthError(error?.code);
+      console.error(error?.code);
     }
   };
 
@@ -46,13 +73,17 @@ const SignUp = () => {
           <span>todoist clone</span>
         </div>
         <h1 className='auth__title'>Sign up</h1>
-        <button className='auth__providerBtn button__secondary'>
+        <button
+          onClick={(e) => signUp('google', e)}
+          className='auth__providerBtn button__secondary'>
           <span>
             <FcGoogle />
           </span>
           Continue with Google
         </button>
-        <button className='auth__providerBtn button__secondary'>
+        <button
+          onClick={(e) => signUp('guest', e)}
+          className='auth__providerBtn button__secondary'>
           <span>
             <IoPerson className='auth__iconGuest' />
           </span>
@@ -65,7 +96,7 @@ const SignUp = () => {
             <span className='auth__errorMessage'>{authError}</span>
           </p>
         )}
-        <form className='auth__form' onSubmit={(e) => signUp(e)}>
+        <form className='auth__form' onSubmit={(e) => signUp('email', e)}>
           <label htmlFor='email'>Email</label>
           <input
             type='email'

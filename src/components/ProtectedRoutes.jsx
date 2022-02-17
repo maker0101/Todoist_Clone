@@ -5,7 +5,7 @@ import { UserContext } from '../contexts/UserContext';
 function ProtectedRoutes() {
   const { user } = useContext(UserContext);
 
-  const isAuth = !!user?.email;
+  const isAuth = !!user?.accessToken;
   return isAuth ? <Outlet /> : <Navigate to='/signin' />;
 }
 
