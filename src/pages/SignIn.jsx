@@ -1,16 +1,18 @@
 import { useState, useEffect, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { SiTodoist } from 'react-icons/si';
 import { FcGoogle } from 'react-icons/fc';
 import { IoPerson } from 'react-icons/io5';
+import { RiErrorWarningFill } from 'react-icons/ri';
 import { signInWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth';
 import { auth } from '../firebase-config';
 import { UserContext } from '../contexts/UserContext';
-import { useNavigate } from 'react-router-dom';
 
 const SignIn = () => {
   const { user, setUser } = useContext(UserContext);
   const [signInEmail, setSignInEmail] = useState('');
   const [signInPassword, setSignInPassword] = useState('');
+  const [authError, setAuthError] = useState('');
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -22,7 +24,7 @@ const SignIn = () => {
     try {
       await signInWithEmailAndPassword(auth, signInEmail, signInPassword);
     } catch (error) {
-      console.error(error);
+      setAuthError(error?.message);
     }
   };
 
@@ -49,6 +51,13 @@ const SignIn = () => {
           Continue as guest
         </button>
         <div className='auth__dividerText'>OR</div>
+
+        {authError && (
+          <p className='auth__error'>
+            <RiErrorWarningFill />
+            <span className='auth__errorMessage'>{authError}</span>
+          </p>
+        )}
         <form className='auth__form' onSubmit={(e) => signIn(e)}>
           <label htmlFor='email'>Email</label>
           <input

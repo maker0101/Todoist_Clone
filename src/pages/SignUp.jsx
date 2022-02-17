@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from 'react';
 import { SiTodoist } from 'react-icons/si';
 import { FcGoogle } from 'react-icons/fc';
 import { IoPerson } from 'react-icons/io5';
+import { RiErrorWarningFill } from 'react-icons/ri';
 import {
   createUserWithEmailAndPassword,
   onAuthStateChanged,
@@ -15,6 +16,7 @@ const SignUp = () => {
   const { user, setUser } = useContext(UserContext);
   const [signUpEmail, setSignUpEmail] = useState('');
   const [signUpPassword, setSignUpPassword] = useState('');
+  const [authError, setAuthError] = useState('');
   const navigate = useNavigate();
   const { seedDb } = useSeedDb();
 
@@ -30,7 +32,7 @@ const SignUp = () => {
     try {
       await createUserWithEmailAndPassword(auth, signUpEmail, signUpPassword);
     } catch (error) {
-      console.error(error);
+      setAuthError(error?.message);
     }
   };
 
@@ -57,6 +59,12 @@ const SignUp = () => {
           Continue as guest
         </button>
         <div className='auth__dividerText'>OR</div>
+        {authError && (
+          <p className='auth__error'>
+            <RiErrorWarningFill />
+            <span className='auth__errorMessage'>{authError}</span>
+          </p>
+        )}
         <form className='auth__form' onSubmit={(e) => signUp(e)}>
           <label htmlFor='email'>Email</label>
           <input

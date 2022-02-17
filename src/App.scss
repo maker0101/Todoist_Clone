@@ -438,6 +438,20 @@ select::-ms-expand {
       flex-direction: column;
     }
   }
+
+  .auth__error {
+    display: flex;
+    align-items: center;
+    color: $color-red-1;
+    font-size: $font-size-primary;
+    font-weight: 400;
+    margin-bottom: 30px;
+
+    svg {
+      font-size: $font-size-large;
+      margin-right: 5px;
+    }
+  }
 }
 
 .signout {

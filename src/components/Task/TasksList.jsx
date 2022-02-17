@@ -1,7 +1,6 @@
 import Task from './Task';
 
 const TasksList = ({ title, tasks }) => {
-  console.log(tasks);
   return (
     <div className='content__section'>
       {title && (
