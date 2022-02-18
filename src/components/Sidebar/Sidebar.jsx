@@ -2,7 +2,6 @@ import { useContext } from 'react';
 import SidebarNav from './SidebarNav';
 import SidebarProjects from './SidebarProjects';
 import { SidebarContext } from '../../contexts/SidebarContext';
-import SignOut from '../SignOut';
 
 const Sidebar = () => {
   const { isSidebarOpen } = useContext(SidebarContext);
@@ -13,7 +12,6 @@ const Sidebar = () => {
       data-cy='sidebar'>
       <SidebarNav />
       <SidebarProjects />
-      <SignOut />
     </nav>
   );
 };

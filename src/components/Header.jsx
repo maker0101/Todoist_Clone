@@ -1,4 +1,4 @@
-import { useContext } from 'react';
+import { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import {
   VscMenu,
@@ -10,6 +10,7 @@ import {
 } from 'react-icons/vsc';
 import useTaskModal from '../hooks/useTaskModal';
 import Search from './Search';
+import AccountPopup from './AccountPopup';
 import useMediaQuery from '../hooks/useMediaQuery';
 import { SidebarContext } from '../contexts/SidebarContext';
 import { EMPTY_TASK } from '../constants/empty-task';
@@ -18,6 +19,7 @@ const Header = () => {
   const { handleTaskModalOpen } = useTaskModal();
   const { isDesktop } = useMediaQuery();
   const { isSidebarOpen, setIsSidebarOpen } = useContext(SidebarContext);
+  const [isAccountPopupOpen, setIsAccountPopupOpen] = useState(false);
 
   const isCloseVisible = !isDesktop && isSidebarOpen;
 
@@ -32,18 +34,24 @@ const Header = () => {
           />
         ) : (
           <VscMenu
+            title='Toggle menu'
             className='header__item'
             data-cy='header__item'
             onClick={() => setIsSidebarOpen(() => !isSidebarOpen)}
           />
         )}
         <Link to='/today'>
-          <VscHome className='header__item' data-cy='header__item' />
+          <VscHome
+            title='Go to home'
+            className='header__item'
+            data-cy='header__item'
+          />
         </Link>
         <Search />
       </div>
       <div className='header__right'>
         <VscAdd
+          title='Quick Add'
           className='header__item'
           data-cy='header__item'
           id='header__addTask'
@@ -55,10 +63,12 @@ const Header = () => {
           data-cy='header__item'
         />
         <VscAccount
-          title='Not implemented'
-          className='header__item header__disabled'
+          title='Account'
+          onClick={() => setIsAccountPopupOpen(!isAccountPopupOpen)}
+          className='header__item'
           data-cy='header__item'
         />
+        {isAccountPopupOpen && <AccountPopup />}
       </div>
     </header>
   );

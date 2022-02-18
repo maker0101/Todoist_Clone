@@ -1,6 +1,5 @@
 ## Critical features / bugs
 
-- [ ] Integrate Signout into header
 - [ ] End-2-End testing
 - [ ] Phishing Suspection Warning when opening deployed site in Chrome
 
