@@ -69,7 +69,7 @@ const useProjects = () => {
         name: project.name,
         colorId: project.colorId,
         isInbox: project.isInbox,
-        userId: user.uid,
+        userId: user?.uid,
         createdAt: serverTimestamp(),
       });
     } catch (err) {
@@ -83,7 +83,7 @@ const useProjects = () => {
         name: project.name,
         colorId: project.colorId,
         isInbox: project.isInbox,
-        userId: user.uid,
+        userId: user?.uid,
         createdAt: serverTimestamp(),
       });
     } catch (err) {
@@ -98,7 +98,7 @@ const useProjects = () => {
         name: project.name,
         colorId: project.colorId,
         isInbox: project.isInbox,
-        userId: user.uid,
+        userId: user?.uid,
       });
     } catch (err) {
       console.error(err);
@@ -134,6 +134,7 @@ const useProjects = () => {
 
   return {
     projects,
+    getProjectsFromDB,
     updateProject,
     addSeedProject,
     addProject,

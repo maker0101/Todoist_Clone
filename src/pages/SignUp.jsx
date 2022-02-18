@@ -1,67 +1,33 @@
-import { useState, useEffect, useContext } from 'react';
+import { useEffect, useContext } from 'react';
 import { SiTodoist } from 'react-icons/si';
 import { FcGoogle } from 'react-icons/fc';
 import { IoPerson } from 'react-icons/io5';
 import { RiErrorWarningFill } from 'react-icons/ri';
-import {
-  createUserWithEmailAndPassword,
-  onAuthStateChanged,
-  GoogleAuthProvider,
-  getAuth,
-  signInWithPopup,
-  signInAnonymously,
-} from 'firebase/auth';
+import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from '../firebase-config';
 import { UserContext } from '../contexts/UserContext';
 import { useNavigate } from 'react-router-dom';
+import useAuth from '../hooks/useAuth';
 import useSeedDb from '../hooks/useSeedDb';
 
 const SignUp = () => {
   const { user, setUser } = useContext(UserContext);
-  const [signUpEmail, setSignUpEmail] = useState('');
-  const [signUpPassword, setSignUpPassword] = useState('');
-  const [authError, setAuthError] = useState('');
+  const {
+    signUpEmail,
+    setSignUpEmail,
+    signUpPassword,
+    setSignUpPassword,
+    authError,
+    handleSignUp,
+    isNewUser,
+  } = useAuth();
   const navigate = useNavigate();
   const { seedDb } = useSeedDb();
 
   useEffect(() => {
-    if (user) {
-      seedDb();
-      navigate('/today');
-    }
+    if (user) navigate('/today');
+    if (user && isNewUser()) seedDb();
   }, [user]);
-
-  const signUp = async (signUpMethod, event = {}) => {
-    const provider = new GoogleAuthProvider();
-    const auth = getAuth();
-
-    try {
-      switch (signUpMethod) {
-        case 'email':
-          event.preventDefault();
-          await createUserWithEmailAndPassword(
-            auth,
-            signUpEmail,
-            signUpPassword
-          );
-          break;
-
-        case 'google':
-          await signInWithPopup(auth, provider);
-          break;
-
-        case 'guest':
-          await signInAnonymously(auth);
-          break;
-
-        default:
-          return;
-      }
-    } catch (error) {
-      setAuthError(error?.code);
-      console.error(error?.code);
-    }
-  };
 
   onAuthStateChanged(auth, (currentUser) => setUser(currentUser));
 
@@ -74,7 +40,7 @@ const SignUp = () => {
         </div>
         <h1 className='auth__title'>Sign up</h1>
         <button
-          onClick={(e) => signUp('google', e)}
+          onClick={(e) => handleSignUp('google', e)}
           className='auth__providerBtn button__secondary'>
           <span>
             <FcGoogle />
@@ -82,7 +48,7 @@ const SignUp = () => {
           Continue with Google
         </button>
         <button
-          onClick={(e) => signUp('guest', e)}
+          onClick={(e) => handleSignUp('guest', e)}
           className='auth__providerBtn button__secondary'>
           <span>
             <IoPerson className='auth__iconGuest' />
@@ -96,7 +62,7 @@ const SignUp = () => {
             <span className='auth__errorMessage'>{authError}</span>
           </p>
         )}
-        <form className='auth__form' onSubmit={(e) => signUp('email', e)}>
+        <form className='auth__form' onSubmit={(e) => handleSignUp('email', e)}>
           <label htmlFor='email'>Email</label>
           <input
             type='email'

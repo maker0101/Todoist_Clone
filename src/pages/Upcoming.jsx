@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { Fragment, useState, useEffect } from 'react';
 import Page from '../components/Page';
 import TaskAdd from '../components/Task/TaskAdd';
 import ContentTitle from '../components/Content/ContentTitle';
@@ -26,14 +26,10 @@ const Upcoming = () => {
         <TasksList title='Overdue' tasks={overdueTasks} />
 
         {upcomingDays.map((day) => (
-          <>
-            <TasksList
-              key={day.id}
-              title={daySubheading(day)}
-              tasks={upcomingTasks(day)}
-            />
+          <Fragment key={day.id}>
+            <TasksList title={daySubheading(day)} tasks={upcomingTasks(day)} />
             <TaskAdd dueDate={day.dateAsYearMonthDay} />
-          </>
+          </Fragment>
         ))}
       </>
     </Page>

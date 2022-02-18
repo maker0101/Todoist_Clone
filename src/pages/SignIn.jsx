@@ -1,58 +1,35 @@
-import { useState, useEffect, useContext } from 'react';
+import { useEffect, useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { SiTodoist } from 'react-icons/si';
 import { FcGoogle } from 'react-icons/fc';
 import { IoPerson } from 'react-icons/io5';
 import { RiErrorWarningFill } from 'react-icons/ri';
-import {
-  signInWithEmailAndPassword,
-  signInWithPopup,
-  signInAnonymously,
-  onAuthStateChanged,
-  getAuth,
-  GoogleAuthProvider,
-} from 'firebase/auth';
+import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from '../firebase-config';
 import { UserContext } from '../contexts/UserContext';
+import useAuth from '../hooks/useAuth';
+import useSeedDb from '../hooks/useSeedDb';
 
 const SignIn = () => {
   const { user, setUser } = useContext(UserContext);
-  const [signInEmail, setSignInEmail] = useState('');
-  const [signInPassword, setSignInPassword] = useState('');
-  const [authError, setAuthError] = useState('');
+  const {
+    handleSignIn,
+    authError,
+    signInEmail,
+    setSignInEmail,
+    signInPassword,
+    setSignInPassword,
+    isNewUser,
+  } = useAuth();
   const navigate = useNavigate();
-  
+  const { seedDb } = useSeedDb();
+
+  console.log(user);
+
   useEffect(() => {
     if (user) navigate('/today');
+    if (user && isNewUser()) seedDb();
   }, [user]);
-
-  const signIn = async (signInMethod, event = {}) => {
-    const provider = new GoogleAuthProvider();
-    const auth = getAuth();
-
-    try {
-      switch (signInMethod) {
-        case 'email':
-          event.preventDefault();
-          await signInWithEmailAndPassword(auth, signInEmail, signInPassword);
-          break;
-
-        case 'google':
-          await signInWithPopup(auth, provider);
-          break;
-
-        case 'guest':
-          await signInAnonymously(auth);
-          break;
-
-        default:
-          return;
-      }
-    } catch (error) {
-      setAuthError(error?.code);
-      console.error(error?.code);
-    }
-  };
 
   onAuthStateChanged(auth, (currentUser) => setUser(currentUser));
 
@@ -65,7 +42,7 @@ const SignIn = () => {
         </div>
         <h1 className='auth__title'>Log in</h1>
         <button
-          onClick={() => signIn('google')}
+          onClick={() => handleSignIn('google')}
           className='auth__providerBtn button__secondary'>
           <span>
             <FcGoogle />
@@ -73,7 +50,7 @@ const SignIn = () => {
           Continue with Google
         </button>
         <button
-          onClick={() => signIn('guest')}
+          onClick={() => handleSignIn('guest')}
           className='auth__providerBtn button__secondary'>
           <span>
             <IoPerson className='auth__iconGuest' />
@@ -88,7 +65,7 @@ const SignIn = () => {
             <span className='auth__errorMessage'>{authError}</span>
           </p>
         )}
-        <form className='auth__form' onSubmit={(e) => signIn('email', e)}>
+        <form className='auth__form' onSubmit={(e) => handleSignIn('email', e)}>
           <label htmlFor='email'>Email</label>
           <input
             type='email'

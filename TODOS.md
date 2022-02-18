@@ -1,10 +1,13 @@
-## Known issues/bugs
+## Critical features / bugs
 
-- [ ] Auth as guest /via Google SignIn
+- [ ] Check if user exists: Currently when users signup (guest or google) via signin page -> no seeding & when signin (guest or google) via signup, seeding data duplicated
 - [ ] Integrate Signout into header
 - [ ] End-2-End testing
-- [ ] Configure Firebase/Firestore rules correctly
 - [ ] Phishing Suspection Warning when opening deployed site in Chrome
+
+## Bugs
+
+- [ ] When user signed up for first time and dashboard page is refreshed, Welcome project tasks are duplicated: possibly use https://firebase.google.com/docs/reference/js/auth.additionaluserinfo.md#additionaluserinfoisnewuser and example here https://rnfirebase.io/reference/auth/additionaluserinfo
 - [ ] Preselected Project not changing when Task form is open while changing project
 - [ ] SignIn/SignUp page OR on Safrai shows spaces before and after (not visible on Chrome)
 
