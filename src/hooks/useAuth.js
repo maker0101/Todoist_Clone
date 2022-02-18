@@ -8,7 +8,6 @@ import {
   GoogleAuthProvider,
 } from 'firebase/auth';
 import { UserContext } from '../contexts/UserContext';
-import useSeedDb from './useSeedDb';
 
 const useAuth = () => {
   const { user } = useContext(UserContext);
@@ -17,7 +16,6 @@ const useAuth = () => {
   const [authError, setAuthError] = useState('');
   const [signUpEmail, setSignUpEmail] = useState('');
   const [signUpPassword, setSignUpPassword] = useState('');
-  const { seedDb } = useSeedDb();
 
   const isNewUser = () =>
     user?.metadata.creationTime === user?.metadata.lastSignInTime;

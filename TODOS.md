@@ -1,6 +1,5 @@
 ## Critical features / bugs
 
-- [ ] Check if user exists: Currently when users signup (guest or google) via signin page -> no seeding & when signin (guest or google) via signup, seeding data duplicated
 - [ ] Integrate Signout into header
 - [ ] End-2-End testing
 - [ ] Phishing Suspection Warning when opening deployed site in Chrome

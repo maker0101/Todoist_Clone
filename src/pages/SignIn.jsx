@@ -24,8 +24,6 @@ const SignIn = () => {
   const navigate = useNavigate();
   const { seedDb } = useSeedDb();
 
-  console.log(user);
-
   useEffect(() => {
     if (user) navigate('/today');
     if (user && isNewUser()) seedDb();
