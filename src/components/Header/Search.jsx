@@ -1,6 +1,6 @@
 import { IoSearchOutline } from 'react-icons/io5';
-import useTasks from '../hooks/useTasks';
-import useSearch from '../hooks/useSearch';
+import useTasks from '../../hooks/useTasks';
+import useSearch from '../../hooks/useSearch';
 
 function Search() {
   const { tasks } = useTasks();

@@ -1,4 +1,4 @@
-import Header from './Header';
+import Header from './Header/Header';
 import SidebarContainer from './Sidebar/SidebarContainer';
 import Modals from './Modals/Modals';
 

@@ -1,8 +1,8 @@
 import { useContext } from 'react';
 import { VscSignOut, VscAccount } from 'react-icons/vsc';
 import { onAuthStateChanged, signOut } from 'firebase/auth';
-import { auth } from '../firebase-config';
-import { UserContext } from '../contexts/UserContext';
+import { auth } from '../../firebase-config';
+import { UserContext } from '../../contexts/UserContext';
 
 const AccountPopup = () => {
   const { user, setUser } = useContext(UserContext);

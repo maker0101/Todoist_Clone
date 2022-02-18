@@ -8,12 +8,12 @@ import {
   VscBell,
   VscChromeClose,
 } from 'react-icons/vsc';
-import useTaskModal from '../hooks/useTaskModal';
+import useTaskModal from '../../hooks/useTaskModal';
 import Search from './Search';
 import AccountPopup from './AccountPopup';
-import useMediaQuery from '../hooks/useMediaQuery';
-import { SidebarContext } from '../contexts/SidebarContext';
-import { EMPTY_TASK } from '../constants/empty-task';
+import useMediaQuery from '../../hooks/useMediaQuery';
+import { SidebarContext } from '../../contexts/SidebarContext';
+import { EMPTY_TASK } from '../../constants/empty-task';
 
 const Header = () => {
   const { handleTaskModalOpen } = useTaskModal();
