@@ -33,7 +33,7 @@ const SignUp = () => {
 
   return (
     <div className='auth'>
-      <div className='auth__container'>
+      <div className='auth__container' data-cy='auth__container'>
         <div className='auth__brand'>
           <SiTodoist />
           <span>todoist clone</span>
@@ -41,7 +41,8 @@ const SignUp = () => {
         <h1 className='auth__title'>Sign up</h1>
         <button
           onClick={(e) => handleSignUp('google', e)}
-          className='auth__providerBtn button__secondary'>
+          className='auth__providerBtn button__secondary'
+          data-cy='signUp__google'>
           <span>
             <FcGoogle />
           </span>
@@ -49,7 +50,8 @@ const SignUp = () => {
         </button>
         <button
           onClick={(e) => handleSignUp('guest', e)}
-          className='auth__providerBtn button__secondary'>
+          className='auth__providerBtn button__secondary'
+          data-cy='signUp__guest'>
           <span>
             <IoPerson className='auth__iconGuest' />
           </span>
@@ -67,6 +69,7 @@ const SignUp = () => {
           <input
             type='email'
             name='email'
+            data-cy='signUp__email'
             autoComplete='email'
             required
             value={signUpEmail}
@@ -76,13 +79,17 @@ const SignUp = () => {
           <input
             type='password'
             name='password'
+            data-cy='signUp__password'
             autoComplete='current-password'
             required
             minLength={6}
             value={signUpPassword}
             onChange={(e) => setSignUpPassword(e.target.value)}
           />
-          <button type='submit' className='button__primary'>
+          <button
+            type='submit'
+            className='button__primary'
+            data-cy='signUp__submitBtn'>
             Sign up with Email
           </button>
           <hr />

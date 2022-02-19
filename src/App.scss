@@ -382,12 +382,8 @@ select::-ms-expand {
   .auth__dividerText:first-line {
     background-color: white;
   }
-  .auth__dividerText:before {
-    content: '__';
-    color: white;
-  }
-  .auth__dividerText:after {
-    content: '__';
+
+  .whiteDashes {
     color: white;
   }
 

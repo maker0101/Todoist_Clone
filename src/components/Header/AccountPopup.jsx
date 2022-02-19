@@ -19,7 +19,7 @@ const AccountPopup = () => {
       <hr />
       <div onClick={signout} className='account_row account_logout'>
         <VscSignOut />
-        <p>Log out</p>
+        <p data-cy='logout'>Log out</p>
       </div>
     </div>
   );

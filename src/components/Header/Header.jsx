@@ -66,7 +66,7 @@ const Header = () => {
           title='Account'
           onClick={() => setIsAccountPopupOpen(!isAccountPopupOpen)}
           className='header__item'
-          data-cy='header__item'
+          data-cy='header__accountIcon'
         />
         {isAccountPopupOpen && <AccountPopup />}
       </div>

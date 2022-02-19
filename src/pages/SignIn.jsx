@@ -41,7 +41,8 @@ const SignIn = () => {
         <h1 className='auth__title'>Log in</h1>
         <button
           onClick={() => handleSignIn('google')}
-          className='auth__providerBtn button__secondary'>
+          className='auth__providerBtn button__secondary'
+          data-cy='signIn__google'>
           <span>
             <FcGoogle />
           </span>
@@ -49,13 +50,17 @@ const SignIn = () => {
         </button>
         <button
           onClick={() => handleSignIn('guest')}
-          className='auth__providerBtn button__secondary'>
+          className='auth__providerBtn button__secondary'
+          data-cy='signUp__guest'>
           <span>
             <IoPerson className='auth__iconGuest' />
           </span>
           Continue as guest
         </button>
-        <div className='auth__dividerText'>OR</div>
+        <div className='auth__dividerText'>
+          <span className='whiteDashes'>---</span>OR
+          <span className='whiteDashes'>---</span>
+        </div>
 
         {authError && (
           <p className='auth__error'>
@@ -68,6 +73,7 @@ const SignIn = () => {
           <input
             type='email'
             name='email'
+            data-cy='signIn__email'
             autoComplete='email'
             required
             value={signInEmail}
@@ -77,13 +83,17 @@ const SignIn = () => {
           <input
             type='password'
             name='password'
+            data-cy='signIn__password'
             autoComplete='current-password'
             required
             minLength={6}
             value={signInPassword}
             onChange={(e) => setSignInPassword(e.target.value)}
           />
-          <button type='submit' className='button__primary'>
+          <button
+            type='submit'
+            className='button__primary'
+            data-cy='signIn__submitBtn'>
             Login with Email
           </button>
           <hr />
