@@ -9,3 +9,9 @@ Cypress.Commands.add('signin', (username, password) => {
   cy.getByTestId('signIn__submitBtn').click();
   cy.location('pathname').should('eq', '/today');
 });
+
+Cypress.Commands.add('signout', () => {
+  cy.getByTestId('header__accountIcon').click();
+  cy.getByTestId('logout').click();
+  cy.location('pathname').should('eq', '/signin');
+});

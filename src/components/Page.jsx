@@ -4,7 +4,7 @@ import Modals from './Modals/Modals';
 
 const Page = ({ children }) => {
   return (
-    <div className='page'>
+    <div className='page' data-cy='page'>
       <Header />
       <SidebarContainer />
       <div className='content'>{children}</div>

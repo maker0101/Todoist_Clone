@@ -1,5 +1,4 @@
 const createNewEmail = () => `cypressTester+${Date.now()}@gmail.com`;
-const signout = () => signOut(auth);
 
 describe('SignUp page', () => {
   beforeEach(() => {
@@ -47,11 +46,13 @@ describe('SignUp page', () => {
     cy.getByTestId('signUp__password').and('be.visible').click().type('111111');
     cy.getByTestId('signUp__submitBtn').and('be.visible').click();
     cy.location('pathname').should('eq', '/today');
+    cy.signout();
   });
 
   it('signs up users as guest', () => {
     cy.getByTestId('signUp__guest').and('be.visible').click();
     cy.location('pathname').should('eq', '/today');
+    cy.signout();
   });
 
   it('shows Google SignIn option', () => {
