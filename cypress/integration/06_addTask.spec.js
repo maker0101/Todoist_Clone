@@ -1,16 +1,16 @@
-// TODO: Currently test project needs to be cleaned and user to be logged out manually before running the tests
+import authUser from '../fixtures/auth-user.json';
+const { email, password } = authUser;
+
 describe('Add task', () => {
   beforeEach(() => {
-    cy.signin('cypressTester@gmail.com', '111111');
+    cy.signin(email, password);
   });
   afterEach(() => {
     cy.signout();
   });
 
   it('adds task via placeholder', () => {
-    cy.getByTestId('sidebar').contains('Inbox').click();
-    cy.wait(2000);
-    cy.location('pathname').should('eq', '/inbox');
+    cy.navigateToInbox();
     cy.getByTestId('addTaskButton').click();
     cy.getByTestId('taskForm').within(() => {
       cy.get('button').contains('Add Task').should('be.disabled');
@@ -33,9 +33,7 @@ describe('Add task', () => {
   });
 
   it('adds task via inline form', () => {
-    cy.getByTestId('sidebar').contains('Inbox').click();
-    cy.wait(2000);
-    cy.location('pathname').should('eq', '/inbox');
+    cy.navigateToInbox();
     cy.getByTestId('addTask').click();
     cy.getByTestId('taskForm').within(() => {
       cy.get('button').contains('Add Task').should('be.disabled');
@@ -55,9 +53,7 @@ describe('Add task', () => {
   });
 
   it('adds task via Quick add', () => {
-    cy.getByTestId('sidebar').contains('Inbox').click();
-    cy.wait(2000);
-    cy.location('pathname').should('eq', '/inbox');
+    cy.navigateToInbox();
     cy.get('[data-cy=header__item][id=header__addTask]').click();
     cy.getByTestId('taskForm')
       .should('be.visible')

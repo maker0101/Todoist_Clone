@@ -1,7 +1,9 @@
-// TODO: Currently test project needs to be cleaned and user to be logged out manually before running the tests
+import authUser from '../fixtures/auth-user.json';
+const { email, password } = authUser;
+
 describe('Launch app', () => {
   beforeEach(() => {
-    cy.signin('cypressTester@gmail.com', '111111');
+    cy.signin(email, password);
   });
   afterEach(() => {
     cy.signout();

@@ -1,4 +1,6 @@
-// TODO: Currently, user needs to be logged out manually before running the tests
+import authUser from '../fixtures/auth-user.json';
+const { email, password } = authUser;
+
 describe('SignIn page', () => {
   beforeEach(() => {
     cy.visit('/signin');
@@ -19,7 +21,7 @@ describe('SignIn page', () => {
 
   it('validates valid email is valid', () => {
     cy.getByTestId('signIn__email')
-      .type('cypressTester@gmail.com')
+      .type(email)
       .then(($el) => $el[0].checkValidity())
       .should('be.true');
   });
@@ -32,17 +34,14 @@ describe('SignIn page', () => {
 
   it('validates valid password is valid', () => {
     cy.getByTestId('signIn__password')
-      .type('111111')
+      .type(password)
       .then(($el) => $el[0].checkValidity())
       .should('be.true');
   });
 
   it('signs in users with Email/ Password', () => {
-    cy.getByTestId('signIn__email')
-      .and('be.visible')
-      .click()
-      .type('cypressTester@gmail.com');
-    cy.getByTestId('signIn__password').and('be.visible').click().type('111111');
+    cy.getByTestId('signIn__email').and('be.visible').click().type(email);
+    cy.getByTestId('signIn__password').and('be.visible').click().type(password);
     cy.getByTestId('signIn__submitBtn').and('be.visible').click();
     cy.location('pathname').should('eq', '/today');
     cy.signout();

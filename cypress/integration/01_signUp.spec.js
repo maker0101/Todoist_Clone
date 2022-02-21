@@ -1,6 +1,6 @@
-// TODO: Currently, user needs to be logged out manually before running the tests
+import authUser from '../fixtures/auth-user.json';
+const { email, password } = authUser;
 
-// Helper function
 const createNewEmail = () => `cypressTester+${Date.now()}@gmail.com`;
 
 describe('SignUp page', () => {
@@ -23,7 +23,7 @@ describe('SignUp page', () => {
 
   it('validates valid email is valid', () => {
     cy.getByTestId('signUp__email')
-      .type('cypressTester@gmail.com')
+      .type(email)
       .then(($el) => $el[0].checkValidity())
       .should('be.true');
   });
@@ -36,7 +36,7 @@ describe('SignUp page', () => {
 
   it('validates valid password is valid', () => {
     cy.getByTestId('signUp__password')
-      .type('111111')
+      .type(password)
       .then(($el) => $el[0].checkValidity())
       .should('be.true');
   });
@@ -46,7 +46,7 @@ describe('SignUp page', () => {
       .and('be.visible')
       .click()
       .type(createNewEmail());
-    cy.getByTestId('signUp__password').and('be.visible').click().type('111111');
+    cy.getByTestId('signUp__password').and('be.visible').click().type(password);
     cy.getByTestId('signUp__submitBtn').and('be.visible').click();
     cy.location('pathname').should('eq', '/today');
     cy.signout();

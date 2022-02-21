@@ -1,11 +1,17 @@
 // TODO: Currently test project needs to be cleaned and user to be logged out manually before running the tests
+import authUser from '../fixtures/auth-user.json';
+const { email, password } = authUser;
+
 describe('Edit tasks', () => {
   beforeEach(() => {
-    cy.signin('cypressTester@gmail.com', '111111');
+    cy.signin(email, password);
+    cy.navigateToInbox();
+  });
+  afterEach(() => {
+    cy.signout();
   });
 
-  it('edits task by clicking task name', () => {
-    cy.navigateToInbox();
+  it('edits task title and description', () => {
     cy.quickAddTask('cypressTestTitleEdit1', 'cypressTestDescEdit1');
     cy.getByTestId('task__name')
       .should('contain', 'cypressTestTitleEdit1')
@@ -28,4 +34,19 @@ describe('Edit tasks', () => {
       .should('contain', 'cypressTestTitleEdit1-edited')
       .and('contain', 'cypressTestDescEdit1-edited');
   });
+
+  /*
+  it('check task as complete', () => {
+    cy.quickAddTask('cypressTestCheckTask1', 'cypressTestCheckTaskDesc1');
+    cy.getByTestId('task')
+      // How do I select the checkbox within a specific task that contains a defined text?
+      .should('contain', 'cypressTestCheckTask1')
+      .within(() => {
+        cy.get('.checkbox').click();
+      });
+    cy.getByTestId('page')
+      .contains('cypressTestCheckTask1')
+      .should('not.exist');
+  });
+  */
 });

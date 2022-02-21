@@ -2,6 +2,10 @@ Cypress.Commands.add('getByTestId', (testId) => {
   cy.get(`[data-cy=${testId}]`);
 });
 
+Cypress.Commands.add('createNewEmail', () => {
+  return `cypressTester+${Date.now()}@gmail.com`;
+});
+
 Cypress.Commands.add('signin', (username, password) => {
   cy.visit('/signin');
   cy.getByTestId('signIn__email').type(username);
