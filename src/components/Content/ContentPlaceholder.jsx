@@ -22,7 +22,8 @@ const ContentPlaceholder = ({ page, dueDate }) => {
       </p>
       <button
         onClick={() => handleTaskModalOpen(EMPTY_TASK, dueDate)}
-        className='button button__primary'>
+        className='button button__primary'
+        data-cy='addTaskButton'>
         Add a task
       </button>
     </div>

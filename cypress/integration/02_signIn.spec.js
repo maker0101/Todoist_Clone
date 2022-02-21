@@ -1,3 +1,4 @@
+// TODO: Currently, user needs to be logged out manually before running the tests
 describe('SignIn page', () => {
   beforeEach(() => {
     cy.visit('/signin');

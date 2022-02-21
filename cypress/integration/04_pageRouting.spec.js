@@ -1,3 +1,4 @@
+// TODO: Currently, user needs to be logged out manually before running the tests
 describe('Navigate app', () => {
   it('Today protected before signin', () => {
     cy.visit('/today');

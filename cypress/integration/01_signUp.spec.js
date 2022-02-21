@@ -1,3 +1,6 @@
+// TODO: Currently, user needs to be logged out manually before running the tests
+
+// Helper function
 const createNewEmail = () => `cypressTester+${Date.now()}@gmail.com`;
 
 describe('SignUp page', () => {

@@ -1,3 +1,4 @@
+// TODO: Currently, user needs to be logged out manually before running the tests
 describe('SignOut', () => {
   it('signs out user', () => {
     cy.signin('cypressTester@gmail.com', '111111');
