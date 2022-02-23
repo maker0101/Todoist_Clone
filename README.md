@@ -2,6 +2,7 @@
 <h3 align="center">Build with React and Firebase. Styled with Sass. Tested with Cypress.</h3>
 
 ![Todoist Clone Screenshot](todoist-clone-preview.jpg)
+[Go to live app](https://todoist-clone.com/)
 
 ## What is this and who is it for ⭐
 
@@ -26,11 +27,11 @@ I hope it helps you to become a better React programmer, too 🤓.
 ## Features
 
 - Written in **modern React**, only functional components with hooks
-- **Simple** local React **state management** (without Redux, Recoil or similar)
+- **Simple** vanilla React **state management** (without Redux, Recoil or similar)
 - **Todoist UI** (as of February 2022)
 - **User authentification** via Firebase
-- **Project CRUD** operations
-- **Task CRUD** operations and simple Search
+- Create, edit and delete **projects**
+- Create, edit, delete and assign **tasks** to projects
 - **End-to-end tested** with Cypress
 
 ## Getting started 🛠
