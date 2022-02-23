@@ -1,5 +1,3 @@
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.14.0/devicon.min.css">
-
 <h1 align="center">A simplified Todoist clone</h1>
 <h2 align="center">
   Build with React 
