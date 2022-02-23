@@ -35,11 +35,11 @@ I hope it helps you to become a better React programmer, too 🤓.
 
 ## Getting started 🛠
 
-- Signup for a [Firebase account](https://firebase.google.com/) if you don't have it already, create a new project, then setup a web app.
-- Inside Firebase, setup Firestore and create two collections `projects` and `tasks`.
-- Inside Firebase, setup Firebase authentification and enable Email/Password, Anonymous and Google SignIn.
+- Signup for a [Firebase account](https://firebase.google.com/) if you don't have it already, create a new project, then set up a web app.
+- Inside Firebase, set up Firestore and create two collections `projects` and `tasks`.
+- Inside Firebase, set up Firebase authentification and enable Email/Password, Anonymous, and Google SignIn.
 - `git clone https://github.com/maker0101/todoist`
-- Create an empty `.env.local` file in root directory, copy `.env.local.example` contents into it, and fill `XXX` placeholders with your Firebase project credentials.
+- Create an empty `.env.local` file in the root directory, copy `.env.local.example` contents into it, and fill `XXX` placeholders with your Firebase project credentials.
 - `npm install`
 - `npm start`
 - App should now be running on `http://localhost:3000/`.
@@ -48,19 +48,19 @@ I hope it helps you to become a better React programmer, too 🤓.
 
 I'm aware of the following shortcomings listed below:
 
-### Performance
+### Performance 🚀
 
-The current app implementation triggers too many component rerenders as I'm relying too heavily on the useEffect hook - even for states changing frequently.
+The current app implementation triggers too many component re-renders as I'm relying too heavily on the useEffect hook - even for states changing frequently.
 
 I would expect a significant performance boost by refactoring contexts/components or by using an external state management library.
 
-### Security
+### Security 🔒
 
-Creating separate production and development environments in firebase should enhance the apps security. This would allow you for example to remove `localhost` from the list of authorized domains. In addition, firestore security rules could be stricter on the development version.
+Creating separate production and development environments in firebase should enhance the app's security. This would allow you for example to remove `localhost` from the list of authorized domains. In addition, firestore security rules could be stricter on the development version.
 
-In addition, adding more advanced form data validations should increase the apps security further, reducing the threat, e.g. from SQL injection attackts.
+In addition, adding more advanced form data validations should increase the app's security further, reducing the threat, e.g. from SQL injection attacks.
 
-### Styling
+### Styling 🎨
 
 All styles are currently located in a single, large _App.scss_ file. Splitting up the CSS into multiple chunks/files of CSS per component would greatly improve code maintainability.
 
@@ -72,15 +72,15 @@ Automatic database cleanups are currently missing (e.g. when project or user is 
 
 ### Accessibility ♿
 
-No extra efforts have been put into making this project more accessible. For a production ready app, adding aria roles and keyboard support would go a long way into making the app more accessible.
+No extra efforts have been put into making this project more accessible. For a production-ready app, adding aria roles and keyboard support would go a long way into making the app more accessible.
 
 ### Testing 🧪
 
-Core userflows have been covered with End-to-end tests utilizing Cypress. However, for a real production setup I would recommend to:
+Core user flows have been covered with end-to-end tests utilizing Cypress. However, for a real production setup I would recommend to:
 
 - Write unit, functional, integration and visual tests as well
 - Run tests for for different environments (browsers, screen sizes, operating systems)
-- Setup a separate test db, as the current setup mutates the production db
+- Separate test from production db
 - Perform repeating actions programmatically (e.g. login)
 - Cover missing user flows (e.g. Google signup/login)
 - Calculate and track test coverage
@@ -100,7 +100,7 @@ If you have any questions or feedback, feel free to say hi. 👋
 ## Shout out
 
 - This project was originally inspired by Karl Hadwen's YouTube tutorial [Building Todoist From Scratch](https://youtu.be/HgfA4W_VjmI).
-- Big thanks to my awesome code tutor [Esen](https://github.com/snqb) for his patience, encouragement and super valuable code reviews.
+- Big thanks to my awesome code tutor [Esen](https://github.com/snqb) for his patience, encouragement, and super valuable code reviews.
 
 ## Disclaimer
 
