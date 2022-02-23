@@ -1,4 +1,15 @@
-<h1 align="center">A simplified Todoist clone built with React and Firebase</h1>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.14.0/devicon.min.css">
+
+<h1 align="center">A simplified Todoist clone</h1>
+<h2 align="center">
+  Build with React 
+  <i class="devicon-react-original colored"></i> 
+  and Firebase 
+  <i class="devicon-firebase-plain colored"></i>.
+  Styled with Sass
+  <i class="devicon-sass-original colored"></i>.
+  Tested with Cypress.
+</h2>
 
 ![Todoist Clone Screenshot](todoist-clone-preview.jpg)
 
