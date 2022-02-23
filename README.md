@@ -1,5 +1,5 @@
 <h1 align="center">A simplified Todoist clone</h1>
-<h1 align="center">Build with React and Firebase. Styled with Sass. Tested with Cypress.</h1>
+<h3 align="center">Build with React and Firebase. Styled with Sass. Tested with Cypress.</h3>
 
 ![Todoist Clone Screenshot](todoist-clone-preview.jpg)
 
