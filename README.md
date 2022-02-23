@@ -34,18 +34,18 @@ I hope it helps you to become a better React programmer, too 🤓.
 
 ## Getting started 🛠
 
-- Signup for a [Firebase account](https://firebase.google.com/) if you don't have it already, create a new project, then setup a web app
+- Signup for a [Firebase account](https://firebase.google.com/) if you don't have it already, create a new project, then setup a web app.
 - Inside Firebase, setup Firestore and create two collections `projects` and `tasks`.
-- Inside Firebase, setup Firebase authentification and enable Email/Password, Anonymous and Google SignIn
+- Inside Firebase, setup Firebase authentification and enable Email/Password, Anonymous and Google SignIn.
 - `git clone https://github.com/maker0101/todoist`
 - Create an empty `.env.local` file in root directory, copy `.env.local.example` contents into it, and fill `XXX` placeholders with your Firebase project credentials.
-- `npm run install-dependencies`
+- `npm install`
 - `npm start`
-- App should now be running on `http://localhost:3000/`
+- App should now be running on `http://localhost:3000/`.
 
 ## Shortcomings
 
-I'm aware of the following major project shortcomings. Due to time constraints I've decided to leave them unfixed (for now), but would like to make them transparent to anyone interested.
+I'm aware of the following shortcomings listed below:
 
 ### Performance
 
@@ -55,9 +55,9 @@ I would expect a significant performance boost by refactoring contexts/component
 
 ### Security
 
-Seprating the staging and production environment and adjusting Firestore security rules accordingly would decrease the possibility of ....
+Creating separate production and development environments in firebase should enhance the apps security. This would allow you for example to remove `localhost` from the list of authorized domains. In addition, firestore security rules could be stricter on the development version.
 
-Additional form validations should be implemented to prevent SQL injection attacks.
+In addition, adding more advanced form data validations should increase the apps security further, reducing the threat, e.g. from SQL injection attackts.
 
 ### Styling
 
@@ -67,11 +67,11 @@ Additionally, some CSS repetitions could have been avoided by implementing style
 
 ### Data management 🗄
 
-Automatic database cleanups missing (e.g. when project or user is deleted).
+Automatic database cleanups are currently missing (e.g. when project or user is deleted).
 
 ### Accessibility ♿
 
-Due to time constraints, no extra efforts have been put into making this project more accessible. For a production ready app, adding aria roles and keyboard support would go a long way into making the app more accessible.
+No extra efforts have been put into making this project more accessible. For a production ready app, adding aria roles and keyboard support would go a long way into making the app more accessible.
 
 ### Testing 🧪
 
