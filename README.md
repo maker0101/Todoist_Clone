@@ -1,13 +1,17 @@
 <h1 align="center">A simplified Todoist clone</h1>
-<h2 align="center">
-  Build with React 
-  <i class="devicon-react-original colored"></i> 
-  and Firebase 
-  <i class="devicon-firebase-plain colored"></i>.
-  Styled with Sass
-  <i class="devicon-sass-original colored"></i>.
-  Tested with Cypress.
-</h2>
+<div style="display: flex; align-items: center; justify-content: center; margin-bottom: 20px">
+  <span style="font-size: 20px">Build with React</span>
+  <img
+    style="height: 25px; padding: 0 8px"
+    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg"
+  />
+  <span style="font-size: 20px">and Firebase</span>
+  <img
+    style="height: 25px; padding: 0 2px"
+    src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg"
+  />
+  <span style="font-size: 20px">. Tested with Cypress.</span>
+</div>
 
 ![Todoist Clone Screenshot](todoist-clone-preview.jpg)
 
