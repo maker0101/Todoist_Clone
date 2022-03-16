@@ -4,11 +4,11 @@ import useProjects from './useProjects';
 import useTasks from './useTasks';
 
 const useSeedDb = () => {
-  const { addProject } = useProjects();
+  const { addSeedProject } = useProjects();
   const { addTask } = useTasks();
 
   const seedProjects = () =>
-    SEED_PROJECTS.forEach((project) => addProject(project));
+    SEED_PROJECTS.forEach((project) => addSeedProject(project));
 
   const seedTasks = () => {
     SEED_TASKS.forEach((task) => addTask(task));

@@ -6,6 +6,7 @@ import {
   doc,
   query,
   where,
+  setDoc,
   addDoc,
   updateDoc,
   deleteDoc,
@@ -62,13 +63,27 @@ const useProjects = () => {
     return currentProject;
   };
 
+  const addSeedProject = async (project) => {
+    try {
+      await setDoc(doc(db, 'projects', project.id), {
+        name: project.name,
+        colorId: project.colorId,
+        isInbox: project.isInbox,
+        userId: user?.uid,
+        createdAt: serverTimestamp(),
+      });
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   const addProject = async (project) => {
     try {
       await addDoc(collection(db, 'projects'), {
         name: project.name,
         colorId: project.colorId,
         isInbox: project.isInbox,
-        userId: user.uid,
+        userId: user?.uid,
         createdAt: serverTimestamp(),
       });
     } catch (err) {
@@ -83,7 +98,7 @@ const useProjects = () => {
         name: project.name,
         colorId: project.colorId,
         isInbox: project.isInbox,
-        userId: user.uid,
+        userId: user?.uid,
       });
     } catch (err) {
       console.error(err);
@@ -109,9 +124,9 @@ const useProjects = () => {
   useEffect(() => {
     if (user) {
       return getProjectsFromDB();
-    };
+    }
   }, [user]);
-  
+
   useEffect(
     () => setSelectedProject(getCurrentProject() || ''),
     [location, projects]
@@ -119,7 +134,9 @@ const useProjects = () => {
 
   return {
     projects,
+    getProjectsFromDB,
     updateProject,
+    addSeedProject,
     addProject,
     handleDeleteProject,
     getProjectsExceptInbox,

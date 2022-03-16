@@ -13,11 +13,14 @@ const Task = ({ task }) => {
       <div className='task' data-cy='task'>
         <div className='task__row'>
           <TaskCheckbox task={task} />
-          <div className='task__name' onClick={() => handleTaskModalOpen(task)}>
+          <div
+            className='task__name'
+            data-cy='task__name'
+            onClick={() => handleTaskModalOpen(task)}>
             {task.name}
           </div>
           <div className='task__icons'>
-            <VscTrash onClick={() => deleteTask(task)} />
+            <VscTrash data-cy='task__delete' onClick={() => deleteTask(task)} />
             <VscEdit onClick={() => handleTaskModalOpen(task)} />
           </div>
         </div>

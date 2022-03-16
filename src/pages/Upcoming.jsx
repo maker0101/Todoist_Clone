@@ -1,7 +1,8 @@
-import { useState, useEffect } from 'react';
+import { Fragment, useState, useEffect } from 'react';
 import Page from '../components/Page';
-import Task from '../components/Task/Task';
 import TaskAdd from '../components/Task/TaskAdd';
+import ContentTitle from '../components/Content/ContentTitle';
+import TasksList from '../components/Task/TasksList';
 import useTasks from '../hooks/useTasks';
 import { calculateUpcomingDays } from '../utilities/calculate-upcoming-days.js';
 import { sortTasksByDueDateAsc } from '../utilities/sort-tasks';
@@ -11,6 +12,8 @@ const Upcoming = () => {
   const [upcomingDays, setUpcomingDays] = useState([]);
   const { getTasks } = useTasks();
   const overdueTasks = sortTasksByDueDateAsc(getTasks({ isOverdue: true }));
+  const upcomingTasks = (day) =>
+    getTasks({ isDueOnDate: dateToYearMonthDay(day?.date) });
   const daySubheading = ({ dateAsDayMonth, todayTomorrow, weekday }) =>
     `${dateAsDayMonth} · ${todayTomorrow || weekday}`;
 
@@ -18,31 +21,17 @@ const Upcoming = () => {
 
   return (
     <Page>
-      <div className='content'>
-        <h1 className='content__title' data-cy='content__title'>
-          Upcoming
-        </h1>
-        <div className='content__section'>
-          <h2 className='content__subTitle'>Overdue</h2>
-          <hr />
-          {overdueTasks.map((task) => (
-            <Task key={task.id} task={task} />
-          ))}
-        </div>
+      <>
+        <ContentTitle title={'Upcoming'} />
+        <TasksList title='Overdue' tasks={overdueTasks} />
 
         {upcomingDays.map((day) => (
-          <div key={day.id} className='content__section'>
-            <h2 className='content__subTitle'>{daySubheading(day)}</h2>
-            <hr />
-            {getTasks({ isDueOnDate: dateToYearMonthDay(day?.date) }).map(
-              (task) => (
-                <Task key={task.id} task={task} />
-              )
-            )}
+          <Fragment key={day.id}>
+            <TasksList title={daySubheading(day)} tasks={upcomingTasks(day)} />
             <TaskAdd dueDate={day.dateAsYearMonthDay} />
-          </div>
+          </Fragment>
         ))}
-      </div>
+      </>
     </Page>
   );
 };

@@ -1,8 +1,13 @@
 import Page from '../components/Page';
-import Task from '../components/Task/Task';
 import TaskAdd from '../components/Task/TaskAdd';
+import ContentTitle from '../components/Content/ContentTitle';
+import TasksList from '../components/Task/TasksList';
+import ContentPlaceholder from '../components/Content/ContentPlaceholder';
 import useTasks from '../hooks/useTasks';
-import { dateToDayMonth, dateToYearMonthDay } from '../utilities/transform-dates';
+import {
+  dateToDayMonth,
+  dateToYearMonthDay,
+} from '../utilities/transform-dates';
 
 const Today = () => {
   const { getTasks } = useTasks();
@@ -10,35 +15,25 @@ const Today = () => {
   const dateAsDayMonth = dateToDayMonth(today);
   const overdueTasks = getTasks({ isOverdue: true });
   const todayTasks = getTasks({ isDueToday: true });
+  const hasTasks = overdueTasks.length > 0 || todayTasks.length > 0;
 
   return (
     <Page>
-      <div className='content'>
-        <h1 className='content__title' data-cy='content__title'>
-          Today
-        </h1>
-
-        <div className='content__section'>
-          <h2 className='content__subTitle' data-cy='content__subtitle'>
-            Overdue
-          </h2>
-          <hr />
-          {overdueTasks.map((task) => (
-            <Task key={task.id} task={task} />
-          ))}
-        </div>
-
-        <div className='content__section'>
-          <h2
-            className='content__subTitle'
-            data-cy='content__subtitle'>{`${dateAsDayMonth} · Today`}</h2>
-          <hr />
-          {todayTasks.map((task) => (
-            <Task key={task.id} task={task} />
-          ))}
-          <TaskAdd dueDate={today} />
-        </div>
-      </div>
+      <>
+        <ContentTitle title={'Today'} />
+        {hasTasks ? (
+          <>
+            <TasksList title='Overdue' tasks={overdueTasks}></TasksList>
+            <TasksList title={`${dateAsDayMonth} · Today`} tasks={todayTasks} />
+            <TaskAdd dueDate={today} />
+          </>
+        ) : (
+          <>
+            <TaskAdd dueDate={today} />
+            <ContentPlaceholder page='today' dueDate={today} />
+          </>
+        )}
+      </>
     </Page>
   );
 };

@@ -8,7 +8,8 @@ const TaskCheckbox = ({ task }) => {
       <input
         type='checkbox'
         checked={task.isChecked}
-        onChange={() => closeTask(task)}></input>
+        onChange={() => closeTask(task)}
+        data-cy='checkbox'></input>
       <span className='checkbox__checkmark'></span>
     </label>
   );

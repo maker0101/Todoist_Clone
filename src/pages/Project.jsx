@@ -1,8 +1,9 @@
 import { useContext } from 'react';
 import useTasks from '../hooks/useTasks';
 import Page from '../components/Page';
-import Task from '../components/Task/Task';
+import TasksList from '../components/Task/TasksList';
 import TaskAdd from '../components/Task/TaskAdd';
+import ContentTitle from '../components/Content/ContentTitle';
 import { SelectedProjectContext } from '../contexts/SelectedProjectContext';
 
 const Project = () => {
@@ -12,15 +13,9 @@ const Project = () => {
 
   return (
     <Page>
-      <div className='content'>
-        <h1 className='content__title' data-cy='content__title'>
-          {selectedProject?.name}
-        </h1>
-        {projectTasks.map((task) => (
-          <Task key={task.id} task={task} />
-        ))}
-        <TaskAdd selectedProjectId={selectedProject?.id} />
-      </div>
+      <ContentTitle title={selectedProject?.name} />
+      <TasksList tasks={projectTasks} />
+      <TaskAdd selectedProjectId={selectedProject?.id} />
     </Page>
   );
 };

@@ -301,6 +301,58 @@ select::-ms-expand {
   }
 }
 
+// AccountPopup
+.account {
+  position: absolute;
+  top: 40px;
+  min-width: 160px;
+  overflow: scroll;
+  font-size: $font-size-small;
+  color: black;
+  border: 1px solid $color-grey-4;
+  border-radius: $border-radius-small;
+  background-color: $color-white;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px,
+    rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+
+  .account_row {
+    display: flex;
+    align-items: center;
+    margin: 8px;
+    font-size: $font-size-primary;
+  }
+
+  .account_userInfo {
+    height: 35px;
+    font-weight: 400;
+
+    svg {
+      color: $color-red-1;
+    }
+  }
+
+  .account_logout {
+    cursor: pointer;
+    height: 30px;
+    padding: 4px;
+    margin: 4px;
+    border-radius: $border-radius-small;
+
+    svg {
+      color: $color-grey-5;
+    }
+  }
+
+  .account_logout:hover {
+    background-color: $color-grey-1;
+  }
+
+  svg {
+    margin-right: 12px;
+    font-size: 20px;
+  }
+}
+
 // Page
 .page {
   display: flex;
@@ -330,12 +382,8 @@ select::-ms-expand {
   .auth__dividerText:first-line {
     background-color: white;
   }
-  .auth__dividerText:before {
-    content: '__';
-    color: white;
-  }
-  .auth__dividerText:after {
-    content: '__';
+
+  .whiteDashes {
     color: white;
   }
 
@@ -379,6 +427,14 @@ select::-ms-expand {
     border: 1px solid #dbdbdb;
     border-radius: $border-radius-large;
     background-color: white;
+
+    @media screen and (max-width: 450px) {
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border: none;
+    }
 
     button {
       font-size: $font-size-small;
@@ -438,10 +494,20 @@ select::-ms-expand {
       flex-direction: column;
     }
   }
-}
 
-.signout {
-  margin-top: 50px;
+  .auth__error {
+    display: flex;
+    align-items: center;
+    color: $color-red-1;
+    font-size: $font-size-primary;
+    font-weight: 400;
+    margin-bottom: 30px;
+
+    svg {
+      font-size: $font-size-large;
+      margin-right: 5px;
+    }
+  }
 }
 
 // Sidebar
@@ -584,6 +650,39 @@ select::-ms-expand {
 
     .content__subTitle {
       margin-bottom: 8px;
+    }
+  }
+
+  .content__placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+    margin-top: 15%;
+
+    @media screen and (max-width: 900px) {
+      margin-top: 35%;
+    }
+    @media screen and (max-width: 450px) {
+      margin-top: 40%;
+    }
+
+    .content__placeholderImg {
+      max-width: 250px;
+    }
+
+    .content_pMedium {
+      font-size: 16px;
+      font-weight: 300;
+      margin: 16px 0 6px 0;
+    }
+
+    .content_pSmall {
+      color: $color-grey-6;
+      font-size: $font-size-small;
+      font-weight: 300;
+      margin: 8px 0 24px 0;
     }
   }
 }
