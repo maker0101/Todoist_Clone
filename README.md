@@ -63,9 +63,9 @@ In addition, adding more advanced form data validations should increase the app'
 
 ### Styling 🎨
 
-All styles are currently located in a single, large _App.scss_ file. Splitting up the CSS into multiple chunks/files of CSS per component would greatly improve code maintainability.
+All styles are currently located in a single, large _App.scss_ file. Splitting up the CSS into multiple CSS files per component would greatly improve code maintainability.
 
-Additionally, some CSS repetitions could have been avoided by implementing styles for basic components (e.g. buttons, titles, paragraphs, ...) first and then building more complex components around these.
+Additionally, some CSS repetitions could have been avoided by implementing a basic component library first (e.g. for texts, buttons, tables, ...) first and only then start implementing more complex components.
 
 ### Data management 🗄
 
@@ -79,11 +79,11 @@ No extra efforts have been put into making this project more accessible. For a p
 
 Core user flows have been covered with end-to-end tests utilizing Cypress. However, for a real production setup I would recommend to:
 
-- Write unit, functional, integration and visual tests as well
-- Run tests for for different environments (browsers, screen sizes, operating systems)
-- Separate test from production db
+- Add unit, functional, integration / visual tests
+- Separate test db from production db
 - Perform repeating actions programmatically (e.g. login)
 - Cover missing user flows (e.g. Google signup/login)
+- Run tests for different environments (browsers, screen sizes, operating systems)
 - Calculate and track test coverage
 
 ## Author: Max Breitsprecher
