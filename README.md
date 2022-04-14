@@ -88,7 +88,7 @@ Core user flows have been covered with end-to-end tests utilizing Cypress. Howev
 
 ## Author: Max Breitsprecher
 
-- Website: [todoist-clone.com](https://todoist-clone.com)
+- Website: [maxbreitsprecher.com](https://www.maxbreitsprecher.com/)
 - Email: max.breitsp@gmail.com
 - Github profile: [github.com/maker0101](https://github.com/maker0101)
 
