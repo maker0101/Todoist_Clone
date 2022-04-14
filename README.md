@@ -7,7 +7,7 @@
 ## What is this and who is it for ⭐
 
 This is a simplified Todoist clone built with React and Firebase.
-I've built it while pursuing the [The Frontend Developer Career Path on Scrimba](https://scrimba.com/learn/frontend).
+I've built it while pursuing the [Frontend Developer Career Path on Scrimba](https://scrimba.com/learn/frontend).
 
 It's a more _complex_ coding project than anything I've attempted previously (as of February 2022), as I wanted to:
 
@@ -27,7 +27,7 @@ I hope it helps you to become a better React programmer, too 🤓.
 ## Features
 
 - Written in **modern React**, only functional components with hooks
-- **Simple** vanilla React **state management** (without Redux, Recoil or similar)
+- **Simple** vanilla React **state management** (without Redux, Recoil, or similar)
 - **Todoist UI** (as of February 2022)
 - **User authentification** via Firebase
 - Create, edit and delete **projects**
@@ -43,7 +43,7 @@ I hope it helps you to become a better React programmer, too 🤓.
 - Create an empty `.env.local` file in the root directory, copy `.env.local.example` contents into it, and fill `XXX` placeholders with your Firebase project credentials.
 - `npm install`
 - `npm start`
-- App should now be running on `http://localhost:3000/`.
+- The app should now be running on `http://localhost:3000/`.
 
 ## Shortcomings
 
@@ -57,7 +57,7 @@ I would expect a significant performance boost by refactoring contexts/component
 
 ### Security 🔒
 
-Creating separate production and development environments in firebase should enhance the app's security. This would allow you for example to remove `localhost` from the list of authorized domains. In addition, firestore security rules could be stricter on the development version.
+Creating separate production and development environments in firebase should enhance the app's security. This would allow you for example to remove `localhost` from the list of authorized domains. In addition, firestore security rules could be stricter in the development version.
 
 In addition, adding more advanced form data validations should increase the app's security further, reducing the threat, e.g. from SQL injection attacks.
 
@@ -69,15 +69,15 @@ Additionally, some CSS repetitions could have been avoided by implementing a bas
 
 ### Data management 🗄
 
-Automatic database cleanups are currently missing (e.g. when project or user is deleted).
+Automatic database cleanups are currently missing (e.g. when a project or user is deleted).
 
 ### Accessibility ♿
 
-No extra efforts have been put into making this project more accessible. For a production-ready app, adding aria roles and keyboard support would go a long way into making the app more accessible.
+No extra efforts have been put into making this project more accessible. For a production-ready app, adding aria roles and keyboard support would go a long way toward making the app more accessible.
 
 ### Testing 🧪
 
-Core user flows have been covered with end-to-end tests utilizing Cypress. However, for a real production setup I would recommend to:
+Core user flows have been covered with end-to-end tests utilizing Cypress. However, for a real production setup, I would recommend:
 
 - Add unit, functional, integration / visual tests
 - Separate test db from production db
