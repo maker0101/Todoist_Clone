@@ -12,7 +12,7 @@ I've built it while pursuing the [Frontend Developer Career Path on Scrimba](htt
 It's a more _complex_ coding project than anything I've attempted previously (as of February 2022), as I wanted to:
 
 - Practice React under more _real-world_ conditions to find and push my limits.
-- Experience some of the pain points and needs of a growing codebase (e.g. managing state, organizing files, automated testing, ...).
+- Experience some of the stress points and needs of a growing codebase (e.g. managing state, organizing files, automated testing, ...).
 - Go from zero to a fully deployed web app for the first time.
 
 This project might be interesting for anyone learning React, who's looking for a practice project that's...
@@ -29,7 +29,7 @@ I hope it helps you to become a better React programmer, too 🤓.
 - Written in **modern React**, only functional components with hooks
 - **Simple** vanilla React **state management** (without Redux, Recoil, or similar)
 - **Todoist UI** (as of February 2022)
-- **User authentification** via Firebase
+- **User authentication** via Firebase
 - Create, edit and delete **projects**
 - Create, edit, delete and assign **tasks** to projects
 - **End-to-end tested** with Cypress
@@ -37,8 +37,8 @@ I hope it helps you to become a better React programmer, too 🤓.
 ## Getting started 🛠
 
 - Signup for a [Firebase account](https://firebase.google.com/) if you don't have it already, create a new project, then set up a web app.
-- Inside Firebase, set up Firestore and create two collections `projects` and `tasks`.
-- Inside Firebase, set up Firebase authentification and enable Email/Password, Anonymous, and Google SignIn.
+- Inside Firebase, setup Firestore and create two collections `projects` and `tasks`.
+- Inside Firebase, setup Firebase authentication and enable Email/Password, Anonymous, and Google SignIn.
 - `git clone https://github.com/maker0101/todoist`
 - Create an empty `.env.local` file in the root directory, copy `.env.local.example` contents into it, and fill `XXX` placeholders with your Firebase project credentials.
 - `npm install`
@@ -73,7 +73,7 @@ Automatic database cleanups are currently missing (e.g. when a project or user i
 
 ### Accessibility ♿
 
-No extra efforts have been put into making this project more accessible. For a production-ready app, adding aria roles and keyboard support would go a long way toward making the app more accessible.
+No extra efforts have been put into making this project more accessible. For a production-ready app, adding aria roles and keyboard support would go a long way towards making the app more accessible.
 
 ### Testing 🧪
 
@@ -105,4 +105,4 @@ If you have any questions or feedback, feel free to say hi. 👋
 
 ## Disclaimer
 
-This project is for entirely educational purposes. It is in no way connected to Todoist the app or Doist the company behind Todoist. I'm just a fan of their app and figured it would be a fun, educational challenge to recreate a simplified web-app version of it.
+This project is entirely for educational purposes. It is in no way connected to Todoist the app or Doist the company behind Todoist. I'm just a fan of their app and figured it would be a fun, educational challenge to recreate a simplified web-app version of it.
