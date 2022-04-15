@@ -105,4 +105,4 @@ If you have any questions or feedback, feel free to say hi. 👋
 
 ## Disclaimer
 
-This project is entirely for educational purposes. It is in no way connected to Todoist the app or Doist the company behind Todoist. I'm just a fan of their app and figured it would be a fun, educational challenge to recreate a simplified web-app version of it.
+This project is entirely for educational purposes. It is in no way connected to Todoist, the app or Doist, the company behind Todoist. I'm just a fan of their app and figured it would be a fun, educational challenge to recreate a simplified web-app version of it.
